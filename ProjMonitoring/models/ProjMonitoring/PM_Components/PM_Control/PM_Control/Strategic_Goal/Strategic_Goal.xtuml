@@ -36,7 +36,9 @@ if ( empty Strategic_Goal)
 	send OrgMan::Notify(Relevant_Person:"Manager", Message:"A new GOAL " + param.SG_Name + "has been created.");
 else
 	LOG::LogFailure( message: "The chosen GOAL NAME already exists.  Please choose a different NAME from any that already exist." );
-end if;',
+end if;
+
+// Based on UC00.',
 	1,
 	'',
 	"00000000-0000-0000-0000-000000000000",
@@ -95,7 +97,9 @@ if ( not empty Strategic_Goal)
 	send OrgMan::Notify(Relevant_Person:"Manager", Message: "The DESCRIPTION of " + param.SG_Name + "has been changed.");
 else
 	LOG::LogFailure(message : "The chosen STRATEGIC GOAL does not exist. Perhaps it was misspelt or incorrectly selected");
-end if;',
+end if;
+
+//Based on UC00.',
 	1,
 	'',
 	"7922475a-0b36-4c84-8998-b3a33020aa3d",
@@ -137,7 +141,9 @@ if ( not empty Strategic_Goal)
 	send OrgMan::Notify(Relevant_Person:"Manager", Message: "The PRIORITY of " + param.SG_Name + "has been changed.");
 else
 	LOG::LogFailure(message : "The chosen strategic goal does not exist. Perhaps it was misspelt or incorrectly selected");
-end if;',
+end if;
+
+// Based on UC00.',
 	1,
 	'',
 	"322eaacc-e57a-439f-92a3-eb37d991beed",

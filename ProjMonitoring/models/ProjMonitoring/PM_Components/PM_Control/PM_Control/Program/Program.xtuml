@@ -21,7 +21,6 @@ INSERT INTO O_TFR
 	"ba5eda7a-def5-0000-0000-000000000000",
 	0,
 	'// Create a new Program by providing a (hopefully) unique name (PRG_Name) and adding a textual Description.
-//Based on UC02 & UC06 - a combined form.
 
 select any Program from instances of PRG
 where (selected.PRG_Name == param.PRG_Name);
@@ -35,6 +34,8 @@ if ( empty Program)
 else
 	LOG::LogFailure( message: "The chosen PROGRAM NAME already exists.  Please choose a different NAME from any that already exist." );
 end if;
+
+//Based on UC02 & UC06 - a combined form.
 ',
 	1,
 	'',
@@ -84,7 +85,7 @@ INSERT INTO O_TFR
 	'This operation is based on UC04.',
 	"ba5eda7a-def5-0000-0000-000000000000",
 	1,
-	'//Change a manager to a Program.  Based on UC04.
+	'//Change a manager to a Program.
 
 select any Program from instances of PRG
  where (selected.PRG_Name == param.PRG_Name);
@@ -95,7 +96,9 @@ if ( not empty Program)
 	send OrgMan::Notify(Relevant_Person:"Manager", Message: "The MANAGER of " + param.PRG_Name + "has been changed.");
 else
 	LOG::LogFailure(message : "The chosen PROGRAM does not exist. Perhaps it was misspelt or incorrectly selected");
-end if;',
+end if;
+
+//Based on UC04.',
 	1,
 	'',
 	"2ef7595a-6873-4d98-80c3-48ca202b8b18",
@@ -139,7 +142,9 @@ if ( not empty Program)
 	send OrgMan::Notify(Relevant_Person:"Manager", Message: "The DESCRIPTION of " + param.PRG_Name + "has been changed.");
 else
 	LOG::LogFailure(message : "The chosen PROGRAM does not exist. Perhaps it was misspelt or incorrectly selected");
-end if;',
+end if;
+
+//Based on UC01.',
 	1,
 	'',
 	"7de1cf66-e82b-492d-b1fd-cf95e1cb7e0e",
@@ -171,7 +176,6 @@ INSERT INTO O_TFR
 	"ba5eda7a-def5-0000-0000-000000000000",
 	1,
 	'//Add the budget for a Program.
-//Based on UC01, on the assumption that the Budget may not be known on creation of the Program.
 
 select any Program from instances of PRG
  where (selected.PRG_Name == param.PRG_Name);
@@ -182,7 +186,9 @@ if ( not empty Program)
 	send OrgMan::Notify(Relevant_Person:"Manager", Message: "The BUDGET for " + param.PRG_Name + "has been added.");
 else
 	LOG::LogFailure(message : "The chosen PROGRAM does not exist. Perhaps it was misspelt or incorrectly selected");
-end if;',
+end if;
+
+//Based on UC01, on the assumption that the Budget may not be known on creation of the Program.',
 	1,
 	'',
 	"3b8282a0-e8ad-4a79-93f3-fdac62a5cc0d",
