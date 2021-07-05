@@ -343,7 +343,39 @@ if ( not empty Project)
 			
 			send PrjMan::Notify( Relevant_Person: "Manager", Message: "Project is AHEAD of schedule by more than 5%. If the project is similarly UNDER budget, then a replan may be required!");
 			
-		end if;			
+		end if;
+		
+		// Determine the colour status of the project.  The colour is an indicator of overall performance and should be read in conjunction with the messages above.
+		
+		if (CPI < 0.95 and SPI < 0.95)
+			
+			Performance_Report.Traffic_Light = Status_Colour::RED;
+			
+		elif (CPI > 0.95 and SPI < 0.95)
+			
+			if (CPI < 1.0)
+			
+			Performance_Report.Traffic_Light = Status_Colour::AMBER;
+			
+			end if;
+			
+		elif (SPI > 0.95 and CPI < 0.95)
+			
+			if (SPI < 1.0)
+			
+			Performance_Report.Traffic_Light = Status_Colour::AMBER;
+			
+			end if;			
+			
+		elif (CPI >= 1.0 and SPI > 0.95)
+			
+			Performance_Report.Traffic_Light = Status_Colour::GREEN;
+
+		elif (SPI >= 1.0 and CPI > 0.95)
+			
+			Performance_Report.Traffic_Light = Status_Colour::GREEN;
+			
+		end if;												
 
 else
 	
