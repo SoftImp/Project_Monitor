@@ -685,6 +685,31 @@ INSERT INTO O_ATTR
 	"ba5eda7a-def5-0000-0000-000000000004",
 	'',
 	'');
+INSERT INTO O_NBATTR
+	VALUES ("21cb8db6-9bb0-474e-9576-b5e6fc346b92",
+	"debe4626-cfe9-48fd-8112-e083c26efc69");
+INSERT INTO O_BATTR
+	VALUES ("21cb8db6-9bb0-474e-9576-b5e6fc346b92",
+	"debe4626-cfe9-48fd-8112-e083c26efc69");
+INSERT INTO O_ATTR
+	VALUES ("21cb8db6-9bb0-474e-9576-b5e6fc346b92",
+	"debe4626-cfe9-48fd-8112-e083c26efc69",
+	"a406f926-5945-4a0d-ac2e-1b2855263f65",
+	'Traffic_Light',
+	'',
+	'',
+	'Traffic_Light',
+	0,
+	"9dc71f19-9575-423a-8869-cc0a09aa5f7d",
+	'',
+	'');
+INSERT INTO S_DT_PROXY
+	VALUES ("9dc71f19-9575-423a-8869-cc0a09aa5f7d",
+	"00000000-0000-0000-0000-000000000000",
+	'Status_Colour',
+	'',
+	'',
+	'../../../../PM_Types/PM_Types.xtuml');
 INSERT INTO O_ID
 	VALUES (0,
 	"debe4626-cfe9-48fd-8112-e083c26efc69");
