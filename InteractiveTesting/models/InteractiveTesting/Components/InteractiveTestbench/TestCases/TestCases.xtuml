@@ -1,0 +1,158 @@
+-- BP 7.1.6 content: Package syschar: 3 persistence-version: 7.1.6
+
+INSERT INTO EP_PKG
+	VALUES ("38bcaba9-fae3-4d37-9f49-931c8c370af8",
+	"00000000-0000-0000-0000-000000000000",
+	"a4c631fe-3bda-4f7b-b094-34cf87359904",
+	'TestCases',
+	'',
+	0);
+INSERT INTO GD_MD
+	VALUES ("f783859d-c5fa-4086-8546-b71e9aea416c",
+	112,
+	"38bcaba9-fae3-4d37-9f49-931c8c370af8",
+	108,
+	0,
+	0,
+	1,
+	1,
+	1,
+	12,
+	1,
+	0,
+	0,
+	0,
+	0,
+	0,
+	'',
+	'InteractiveTesting::Components::InteractiveTestbench::TestCases');
+INSERT INTO DIM_DIA
+	VALUES ("f783859d-c5fa-4086-8546-b71e9aea416c",
+	'',
+	1.000000,
+	0.000000,
+	0.000000,
+	"00000000-0000-0000-0000-000000000000");
+INSERT INTO S_SYNC
+	VALUES ("fb9a463c-5785-472e-b6b8-1e5c6c49d1d8",
+	"00000000-0000-0000-0000-000000000000",
+	'UC00_Add_SG',
+	'',
+	'OrgMan::add_Strategic_Goal( Goal_ID:"Goal1", Description:"Goal1", Priority: PM_Types::Priority_Level::Low);
+OrgMan::update_Description( Goal_ID:"Goal1", Description: "new Description for goal");
+
+',
+	"ba5eda7a-def5-0000-0000-000000000000",
+	1,
+	'',
+	0,
+	1);
+INSERT INTO PE_PE
+	VALUES ("fb9a463c-5785-472e-b6b8-1e5c6c49d1d8",
+	1,
+	"38bcaba9-fae3-4d37-9f49-931c8c370af8",
+	"00000000-0000-0000-0000-000000000000",
+	1);
+INSERT INTO S_SYNC
+	VALUES ("60e76c0d-8260-4f99-9692-f9bcb090174a",
+	"00000000-0000-0000-0000-000000000000",
+	'UC00_Display_SG',
+	'',
+	'//select many sg from instances of OrgMan::
+',
+	"ba5eda7a-def5-0000-0000-000000000000",
+	1,
+	'',
+	0,
+	2);
+INSERT INTO PE_PE
+	VALUES ("60e76c0d-8260-4f99-9692-f9bcb090174a",
+	1,
+	"38bcaba9-fae3-4d37-9f49-931c8c370af8",
+	"00000000-0000-0000-0000-000000000000",
+	1);
+INSERT INTO S_SYNC
+	VALUES ("7285189b-d94c-4678-a00f-8ab44faebbd5",
+	"00000000-0000-0000-0000-000000000000",
+	'UC01_Add_Prg',
+	'',
+	'
+Start_Date = TIM::create_date(day:1, month:6, year:2021, hour:0, minute:0, second:0);
+End_Date = TIM::create_date(day:1, month:12, year:2021, hour:0, minute:0, second:0);
+
+PrgMan::add_Program( Prog_Name:"Prg1", Goal_ID:"Goal1", Description:"test Prg", Start_Date:Start_Date, End_Date: End_Date, Budget:100.00, Manager:"Mgr1", Owner:"Owner1" );
+
+',
+	"ba5eda7a-def5-0000-0000-000000000000",
+	1,
+	'',
+	0,
+	3);
+INSERT INTO PE_PE
+	VALUES ("7285189b-d94c-4678-a00f-8ab44faebbd5",
+	1,
+	"38bcaba9-fae3-4d37-9f49-931c8c370af8",
+	"00000000-0000-0000-0000-000000000000",
+	1);
+INSERT INTO S_SYNC
+	VALUES ("b02bc63c-c9f8-4d47-8c2b-5a8c5e5f8352",
+	"00000000-0000-0000-0000-000000000000",
+	'UC02_Add_Milestone',
+	'',
+	'Date = TIM::create_date(day:1, month:12, year:2021, hour:0, minute:0, second:0);
+
+PrgMan::add_Milestone( MS_Name: "MS_1", Prog_Name: "Prg1", Completion_Date: Date, Percent_Complete: 10.0 );
+',
+	"ba5eda7a-def5-0000-0000-000000000000",
+	1,
+	'',
+	0,
+	4);
+INSERT INTO PE_PE
+	VALUES ("b02bc63c-c9f8-4d47-8c2b-5a8c5e5f8352",
+	1,
+	"38bcaba9-fae3-4d37-9f49-931c8c370af8",
+	"00000000-0000-0000-0000-000000000000",
+	1);
+INSERT INTO S_SYNC
+	VALUES ("26a4a0b0-97b4-4b95-bb8b-d8d1e7aff868",
+	"00000000-0000-0000-0000-000000000000",
+	'UC03_Update_Milestone',
+	'',
+	'PrgMan::update_Milestone( MS_Name: "MS_1", Prog_Name: "Prg1", Percent_Complete: 50.0);
+
+PrgMan::update_Milestone( MS_Name: "MS_1", Prog_Name: "Prg1", Percent_Complete: 100.0);',
+	"ba5eda7a-def5-0000-0000-000000000000",
+	1,
+	'',
+	0,
+	5);
+INSERT INTO PE_PE
+	VALUES ("26a4a0b0-97b4-4b95-bb8b-d8d1e7aff868",
+	1,
+	"38bcaba9-fae3-4d37-9f49-931c8c370af8",
+	"00000000-0000-0000-0000-000000000000",
+	1);
+INSERT INTO PE_PE
+	VALUES ("38bcaba9-fae3-4d37-9f49-931c8c370af8",
+	1,
+	"00000000-0000-0000-0000-000000000000",
+	"79dce7f8-a22a-45cb-8a06-081bb06ff162",
+	7);
+INSERT INTO C_C_PROXY
+	VALUES ("79dce7f8-a22a-45cb-8a06-081bb06ff162",
+	"00000000-0000-0000-0000-000000000000",
+	"00000000-0000-0000-0000-000000000000",
+	'InteractiveTestbench',
+	'',
+	0,
+	"00000000-0000-0000-0000-000000000000",
+	0,
+	'',
+	'',
+	'../InteractiveTestbench.xtuml');
+INSERT INTO S_SYS_PROXY
+	VALUES ("a4c631fe-3bda-4f7b-b094-34cf87359904",
+	'InteractiveTesting',
+	1,
+	'../../../InteractiveTesting.xtuml');

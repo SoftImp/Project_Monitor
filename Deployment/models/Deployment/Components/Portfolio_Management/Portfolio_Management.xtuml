@@ -1,0 +1,298 @@
+-- BP 7.1.6 content: Component syschar: 3 persistence-version: 7.1.6
+
+INSERT INTO C_C
+	VALUES ("cd8ce140-5259-4f5a-b2c3-af3724111731",
+	"00000000-0000-0000-0000-000000000000",
+	"00000000-0000-0000-0000-000000000000",
+	'Portfolio_Management',
+	'',
+	0,
+	"00000000-0000-0000-0000-000000000000",
+	0,
+	'',
+	'');
+INSERT INTO GD_MD
+	VALUES ("a54da998-031f-424b-a810-aa85f0f2db34",
+	111,
+	"cd8ce140-5259-4f5a-b2c3-af3724111731",
+	98,
+	0,
+	0,
+	1,
+	1,
+	1,
+	12,
+	1,
+	0,
+	0,
+	200,
+	150,
+	0,
+	'',
+	'Deployment::Components::Portfolio_Management');
+INSERT INTO GD_GE
+	VALUES ("9de27728-595e-45ec-9b83-d21ff503b91c",
+	"a54da998-031f-424b-a810-aa85f0f2db34",
+	"cd8ce140-5259-4f5a-b2c3-af3724111731",
+	103,
+	0,
+	'Deployment::Components::Portfolio_Management');
+INSERT INTO GD_SHP
+	VALUES ("9de27728-595e-45ec-9b83-d21ff503b91c");
+INSERT INTO GD_CTR
+	VALUES ("9de27728-595e-45ec-9b83-d21ff503b91c");
+INSERT INTO DIM_ND
+	VALUES (755.000000,
+	154.000000,
+	"9de27728-595e-45ec-9b83-d21ff503b91c");
+INSERT INTO DIM_GE
+	VALUES (4100.000000,
+	3100.000000,
+	"9de27728-595e-45ec-9b83-d21ff503b91c",
+	"00000000-0000-0000-0000-000000000000");
+INSERT INTO DIM_ELE
+	VALUES ("9de27728-595e-45ec-9b83-d21ff503b91c",
+	0,
+	"00000000-0000-0000-0000-000000000000");
+INSERT INTO DIM_CON
+	VALUES ("7a9e1156-b450-4914-8662-d0fbae2f8440",
+	4314.000000,
+	3100.000000,
+	"9de27728-595e-45ec-9b83-d21ff503b91c");
+INSERT INTO GD_GE
+	VALUES ("651f4636-ab75-487e-8fd9-0f2d314f2c5a",
+	"a54da998-031f-424b-a810-aa85f0f2db34",
+	"b1456975-17b6-4536-b2a3-e517a5b1f8c3",
+	93,
+	0,
+	'Deployment::Components::Portfolio_Management::PFMan::Portfolio_Management');
+INSERT INTO GD_CON
+	VALUES ("651f4636-ab75-487e-8fd9-0f2d314f2c5a",
+	"00000000-0000-0000-0000-000000000000");
+INSERT INTO GD_CTXT
+	VALUES ("b6420e94-0c1f-4d71-9893-964e7df4ac69",
+	"651f4636-ab75-487e-8fd9-0f2d314f2c5a",
+	0,
+	0.000000,
+	0.000000);
+INSERT INTO DIM_ND
+	VALUES (0.000000,
+	0.000000,
+	"b6420e94-0c1f-4d71-9893-964e7df4ac69");
+INSERT INTO DIM_GE
+	VALUES (0.000000,
+	0.000000,
+	"b6420e94-0c1f-4d71-9893-964e7df4ac69",
+	"00000000-0000-0000-0000-000000000000");
+INSERT INTO DIM_ELE
+	VALUES ("b6420e94-0c1f-4d71-9893-964e7df4ac69",
+	0,
+	"00000000-0000-0000-0000-000000000000");
+INSERT INTO GD_CTXT
+	VALUES ("3bf4110b-e533-4e38-a64a-f6782242775a",
+	"651f4636-ab75-487e-8fd9-0f2d314f2c5a",
+	2,
+	0.000000,
+	0.000000);
+INSERT INTO DIM_ND
+	VALUES (0.000000,
+	0.000000,
+	"3bf4110b-e533-4e38-a64a-f6782242775a");
+INSERT INTO DIM_GE
+	VALUES (0.000000,
+	0.000000,
+	"3bf4110b-e533-4e38-a64a-f6782242775a",
+	"00000000-0000-0000-0000-000000000000");
+INSERT INTO DIM_ELE
+	VALUES ("3bf4110b-e533-4e38-a64a-f6782242775a",
+	0,
+	"00000000-0000-0000-0000-000000000000");
+INSERT INTO GD_CTXT
+	VALUES ("65c2e341-7710-47e1-9b1d-c21d8d6d609f",
+	"651f4636-ab75-487e-8fd9-0f2d314f2c5a",
+	1,
+	0.000000,
+	0.000000);
+INSERT INTO DIM_ND
+	VALUES (0.000000,
+	0.000000,
+	"65c2e341-7710-47e1-9b1d-c21d8d6d609f");
+INSERT INTO DIM_GE
+	VALUES (0.000000,
+	0.000000,
+	"65c2e341-7710-47e1-9b1d-c21d8d6d609f",
+	"00000000-0000-0000-0000-000000000000");
+INSERT INTO DIM_ELE
+	VALUES ("65c2e341-7710-47e1-9b1d-c21d8d6d609f",
+	0,
+	"00000000-0000-0000-0000-000000000000");
+INSERT INTO GD_LS
+	VALUES ("1fde9b6e-dc94-4951-a3d4-4a46616b8c7a",
+	"651f4636-ab75-487e-8fd9-0f2d314f2c5a",
+	"00000000-0000-0000-0000-000000000000",
+	"f9e7e323-e759-4236-819e-52ef88e31cda",
+	"9a59f38a-8a27-4f6a-a2d1-197e917348cd");
+INSERT INTO DIM_WAY
+	VALUES ("f9e7e323-e759-4236-819e-52ef88e31cda",
+	4314.000000,
+	3100.000000,
+	"651f4636-ab75-487e-8fd9-0f2d314f2c5a",
+	"00000000-0000-0000-0000-000000000000",
+	"00000000-0000-0000-0000-000000000000");
+INSERT INTO DIM_WAY
+	VALUES ("9a59f38a-8a27-4f6a-a2d1-197e917348cd",
+	4315.000000,
+	3030.000000,
+	"651f4636-ab75-487e-8fd9-0f2d314f2c5a",
+	"00000000-0000-0000-0000-000000000000",
+	"f9e7e323-e759-4236-819e-52ef88e31cda");
+INSERT INTO DIM_GE
+	VALUES (0.000000,
+	0.000000,
+	"651f4636-ab75-487e-8fd9-0f2d314f2c5a",
+	"00000000-0000-0000-0000-000000000000");
+INSERT INTO DIM_ELE
+	VALUES ("651f4636-ab75-487e-8fd9-0f2d314f2c5a",
+	0,
+	"00000000-0000-0000-0000-000000000000");
+INSERT INTO DIM_ED
+	VALUES ("7a9e1156-b450-4914-8662-d0fbae2f8440",
+	"00000000-0000-0000-0000-000000000000",
+	"651f4636-ab75-487e-8fd9-0f2d314f2c5a");
+INSERT INTO GD_GE
+	VALUES ("3f4fe2b4-c6d5-4a59-963b-06b80af78346",
+	"a54da998-031f-424b-a810-aa85f0f2db34",
+	"9946d752-c518-48a3-a7cf-e8b230bd628e",
+	108,
+	0,
+	'Deployment::Components::Portfolio_Management::IncomingMessageFunctions');
+INSERT INTO GD_SHP
+	VALUES ("3f4fe2b4-c6d5-4a59-963b-06b80af78346");
+INSERT INTO GD_NCS
+	VALUES ("3f4fe2b4-c6d5-4a59-963b-06b80af78346");
+INSERT INTO DIM_ND
+	VALUES (200.000000,
+	150.000000,
+	"3f4fe2b4-c6d5-4a59-963b-06b80af78346");
+INSERT INTO DIM_GE
+	VALUES (4643.000000,
+	3100.000000,
+	"3f4fe2b4-c6d5-4a59-963b-06b80af78346",
+	"00000000-0000-0000-0000-000000000000");
+INSERT INTO DIM_ELE
+	VALUES ("3f4fe2b4-c6d5-4a59-963b-06b80af78346",
+	0,
+	"9de27728-595e-45ec-9b83-d21ff503b91c");
+INSERT INTO DIM_DIA
+	VALUES ("a54da998-031f-424b-a810-aa85f0f2db34",
+	'',
+	1.000000,
+	0.000000,
+	0.000000,
+	"00000000-0000-0000-0000-000000000000");
+INSERT INTO C_PO
+	VALUES ("34568b23-7b40-46cf-bb63-38d4f445481c",
+	"cd8ce140-5259-4f5a-b2c3-af3724111731",
+	'PFMan',
+	0,
+	0,
+	'');
+INSERT INTO C_IR
+	VALUES ("b1456975-17b6-4536-b2a3-e517a5b1f8c3",
+	"a1785323-9842-4f78-9c7c-66eac1ae5d6a",
+	"00000000-0000-0000-0000-000000000000",
+	"34568b23-7b40-46cf-bb63-38d4f445481c");
+INSERT INTO C_R
+	VALUES ("b1456975-17b6-4536-b2a3-e517a5b1f8c3",
+	'Portfolio_Management',
+	'',
+	'Unnamed Interface',
+	'Portfolio_Management::PFMan::Portfolio_Management');
+INSERT INTO SPR_REP
+	VALUES ("f6caa4c3-b234-4c25-8e2a-fc8e1540b609",
+	"2c24502e-f8c3-4c4d-b7c2-eb2faf53bfbc",
+	"b1456975-17b6-4536-b2a3-e517a5b1f8c3");
+INSERT INTO SPR_RS
+	VALUES ("f6caa4c3-b234-4c25-8e2a-fc8e1540b609",
+	'add_Portfolio',
+	'This signal incorporates not only a new portfolio identifier, but also a strategic goal idetifier.
+Mainly to ensure that the PORTFOLIO is associated with the correct STRATEGIC GOAL right from get-go.
+
+This is much the same as for adding PROGRAMS.
+Thus the basic aspects of all UC01, UC06 and and UC01-1 are incorporated here.',
+	'',
+	3,
+	0,
+	1);
+INSERT INTO C_EP_PROXY
+	VALUES ("2c24502e-f8c3-4c4d-b7c2-eb2faf53bfbc",
+	"a1785323-9842-4f78-9c7c-66eac1ae5d6a",
+	-1,
+	'add_Portfolio',
+	'This signal incorporates not only a new portfolio identifier, but also a strategic goal idetifier.
+Mainly to ensure that the PORTFOLIO is associated with the correct STRATEGIC GOAL right from get-go.
+
+This is much the same as for adding PROGRAMS.
+Thus the basic aspects of all UC01, UC06 and and UC01-1 are incorporated here.',
+	1,
+	'../../../../../ProjMonitoring/models/ProjMonitoring/PM_Interfaces/Portfolio_Management/Portfolio_Management.xtuml');
+INSERT INTO SPR_REP
+	VALUES ("8961d760-6be3-4b70-ab8d-a5b305644269",
+	"0ef181e4-da1a-4a11-a858-de246d662545",
+	"b1456975-17b6-4536-b2a3-e517a5b1f8c3");
+INSERT INTO SPR_RS
+	VALUES ("8961d760-6be3-4b70-ab8d-a5b305644269",
+	'set_Priority',
+	'',
+	'',
+	3,
+	0,
+	2);
+INSERT INTO C_EP_PROXY
+	VALUES ("0ef181e4-da1a-4a11-a858-de246d662545",
+	"a1785323-9842-4f78-9c7c-66eac1ae5d6a",
+	-1,
+	'set_Priority',
+	'',
+	2,
+	'../../../../../ProjMonitoring/models/ProjMonitoring/PM_Interfaces/Portfolio_Management/Portfolio_Management.xtuml');
+INSERT INTO SPR_REP
+	VALUES ("c759dd39-bd3e-4c44-8925-5e73327591bf",
+	"fc595120-b637-425b-aa0e-15edd841630b",
+	"b1456975-17b6-4536-b2a3-e517a5b1f8c3");
+INSERT INTO SPR_RS
+	VALUES ("c759dd39-bd3e-4c44-8925-5e73327591bf",
+	'close_Portfolio',
+	'',
+	'',
+	3,
+	0,
+	3);
+INSERT INTO C_EP_PROXY
+	VALUES ("fc595120-b637-425b-aa0e-15edd841630b",
+	"a1785323-9842-4f78-9c7c-66eac1ae5d6a",
+	-1,
+	'close_Portfolio',
+	'',
+	3,
+	'../../../../../ProjMonitoring/models/ProjMonitoring/PM_Interfaces/Portfolio_Management/Portfolio_Management.xtuml');
+INSERT INTO C_I_PROXY
+	VALUES ("a1785323-9842-4f78-9c7c-66eac1ae5d6a",
+	"00000000-0000-0000-0000-000000000000",
+	'Portfolio_Management',
+	'An I/F to allow particular communications with Portfolio Managers or their representatives.',
+	'../../../../../ProjMonitoring/models/ProjMonitoring/PM_Interfaces/Portfolio_Management/Portfolio_Management.xtuml');
+INSERT INTO PE_PE
+	VALUES ("cd8ce140-5259-4f5a-b2c3-af3724111731",
+	1,
+	"5aa48725-1594-44c6-a958-31aaf2ce776c",
+	"00000000-0000-0000-0000-000000000000",
+	2);
+INSERT INTO EP_PKG_PROXY
+	VALUES ("5aa48725-1594-44c6-a958-31aaf2ce776c",
+	"385363f2-f297-432a-9a51-63b018ac70a4",
+	"385363f2-f297-432a-9a51-63b018ac70a4",
+	'Components',
+	'',
+	0,
+	'../Components.xtuml');

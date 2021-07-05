@@ -1,0 +1,58 @@
+-- BP 7.1.6 content: Package syschar: 3 persistence-version: 7.1.6
+
+INSERT INTO EP_PKG
+	VALUES ("9946d752-c518-48a3-a7cf-e8b230bd628e",
+	"00000000-0000-0000-0000-000000000000",
+	"385363f2-f297-432a-9a51-63b018ac70a4",
+	'IncomingMessageFunctions',
+	'',
+	0);
+INSERT INTO GD_MD
+	VALUES ("1d150de4-c8e3-45e6-b6ba-883265f84670",
+	112,
+	"9946d752-c518-48a3-a7cf-e8b230bd628e",
+	108,
+	0,
+	0,
+	1,
+	1,
+	1,
+	12,
+	1,
+	0,
+	0,
+	0,
+	0,
+	0,
+	'',
+	'Deployment::Components::Portfolio_Management::IncomingMessageFunctions');
+INSERT INTO DIM_DIA
+	VALUES ("1d150de4-c8e3-45e6-b6ba-883265f84670",
+	'',
+	1.000000,
+	0.000000,
+	0.000000,
+	"00000000-0000-0000-0000-000000000000");
+INSERT INTO PE_PE
+	VALUES ("9946d752-c518-48a3-a7cf-e8b230bd628e",
+	1,
+	"00000000-0000-0000-0000-000000000000",
+	"cd8ce140-5259-4f5a-b2c3-af3724111731",
+	7);
+INSERT INTO C_C_PROXY
+	VALUES ("cd8ce140-5259-4f5a-b2c3-af3724111731",
+	"00000000-0000-0000-0000-000000000000",
+	"00000000-0000-0000-0000-000000000000",
+	'Portfolio_Management',
+	'',
+	0,
+	"00000000-0000-0000-0000-000000000000",
+	0,
+	'',
+	'',
+	'../Portfolio_Management.xtuml');
+INSERT INTO S_SYS_PROXY
+	VALUES ("385363f2-f297-432a-9a51-63b018ac70a4",
+	'Deployment',
+	1,
+	'../../../Deployment.xtuml');

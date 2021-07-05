@@ -1,0 +1,80 @@
+-- BP 7.1.6 content: SystemModel syschar: 3 persistence-version: 7.1.6
+
+INSERT INTO S_SYS
+	VALUES ("a4c631fe-3bda-4f7b-b094-34cf87359904",
+	'InteractiveTesting',
+	1);
+INSERT INTO GD_MD
+	VALUES ("f2ffcc31-ba15-4dd9-8349-69d7b8b4eed8",
+	108,
+	"a4c631fe-3bda-4f7b-b094-34cf87359904",
+	92,
+	0,
+	0,
+	1,
+	1,
+	1,
+	12,
+	1,
+	0,
+	0,
+	200,
+	150,
+	0,
+	'',
+	'InteractiveTesting');
+INSERT INTO GD_GE
+	VALUES ("7a97a279-5a5d-4ace-b3b5-6b7702ecf1ad",
+	"f2ffcc31-ba15-4dd9-8349-69d7b8b4eed8",
+	"15ee9448-6efd-4ef6-9780-8b2e858d1b05",
+	108,
+	0,
+	'InteractiveTesting::InteractiveTesting');
+INSERT INTO GD_SHP
+	VALUES ("7a97a279-5a5d-4ace-b3b5-6b7702ecf1ad");
+INSERT INTO GD_NCS
+	VALUES ("7a97a279-5a5d-4ace-b3b5-6b7702ecf1ad");
+INSERT INTO DIM_ND
+	VALUES (200.000000,
+	150.000000,
+	"7a97a279-5a5d-4ace-b3b5-6b7702ecf1ad");
+INSERT INTO DIM_GE
+	VALUES (220.000000,
+	0.000000,
+	"7a97a279-5a5d-4ace-b3b5-6b7702ecf1ad",
+	"00000000-0000-0000-0000-000000000000");
+INSERT INTO DIM_ELE
+	VALUES ("7a97a279-5a5d-4ace-b3b5-6b7702ecf1ad",
+	0,
+	"00000000-0000-0000-0000-000000000000");
+INSERT INTO GD_GE
+	VALUES ("3fef133b-f73e-4c24-9d6b-c5a2f359dccc",
+	"f2ffcc31-ba15-4dd9-8349-69d7b8b4eed8",
+	"2e410390-523b-4cc5-8924-125798d0d7e6",
+	108,
+	0,
+	'InteractiveTesting::Components');
+INSERT INTO GD_SHP
+	VALUES ("3fef133b-f73e-4c24-9d6b-c5a2f359dccc");
+INSERT INTO GD_NCS
+	VALUES ("3fef133b-f73e-4c24-9d6b-c5a2f359dccc");
+INSERT INTO DIM_ND
+	VALUES (200.000000,
+	150.000000,
+	"3fef133b-f73e-4c24-9d6b-c5a2f359dccc");
+INSERT INTO DIM_GE
+	VALUES (440.000000,
+	0.000000,
+	"3fef133b-f73e-4c24-9d6b-c5a2f359dccc",
+	"00000000-0000-0000-0000-000000000000");
+INSERT INTO DIM_ELE
+	VALUES ("3fef133b-f73e-4c24-9d6b-c5a2f359dccc",
+	0,
+	"00000000-0000-0000-0000-000000000000");
+INSERT INTO DIM_DIA
+	VALUES ("f2ffcc31-ba15-4dd9-8349-69d7b8b4eed8",
+	'',
+	1.000000,
+	0.000000,
+	0.000000,
+	"00000000-0000-0000-0000-000000000000");

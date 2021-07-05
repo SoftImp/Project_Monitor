@@ -1,0 +1,58 @@
+-- BP 7.1.6 content: Package syschar: 3 persistence-version: 7.1.6
+
+INSERT INTO EP_PKG
+	VALUES ("d2542c7a-db39-4772-ad94-cf7d9920a637",
+	"00000000-0000-0000-0000-000000000000",
+	"385363f2-f297-432a-9a51-63b018ac70a4",
+	'IncomingMessageFunctions',
+	'',
+	0);
+INSERT INTO GD_MD
+	VALUES ("1a25dc31-7221-4e63-afe7-0d7627128f9e",
+	112,
+	"d2542c7a-db39-4772-ad94-cf7d9920a637",
+	108,
+	0,
+	0,
+	1,
+	1,
+	1,
+	12,
+	1,
+	0,
+	0,
+	0,
+	0,
+	0,
+	'',
+	'Deployment::Components::Organisational_Management::IncomingMessageFunctions');
+INSERT INTO DIM_DIA
+	VALUES ("1a25dc31-7221-4e63-afe7-0d7627128f9e",
+	'',
+	1.000000,
+	0.000000,
+	0.000000,
+	"00000000-0000-0000-0000-000000000000");
+INSERT INTO PE_PE
+	VALUES ("d2542c7a-db39-4772-ad94-cf7d9920a637",
+	1,
+	"00000000-0000-0000-0000-000000000000",
+	"00edc6c1-bb2e-4ead-a18d-0ad9e7639c96",
+	7);
+INSERT INTO C_C_PROXY
+	VALUES ("00edc6c1-bb2e-4ead-a18d-0ad9e7639c96",
+	"00000000-0000-0000-0000-000000000000",
+	"00000000-0000-0000-0000-000000000000",
+	'Organisational_Management',
+	'',
+	0,
+	"00000000-0000-0000-0000-000000000000",
+	0,
+	'',
+	'',
+	'../Organisational_Management.xtuml');
+INSERT INTO S_SYS_PROXY
+	VALUES ("385363f2-f297-432a-9a51-63b018ac70a4",
+	'Deployment',
+	1,
+	'../../../Deployment.xtuml');

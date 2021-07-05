@@ -756,7 +756,21 @@ INSERT INTO SPR_PS
 Mainly to ensure that the PROGRAM is associated with the correct STRATEGIC GOAL right from get-go.
 
 Thus the basic aspects of all UC01, UC06 and and UC01-1 are incorporated here.',
-	'',
+	'//Creating a new program requires 8 inputs. 
+//Call the Program class operation named Create.
+
+PRG::Create( PRG_Name : param.Prog_Name, Description : param.Description, Budget : param.Budget, Manager : param.Manager );
+
+// Set Start and End Dates
+PRG::add_Start_DMY( PRG_Name: param.Prog_Name, Day: TIM::get_day( date: param.Start_Date), Month: TIM::get_month( date: param.Start_Date), Year: TIM::get_year( date: param.Start_Date) );
+PRG::add_End_DMY( PRG_Name: param.Prog_Name, Day: TIM::get_day( date: param.End_Date), Month: TIM::get_month( date: param.End_Date), Year: TIM::get_year( date: param.End_Date) );
+
+// Link to Startegic Goal
+PRG::link_To_Startegic_Goal( PRG_Name: param.Prog_Name, SG_Name: param.Goal_ID );
+
+// Send a notification of the creation of a new program to a manager within Program_Management.
+
+send PrgMan::Notify( Relevant_Person:"Manager", Message:"New Program Created" );',
 	1,
 	0,
 	1);
@@ -799,7 +813,15 @@ INSERT INTO SPR_PS
 	VALUES ("98ab46d5-1582-4d4f-84b6-0c4b82cccf54",
 	'add_Milestone',
 	'Based on UC02.',
-	'',
+	'//Add a milestne to a program requires 4 inputs. 
+//Call the Program class operation named add_Milestone and update_Milestone.
+
+PRG::add_Milestone( MS_Name: param.MS_Name, PRG_Name: param.Prog_Name );
+PRG::update_Milestone( MS_Name: param.MS_Name, PRG_Name: param.Prog_Name, Percent_Complete: param.Percent_Complete );
+
+// Send a notification of the creation of a new milestone to a manager within Program_Management.
+
+send PrgMan::Notify( Relevant_Person:"Manager", Message:"New Milestone Created" );',
 	1,
 	0,
 	4);
