@@ -13,16 +13,96 @@ This class is based on UC17.',
 INSERT INTO O_TFR
 	VALUES ("34f4e69c-3e8d-4bc9-831c-18a15ea521fa",
 	"e1e375a8-101a-4533-9544-1b3ba91e8e62",
-	'create_Report',
+	'Create',
 	'This operation is based on UC17.',
 	"ba5eda7a-def5-0000-0000-000000000000",
 	0,
-	'',
+	'//Creating a Summary Report requires
+//1: identifying that the chosen Program exists,
+//2: identifying each project that is associated with the program,
+//3: creating a set of instances representing the contents of the report,
+//4: indicating overal non-performance of the program for which the summary repaort has been created.
+
+create object instance Summary_Report of SUMREP;
+
+select any Program from instances of PRG
+where (selected.PRG_Name == param.PRG_Name);
+
+if (not empty Program)
+	select many Reports related by Program -> PRJ[R5.''may include''] -> PERFREP[R14.''may be recorded in''];
+	// I think this last statement should provide an instance set that only includes existing performance reports.
+
+	Summary_Report.PRG_Name = param.PRG_Name;
+	Summary_Report.Date = TIM::current_date();
+	
+	LOG::LogInfo( message: "A new SUMMARY REPORT has been successfully created." );
+	
+	//List the RED (non-performing) projects first.
+	
+	red_ones = 0;
+	for each Report in Reports
+		while (Report.Traffic_Light == Status_Colour::RED)
+			send OrgMan::Report(Relevant_Person:"Manager", PRG_Name:param.PRG_Name, PRJ_Name:Report.PRJ_Name, Traffic_Light:Report.Traffic_Light);
+			send PrgMan::Report(Relevant_Person:"Manager", PRG_Name:param.PRG_Name, PRJ_Name:Report.PRJ_Name, Traffic_Light:Report.Traffic_Light);
+		end while;
+		red_ones = red_ones + 1;	
+	end for;
+	
+	LOG::LogInfo( message: "All ''RED'' Projects have been listed." );
+	
+	//List the AMBER (under-performing) projects second.
+		
+	amber_ones = 0;
+	for each Report in Reports
+		while (Report.Traffic_Light == Status_Colour::AMBER)
+			send OrgMan::Report(Relevant_Person:"Manager", PRG_Name:param.PRG_Name, PRJ_Name:Report.PRJ_Name, Traffic_Light:Report.Traffic_Light);
+			send PrgMan::Report(Relevant_Person:"Manager", PRG_Name:param.PRG_Name, PRJ_Name:Report.PRJ_Name, Traffic_Light:Report.Traffic_Light);
+		end while;
+		amber_ones = amber_ones + 1;	
+	end for;
+	
+	LOG::LogInfo( message: "All ''AMBER'' Projects have been listed." );
+	
+	//List the GREEN (performing) projects last.
+		
+	green_ones = 0;
+	for each Report in Reports
+		while (Report.Traffic_Light == Status_Colour::GREEN)
+			send OrgMan::Report(Relevant_Person:"Manager", PRG_Name:param.PRG_Name, PRJ_Name:Report.PRJ_Name, Traffic_Light:Report.Traffic_Light);
+			send PrgMan::Report(Relevant_Person:"Manager", PRG_Name:param.PRG_Name, PRJ_Name:Report.PRJ_Name, Traffic_Light:Report.Traffic_Light);
+		end while;
+		green_ones = green_ones + 1;	
+	end for;
+	
+	LOG::LogInfo( message: "All ''GREEN'' Projects have been listed." );
+	
+	//Determine the total number of projects being reported in this summary report.
+		
+	total = red_ones + amber_ones + green_ones;
+	
+	//Provide an indication of degree of non-performance of the overal program for which this summary report has been prepared.		
+	
+	LOG::LogInteger( message:red_ones); LOG::LogInfo( message: " out of " ); LOG::LogInteger( message:total); LOG::LogInfo( message: " are NOT PERFORMING WELL." );
+	
+else
+	
+	LOG::LogFailure( message: "The chosen PROGRAM NAME does not exist.  Please choose a different NAME from those that already exist." );
+
+end if;',
 	1,
 	'',
 	"00000000-0000-0000-0000-000000000000",
 	0,
 	1);
+INSERT INTO O_TPARM
+	VALUES ("985a14e1-dcf1-4f86-ae49-4ded3e93397f",
+	"34f4e69c-3e8d-4bc9-831c-18a15ea521fa",
+	'PRG_Name',
+	"ba5eda7a-def5-0000-0000-000000000004",
+	0,
+	'',
+	"00000000-0000-0000-0000-000000000000",
+	'');
 INSERT INTO O_TFR
 	VALUES ("cf160401-1418-4566-b3eb-c46e44ca2289",
 	"e1e375a8-101a-4533-9544-1b3ba91e8e62",
@@ -89,12 +169,12 @@ INSERT INTO O_ATTR
 	VALUES ("294cc165-fad4-4a7a-9723-fd32c43a60e1",
 	"e1e375a8-101a-4533-9544-1b3ba91e8e62",
 	"0798fb39-e8ac-450a-95cf-7377d82d55f7",
-	'Sum_Rep_ID',
+	'Date',
 	'',
 	'',
-	'Sum_Rep_ID',
+	'Date',
 	0,
-	"ba5eda7a-def5-0000-0000-000000000002",
+	"ba5eda7a-def5-0000-0000-00000000000e",
 	'',
 	'');
 INSERT INTO O_ID
