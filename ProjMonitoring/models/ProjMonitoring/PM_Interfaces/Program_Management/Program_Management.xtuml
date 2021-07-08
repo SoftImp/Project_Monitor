@@ -375,6 +375,62 @@ INSERT INTO C_AS
 	'',
 	0,
 	"0688396a-fc25-4a1c-9d43-95dfd222a66a");
+INSERT INTO C_EP
+	VALUES ("33b15c87-8110-42e8-bad4-5b233fb7b35e",
+	"2fb1cfbf-5a98-466f-9dc8-5c99b1f86c67",
+	-1,
+	'Report',
+	'',
+	4);
+INSERT INTO C_AS
+	VALUES ("33b15c87-8110-42e8-bad4-5b233fb7b35e",
+	'Report',
+	'',
+	1,
+	"9188e666-9bd4-4030-b325-89a6723edc88");
+INSERT INTO C_PP
+	VALUES ("18386deb-bc27-4daf-9183-6379d01778c0",
+	"33b15c87-8110-42e8-bad4-5b233fb7b35e",
+	"ba5eda7a-def5-0000-0000-000000000004",
+	'PRG_Name',
+	'',
+	0,
+	'',
+	"6ec230b7-73ee-49a9-8ed9-bbf9a0add15d");
+INSERT INTO C_PP
+	VALUES ("e23f08d1-c13e-4991-81ef-206109cd6943",
+	"33b15c87-8110-42e8-bad4-5b233fb7b35e",
+	"ba5eda7a-def5-0000-0000-000000000004",
+	'PRJ_Name',
+	'',
+	0,
+	'',
+	"18386deb-bc27-4daf-9183-6379d01778c0");
+INSERT INTO C_PP
+	VALUES ("858d50a0-b9ac-474d-84f7-a24b9862106a",
+	"33b15c87-8110-42e8-bad4-5b233fb7b35e",
+	"9dc71f19-9575-423a-8869-cc0a09aa5f7d",
+	'Traffic_Light',
+	'',
+	0,
+	'',
+	"e23f08d1-c13e-4991-81ef-206109cd6943");
+INSERT INTO S_DT_PROXY
+	VALUES ("9dc71f19-9575-423a-8869-cc0a09aa5f7d",
+	"00000000-0000-0000-0000-000000000000",
+	'Status_Colour',
+	'',
+	'',
+	'../../PM_Types/PM_Types.xtuml');
+INSERT INTO C_PP
+	VALUES ("6ec230b7-73ee-49a9-8ed9-bbf9a0add15d",
+	"33b15c87-8110-42e8-bad4-5b233fb7b35e",
+	"ba5eda7a-def5-0000-0000-000000000004",
+	'Relevant_Person',
+	'',
+	0,
+	'',
+	"00000000-0000-0000-0000-000000000000");
 INSERT INTO PE_PE
 	VALUES ("2fb1cfbf-5a98-466f-9dc8-5c99b1f86c67",
 	1,

@@ -629,6 +629,26 @@ INSERT INTO C_EP_PROXY
 	'Based on UC00.',
 	2,
 	'../../PM_Interfaces/Organisational_Maanagement/Organisational_Maanagement.xtuml');
+INSERT INTO SPR_PEP
+	VALUES ("e9b44cf2-fd42-421b-a68a-c614e2c1d9a3",
+	"d0b29d28-b9b6-4fc4-b34c-830654b3e59d",
+	"64ca1987-132c-45fc-966a-778f6133e262");
+INSERT INTO SPR_PS
+	VALUES ("e9b44cf2-fd42-421b-a68a-c614e2c1d9a3",
+	'Report',
+	'',
+	'',
+	3,
+	0,
+	4);
+INSERT INTO C_EP_PROXY
+	VALUES ("d0b29d28-b9b6-4fc4-b34c-830654b3e59d",
+	"bd829dba-1165-4562-a8f7-e2a65b6e713c",
+	-1,
+	'Report',
+	'',
+	4,
+	'../../PM_Interfaces/Organisational_Maanagement/Organisational_Maanagement.xtuml');
 INSERT INTO C_I_PROXY
 	VALUES ("bd829dba-1165-4562-a8f7-e2a65b6e713c",
 	"00000000-0000-0000-0000-000000000000",
@@ -972,6 +992,26 @@ INSERT INTO C_EP_PROXY
 	'browse_Summary_Reports',
 	'',
 	10,
+	'../../PM_Interfaces/Program_Management/Program_Management.xtuml');
+INSERT INTO SPR_PEP
+	VALUES ("75c49aad-e22c-4dd5-b84f-a50dc5728ac9",
+	"33b15c87-8110-42e8-bad4-5b233fb7b35e",
+	"35edcf68-532e-49b2-95f8-dce040a2c330");
+INSERT INTO SPR_PS
+	VALUES ("75c49aad-e22c-4dd5-b84f-a50dc5728ac9",
+	'Report',
+	'',
+	'',
+	3,
+	0,
+	4);
+INSERT INTO C_EP_PROXY
+	VALUES ("33b15c87-8110-42e8-bad4-5b233fb7b35e",
+	"2fb1cfbf-5a98-466f-9dc8-5c99b1f86c67",
+	-1,
+	'Report',
+	'',
+	4,
 	'../../PM_Interfaces/Program_Management/Program_Management.xtuml');
 INSERT INTO C_I_PROXY
 	VALUES ("2fb1cfbf-5a98-466f-9dc8-5c99b1f86c67",

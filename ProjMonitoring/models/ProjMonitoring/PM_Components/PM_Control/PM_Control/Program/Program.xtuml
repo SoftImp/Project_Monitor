@@ -578,7 +578,7 @@ if (not empty Program)
 	 where (selected.Req_ID == param.Req_ID);
 
 	if ( empty Requirement)
-		create object instance Req_ID of PRGREQ;
+		create object instance Requirement of PRGREQ;
 		Requirement.Req_ID = param.Req_ID;
 		Requirement.Description = param.Description;
 	
