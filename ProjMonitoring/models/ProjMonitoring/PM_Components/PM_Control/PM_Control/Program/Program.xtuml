@@ -304,7 +304,7 @@ INSERT INTO O_TFR
 	'add_Start_DMY',
 	'',
 	"ba5eda7a-def5-0000-0000-000000000000",
-	1,
+	0,
 	'//Add Start Date for a Program in DMY format.
 //Based on UC01, on the assumption that the start date may not be determined on creation of the Program.
 
@@ -367,7 +367,7 @@ INSERT INTO O_TFR
 	'add_End_DMY',
 	'',
 	"ba5eda7a-def5-0000-0000-000000000000",
-	1,
+	0,
 	'//Add End Date for a Program in DMY format.
 //Based on UC01, on the assumption that the end date may not be determined on creation of the Program.
 
@@ -430,7 +430,7 @@ INSERT INTO O_TFR
 	'add_Milestone',
 	'This operation is based on UC02.',
 	"ba5eda7a-def5-0000-0000-000000000000",
-	1,
+	0,
 	'// Create a new Milestoane for Program by providing a (hopefully) unique name (MS_Name) and setting Percent_Complete to zero.
 //Based on UC02.
 
@@ -447,7 +447,7 @@ if (not empty Program)
 		Prog_Milestone.MS_Name = param.MS_Name;
 		Prog_Milestone.Percent_Complete = 0.0;
 	
-		relate self to Prog_Milestone across R11.''includes'';
+		relate Program to Prog_Milestone across R11.''includes'';
 	
 		LOG::LogInfo( message: "A new PROGRAM MILESTONE has been successfully created." );
 		send OrgMan::Notify(Relevant_Person:"Manager", Message:"A new PROGRAM MILESTONE " + param.MS_Name + "has been created.");
@@ -486,7 +486,7 @@ INSERT INTO O_TFR
 	'update_Milestone',
 	'This operation is based on UC02.',
 	"ba5eda7a-def5-0000-0000-000000000000",
-	1,
+	0,
 	'// Update an existing Milestoane for a Program by setting Percent_Complete to a value greater than zero.
 //Based on UC03.
 
@@ -630,7 +630,7 @@ INSERT INTO O_TFR
 	'link_To_Startegic_Goal',
 	'',
 	"ba5eda7a-def5-0000-0000-000000000000",
-	1,
+	0,
 	'//Associate/Link Program to a Strategic Goal.
 //Based on UC01-1.
 
@@ -644,7 +644,7 @@ if (not empty Program)
 
 	if ( not empty Strategic_Goal)
 	
-		relate self to Strategic_Goal across R2.''may align with'';
+		relate Program to Strategic_Goal across R2.''may align with'';
 	
 		LOG::LogInfo( message: "A (new) PROGRAM has been associated with a STRATEGIC GOAL." );
 		send OrgMan::Notify(Relevant_Person:"Manager", Message:"A (new) PROGRAM  " + param.PRG_Name + "has been associated with a STRATEGIC GOAL.");
@@ -697,7 +697,7 @@ if (not empty Program)
 
 	if ( not empty Portfolio)
 	
-		relate self to Portfolio across R4.''may be part of'';
+		relate Program to Portfolio across R4.''may be part of'';
 	
 		LOG::LogInfo( message: "A (new) PROGRAM has been added to a PORTFOLIO." );
 		send OrgMan::Notify(Relevant_Person:"Manager", Message:"A PROGRAM  " + param.PRG_Name + "has been added to a PORTFOLIO.");

@@ -1,0 +1,69 @@
+-- BP 7.1.6 content: Package syschar: 3 persistence-version: 7.1.6
+
+INSERT INTO EP_PKG
+	VALUES ("45d2a9e3-3521-486c-b08a-9d2b742db9b9",
+	"00000000-0000-0000-0000-000000000000",
+	"fed360c9-cd00-40a7-9299-ecef1edcb505",
+	'PM_Types',
+	'',
+	0);
+INSERT INTO GD_MD
+	VALUES ("3b1ab765-379c-4d64-9192-d257db6ef8f5",
+	112,
+	"45d2a9e3-3521-486c-b08a-9d2b742db9b9",
+	108,
+	0,
+	0,
+	1,
+	1,
+	1,
+	12,
+	1,
+	0,
+	0,
+	0,
+	0,
+	0,
+	'',
+	'ProjMonitoring::PM_Components::PM_Control::PM_Types');
+INSERT INTO DIM_DIA
+	VALUES ("3b1ab765-379c-4d64-9192-d257db6ef8f5",
+	'',
+	1.000000,
+	0.000000,
+	0.000000,
+	"00000000-0000-0000-0000-000000000000");
+INSERT INTO EP_PKGREF
+	VALUES ("45d2a9e3-3521-486c-b08a-9d2b742db9b9",
+	"a85cbb8b-8132-4e75-a97c-d9737e46f021");
+INSERT INTO EP_PKG_PROXY
+	VALUES ("a85cbb8b-8132-4e75-a97c-d9737e46f021",
+	"fed360c9-cd00-40a7-9299-ecef1edcb505",
+	"fed360c9-cd00-40a7-9299-ecef1edcb505",
+	'PM_Types',
+	'',
+	0,
+	'../../../PM_Types/PM_Types.xtuml');
+INSERT INTO PE_PE
+	VALUES ("45d2a9e3-3521-486c-b08a-9d2b742db9b9",
+	1,
+	"00000000-0000-0000-0000-000000000000",
+	"28e681a8-6b53-4cb5-b80e-d68515a1ba3e",
+	7);
+INSERT INTO C_C_PROXY
+	VALUES ("28e681a8-6b53-4cb5-b80e-d68515a1ba3e",
+	"00000000-0000-0000-0000-000000000000",
+	"00000000-0000-0000-0000-000000000000",
+	'PM_Control',
+	'',
+	0,
+	"00000000-0000-0000-0000-000000000000",
+	0,
+	'',
+	'',
+	'../PM_Control.xtuml');
+INSERT INTO S_SYS_PROXY
+	VALUES ("fed360c9-cd00-40a7-9299-ecef1edcb505",
+	'ProjMonitoring',
+	1,
+	'../../../ProjMonitoring.xtuml');

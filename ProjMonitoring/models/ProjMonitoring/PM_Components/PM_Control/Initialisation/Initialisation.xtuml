@@ -1,0 +1,75 @@
+-- BP 7.1.6 content: Package syschar: 3 persistence-version: 7.1.6
+
+INSERT INTO EP_PKG
+	VALUES ("430dfb46-0cf4-4a6a-aa41-21ed068708ef",
+	"00000000-0000-0000-0000-000000000000",
+	"fed360c9-cd00-40a7-9299-ecef1edcb505",
+	'Initialisation',
+	'',
+	0);
+INSERT INTO GD_MD
+	VALUES ("8321affc-855c-4ff8-aeb2-53bc39d21210",
+	112,
+	"430dfb46-0cf4-4a6a-aa41-21ed068708ef",
+	108,
+	0,
+	0,
+	1,
+	1,
+	1,
+	12,
+	1,
+	0,
+	0,
+	0,
+	0,
+	0,
+	'',
+	'ProjMonitoring::PM_Components::PM_Control::Initialisation');
+INSERT INTO DIM_DIA
+	VALUES ("8321affc-855c-4ff8-aeb2-53bc39d21210",
+	'',
+	1.000000,
+	0.000000,
+	0.000000,
+	"00000000-0000-0000-0000-000000000000");
+INSERT INTO S_SYNC
+	VALUES ("2f805eac-b6f0-4856-9775-4f7539b380a6",
+	"00000000-0000-0000-0000-000000000000",
+	'Run',
+	'',
+	'LOG::LogInfo( message: "Project Monitoring - started" );',
+	"ba5eda7a-def5-0000-0000-000000000000",
+	1,
+	'',
+	0,
+	1);
+INSERT INTO PE_PE
+	VALUES ("2f805eac-b6f0-4856-9775-4f7539b380a6",
+	1,
+	"430dfb46-0cf4-4a6a-aa41-21ed068708ef",
+	"00000000-0000-0000-0000-000000000000",
+	1);
+INSERT INTO PE_PE
+	VALUES ("430dfb46-0cf4-4a6a-aa41-21ed068708ef",
+	1,
+	"00000000-0000-0000-0000-000000000000",
+	"28e681a8-6b53-4cb5-b80e-d68515a1ba3e",
+	7);
+INSERT INTO C_C_PROXY
+	VALUES ("28e681a8-6b53-4cb5-b80e-d68515a1ba3e",
+	"00000000-0000-0000-0000-000000000000",
+	"00000000-0000-0000-0000-000000000000",
+	'PM_Control',
+	'',
+	0,
+	"00000000-0000-0000-0000-000000000000",
+	0,
+	'',
+	'',
+	'../PM_Control.xtuml');
+INSERT INTO S_SYS_PROXY
+	VALUES ("fed360c9-cd00-40a7-9299-ecef1edcb505",
+	'ProjMonitoring',
+	1,
+	'../../../ProjMonitoring.xtuml');

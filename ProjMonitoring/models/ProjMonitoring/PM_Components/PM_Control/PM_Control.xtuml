@@ -498,6 +498,54 @@ INSERT INTO DIM_ED
 	VALUES ("69e5be29-d845-4198-96d4-631d6fdfafa0",
 	"00000000-0000-0000-0000-000000000000",
 	"11dd50a2-07a2-477e-b7a3-200380058b25");
+INSERT INTO GD_GE
+	VALUES ("fc8baa2d-d5b4-4f30-963b-959075b7db7b",
+	"025d8e5d-550e-4f57-bb23-eea2ed432201",
+	"45d2a9e3-3521-486c-b08a-9d2b742db9b9",
+	108,
+	0,
+	'ProjMonitoring::PM_Components::PM_Control::PM_Types');
+INSERT INTO GD_SHP
+	VALUES ("fc8baa2d-d5b4-4f30-963b-959075b7db7b");
+INSERT INTO GD_NCS
+	VALUES ("fc8baa2d-d5b4-4f30-963b-959075b7db7b");
+INSERT INTO DIM_ND
+	VALUES (200.000000,
+	150.000000,
+	"fc8baa2d-d5b4-4f30-963b-959075b7db7b");
+INSERT INTO DIM_GE
+	VALUES (4480.000000,
+	3156.000000,
+	"fc8baa2d-d5b4-4f30-963b-959075b7db7b",
+	"00000000-0000-0000-0000-000000000000");
+INSERT INTO DIM_ELE
+	VALUES ("fc8baa2d-d5b4-4f30-963b-959075b7db7b",
+	0,
+	"9f1d42b2-199a-4f52-9646-bb726d1220f6");
+INSERT INTO GD_GE
+	VALUES ("307d1978-5baf-42e1-b0af-cf1011961b6c",
+	"025d8e5d-550e-4f57-bb23-eea2ed432201",
+	"430dfb46-0cf4-4a6a-aa41-21ed068708ef",
+	108,
+	0,
+	'ProjMonitoring::PM_Components::PM_Control::Initialisation');
+INSERT INTO GD_SHP
+	VALUES ("307d1978-5baf-42e1-b0af-cf1011961b6c");
+INSERT INTO GD_NCS
+	VALUES ("307d1978-5baf-42e1-b0af-cf1011961b6c");
+INSERT INTO DIM_ND
+	VALUES (200.000000,
+	150.000000,
+	"307d1978-5baf-42e1-b0af-cf1011961b6c");
+INSERT INTO DIM_GE
+	VALUES (4700.000000,
+	3156.000000,
+	"307d1978-5baf-42e1-b0af-cf1011961b6c",
+	"00000000-0000-0000-0000-000000000000");
+INSERT INTO DIM_ELE
+	VALUES ("307d1978-5baf-42e1-b0af-cf1011961b6c",
+	0,
+	"9f1d42b2-199a-4f52-9646-bb726d1220f6");
 INSERT INTO DIM_DIA
 	VALUES ("025d8e5d-550e-4f57-bb23-eea2ed432201",
 	'',
@@ -782,8 +830,8 @@ Thus the basic aspects of all UC01, UC06 and and UC01-1 are incorporated here.',
 PRG::Create( PRG_Name : param.Prog_Name, Description : param.Description, Budget : param.Budget, Manager : param.Manager );
 
 // Set Start and End Dates
-PRG::add_Start_DMY( PRG_Name: param.Prog_Name, Day: TIM::get_day( date: param.Start_Date), Month: TIM::get_month( date: param.Start_Date), Year: TIM::get_year( date: param.Start_Date) );
-PRG::add_End_DMY( PRG_Name: param.Prog_Name, Day: TIM::get_day( date: param.End_Date), Month: TIM::get_month( date: param.End_Date), Year: TIM::get_year( date: param.End_Date) );
+//PRG::add_Start_DMY( PRG_Name: param.Prog_Name, Day: TIM::get_day( date: param.Start_Date), Month: TIM::get_month( date: param.Start_Date), Year: TIM::get_year( date: param.Start_Date) );
+//PRG::add_End_DMY( PRG_Name: param.Prog_Name, Day: TIM::get_day( date: param.End_Date), Month: TIM::get_month( date: param.End_Date), Year: TIM::get_year( date: param.End_Date) );
 
 // Link to Startegic Goal
 PRG::link_To_Startegic_Goal( PRG_Name: param.Prog_Name, SG_Name: param.Goal_ID );
