@@ -71,7 +71,9 @@ INSERT INTO O_TFR
 	'',
 	"ba5eda7a-def5-0000-0000-000000000000",
 	1,
-	'select any Portfolio from instances of PF
+	'// Prioritise an existing portfolio. The operation could also be used to update the priority of a portfolio.
+
+select any Portfolio from instances of PF
  where (selected.PF_Name == param.PF_Name);
 
 if ( not empty Portfolio)
@@ -83,7 +85,7 @@ else
 	LOG::LogFailure( message: "The chosen PORTFOLIO NAME does not exist.  Please choose a different NAME that does exist." );
 end if;
 
-//Not based on any particular UC.  Added to indicate',
+//This operation is an extension of UC01.',
 	1,
 	'',
 	"f58a25b6-c422-44a3-83fe-f3df326f72ad",
@@ -122,7 +124,6 @@ INSERT INTO O_TFR
 	"ba5eda7a-def5-0000-0000-000000000000",
 	1,
 	'//Associate/Link Portfolio to a Strategic Goal.
-//Based on UC01-1.
 
 select any Portfolio from instances of PF
  where (selected.PF_Name == param.PF_Name);
@@ -143,7 +144,9 @@ if (not empty Portfolio)
 	end if;
 else
 	LOG::LogFailure( message: "The chosen PORTFOLIO NAME doesn''t exist.  Please choose a NAME that already exists." );
-end if;',
+end if;
+
+//Based on UC01-1.',
 	1,
 	'',
 	"c4773d6a-6a99-4902-889b-f32228e79251",
@@ -235,6 +238,60 @@ INSERT INTO O_ATTR
 	'The name of the PORTFOLIO MANAGER.',
 	'',
 	'Manager',
+	0,
+	"ba5eda7a-def5-0000-0000-000000000004",
+	'',
+	'');
+INSERT INTO O_NBATTR
+	VALUES ("1c85eeb2-f74d-49c2-826b-bcfb56fbd649",
+	"ebd48d02-0571-4979-8fde-ce5707451104");
+INSERT INTO O_BATTR
+	VALUES ("1c85eeb2-f74d-49c2-826b-bcfb56fbd649",
+	"ebd48d02-0571-4979-8fde-ce5707451104");
+INSERT INTO O_ATTR
+	VALUES ("1c85eeb2-f74d-49c2-826b-bcfb56fbd649",
+	"ebd48d02-0571-4979-8fde-ce5707451104",
+	"19a605dc-04b1-4679-89ea-5d7846a8f66a",
+	'current_state',
+	'',
+	'',
+	'current_state',
+	0,
+	"ba5eda7a-def5-0000-0000-000000000006",
+	'',
+	'');
+INSERT INTO O_NBATTR
+	VALUES ("d55a14a3-edc6-488c-8ccb-8211bb9c7a48",
+	"ebd48d02-0571-4979-8fde-ce5707451104");
+INSERT INTO O_BATTR
+	VALUES ("d55a14a3-edc6-488c-8ccb-8211bb9c7a48",
+	"ebd48d02-0571-4979-8fde-ce5707451104");
+INSERT INTO O_ATTR
+	VALUES ("d55a14a3-edc6-488c-8ccb-8211bb9c7a48",
+	"ebd48d02-0571-4979-8fde-ce5707451104",
+	"1c85eeb2-f74d-49c2-826b-bcfb56fbd649",
+	'Mission',
+	'',
+	'',
+	'Mission',
+	0,
+	"ba5eda7a-def5-0000-0000-000000000004",
+	'',
+	'');
+INSERT INTO O_NBATTR
+	VALUES ("7ab187c9-1dfc-4fb2-9149-ae109a020e5c",
+	"ebd48d02-0571-4979-8fde-ce5707451104");
+INSERT INTO O_BATTR
+	VALUES ("7ab187c9-1dfc-4fb2-9149-ae109a020e5c",
+	"ebd48d02-0571-4979-8fde-ce5707451104");
+INSERT INTO O_ATTR
+	VALUES ("7ab187c9-1dfc-4fb2-9149-ae109a020e5c",
+	"ebd48d02-0571-4979-8fde-ce5707451104",
+	"d55a14a3-edc6-488c-8ccb-8211bb9c7a48",
+	'Vision',
+	'',
+	'',
+	'Vision',
 	0,
 	"ba5eda7a-def5-0000-0000-000000000004",
 	'',

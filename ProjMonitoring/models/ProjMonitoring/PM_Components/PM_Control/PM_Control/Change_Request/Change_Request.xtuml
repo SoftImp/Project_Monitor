@@ -21,12 +21,60 @@ INSERT INTO O_TFR
 	'',
 	"ba5eda7a-def5-0000-0000-000000000000",
 	0,
-	'',
+	'//Submitting a change requires creating it first and then adding a description in the form of (perhaps copied) text or a link to a file.
+//Because of the associative relationship with Requirement a new instance of that associative relationship has to be created.
+//Thus a change request automatically suggests a requirement.  However as the requirement may not be properly established the 
+//requirement identifier is named as "TBA for" toether with the input request identifier (where TBD = To Be Assigned)
+// and the description of the requirement is initially blank.
+
+create object instance Change_Request of PRCR;
+Change_Request.PRCR_ID = param.Request_ID;
+
+select any Program from instances of PRG
+where (selected.PRG_Name == param.PRG_Name);
+
+create object instance Requirement of PRGREQ;
+Requirement.Req_ID = "TBA for " + param.Request_ID;
+
+relate Change_Request to Program across R13 using Requirement;
+
+Change_Request.Description = param.Description;
+Requirement.Description = "";  //Initially blank - may be updated later.
+
+//This operation is not based on an existing UC.  During the modelling process it was thought to be an obvious necessity.
+',
 	1,
 	'',
 	"00000000-0000-0000-0000-000000000000",
 	0,
 	3);
+INSERT INTO O_TPARM
+	VALUES ("178c837c-35f6-482f-9ac9-ffa249016d85",
+	"92db6053-d485-422a-9405-acc4eeb07060",
+	'PRG_Name',
+	"ba5eda7a-def5-0000-0000-000000000004",
+	0,
+	'',
+	"00000000-0000-0000-0000-000000000000",
+	'');
+INSERT INTO O_TPARM
+	VALUES ("f36cfa0d-07de-46e2-b296-0f82d1c1f4cb",
+	"92db6053-d485-422a-9405-acc4eeb07060",
+	'Description',
+	"ba5eda7a-def5-0000-0000-000000000004",
+	0,
+	'',
+	"178c837c-35f6-482f-9ac9-ffa249016d85",
+	'');
+INSERT INTO O_TPARM
+	VALUES ("ba9f8b87-83b7-4b92-82a2-1be4e223a621",
+	"92db6053-d485-422a-9405-acc4eeb07060",
+	'Request_ID',
+	"ba5eda7a-def5-0000-0000-000000000004",
+	0,
+	'',
+	"f36cfa0d-07de-46e2-b296-0f82d1c1f4cb",
+	'');
 INSERT INTO O_NBATTR
 	VALUES ("153fe15e-d277-4e00-a3cf-83dc191ba9e2",
 	"252de520-5135-4f5a-a15a-90984698056e");
@@ -42,7 +90,7 @@ INSERT INTO O_ATTR
 	'',
 	'PRCR_ID',
 	0,
-	"ba5eda7a-def5-0000-0000-000000000002",
+	"ba5eda7a-def5-0000-0000-000000000004",
 	'',
 	'');
 INSERT INTO O_NBATTR

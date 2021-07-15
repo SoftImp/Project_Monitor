@@ -60,24 +60,6 @@ INSERT INTO O_TPARM
 	'',
 	"aa86fdfe-75eb-4bcd-b9fb-6c0dc4b00453",
 	'');
-INSERT INTO O_TPARM
-	VALUES ("dae4b17a-5a04-427d-925d-f511a3401139",
-	"2ef7595a-6873-4d98-80c3-48ca202b8b18",
-	'Budget',
-	"ba5eda7a-def5-0000-0000-000000000003",
-	0,
-	'',
-	"17a46261-9b20-4675-8a2d-e592c644a740",
-	'');
-INSERT INTO O_TPARM
-	VALUES ("e9c2018d-c4c6-4a0b-9cae-5b20a884942a",
-	"2ef7595a-6873-4d98-80c3-48ca202b8b18",
-	'Manager',
-	"ba5eda7a-def5-0000-0000-000000000004",
-	0,
-	'',
-	"dae4b17a-5a04-427d-925d-f511a3401139",
-	'');
 INSERT INTO O_TFR
 	VALUES ("7de1cf66-e82b-492d-b1fd-cf95e1cb7e0e",
 	"fc2339db-f29a-4ff9-915d-62c8814fc04c",
@@ -729,6 +711,196 @@ INSERT INTO O_TPARM
 	0,
 	'',
 	"b866aecf-f449-40f9-8576-7fad448c4efa",
+	'');
+INSERT INTO O_TFR
+	VALUES ("da85f395-9780-429b-aec8-86293893ff00",
+	"fc2339db-f29a-4ff9-915d-62c8814fc04c",
+	'update_Requirement_ID',
+	'',
+	"ba5eda7a-def5-0000-0000-000000000000",
+	1,
+	'//An operation that allows an initial requirement identifier containing "TBA for" to be updated.
+
+//First select the named Program
+
+select any Program from instances of PRG
+ where (selected.PRG_Name == param.PRG_Name);
+ 
+ if (not empty Program)
+ 	
+ 	//If the Program exists then select the related Change Request.
+
+	select any Request related by Program->PRCR[R13]
+	 where (selected.PRCR_ID == param.Request_ID);
+
+	if ( not empty Request)
+		
+		//If the Change Request exists then select the related Requirement
+		
+		select any Requirement related by Program->PRGREQ[R13]
+		where (selected.Req_ID == ("TBA for " + param.Request_ID));
+		
+		if ( not empty Requirement)
+			
+			//If the (unchanged) Requirement exists then rename it.
+		
+			Requirement.Req_ID = param.New_Req_ID;
+			
+			send PrgMan::Notify( Relevant_Person: "Manager", Message: "The Requirement ID for CHANGE REQUEST " + param.Request_ID + " has been updated to " + param.New_Req_ID);
+		
+		else
+			
+			LOG::LogInfo( message: "The identified REQUIREMENT either doesn''t exist or it''s initial identity has already been changed." );
+			
+		end if;
+		
+	else
+		
+		LOG::LogFailure( message: "The chosen CHANGE REQUEST NAME doesn''t exist.  Please choose a NAME that already exists." );
+
+	end if;
+	
+else
+	
+	LOG::LogFailure( message: "The chosen PROGRAM NAME doesn''t exist.  Please choose a NAME that already exists." );
+	
+end if;',
+	1,
+	'',
+	"540ef00e-3a9a-4200-beb9-e7dbbb2a4aaa",
+	0,
+	1);
+INSERT INTO O_TPARM
+	VALUES ("8f6c119d-5f4f-494a-b6e6-da40a1ae7a16",
+	"da85f395-9780-429b-aec8-86293893ff00",
+	'Request_ID',
+	"ba5eda7a-def5-0000-0000-000000000004",
+	0,
+	'',
+	"b5cd333c-67e7-47d8-8e4a-be9d37261af8",
+	'');
+INSERT INTO O_TPARM
+	VALUES ("13d5ab3c-aae1-4d09-99cb-eb4fa151cb28",
+	"da85f395-9780-429b-aec8-86293893ff00",
+	'Description',
+	"ba5eda7a-def5-0000-0000-000000000004",
+	0,
+	'',
+	"e76a20b7-da84-4ad5-807b-cd097dc1cea7",
+	'');
+INSERT INTO O_TPARM
+	VALUES ("b5cd333c-67e7-47d8-8e4a-be9d37261af8",
+	"da85f395-9780-429b-aec8-86293893ff00",
+	'PRG_Name',
+	"ba5eda7a-def5-0000-0000-000000000004",
+	0,
+	'',
+	"00000000-0000-0000-0000-000000000000",
+	'');
+INSERT INTO O_TPARM
+	VALUES ("e76a20b7-da84-4ad5-807b-cd097dc1cea7",
+	"da85f395-9780-429b-aec8-86293893ff00",
+	'New_Req_ID',
+	"ba5eda7a-def5-0000-0000-000000000004",
+	0,
+	'',
+	"8f6c119d-5f4f-494a-b6e6-da40a1ae7a16",
+	'');
+INSERT INTO O_TFR
+	VALUES ("83ff4db1-4f38-42cf-bb30-f59aeb85b722",
+	"fc2339db-f29a-4ff9-915d-62c8814fc04c",
+	'update_Requirement_Description',
+	'',
+	"ba5eda7a-def5-0000-0000-000000000000",
+	1,
+	'//An operation that allows a requirement description to be updated.
+//Assume that the initial Req_ID containing "TBA for" has been updated or needs to be updated.
+
+//First select the named Program
+
+select any Program from instances of PRG
+ where (selected.PRG_Name == param.PRG_Name);
+ 
+ if (not empty Program)
+ 	
+ 	//If the Program exists then determine if the chosen requirement has derived from a change request.
+
+	select any Requirement related by Program->PRGREQ[R13]
+	where (selected.Req_ID == param.Req_ID);
+		
+	if ( not empty Requirement)
+			
+		//Update the Requirement.
+		
+		Requirement.Description = param.Description;
+		
+		LOG::LogInfo( message: "The Description for REQUIREMENT " + param.Req_ID + " has been updated." );
+			
+		send PrgMan::Notify( Relevant_Person: "Manager", Message: "The Requirement Description for " + param.Req_ID + " has been updated.");
+		
+	else
+			
+			LOG::LogInfo( message: "The identified REQUIREMENT either doesn''t exist or it''s initial identity hasn''t been changed." );
+			
+	end if;
+
+	 //If the Program exists then determine if the requirement hasn''t derived from a change request.	
+	
+	select any Requirement related by Program->PRGREQ[R12.''is to implement'']
+	where (selected.Req_ID == param.Req_ID);
+	
+	if ( not empty Requirement)
+			
+		//Update the Requirement.
+		
+		Requirement.Description = param.Description;
+		
+		LOG::LogInfo( message: "The Description for REQUIREMENT " + param.Req_ID + " has been updated." );
+			
+		send PrgMan::Notify( Relevant_Person: "Manager", Message: "The Requirement ID for CHANGE REQUEST " + param.Req_ID + " has been updated.");
+		
+	else			
+		
+		LOG::LogFailure( message: "The chosen REQUIREMENT doesn''t exist.  Please choose a NAME that already exists." );
+
+	end if;
+	
+else
+	
+	LOG::LogFailure( message: "The chosen PROGRAM NAME doesn''t exist.  Please choose a NAME that already exists." );
+	
+end if;',
+	1,
+	'',
+	"da85f395-9780-429b-aec8-86293893ff00",
+	0,
+	1);
+INSERT INTO O_TPARM
+	VALUES ("8ea13a61-42ca-4013-b4b4-9597ca70b610",
+	"83ff4db1-4f38-42cf-bb30-f59aeb85b722",
+	'Description',
+	"ba5eda7a-def5-0000-0000-000000000004",
+	0,
+	'',
+	"4c8f713d-a550-492a-8bd2-457cab84c594",
+	'');
+INSERT INTO O_TPARM
+	VALUES ("21e88018-df51-440d-a8ac-994dac3c725e",
+	"83ff4db1-4f38-42cf-bb30-f59aeb85b722",
+	'PRG_Name',
+	"ba5eda7a-def5-0000-0000-000000000004",
+	0,
+	'',
+	"00000000-0000-0000-0000-000000000000",
+	'');
+INSERT INTO O_TPARM
+	VALUES ("4c8f713d-a550-492a-8bd2-457cab84c594",
+	"83ff4db1-4f38-42cf-bb30-f59aeb85b722",
+	'Req_ID',
+	"ba5eda7a-def5-0000-0000-000000000004",
+	0,
+	'',
+	"21e88018-df51-440d-a8ac-994dac3c725e",
 	'');
 INSERT INTO O_NBATTR
 	VALUES ("6d387035-e437-4136-a89d-e1d7972e194a",
