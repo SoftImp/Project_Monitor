@@ -1,27 +1,33 @@
 <template>
   <div class="row">
     <h3>Add Strategic Goal</h3>
+    <p v-if="errors.length">
+      <b>Please correct the following error(s):</b>
+    <ul>
+      <li v-for="error in errors">{{ error }}</li>
+    </ul>
+    </p>
     <div class="col-md-8">
-      <form>
+      <form @submit.prevent="processForm">
         <div class="mb-3">
-          <label for="goal_id" class="form-label">Goal Identity</label>
-          <input type="text" class="form-control" id="goal_id">
+          <label for="name" class="form-label">Goal Identity</label>
+          <input type="text" v-model="name" name="name" class="form-control" id="name">
         </div>
         <div class="mb-3">
           <label for="description" class="form-label">Description</label>
-          <input type="text" class="form-control" id="description">
+          <input type="text" v-model="description" name="description" class="form-control" id="description">
         </div>
         <div class="mb-3">
           <label for="priority" class="form-label">Priority</label>
-          <select class="form-select" id="priority">
+          <select class="form-select" id="priority" v-model="priority" name="priority">
             <option selected="true" disabled="disabled">Select Priority ...</option>
-            <option value="0">High</option>
-            <option value="1">Medium</option>
-            <option value="2">Low</option>
+            <option value="High">High</option>
+            <option value="Medium">Medium</option>
+            <option value="Low">Low</option>
           </select>
         </div>
-        <button type="submit" class="btn btn-primary">Add</button> | 
-		<router-link to="/org">Back to List</router-link>
+        <button type="submit" class="btn btn-primary">Add</button> |
+        <router-link to="/org">Back to List</router-link>
       </form>
     </div>
   </div>
@@ -31,7 +37,38 @@
   module.exports = {
     data: function () {
       return {
-        who: 'world'
+        errors: [],
+        name: null,
+        description: null,
+        priority: null
+      }
+    },
+    methods: {
+      async processForm() {
+        if (this.name && this.description && this.priority) {
+          const response = await fetch('./addsg', {
+            method: 'POST',
+            headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ name: this.name, description: this.description, priority: this.priority })
+          });
+          this.$router.push({ name: 'org' });
+        }
+        else {
+          this.errors = [];
+
+          if (!this.name) {
+            this.errors.push('Name required.');
+          }
+          if (!this.description) {
+            this.errors.push('Description required.');
+          }
+          if (!this.priority) {
+            this.errors.push('Priority required.');
+          }
+        }
       }
     }
   };

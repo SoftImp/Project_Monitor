@@ -71,8 +71,8 @@
 	  }
     },
 	methods: {
-     addRequirement() {
-	    if (this.requirement != "")
+     async addRequirement() {   
+	    if (this.requirement != null && this.requirement != "")
 		{
           this.requirements.push(this.requirement);
 		  this.requirement = "";

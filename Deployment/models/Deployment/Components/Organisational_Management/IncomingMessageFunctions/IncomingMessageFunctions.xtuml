@@ -24,7 +24,7 @@ INSERT INTO GD_MD
 	0,
 	0,
 	0,
-	'',
+	'4.1.17',
 	'Deployment::Components::Organisational_Management::IncomingMessageFunctions');
 INSERT INTO DIM_DIA
 	VALUES ("1a25dc31-7221-4e63-afe7-0d7627128f9e",

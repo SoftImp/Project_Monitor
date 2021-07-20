@@ -1,3 +1,4 @@
+Vue.component('apexchart', VueApexCharts);
 Vue.use(VueRouter);
 
 var Home = httpVueLoader('components/home.vue');
@@ -17,18 +18,21 @@ const router = new VueRouter({
 			component: Home
 		}, {
 			path: '/org',
+			name: 'org',
 			component: org
 		},{
 			path: '/org/addsg',
 			component: addsg
 		},{
 			path: '/pfm',
+			name: 'pfm',
 			component: pfm	
 		}, {			
 		    path: '/pfm/addpf',
 			component: addpf
 		}, {			
 		    path: '/prg',
+			name: 'prg',
 			component: prg
 		}, {			
 		    path: '/prg/addprg',
