@@ -1,0 +1,394 @@
+-- BP 7.1.6 content: ModelClass syschar: 3 persistence-version: 7.1.6
+
+INSERT INTO O_OBJ
+	VALUES ("70ba3311-4b27-46ab-a331-49d53fb91be5",
+	'Risk',
+	15,
+	'RSK',
+	'Any RISK should be identified and captured.  The RISK class represents any type of risk that
+needs to be dealt with for any component (Portfolio, Program, Project) and also more 
+generally at the Enterprise and Operating levels.
+
+Each risk is typically identified via a component (but doesnt have to be).  Risk Management 
+activities are then employed directly on any existing risk.
+
+The initial model only contains risks that are related to Portfolios.  These are based on
+the PMI Standard for Risk Management of Portfolios, Programs and Projects.  Another standard
+for risk management is ISO 31000 which pertains more to operational continuity.
+
+Risks and Risk Management are an extension of the functionality initially described in UCs.',
+	"00000000-0000-0000-0000-000000000000");
+INSERT INTO O_TFR
+	VALUES ("fd389332-4a3d-4319-8537-30140628dd4d",
+	"70ba3311-4b27-46ab-a331-49d53fb91be5",
+	'add_Risk',
+	'',
+	"ba5eda7a-def5-0000-0000-000000000000",
+	0,
+	'//Firstly create a new instance of risk.
+
+	create object instance Risk of RSK;
+	
+	Risk.Comp_Name = param.Comp_Name;
+	Risk.Comp_Type = param.Comp_Type;
+	Risk.Risk_ID = Risk.Last_Risk_ID;
+	Risk.Description = param.Description;
+	
+//Secondly relate the risk to the component that the risk affects.
+	
+
+if ( Risk.Comp_Type == Component_Type::PORTFOLIO)
+	select any Portfolio from instances of PF
+	 where selected.PF_Name == param.Comp_Name;
+	 
+	 relate Risk to Portfolio across R20.''affects'';
+	 
+	 generate RSK1:Newly_Identified to Risk;
+	 
+//Thirdly Program and Project risks are not yet captured.
+	 
+
+elif ( param.Comp_Type == Component_Type::PROGRAM)
+	select any Program from instances of PRG
+	 where selected.PRG_Name == param.Comp_Name;
+	 
+//	 relate Risk to Program across R20.''affects'';
+	 
+elif ( param.Comp_Type == Component_Type::PROJECT)
+	select any Project from instances of PRJ
+	 where selected.PRJ_Name == param.Comp_Name;
+	 
+//	 relate Risk to Project across R20.''affects'';
+	 	 
+end if;
+
+ //NOTE:  If COMP_TYPE is either ENTERPRISE or OPERATING, then there will be risks that are 
+ //unrelated to anything.
+	
+		 	 	 	 	 	 ',
+	1,
+	'',
+	"00000000-0000-0000-0000-000000000000",
+	0,
+	1);
+INSERT INTO O_TPARM
+	VALUES ("6126e6a1-eb5a-471d-9562-634a5a3d1190",
+	"fd389332-4a3d-4319-8537-30140628dd4d",
+	'Description',
+	"ba5eda7a-def5-0000-0000-000000000004",
+	0,
+	'',
+	"5bb94dea-83e5-4d8e-9633-28cd132b2183",
+	'');
+INSERT INTO O_TPARM
+	VALUES ("5bb94dea-83e5-4d8e-9633-28cd132b2183",
+	"fd389332-4a3d-4319-8537-30140628dd4d",
+	'Risk_Name',
+	"ba5eda7a-def5-0000-0000-000000000004",
+	0,
+	'',
+	"cd64b3b2-eebf-46f4-a1f0-2d9302eaa3a1",
+	'');
+INSERT INTO O_TPARM
+	VALUES ("cd8e344a-88b5-4ccc-b172-98609a41c14c",
+	"fd389332-4a3d-4319-8537-30140628dd4d",
+	'Comp_Name',
+	"ba5eda7a-def5-0000-0000-000000000004",
+	0,
+	'',
+	"00000000-0000-0000-0000-000000000000",
+	'');
+INSERT INTO O_TPARM
+	VALUES ("cd64b3b2-eebf-46f4-a1f0-2d9302eaa3a1",
+	"fd389332-4a3d-4319-8537-30140628dd4d",
+	'Comp_Type',
+	"53545dd2-cd77-473e-8032-b33e10488381",
+	0,
+	'',
+	"cd8e344a-88b5-4ccc-b172-98609a41c14c",
+	'');
+INSERT INTO S_DT_PROXY
+	VALUES ("53545dd2-cd77-473e-8032-b33e10488381",
+	"00000000-0000-0000-0000-000000000000",
+	'Component_Type',
+	'',
+	'',
+	'../../../../PM_Types/PM_Types.xtuml');
+INSERT INTO O_NBATTR
+	VALUES ("7d12d8a1-6daf-4a61-b9c5-0620a8f3bb81",
+	"70ba3311-4b27-46ab-a331-49d53fb91be5");
+INSERT INTO O_BATTR
+	VALUES ("7d12d8a1-6daf-4a61-b9c5-0620a8f3bb81",
+	"70ba3311-4b27-46ab-a331-49d53fb91be5");
+INSERT INTO O_ATTR
+	VALUES ("7d12d8a1-6daf-4a61-b9c5-0620a8f3bb81",
+	"70ba3311-4b27-46ab-a331-49d53fb91be5",
+	"00000000-0000-0000-0000-000000000000",
+	'Risk_ID',
+	'',
+	'',
+	'Risk_ID',
+	0,
+	"ba5eda7a-def5-0000-0000-000000000002",
+	'',
+	'');
+INSERT INTO O_NBATTR
+	VALUES ("533e8d5b-fa05-45e4-adce-4d843d7616bc",
+	"70ba3311-4b27-46ab-a331-49d53fb91be5");
+INSERT INTO O_BATTR
+	VALUES ("533e8d5b-fa05-45e4-adce-4d843d7616bc",
+	"70ba3311-4b27-46ab-a331-49d53fb91be5");
+INSERT INTO O_ATTR
+	VALUES ("533e8d5b-fa05-45e4-adce-4d843d7616bc",
+	"70ba3311-4b27-46ab-a331-49d53fb91be5",
+	"7d12d8a1-6daf-4a61-b9c5-0620a8f3bb81",
+	'Category',
+	'',
+	'',
+	'Category',
+	0,
+	"a3bdf1ac-dd7f-469f-8450-41716296f0a6",
+	'',
+	'');
+INSERT INTO S_DT_PROXY
+	VALUES ("a3bdf1ac-dd7f-469f-8450-41716296f0a6",
+	"00000000-0000-0000-0000-000000000000",
+	'PF_Risk_Category',
+	'The typical categories of risk that impact portfolio components.
+Taken from PMI''s Standard for Risk Management in Portfolios, Programs, and Projects.',
+	'',
+	'../../../../PM_Types/PM_Types.xtuml');
+INSERT INTO O_NBATTR
+	VALUES ("97c25017-81b7-4917-a521-b6f5e8631f9e",
+	"70ba3311-4b27-46ab-a331-49d53fb91be5");
+INSERT INTO O_BATTR
+	VALUES ("97c25017-81b7-4917-a521-b6f5e8631f9e",
+	"70ba3311-4b27-46ab-a331-49d53fb91be5");
+INSERT INTO O_ATTR
+	VALUES ("97c25017-81b7-4917-a521-b6f5e8631f9e",
+	"70ba3311-4b27-46ab-a331-49d53fb91be5",
+	"533e8d5b-fa05-45e4-adce-4d843d7616bc",
+	'Level',
+	'',
+	'',
+	'Level',
+	0,
+	"73a1bcd5-5b44-4721-bd57-52f241639830",
+	'',
+	'');
+INSERT INTO S_DT_PROXY
+	VALUES ("73a1bcd5-5b44-4721-bd57-52f241639830",
+	"00000000-0000-0000-0000-000000000000",
+	'PF_Risk_Level',
+	'The levels of risk relevant to portfolios.
+Taken from PMI''s Standard for Risk Management in Portfolios, Programs, and Projects.',
+	'',
+	'../../../../PM_Types/PM_Types.xtuml');
+INSERT INTO O_NBATTR
+	VALUES ("acb61c08-4d98-4fe5-8444-eb9c151878e2",
+	"70ba3311-4b27-46ab-a331-49d53fb91be5");
+INSERT INTO O_BATTR
+	VALUES ("acb61c08-4d98-4fe5-8444-eb9c151878e2",
+	"70ba3311-4b27-46ab-a331-49d53fb91be5");
+INSERT INTO O_ATTR
+	VALUES ("acb61c08-4d98-4fe5-8444-eb9c151878e2",
+	"70ba3311-4b27-46ab-a331-49d53fb91be5",
+	"97c25017-81b7-4917-a521-b6f5e8631f9e",
+	'Classification',
+	'',
+	'',
+	'Classification',
+	0,
+	"3d8d63a2-d6d7-4e08-b0e3-55d4ec923f64",
+	'',
+	'');
+INSERT INTO S_DT_PROXY
+	VALUES ("3d8d63a2-d6d7-4e08-b0e3-55d4ec923f64",
+	"00000000-0000-0000-0000-000000000000",
+	'Risk_Classification',
+	'A framework for classifying risks across the continuum of enterprise, portfolios, programs, 
+projects and operations.
+Taken from PMI''s Standard for Risk Management in Portfolios, Programs, and Projects.',
+	'',
+	'../../../../PM_Types/PM_Types.xtuml');
+INSERT INTO O_NBATTR
+	VALUES ("df1f9327-1bd3-4b74-b4bd-24dc84bb281f",
+	"70ba3311-4b27-46ab-a331-49d53fb91be5");
+INSERT INTO O_BATTR
+	VALUES ("df1f9327-1bd3-4b74-b4bd-24dc84bb281f",
+	"70ba3311-4b27-46ab-a331-49d53fb91be5");
+INSERT INTO O_ATTR
+	VALUES ("df1f9327-1bd3-4b74-b4bd-24dc84bb281f",
+	"70ba3311-4b27-46ab-a331-49d53fb91be5",
+	"acb61c08-4d98-4fe5-8444-eb9c151878e2",
+	'Probability',
+	'',
+	'',
+	'Probability',
+	0,
+	"77bf8e66-6a6b-4104-bf33-d6a073866e3b",
+	'',
+	'');
+INSERT INTO S_DT_PROXY
+	VALUES ("77bf8e66-6a6b-4104-bf33-d6a073866e3b",
+	"00000000-0000-0000-0000-000000000000",
+	'Risk_Probability',
+	'A qualitative value of the probability of a risk occurring.',
+	'Unknown',
+	'../../../../PM_Types/PM_Types.xtuml');
+INSERT INTO O_NBATTR
+	VALUES ("4042d186-75a1-4ec4-9386-333029adca1f",
+	"70ba3311-4b27-46ab-a331-49d53fb91be5");
+INSERT INTO O_BATTR
+	VALUES ("4042d186-75a1-4ec4-9386-333029adca1f",
+	"70ba3311-4b27-46ab-a331-49d53fb91be5");
+INSERT INTO O_ATTR
+	VALUES ("4042d186-75a1-4ec4-9386-333029adca1f",
+	"70ba3311-4b27-46ab-a331-49d53fb91be5",
+	"df1f9327-1bd3-4b74-b4bd-24dc84bb281f",
+	'Impact',
+	'',
+	'',
+	'Impact',
+	0,
+	"369c113d-5364-4612-8eaa-c06e93d45428",
+	'',
+	'');
+INSERT INTO S_DT_PROXY
+	VALUES ("369c113d-5364-4612-8eaa-c06e93d45428",
+	"00000000-0000-0000-0000-000000000000",
+	'Risk_Impact',
+	'A qualitative value of the impact of risk becoming an issue.',
+	'Unknown',
+	'../../../../PM_Types/PM_Types.xtuml');
+INSERT INTO O_NBATTR
+	VALUES ("6ae83b7a-a5d9-44fb-ae09-a6b98b485212",
+	"70ba3311-4b27-46ab-a331-49d53fb91be5");
+INSERT INTO O_BATTR
+	VALUES ("6ae83b7a-a5d9-44fb-ae09-a6b98b485212",
+	"70ba3311-4b27-46ab-a331-49d53fb91be5");
+INSERT INTO O_ATTR
+	VALUES ("6ae83b7a-a5d9-44fb-ae09-a6b98b485212",
+	"70ba3311-4b27-46ab-a331-49d53fb91be5",
+	"4042d186-75a1-4ec4-9386-333029adca1f",
+	'Description',
+	'',
+	'',
+	'Description',
+	0,
+	"ba5eda7a-def5-0000-0000-000000000004",
+	'',
+	'');
+INSERT INTO O_NBATTR
+	VALUES ("2be9e5c7-7890-4a3e-ade1-5c657001564d",
+	"70ba3311-4b27-46ab-a331-49d53fb91be5");
+INSERT INTO O_BATTR
+	VALUES ("2be9e5c7-7890-4a3e-ade1-5c657001564d",
+	"70ba3311-4b27-46ab-a331-49d53fb91be5");
+INSERT INTO O_ATTR
+	VALUES ("2be9e5c7-7890-4a3e-ade1-5c657001564d",
+	"70ba3311-4b27-46ab-a331-49d53fb91be5",
+	"6ae83b7a-a5d9-44fb-ae09-a6b98b485212",
+	'Risk_Name',
+	'',
+	'',
+	'Risk_Name',
+	0,
+	"ba5eda7a-def5-0000-0000-000000000004",
+	'',
+	'');
+INSERT INTO O_NBATTR
+	VALUES ("fb9aaffe-501c-4e1c-b4b4-d80fe892bc65",
+	"70ba3311-4b27-46ab-a331-49d53fb91be5");
+INSERT INTO O_BATTR
+	VALUES ("fb9aaffe-501c-4e1c-b4b4-d80fe892bc65",
+	"70ba3311-4b27-46ab-a331-49d53fb91be5");
+INSERT INTO O_ATTR
+	VALUES ("fb9aaffe-501c-4e1c-b4b4-d80fe892bc65",
+	"70ba3311-4b27-46ab-a331-49d53fb91be5",
+	"2be9e5c7-7890-4a3e-ade1-5c657001564d",
+	'Comp_Type',
+	'',
+	'',
+	'Comp_Type',
+	0,
+	"53545dd2-cd77-473e-8032-b33e10488381",
+	'',
+	'');
+INSERT INTO O_NBATTR
+	VALUES ("a01e4d2c-0249-46ce-8fbd-c4ddb6d41a37",
+	"70ba3311-4b27-46ab-a331-49d53fb91be5");
+INSERT INTO O_BATTR
+	VALUES ("a01e4d2c-0249-46ce-8fbd-c4ddb6d41a37",
+	"70ba3311-4b27-46ab-a331-49d53fb91be5");
+INSERT INTO O_ATTR
+	VALUES ("a01e4d2c-0249-46ce-8fbd-c4ddb6d41a37",
+	"70ba3311-4b27-46ab-a331-49d53fb91be5",
+	"d6e054da-af81-4155-a721-483a54448899",
+	'Last_Risk_ID',
+	'',
+	'',
+	'Last_Risk_ID',
+	0,
+	"ba5eda7a-def5-0000-0000-000000000002",
+	'',
+	'');
+INSERT INTO O_NBATTR
+	VALUES ("02945677-35ce-4ee9-89f5-41d74ab0be71",
+	"70ba3311-4b27-46ab-a331-49d53fb91be5");
+INSERT INTO O_BATTR
+	VALUES ("02945677-35ce-4ee9-89f5-41d74ab0be71",
+	"70ba3311-4b27-46ab-a331-49d53fb91be5");
+INSERT INTO O_ATTR
+	VALUES ("02945677-35ce-4ee9-89f5-41d74ab0be71",
+	"70ba3311-4b27-46ab-a331-49d53fb91be5",
+	"a01e4d2c-0249-46ce-8fbd-c4ddb6d41a37",
+	'current_state',
+	'',
+	'',
+	'current_state',
+	0,
+	"ba5eda7a-def5-0000-0000-000000000006",
+	'',
+	'');
+INSERT INTO O_NBATTR
+	VALUES ("d6e054da-af81-4155-a721-483a54448899",
+	"70ba3311-4b27-46ab-a331-49d53fb91be5");
+INSERT INTO O_BATTR
+	VALUES ("d6e054da-af81-4155-a721-483a54448899",
+	"70ba3311-4b27-46ab-a331-49d53fb91be5");
+INSERT INTO O_ATTR
+	VALUES ("d6e054da-af81-4155-a721-483a54448899",
+	"70ba3311-4b27-46ab-a331-49d53fb91be5",
+	"fb9aaffe-501c-4e1c-b4b4-d80fe892bc65",
+	'Comp_Name',
+	'',
+	'',
+	'Comp_Name',
+	0,
+	"ba5eda7a-def5-0000-0000-000000000004",
+	'',
+	'');
+INSERT INTO O_ID
+	VALUES (0,
+	"70ba3311-4b27-46ab-a331-49d53fb91be5");
+INSERT INTO O_ID
+	VALUES (1,
+	"70ba3311-4b27-46ab-a331-49d53fb91be5");
+INSERT INTO O_ID
+	VALUES (2,
+	"70ba3311-4b27-46ab-a331-49d53fb91be5");
+INSERT INTO PE_PE
+	VALUES ("70ba3311-4b27-46ab-a331-49d53fb91be5",
+	1,
+	"9ad079f3-abc5-417c-8b37-4084fb0e9dde",
+	"00000000-0000-0000-0000-000000000000",
+	4);
+INSERT INTO EP_PKG_PROXY
+	VALUES ("9ad079f3-abc5-417c-8b37-4084fb0e9dde",
+	"00000000-0000-0000-0000-000000000000",
+	"fed360c9-cd00-40a7-9299-ecef1edcb505",
+	'PM_Control',
+	'',
+	0,
+	'../PM_Control.xtuml');

@@ -98,6 +98,150 @@ INSERT INTO DIM_ELE
 	VALUES ("ebb7d5ae-3d26-404a-a69b-122ab1f3ee2d",
 	0,
 	"00000000-0000-0000-0000-000000000000");
+INSERT INTO GD_GE
+	VALUES ("33c9f933-7976-417d-9d60-6d8454b34d53",
+	"1e1e9437-be62-483b-a772-2ad3fc15222e",
+	"53545dd2-cd77-473e-8032-b33e10488381",
+	52,
+	0,
+	'ProjMonitoring::PM_Types::Component_Type');
+INSERT INTO GD_SHP
+	VALUES ("33c9f933-7976-417d-9d60-6d8454b34d53");
+INSERT INTO GD_NCS
+	VALUES ("33c9f933-7976-417d-9d60-6d8454b34d53");
+INSERT INTO DIM_ND
+	VALUES (200.000000,
+	150.000000,
+	"33c9f933-7976-417d-9d60-6d8454b34d53");
+INSERT INTO DIM_GE
+	VALUES (4772.000000,
+	3000.000000,
+	"33c9f933-7976-417d-9d60-6d8454b34d53",
+	"00000000-0000-0000-0000-000000000000");
+INSERT INTO DIM_ELE
+	VALUES ("33c9f933-7976-417d-9d60-6d8454b34d53",
+	0,
+	"00000000-0000-0000-0000-000000000000");
+INSERT INTO GD_GE
+	VALUES ("7e098db7-5b5c-49cb-b1da-aa19ab8cab5a",
+	"1e1e9437-be62-483b-a772-2ad3fc15222e",
+	"a3bdf1ac-dd7f-469f-8450-41716296f0a6",
+	52,
+	0,
+	'ProjMonitoring::PM_Types::PF_Risk_Category');
+INSERT INTO GD_SHP
+	VALUES ("7e098db7-5b5c-49cb-b1da-aa19ab8cab5a");
+INSERT INTO GD_NCS
+	VALUES ("7e098db7-5b5c-49cb-b1da-aa19ab8cab5a");
+INSERT INTO DIM_ND
+	VALUES (200.000000,
+	150.000000,
+	"7e098db7-5b5c-49cb-b1da-aa19ab8cab5a");
+INSERT INTO DIM_GE
+	VALUES (4992.000000,
+	3000.000000,
+	"7e098db7-5b5c-49cb-b1da-aa19ab8cab5a",
+	"00000000-0000-0000-0000-000000000000");
+INSERT INTO DIM_ELE
+	VALUES ("7e098db7-5b5c-49cb-b1da-aa19ab8cab5a",
+	0,
+	"00000000-0000-0000-0000-000000000000");
+INSERT INTO GD_GE
+	VALUES ("28c5c246-47c8-464e-aecc-85edac55abbd",
+	"1e1e9437-be62-483b-a772-2ad3fc15222e",
+	"73a1bcd5-5b44-4721-bd57-52f241639830",
+	52,
+	0,
+	'ProjMonitoring::PM_Types::PF_Risk_Level');
+INSERT INTO GD_SHP
+	VALUES ("28c5c246-47c8-464e-aecc-85edac55abbd");
+INSERT INTO GD_NCS
+	VALUES ("28c5c246-47c8-464e-aecc-85edac55abbd");
+INSERT INTO DIM_ND
+	VALUES (200.000000,
+	150.000000,
+	"28c5c246-47c8-464e-aecc-85edac55abbd");
+INSERT INTO DIM_GE
+	VALUES (5212.000000,
+	3000.000000,
+	"28c5c246-47c8-464e-aecc-85edac55abbd",
+	"00000000-0000-0000-0000-000000000000");
+INSERT INTO DIM_ELE
+	VALUES ("28c5c246-47c8-464e-aecc-85edac55abbd",
+	0,
+	"00000000-0000-0000-0000-000000000000");
+INSERT INTO GD_GE
+	VALUES ("f83e63b3-597f-42e6-b6e5-4e637435788b",
+	"1e1e9437-be62-483b-a772-2ad3fc15222e",
+	"3d8d63a2-d6d7-4e08-b0e3-55d4ec923f64",
+	52,
+	0,
+	'ProjMonitoring::PM_Types::Risk_Classification');
+INSERT INTO GD_SHP
+	VALUES ("f83e63b3-597f-42e6-b6e5-4e637435788b");
+INSERT INTO GD_NCS
+	VALUES ("f83e63b3-597f-42e6-b6e5-4e637435788b");
+INSERT INTO DIM_ND
+	VALUES (200.000000,
+	150.000000,
+	"f83e63b3-597f-42e6-b6e5-4e637435788b");
+INSERT INTO DIM_GE
+	VALUES (5432.000000,
+	3000.000000,
+	"f83e63b3-597f-42e6-b6e5-4e637435788b",
+	"00000000-0000-0000-0000-000000000000");
+INSERT INTO DIM_ELE
+	VALUES ("f83e63b3-597f-42e6-b6e5-4e637435788b",
+	0,
+	"00000000-0000-0000-0000-000000000000");
+INSERT INTO GD_GE
+	VALUES ("165df08b-71d8-4c9f-9075-5b8b6bf8c24c",
+	"1e1e9437-be62-483b-a772-2ad3fc15222e",
+	"77bf8e66-6a6b-4104-bf33-d6a073866e3b",
+	52,
+	0,
+	'ProjMonitoring::PM_Types::Risk_Probability');
+INSERT INTO GD_SHP
+	VALUES ("165df08b-71d8-4c9f-9075-5b8b6bf8c24c");
+INSERT INTO GD_NCS
+	VALUES ("165df08b-71d8-4c9f-9075-5b8b6bf8c24c");
+INSERT INTO DIM_ND
+	VALUES (200.000000,
+	150.000000,
+	"165df08b-71d8-4c9f-9075-5b8b6bf8c24c");
+INSERT INTO DIM_GE
+	VALUES (5652.000000,
+	3000.000000,
+	"165df08b-71d8-4c9f-9075-5b8b6bf8c24c",
+	"00000000-0000-0000-0000-000000000000");
+INSERT INTO DIM_ELE
+	VALUES ("165df08b-71d8-4c9f-9075-5b8b6bf8c24c",
+	0,
+	"00000000-0000-0000-0000-000000000000");
+INSERT INTO GD_GE
+	VALUES ("9ac3e2ac-c10a-427b-951a-d062684c7cf2",
+	"1e1e9437-be62-483b-a772-2ad3fc15222e",
+	"369c113d-5364-4612-8eaa-c06e93d45428",
+	52,
+	0,
+	'ProjMonitoring::PM_Types::Risk_Impact');
+INSERT INTO GD_SHP
+	VALUES ("9ac3e2ac-c10a-427b-951a-d062684c7cf2");
+INSERT INTO GD_NCS
+	VALUES ("9ac3e2ac-c10a-427b-951a-d062684c7cf2");
+INSERT INTO DIM_ND
+	VALUES (200.000000,
+	150.000000,
+	"9ac3e2ac-c10a-427b-951a-d062684c7cf2");
+INSERT INTO DIM_GE
+	VALUES (5872.000000,
+	3000.000000,
+	"9ac3e2ac-c10a-427b-951a-d062684c7cf2",
+	"00000000-0000-0000-0000-000000000000");
+INSERT INTO DIM_ELE
+	VALUES ("9ac3e2ac-c10a-427b-951a-d062684c7cf2",
+	0,
+	"00000000-0000-0000-0000-000000000000");
 INSERT INTO DIM_DIA
 	VALUES ("1e1e9437-be62-483b-a772-2ad3fc15222e",
 	'',
@@ -215,6 +359,275 @@ INSERT INTO S_ENUM
 	"1dcb92a2-157f-4a5f-a554-c9009cb387c8");
 INSERT INTO PE_PE
 	VALUES ("875b72e6-dff6-42c4-9d66-d94640f4da65",
+	1,
+	"a85cbb8b-8132-4e75-a97c-d9737e46f021",
+	"00000000-0000-0000-0000-000000000000",
+	3);
+INSERT INTO S_DT
+	VALUES ("53545dd2-cd77-473e-8032-b33e10488381",
+	"00000000-0000-0000-0000-000000000000",
+	'Component_Type',
+	'',
+	'');
+INSERT INTO S_EDT
+	VALUES ("53545dd2-cd77-473e-8032-b33e10488381");
+INSERT INTO S_ENUM
+	VALUES ("9fd59572-6e63-434e-afe6-5dfc774e5d07",
+	'PORTFOLIO',
+	'',
+	"53545dd2-cd77-473e-8032-b33e10488381",
+	"00000000-0000-0000-0000-000000000000");
+INSERT INTO S_ENUM
+	VALUES ("fe80ac40-e887-4c93-9126-c6e356da13e3",
+	'PROGRAM',
+	'',
+	"53545dd2-cd77-473e-8032-b33e10488381",
+	"9fd59572-6e63-434e-afe6-5dfc774e5d07");
+INSERT INTO S_ENUM
+	VALUES ("5cc55bf7-5c16-4425-8e0e-7dd7eaecdafc",
+	'PROJECT',
+	'',
+	"53545dd2-cd77-473e-8032-b33e10488381",
+	"fe80ac40-e887-4c93-9126-c6e356da13e3");
+INSERT INTO S_ENUM
+	VALUES ("0060bd56-4474-4828-91e1-684e867d0365",
+	'ENTERPRISE',
+	'',
+	"53545dd2-cd77-473e-8032-b33e10488381",
+	"5cc55bf7-5c16-4425-8e0e-7dd7eaecdafc");
+INSERT INTO S_ENUM
+	VALUES ("aef78858-0662-4354-8d46-09df4b5680ab",
+	'OPERATING',
+	'',
+	"53545dd2-cd77-473e-8032-b33e10488381",
+	"0060bd56-4474-4828-91e1-684e867d0365");
+INSERT INTO PE_PE
+	VALUES ("53545dd2-cd77-473e-8032-b33e10488381",
+	1,
+	"a85cbb8b-8132-4e75-a97c-d9737e46f021",
+	"00000000-0000-0000-0000-000000000000",
+	3);
+INSERT INTO S_DT
+	VALUES ("a3bdf1ac-dd7f-469f-8450-41716296f0a6",
+	"00000000-0000-0000-0000-000000000000",
+	'PF_Risk_Category',
+	'The typical categories of risk that impact portfolio components.
+Taken from PMI''s Standard for Risk Management in Portfolios, Programs, and Projects.',
+	'');
+INSERT INTO S_EDT
+	VALUES ("a3bdf1ac-dd7f-469f-8450-41716296f0a6");
+INSERT INTO S_ENUM
+	VALUES ("1175a2c8-6b87-46d6-88fc-5c2f59099e12",
+	'Change_of_Business_Needs',
+	'',
+	"a3bdf1ac-dd7f-469f-8450-41716296f0a6",
+	"00000000-0000-0000-0000-000000000000");
+INSERT INTO S_ENUM
+	VALUES ("8172566e-ecbb-4990-a84a-b7cdc1f7cd0d",
+	'Change_of_Business_Environment',
+	'',
+	"a3bdf1ac-dd7f-469f-8450-41716296f0a6",
+	"1175a2c8-6b87-46d6-88fc-5c2f59099e12");
+INSERT INTO S_ENUM
+	VALUES ("ad64cbcb-347c-4664-b213-53ac376e086f",
+	'Change_of_Businees_Context',
+	'',
+	"a3bdf1ac-dd7f-469f-8450-41716296f0a6",
+	"8172566e-ecbb-4990-a84a-b7cdc1f7cd0d");
+INSERT INTO S_ENUM
+	VALUES ("0c135c4f-7565-4caf-b5e3-a229e466cf09",
+	'Resource_Availability',
+	'',
+	"a3bdf1ac-dd7f-469f-8450-41716296f0a6",
+	"ad64cbcb-347c-4664-b213-53ac376e086f");
+INSERT INTO S_ENUM
+	VALUES ("86433ea8-524e-4f02-ab83-c3e9f9a23b0f",
+	'Component_Interactions',
+	'',
+	"a3bdf1ac-dd7f-469f-8450-41716296f0a6",
+	"0c135c4f-7565-4caf-b5e3-a229e466cf09");
+INSERT INTO S_ENUM
+	VALUES ("6a04d08d-6b56-4d2f-a8fb-d9d756681a50",
+	'Component_Conflict',
+	'',
+	"a3bdf1ac-dd7f-469f-8450-41716296f0a6",
+	"86433ea8-524e-4f02-ab83-c3e9f9a23b0f");
+INSERT INTO PE_PE
+	VALUES ("a3bdf1ac-dd7f-469f-8450-41716296f0a6",
+	1,
+	"a85cbb8b-8132-4e75-a97c-d9737e46f021",
+	"00000000-0000-0000-0000-000000000000",
+	3);
+INSERT INTO S_DT
+	VALUES ("73a1bcd5-5b44-4721-bd57-52f241639830",
+	"00000000-0000-0000-0000-000000000000",
+	'PF_Risk_Level',
+	'The levels of risk relevant to portfolios.
+Taken from PMI''s Standard for Risk Management in Portfolios, Programs, and Projects.',
+	'');
+INSERT INTO S_EDT
+	VALUES ("73a1bcd5-5b44-4721-bd57-52f241639830");
+INSERT INTO S_ENUM
+	VALUES ("b7284216-f93c-45e4-92d0-944c005fbf8e",
+	'Strategic',
+	'',
+	"73a1bcd5-5b44-4721-bd57-52f241639830",
+	"00000000-0000-0000-0000-000000000000");
+INSERT INTO S_ENUM
+	VALUES ("5de785de-5493-4f53-8f46-290794250889",
+	'Tactical',
+	'',
+	"73a1bcd5-5b44-4721-bd57-52f241639830",
+	"b7284216-f93c-45e4-92d0-944c005fbf8e");
+INSERT INTO PE_PE
+	VALUES ("73a1bcd5-5b44-4721-bd57-52f241639830",
+	1,
+	"a85cbb8b-8132-4e75-a97c-d9737e46f021",
+	"00000000-0000-0000-0000-000000000000",
+	3);
+INSERT INTO S_DT
+	VALUES ("3d8d63a2-d6d7-4e08-b0e3-55d4ec923f64",
+	"00000000-0000-0000-0000-000000000000",
+	'Risk_Classification',
+	'A framework for classifying risks across the continuum of enterprise, portfolios, programs, 
+projects and operations.
+Taken from PMI''s Standard for Risk Management in Portfolios, Programs, and Projects.',
+	'');
+INSERT INTO S_EDT
+	VALUES ("3d8d63a2-d6d7-4e08-b0e3-55d4ec923f64");
+INSERT INTO S_ENUM
+	VALUES ("f6c391e5-1e4a-4801-9095-db9fea0669dd",
+	'Unknown-Known',
+	'Hidden fact.
+Knowledge exists in the community but not with the entity working on the endeavour.',
+	"3d8d63a2-d6d7-4e08-b0e3-55d4ec923f64",
+	"00000000-0000-0000-0000-000000000000");
+INSERT INTO S_ENUM
+	VALUES ("bee72297-dbc2-4fb9-80d5-9bb34d2753c4",
+	'Unknown-Unknown',
+	'Emergent risk.
+Knowledge doers not exist within the sphere of influence.',
+	"3d8d63a2-d6d7-4e08-b0e3-55d4ec923f64",
+	"f6c391e5-1e4a-4801-9095-db9fea0669dd");
+INSERT INTO S_ENUM
+	VALUES ("80cd53ae-2c06-4693-b487-be0924dcbde6",
+	'Known-Known',
+	'Facts & Requirements.
+Managed as part of scope.
+Not a risk.',
+	"3d8d63a2-d6d7-4e08-b0e3-55d4ec923f64",
+	"bee72297-dbc2-4fb9-80d5-9bb34d2753c4");
+INSERT INTO S_ENUM
+	VALUES ("0974576e-e60d-4150-83c2-97a0fbe8ca49",
+	'Known-Unknown',
+	'Classic risk.
+There is knowledged to identify probablility and impact.',
+	"3d8d63a2-d6d7-4e08-b0e3-55d4ec923f64",
+	"80cd53ae-2c06-4693-b487-be0924dcbde6");
+INSERT INTO PE_PE
+	VALUES ("3d8d63a2-d6d7-4e08-b0e3-55d4ec923f64",
+	1,
+	"a85cbb8b-8132-4e75-a97c-d9737e46f021",
+	"00000000-0000-0000-0000-000000000000",
+	3);
+INSERT INTO S_DT
+	VALUES ("77bf8e66-6a6b-4104-bf33-d6a073866e3b",
+	"00000000-0000-0000-0000-000000000000",
+	'Risk_Probability',
+	'A qualitative value of the probability of a risk occurring.',
+	'Unknown');
+INSERT INTO S_EDT
+	VALUES ("77bf8e66-6a6b-4104-bf33-d6a073866e3b");
+INSERT INTO S_ENUM
+	VALUES ("bfe57001-3c39-40e2-b1fd-18a16edb0811",
+	'Very_Low',
+	'LT 10%',
+	"77bf8e66-6a6b-4104-bf33-d6a073866e3b",
+	"00000000-0000-0000-0000-000000000000");
+INSERT INTO S_ENUM
+	VALUES ("b1a21243-66f8-4a2c-82ca-2f623f26e52c",
+	'Low',
+	'GT 10% & LT 25%',
+	"77bf8e66-6a6b-4104-bf33-d6a073866e3b",
+	"bfe57001-3c39-40e2-b1fd-18a16edb0811");
+INSERT INTO S_ENUM
+	VALUES ("b5131eab-841c-47aa-a72c-baa3333219be",
+	'Medium_Low',
+	'GT 25% & LT 45%',
+	"77bf8e66-6a6b-4104-bf33-d6a073866e3b",
+	"b1a21243-66f8-4a2c-82ca-2f623f26e52c");
+INSERT INTO S_ENUM
+	VALUES ("9024cf2b-a8c1-4099-a898-5decbdd06c22",
+	'Medium',
+	'GT 45% & LT 55%',
+	"77bf8e66-6a6b-4104-bf33-d6a073866e3b",
+	"b5131eab-841c-47aa-a72c-baa3333219be");
+INSERT INTO S_ENUM
+	VALUES ("673c6b39-c4d9-45f6-b18e-5d0dc02b9d3d",
+	'Medium_High',
+	'GT 55% & LT 75%',
+	"77bf8e66-6a6b-4104-bf33-d6a073866e3b",
+	"9024cf2b-a8c1-4099-a898-5decbdd06c22");
+INSERT INTO S_ENUM
+	VALUES ("470aca45-944f-4127-90ba-1eb4e394cfa5",
+	'High',
+	'GT 75% & LT 90%',
+	"77bf8e66-6a6b-4104-bf33-d6a073866e3b",
+	"673c6b39-c4d9-45f6-b18e-5d0dc02b9d3d");
+INSERT INTO S_ENUM
+	VALUES ("b546d272-92d4-4deb-93ed-b1f8ca951b51",
+	'Very_High',
+	'GT 90%',
+	"77bf8e66-6a6b-4104-bf33-d6a073866e3b",
+	"470aca45-944f-4127-90ba-1eb4e394cfa5");
+INSERT INTO S_ENUM
+	VALUES ("00b9188c-4b6b-486f-99b5-ea1fde0bf8ce",
+	'Unknown',
+	'Can apply to all Risk_Classifications, but should have a Risk_Probability value set for risks
+with Risk_Classification value of Known-unknown.',
+	"77bf8e66-6a6b-4104-bf33-d6a073866e3b",
+	"b546d272-92d4-4deb-93ed-b1f8ca951b51");
+INSERT INTO PE_PE
+	VALUES ("77bf8e66-6a6b-4104-bf33-d6a073866e3b",
+	1,
+	"a85cbb8b-8132-4e75-a97c-d9737e46f021",
+	"00000000-0000-0000-0000-000000000000",
+	3);
+INSERT INTO S_DT
+	VALUES ("369c113d-5364-4612-8eaa-c06e93d45428",
+	"00000000-0000-0000-0000-000000000000",
+	'Risk_Impact',
+	'A qualitative value of the impact of risk becoming an issue.',
+	'Unknown');
+INSERT INTO S_EDT
+	VALUES ("369c113d-5364-4612-8eaa-c06e93d45428");
+INSERT INTO S_ENUM
+	VALUES ("7162123b-9203-4ea7-b780-f76330f13346",
+	'Low',
+	'',
+	"369c113d-5364-4612-8eaa-c06e93d45428",
+	"00000000-0000-0000-0000-000000000000");
+INSERT INTO S_ENUM
+	VALUES ("d0a6a62a-8361-423c-baa2-d52316702c00",
+	'Medium',
+	'',
+	"369c113d-5364-4612-8eaa-c06e93d45428",
+	"7162123b-9203-4ea7-b780-f76330f13346");
+INSERT INTO S_ENUM
+	VALUES ("81dabe87-8329-427a-a69d-b88cb68aa234",
+	'High',
+	'',
+	"369c113d-5364-4612-8eaa-c06e93d45428",
+	"d0a6a62a-8361-423c-baa2-d52316702c00");
+INSERT INTO S_ENUM
+	VALUES ("efee6a6c-137c-45d9-a7f9-631e0605980d",
+	'Unknown',
+	'Can apply to all Risk_Classifications, but should have a Risk_Impact value set for any risks 
+with the Risk_Classification value of Known-unknown.',
+	"369c113d-5364-4612-8eaa-c06e93d45428",
+	"81dabe87-8329-427a-a69d-b88cb68aa234");
+INSERT INTO PE_PE
+	VALUES ("369c113d-5364-4612-8eaa-c06e93d45428",
 	1,
 	"a85cbb8b-8132-4e75-a97c-d9737e46f021",
 	"00000000-0000-0000-0000-000000000000",

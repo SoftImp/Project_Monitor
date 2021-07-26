@@ -1,0 +1,89 @@
+-- BP 7.1.6 content: ModelClass syschar: 3 persistence-version: 7.1.6
+
+INSERT INTO O_OBJ
+	VALUES ("bac85a49-dc66-4cb7-98b5-6eed9d01c605",
+	'Benefit',
+	13,
+	'BNFT',
+	'The BENEFITs of any Strategic Goal and associated component (particularly Portfolios) should be 
+briefly described and monitored for their continuing applicability.
+
+Benefits are mentioned within the UCs but not well elaborated.',
+	"00000000-0000-0000-0000-000000000000");
+INSERT INTO O_NBATTR
+	VALUES ("59f052f0-c3e6-411d-9d35-6e3e7d8137f7",
+	"bac85a49-dc66-4cb7-98b5-6eed9d01c605");
+INSERT INTO O_BATTR
+	VALUES ("59f052f0-c3e6-411d-9d35-6e3e7d8137f7",
+	"bac85a49-dc66-4cb7-98b5-6eed9d01c605");
+INSERT INTO O_ATTR
+	VALUES ("59f052f0-c3e6-411d-9d35-6e3e7d8137f7",
+	"bac85a49-dc66-4cb7-98b5-6eed9d01c605",
+	"3419ba78-2177-49d1-9a9f-a31fa43f4d94",
+	'Description',
+	'',
+	'',
+	'Description',
+	0,
+	"ba5eda7a-def5-0000-0000-000000000004",
+	'',
+	'');
+INSERT INTO O_NBATTR
+	VALUES ("3419ba78-2177-49d1-9a9f-a31fa43f4d94",
+	"bac85a49-dc66-4cb7-98b5-6eed9d01c605");
+INSERT INTO O_BATTR
+	VALUES ("3419ba78-2177-49d1-9a9f-a31fa43f4d94",
+	"bac85a49-dc66-4cb7-98b5-6eed9d01c605");
+INSERT INTO O_ATTR
+	VALUES ("3419ba78-2177-49d1-9a9f-a31fa43f4d94",
+	"bac85a49-dc66-4cb7-98b5-6eed9d01c605",
+	"00000000-0000-0000-0000-000000000000",
+	'Benefit_ID',
+	'',
+	'',
+	'Benefit_ID',
+	0,
+	"ba5eda7a-def5-0000-0000-000000000002",
+	'',
+	'');
+INSERT INTO O_NBATTR
+	VALUES ("3ddce169-b069-4512-8718-06b3351fd0b2",
+	"bac85a49-dc66-4cb7-98b5-6eed9d01c605");
+INSERT INTO O_BATTR
+	VALUES ("3ddce169-b069-4512-8718-06b3351fd0b2",
+	"bac85a49-dc66-4cb7-98b5-6eed9d01c605");
+INSERT INTO O_ATTR
+	VALUES ("3ddce169-b069-4512-8718-06b3351fd0b2",
+	"bac85a49-dc66-4cb7-98b5-6eed9d01c605",
+	"59f052f0-c3e6-411d-9d35-6e3e7d8137f7",
+	'Last_Benefit_ID',
+	'',
+	'',
+	'Last_Benefit_ID',
+	0,
+	"ba5eda7a-def5-0000-0000-000000000002",
+	'',
+	'');
+INSERT INTO O_ID
+	VALUES (0,
+	"bac85a49-dc66-4cb7-98b5-6eed9d01c605");
+INSERT INTO O_ID
+	VALUES (1,
+	"bac85a49-dc66-4cb7-98b5-6eed9d01c605");
+INSERT INTO O_ID
+	VALUES (2,
+	"bac85a49-dc66-4cb7-98b5-6eed9d01c605");
+INSERT INTO PE_PE
+	VALUES ("bac85a49-dc66-4cb7-98b5-6eed9d01c605",
+	1,
+	"9ad079f3-abc5-417c-8b37-4084fb0e9dde",
+	"00000000-0000-0000-0000-000000000000",
+	4);
+INSERT INTO EP_PKG_PROXY
+	VALUES ("9ad079f3-abc5-417c-8b37-4084fb0e9dde",
+	"00000000-0000-0000-0000-000000000000",
+	"fed360c9-cd00-40a7-9299-ecef1edcb505",
+	'PM_Control',
+	'',
+	0,
+	'../PM_Control.xtuml');

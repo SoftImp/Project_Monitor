@@ -1,0 +1,78 @@
+-- BP 7.1.6 content: ModelClass syschar: 3 persistence-version: 7.1.6
+
+INSERT INTO O_OBJ
+	VALUES ("8bfd1932-93a4-4c0d-8c1f-783f76639038",
+	'Stakeholder',
+	14,
+	'SH',
+	'STAKEHOLDERS come in all shapes and sizes and should known to any enterprise.
+
+Of particular importance for Project Monitoring are those Stakeholders who/that have greatest
+influence (both positive and negative) on the overall theme of Project Monitoring.
+
+Further work is to be done in modelling how Stakeholders might relate to any component or
+(indeed) the enterprise/organisation itself.  Such future work will use both the PMI standards
+and (in particular) the Accountability.org AA1000 Stakeholder Engagement Standard (A1000SES).
+
+As for Risk Management, Stakeholder identification and management is an extension to the 
+functionality described in the UCs.',
+	"00000000-0000-0000-0000-000000000000");
+INSERT INTO O_NBATTR
+	VALUES ("5fb6298d-6d59-4522-bf54-b76c645cbd83",
+	"8bfd1932-93a4-4c0d-8c1f-783f76639038");
+INSERT INTO O_BATTR
+	VALUES ("5fb6298d-6d59-4522-bf54-b76c645cbd83",
+	"8bfd1932-93a4-4c0d-8c1f-783f76639038");
+INSERT INTO O_ATTR
+	VALUES ("5fb6298d-6d59-4522-bf54-b76c645cbd83",
+	"8bfd1932-93a4-4c0d-8c1f-783f76639038",
+	"00000000-0000-0000-0000-000000000000",
+	'SH_Name',
+	'',
+	'',
+	'SH_Name',
+	0,
+	"ba5eda7a-def5-0000-0000-000000000004",
+	'',
+	'');
+INSERT INTO O_NBATTR
+	VALUES ("a1bc38fb-d3d5-406b-8253-a50a9c6cd5c5",
+	"8bfd1932-93a4-4c0d-8c1f-783f76639038");
+INSERT INTO O_BATTR
+	VALUES ("a1bc38fb-d3d5-406b-8253-a50a9c6cd5c5",
+	"8bfd1932-93a4-4c0d-8c1f-783f76639038");
+INSERT INTO O_ATTR
+	VALUES ("a1bc38fb-d3d5-406b-8253-a50a9c6cd5c5",
+	"8bfd1932-93a4-4c0d-8c1f-783f76639038",
+	"5fb6298d-6d59-4522-bf54-b76c645cbd83",
+	'Role',
+	'',
+	'',
+	'Role',
+	0,
+	"ba5eda7a-def5-0000-0000-000000000002",
+	'',
+	'');
+INSERT INTO O_ID
+	VALUES (0,
+	"8bfd1932-93a4-4c0d-8c1f-783f76639038");
+INSERT INTO O_ID
+	VALUES (1,
+	"8bfd1932-93a4-4c0d-8c1f-783f76639038");
+INSERT INTO O_ID
+	VALUES (2,
+	"8bfd1932-93a4-4c0d-8c1f-783f76639038");
+INSERT INTO PE_PE
+	VALUES ("8bfd1932-93a4-4c0d-8c1f-783f76639038",
+	1,
+	"9ad079f3-abc5-417c-8b37-4084fb0e9dde",
+	"00000000-0000-0000-0000-000000000000",
+	4);
+INSERT INTO EP_PKG_PROXY
+	VALUES ("9ad079f3-abc5-417c-8b37-4084fb0e9dde",
+	"00000000-0000-0000-0000-000000000000",
+	"fed360c9-cd00-40a7-9299-ecef1edcb505",
+	'PM_Control',
+	'',
+	0,
+	'../PM_Control.xtuml');

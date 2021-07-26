@@ -17,7 +17,7 @@ INSERT INTO O_TFR
 	'Create',
 	'',
 	"ba5eda7a-def5-0000-0000-000000000000",
-	1,
+	0,
 	'// Add an a running Project by providing a (hopefully) unique name (PRG_Name) and adding a textual Description.
 //Based on UC02 but with no requirements or resources (for now).
 

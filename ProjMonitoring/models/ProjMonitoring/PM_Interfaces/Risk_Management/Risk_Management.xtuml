@@ -1,0 +1,379 @@
+-- BP 7.1.6 content: Interface syschar: 3 persistence-version: 7.1.6
+
+INSERT INTO C_I
+	VALUES ("ffeaabc8-1077-4f70-9bf6-cd2883f5e505",
+	"00000000-0000-0000-0000-000000000000",
+	'Risk_Management',
+	'');
+INSERT INTO C_EP
+	VALUES ("b4b42be1-d703-4b3a-9236-75549121f549",
+	"ffeaabc8-1077-4f70-9bf6-cd2883f5e505",
+	-1,
+	'add_Risk',
+	'',
+	15);
+INSERT INTO C_AS
+	VALUES ("b4b42be1-d703-4b3a-9236-75549121f549",
+	'add_Risk',
+	'',
+	0,
+	"00000000-0000-0000-0000-000000000000");
+INSERT INTO C_PP
+	VALUES ("29169542-ca12-4c1f-80b8-72d7097963b1",
+	"b4b42be1-d703-4b3a-9236-75549121f549",
+	"ba5eda7a-def5-0000-0000-000000000004",
+	'Comp_Name',
+	'',
+	0,
+	'',
+	"00000000-0000-0000-0000-000000000000");
+INSERT INTO C_PP
+	VALUES ("8ae18fb9-c788-4300-923e-83c6f02713a7",
+	"b4b42be1-d703-4b3a-9236-75549121f549",
+	"ba5eda7a-def5-0000-0000-000000000004",
+	'Description',
+	'',
+	0,
+	'',
+	"ab0649a5-a47d-4b45-a289-0a444fad5397");
+INSERT INTO C_PP
+	VALUES ("5300f57c-bb52-4afa-83a8-7a8f4385a9ca",
+	"b4b42be1-d703-4b3a-9236-75549121f549",
+	"ba5eda7a-def5-0000-0000-000000000004",
+	'Risk_Name',
+	'',
+	0,
+	'',
+	"8ae18fb9-c788-4300-923e-83c6f02713a7");
+INSERT INTO C_PP
+	VALUES ("ab0649a5-a47d-4b45-a289-0a444fad5397",
+	"b4b42be1-d703-4b3a-9236-75549121f549",
+	"53545dd2-cd77-473e-8032-b33e10488381",
+	'Comp_Type',
+	'',
+	0,
+	'',
+	"29169542-ca12-4c1f-80b8-72d7097963b1");
+INSERT INTO S_DT_PROXY
+	VALUES ("53545dd2-cd77-473e-8032-b33e10488381",
+	"00000000-0000-0000-0000-000000000000",
+	'Component_Type',
+	'',
+	'',
+	'../../PM_Types/PM_Types.xtuml');
+INSERT INTO C_EP
+	VALUES ("4ab15dbe-71bc-43c0-8066-dc7bb159651c",
+	"ffeaabc8-1077-4f70-9bf6-cd2883f5e505",
+	-1,
+	'set_Level',
+	'Interface for setting the risk level of an existing risk.',
+	16);
+INSERT INTO C_AS
+	VALUES ("4ab15dbe-71bc-43c0-8066-dc7bb159651c",
+	'set_Level',
+	'Interface for setting the risk level of an existing risk.',
+	0,
+	"b4b42be1-d703-4b3a-9236-75549121f549");
+INSERT INTO C_PP
+	VALUES ("c1ca6681-38c0-4b45-adfe-0c00cc213e9b",
+	"4ab15dbe-71bc-43c0-8066-dc7bb159651c",
+	"ba5eda7a-def5-0000-0000-000000000004",
+	'Comp_Name',
+	'',
+	0,
+	'',
+	"00000000-0000-0000-0000-000000000000");
+INSERT INTO C_PP
+	VALUES ("e78d4275-2859-4bd0-875b-699900ff2f3b",
+	"4ab15dbe-71bc-43c0-8066-dc7bb159651c",
+	"53545dd2-cd77-473e-8032-b33e10488381",
+	'Comp_Type',
+	'',
+	0,
+	'',
+	"c1ca6681-38c0-4b45-adfe-0c00cc213e9b");
+INSERT INTO C_EP
+	VALUES ("bf56626a-5cd5-43db-9adb-e47ef01179d0",
+	"ffeaabc8-1077-4f70-9bf6-cd2883f5e505",
+	-1,
+	'set_Category',
+	'',
+	16);
+INSERT INTO C_AS
+	VALUES ("bf56626a-5cd5-43db-9adb-e47ef01179d0",
+	'set_Category',
+	'',
+	0,
+	"4ab15dbe-71bc-43c0-8066-dc7bb159651c");
+INSERT INTO C_PP
+	VALUES ("7520d111-4a50-4b00-8ba9-026988c9b1ce",
+	"bf56626a-5cd5-43db-9adb-e47ef01179d0",
+	"ba5eda7a-def5-0000-0000-000000000004",
+	'Comp_Name',
+	'',
+	0,
+	'',
+	"00000000-0000-0000-0000-000000000000");
+INSERT INTO C_PP
+	VALUES ("911bc78c-075f-46a8-ab4f-9a3222c0db0b",
+	"bf56626a-5cd5-43db-9adb-e47ef01179d0",
+	"53545dd2-cd77-473e-8032-b33e10488381",
+	'Comp_Type',
+	'',
+	0,
+	'',
+	"7520d111-4a50-4b00-8ba9-026988c9b1ce");
+INSERT INTO C_EP
+	VALUES ("55345104-4f96-47b8-bb08-3a743cd0c118",
+	"ffeaabc8-1077-4f70-9bf6-cd2883f5e505",
+	-1,
+	'set_Classification',
+	'',
+	16);
+INSERT INTO C_AS
+	VALUES ("55345104-4f96-47b8-bb08-3a743cd0c118",
+	'set_Classification',
+	'',
+	0,
+	"bf56626a-5cd5-43db-9adb-e47ef01179d0");
+INSERT INTO C_PP
+	VALUES ("f4dfeba8-bcb6-47af-8bb6-9a08525278d1",
+	"55345104-4f96-47b8-bb08-3a743cd0c118",
+	"3d8d63a2-d6d7-4e08-b0e3-55d4ec923f64",
+	'Classification',
+	'',
+	0,
+	'',
+	"16492661-eb00-4531-bd07-a72b61b5ed13");
+INSERT INTO S_DT_PROXY
+	VALUES ("3d8d63a2-d6d7-4e08-b0e3-55d4ec923f64",
+	"00000000-0000-0000-0000-000000000000",
+	'Risk_Classification',
+	'A framework for classifying risks across the continuum of enterprise, portfolios, programs, 
+projects and operations.
+Taken from PMI''s Standard for Risk Management in Portfolios, Programs, and Projects.',
+	'',
+	'../../PM_Types/PM_Types.xtuml');
+INSERT INTO C_PP
+	VALUES ("16492661-eb00-4531-bd07-a72b61b5ed13",
+	"55345104-4f96-47b8-bb08-3a743cd0c118",
+	"ba5eda7a-def5-0000-0000-000000000004",
+	'Comp_Name',
+	'',
+	0,
+	'',
+	"00000000-0000-0000-0000-000000000000");
+INSERT INTO C_EP
+	VALUES ("4693f1a9-784f-44c2-a1a2-2cfd59ba07c5",
+	"ffeaabc8-1077-4f70-9bf6-cd2883f5e505",
+	-1,
+	'set_Impact',
+	'',
+	16);
+INSERT INTO C_AS
+	VALUES ("4693f1a9-784f-44c2-a1a2-2cfd59ba07c5",
+	'set_Impact',
+	'',
+	0,
+	"55345104-4f96-47b8-bb08-3a743cd0c118");
+INSERT INTO C_PP
+	VALUES ("391fa760-4e6f-4c76-be95-2665d3462a47",
+	"4693f1a9-784f-44c2-a1a2-2cfd59ba07c5",
+	"369c113d-5364-4612-8eaa-c06e93d45428",
+	'Impact',
+	'',
+	0,
+	'',
+	"14e3c522-0ec9-478c-b3e3-006be98c199d");
+INSERT INTO S_DT_PROXY
+	VALUES ("369c113d-5364-4612-8eaa-c06e93d45428",
+	"00000000-0000-0000-0000-000000000000",
+	'Risk_Impact',
+	'A qualitative value of the impact of risk becoming an issue.',
+	'Unknown',
+	'../../PM_Types/PM_Types.xtuml');
+INSERT INTO C_PP
+	VALUES ("14e3c522-0ec9-478c-b3e3-006be98c199d",
+	"4693f1a9-784f-44c2-a1a2-2cfd59ba07c5",
+	"ba5eda7a-def5-0000-0000-000000000004",
+	'Comp_Name',
+	'',
+	0,
+	'',
+	"00000000-0000-0000-0000-000000000000");
+INSERT INTO C_EP
+	VALUES ("cade276a-58fa-4459-88e4-d792f024756b",
+	"ffeaabc8-1077-4f70-9bf6-cd2883f5e505",
+	-1,
+	'set_Probability',
+	'',
+	16);
+INSERT INTO C_AS
+	VALUES ("cade276a-58fa-4459-88e4-d792f024756b",
+	'set_Probability',
+	'',
+	0,
+	"4693f1a9-784f-44c2-a1a2-2cfd59ba07c5");
+INSERT INTO C_PP
+	VALUES ("4e6f461c-ee75-479d-9421-dca0176bf45d",
+	"cade276a-58fa-4459-88e4-d792f024756b",
+	"77bf8e66-6a6b-4104-bf33-d6a073866e3b",
+	'Probability',
+	'',
+	0,
+	'',
+	"717c7ab5-2922-449a-a276-e42a709e2286");
+INSERT INTO S_DT_PROXY
+	VALUES ("77bf8e66-6a6b-4104-bf33-d6a073866e3b",
+	"00000000-0000-0000-0000-000000000000",
+	'Risk_Probability',
+	'A qualitative value of the probability of a risk occurring.',
+	'Unknown',
+	'../../PM_Types/PM_Types.xtuml');
+INSERT INTO C_PP
+	VALUES ("717c7ab5-2922-449a-a276-e42a709e2286",
+	"cade276a-58fa-4459-88e4-d792f024756b",
+	"ba5eda7a-def5-0000-0000-000000000004",
+	'Comp_Name',
+	'',
+	0,
+	'',
+	"00000000-0000-0000-0000-000000000000");
+INSERT INTO C_EP
+	VALUES ("a6cccfa4-2fb5-4dda-9c65-6c5ef0af5b03",
+	"ffeaabc8-1077-4f70-9bf6-cd2883f5e505",
+	-1,
+	'which_Level',
+	'',
+	17);
+INSERT INTO C_AS
+	VALUES ("a6cccfa4-2fb5-4dda-9c65-6c5ef0af5b03",
+	'which_Level',
+	'',
+	1,
+	"cade276a-58fa-4459-88e4-d792f024756b");
+INSERT INTO C_PP
+	VALUES ("4f10448a-8493-4cc1-a7fb-11e771b626bd",
+	"a6cccfa4-2fb5-4dda-9c65-6c5ef0af5b03",
+	"ba5eda7a-def5-0000-0000-000000000004",
+	'Message',
+	'',
+	0,
+	'',
+	"eef063ab-d68d-44aa-8c7f-554a7bee006b");
+INSERT INTO C_PP
+	VALUES ("eef063ab-d68d-44aa-8c7f-554a7bee006b",
+	"a6cccfa4-2fb5-4dda-9c65-6c5ef0af5b03",
+	"ba5eda7a-def5-0000-0000-000000000004",
+	'Comp_Name',
+	'',
+	0,
+	'',
+	"00000000-0000-0000-0000-000000000000");
+INSERT INTO C_EP
+	VALUES ("2d1abbbe-9c83-4a30-8589-527ddabc1631",
+	"ffeaabc8-1077-4f70-9bf6-cd2883f5e505",
+	-1,
+	'this_Level',
+	'',
+	18);
+INSERT INTO C_AS
+	VALUES ("2d1abbbe-9c83-4a30-8589-527ddabc1631",
+	'this_Level',
+	'',
+	0,
+	"a6cccfa4-2fb5-4dda-9c65-6c5ef0af5b03");
+INSERT INTO C_PP
+	VALUES ("e33f3436-febb-479b-a174-b123f1ea40b3",
+	"2d1abbbe-9c83-4a30-8589-527ddabc1631",
+	"ba5eda7a-def5-0000-0000-000000000004",
+	'Comp_Name',
+	'',
+	0,
+	'',
+	"00000000-0000-0000-0000-000000000000");
+INSERT INTO C_PP
+	VALUES ("6e613d5f-2d89-4b3e-87b9-428db1140faf",
+	"2d1abbbe-9c83-4a30-8589-527ddabc1631",
+	"ba5eda7a-def5-0000-0000-000000000004",
+	'Answer',
+	'',
+	0,
+	'',
+	"e33f3436-febb-479b-a174-b123f1ea40b3");
+INSERT INTO C_EP
+	VALUES ("b9ba6f21-a1bf-4aff-9d3a-723e02c37983",
+	"ffeaabc8-1077-4f70-9bf6-cd2883f5e505",
+	-1,
+	'which_Category',
+	'',
+	17);
+INSERT INTO C_AS
+	VALUES ("b9ba6f21-a1bf-4aff-9d3a-723e02c37983",
+	'which_Category',
+	'',
+	1,
+	"2d1abbbe-9c83-4a30-8589-527ddabc1631");
+INSERT INTO C_PP
+	VALUES ("3f960011-8555-4b5e-bcce-93d8aab2ce56",
+	"b9ba6f21-a1bf-4aff-9d3a-723e02c37983",
+	"ba5eda7a-def5-0000-0000-000000000004",
+	'Message',
+	'',
+	0,
+	'',
+	"9bf323d6-c76b-4570-8487-9684ff02de72");
+INSERT INTO C_PP
+	VALUES ("9bf323d6-c76b-4570-8487-9684ff02de72",
+	"b9ba6f21-a1bf-4aff-9d3a-723e02c37983",
+	"ba5eda7a-def5-0000-0000-000000000004",
+	'Comp_Name',
+	'',
+	0,
+	'',
+	"00000000-0000-0000-0000-000000000000");
+INSERT INTO C_EP
+	VALUES ("fdaa5129-06ec-4ff8-b646-a34f5e62035b",
+	"ffeaabc8-1077-4f70-9bf6-cd2883f5e505",
+	-1,
+	'this_Category',
+	'',
+	18);
+INSERT INTO C_AS
+	VALUES ("fdaa5129-06ec-4ff8-b646-a34f5e62035b",
+	'this_Category',
+	'',
+	0,
+	"b9ba6f21-a1bf-4aff-9d3a-723e02c37983");
+INSERT INTO C_PP
+	VALUES ("f5907d85-d54e-4eef-bae5-aef6d19214fd",
+	"fdaa5129-06ec-4ff8-b646-a34f5e62035b",
+	"ba5eda7a-def5-0000-0000-000000000004",
+	'Comp_Name',
+	'',
+	0,
+	'',
+	"00000000-0000-0000-0000-000000000000");
+INSERT INTO C_PP
+	VALUES ("bfbda29f-7361-4999-a17a-4eb0202f5869",
+	"fdaa5129-06ec-4ff8-b646-a34f5e62035b",
+	"ba5eda7a-def5-0000-0000-000000000004",
+	'Answer',
+	'',
+	0,
+	'',
+	"f5907d85-d54e-4eef-bae5-aef6d19214fd");
+INSERT INTO PE_PE
+	VALUES ("ffeaabc8-1077-4f70-9bf6-cd2883f5e505",
+	1,
+	"077be095-5328-4c6a-8a54-cde91fa66fc5",
+	"00000000-0000-0000-0000-000000000000",
+	6);
+INSERT INTO EP_PKG_PROXY
+	VALUES ("077be095-5328-4c6a-8a54-cde91fa66fc5",
+	"fed360c9-cd00-40a7-9299-ecef1edcb505",
+	"fed360c9-cd00-40a7-9299-ecef1edcb505",
+	'PM_Interfaces',
+	'',
+	0,
+	'../PM_Interfaces.xtuml');

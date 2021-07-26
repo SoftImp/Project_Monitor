@@ -16,8 +16,9 @@ INSERT INTO O_TFR
 	'',
 	"ba5eda7a-def5-0000-0000-000000000000",
 	0,
-	'// Add a new Portfolio.
-//Based on UC02 but with no requirements or resources (for now).
+	'//Create a new Portfolio without dates, budget and owner.
+//Based on UC01:  See Portfolio ISM for UC completion.
+//Ther ISM is based on PMI''s Standard for Portfolio Management.
 
 select any Portfolio from instances of PF
  where (selected.PF_Name == param.PF_Name);
@@ -28,7 +29,11 @@ if ( empty Portfolio)
 	Portfolio.Description = param.Description;
 	Portfolio.Manager = param.Manager;
 	LOG::LogInfo( message: "A new PORTFOLIO has been created." );
-	send OrgMan::Notify(Relevant_Person:"Manager", Message:"An new PORTFOLIO " + param.PF_Name + "has been created.");
+	//Need to direct an event to the (now) existing new instance of Portfolio in order to deal 
+	//with Ciera not supporting creation events.  See Ciera User Guide on Restrictions.
+	generate PF1:Created to Portfolio;
+	send PFMan::Notify(Relevant_Person: Portfolio.Manager, Message:"An new PORTFOLIO " + param.PF_Name + "has been created.");
+	send OrgMan::Notify(Relevant_Person:"Manager", Message:"An new PORTFOLIO " + param.PF_Name + "has been created.");	
 else
 	LOG::LogFailure( message: "The chosen PORTFOLIO NAME already exists.  Please choose a different NAME that does not already exist." );
 end if;',
@@ -63,112 +68,6 @@ INSERT INTO O_TPARM
 	0,
 	'',
 	"8376c58e-69ed-488e-bd99-d200e4364235",
-	'');
-INSERT INTO O_TFR
-	VALUES ("c4773d6a-6a99-4902-889b-f32228e79251",
-	"ebd48d02-0571-4979-8fde-ce5707451104",
-	'set_Priority',
-	'',
-	"ba5eda7a-def5-0000-0000-000000000000",
-	1,
-	'// Prioritise an existing portfolio. The operation could also be used to update the priority of a portfolio.
-
-select any Portfolio from instances of PF
- where (selected.PF_Name == param.PF_Name);
-
-if ( not empty Portfolio)
-	Portfolio.PF_Name = param.PF_Name;
-	Portfolio.Priority = param.Priority;
-	LOG::LogInfo( message: "The PRIORITY of a PORTFOLIO has been set." );
-	send OrgMan::Notify(Relevant_Person:"Manager", Message:"The PRIORITY of a PORTFOLIO has been set.");
-else
-	LOG::LogFailure( message: "The chosen PORTFOLIO NAME does not exist.  Please choose a different NAME that does exist." );
-end if;
-
-//This operation is an extension of UC01.',
-	1,
-	'',
-	"f58a25b6-c422-44a3-83fe-f3df326f72ad",
-	0,
-	2);
-INSERT INTO O_TPARM
-	VALUES ("0af85c25-8cc9-453d-a518-0ff6c4c48849",
-	"c4773d6a-6a99-4902-889b-f32228e79251",
-	'PF_Name',
-	"ba5eda7a-def5-0000-0000-000000000004",
-	0,
-	'',
-	"00000000-0000-0000-0000-000000000000",
-	'');
-INSERT INTO O_TPARM
-	VALUES ("0a00f938-bfab-4e0f-b55d-a81d2642b760",
-	"c4773d6a-6a99-4902-889b-f32228e79251",
-	'Priority',
-	"65dcb48f-06c0-434e-be18-b05dfa982146",
-	0,
-	'',
-	"0af85c25-8cc9-453d-a518-0ff6c4c48849",
-	'');
-INSERT INTO S_DT_PROXY
-	VALUES ("65dcb48f-06c0-434e-be18-b05dfa982146",
-	"00000000-0000-0000-0000-000000000000",
-	'Priority_Level',
-	'',
-	'',
-	'../../../../PM_Types/PM_Types.xtuml');
-INSERT INTO O_TFR
-	VALUES ("3aa837c5-b6d0-4239-9e73-04f51ca61f56",
-	"ebd48d02-0571-4979-8fde-ce5707451104",
-	'link_To_Startegic_Goal',
-	'',
-	"ba5eda7a-def5-0000-0000-000000000000",
-	1,
-	'//Associate/Link Portfolio to a Strategic Goal.
-
-select any Portfolio from instances of PF
- where (selected.PF_Name == param.PF_Name);
- 
-if (not empty Portfolio)
-
-	select any Strategic_Goal from instances of SG
-	 where (selected.SG_Name == param.SG_Name);
-
-	if ( not empty Strategic_Goal)
-	
-		relate self to Strategic_Goal across R1.''aligns with'';
-	
-		LOG::LogInfo( message: "A PORTFOLIO has been aligned with a STRATEGIC GOAL." );
-		send OrgMan::Notify(Relevant_Person:"Manager", Message:"A PORTFOLIO  " + param.PF_Name + "has been aligned with a STRATEGIC GOAL.");
-	else
-		LOG::LogFailure( message: "The chosen STRATEGIC GOAL does not exist.  Please choose a relevant GOAL that already exists." );
-	end if;
-else
-	LOG::LogFailure( message: "The chosen PORTFOLIO NAME doesn''t exist.  Please choose a NAME that already exists." );
-end if;
-
-//Based on UC01-1.',
-	1,
-	'',
-	"c4773d6a-6a99-4902-889b-f32228e79251",
-	0,
-	6);
-INSERT INTO O_TPARM
-	VALUES ("d2dd637a-f6fe-480a-bbd9-7ca78f050243",
-	"3aa837c5-b6d0-4239-9e73-04f51ca61f56",
-	'PF_Name',
-	"ba5eda7a-def5-0000-0000-000000000004",
-	0,
-	'',
-	"00000000-0000-0000-0000-000000000000",
-	'');
-INSERT INTO O_TPARM
-	VALUES ("1460edb9-ab6e-4d8b-a150-0f75acbf8547",
-	"3aa837c5-b6d0-4239-9e73-04f51ca61f56",
-	'SG_Name',
-	"ba5eda7a-def5-0000-0000-000000000004",
-	0,
-	'',
-	"d2dd637a-f6fe-480a-bbd9-7ca78f050243",
 	'');
 INSERT INTO O_NBATTR
 	VALUES ("65174a28-305f-4ca8-ae8c-9bbc3e3320f5",
@@ -206,6 +105,13 @@ INSERT INTO O_ATTR
 	"65dcb48f-06c0-434e-be18-b05dfa982146",
 	'',
 	'');
+INSERT INTO S_DT_PROXY
+	VALUES ("65dcb48f-06c0-434e-be18-b05dfa982146",
+	"00000000-0000-0000-0000-000000000000",
+	'Priority_Level',
+	'',
+	'',
+	'../../../../PM_Types/PM_Types.xtuml');
 INSERT INTO O_NBATTR
 	VALUES ("ce65ecc6-3724-47e4-8357-9040d5642591",
 	"ebd48d02-0571-4979-8fde-ce5707451104");
@@ -294,6 +200,24 @@ INSERT INTO O_ATTR
 	'Vision',
 	0,
 	"ba5eda7a-def5-0000-0000-000000000004",
+	'',
+	'');
+INSERT INTO O_NBATTR
+	VALUES ("65c13a44-1a02-4050-8ce1-91e14eeeb386",
+	"ebd48d02-0571-4979-8fde-ce5707451104");
+INSERT INTO O_BATTR
+	VALUES ("65c13a44-1a02-4050-8ce1-91e14eeeb386",
+	"ebd48d02-0571-4979-8fde-ce5707451104");
+INSERT INTO O_ATTR
+	VALUES ("65c13a44-1a02-4050-8ce1-91e14eeeb386",
+	"ebd48d02-0571-4979-8fde-ce5707451104",
+	"7ab187c9-1dfc-4fb2-9149-ae109a020e5c",
+	'Budget',
+	'',
+	'',
+	'Budget',
+	0,
+	"ba5eda7a-def5-0000-0000-000000000003",
 	'',
 	'');
 INSERT INTO O_ID

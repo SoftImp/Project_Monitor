@@ -74,6 +74,11 @@ INSERT INTO DIM_CON
 	4746.000000,
 	3428.000000,
 	"9f1d42b2-199a-4f52-9646-bb726d1220f6");
+INSERT INTO DIM_CON
+	VALUES ("93cb1e18-a616-4199-907a-581ffeba990e",
+	5324.000000,
+	3324.000000,
+	"9f1d42b2-199a-4f52-9646-bb726d1220f6");
 INSERT INTO GD_GE
 	VALUES ("5942a15e-4495-41f8-b606-f816a43531af",
 	"025d8e5d-550e-4f57-bb23-eea2ed432201",
@@ -498,6 +503,130 @@ INSERT INTO DIM_ED
 	VALUES ("69e5be29-d845-4198-96d4-631d6fdfafa0",
 	"00000000-0000-0000-0000-000000000000",
 	"11dd50a2-07a2-477e-b7a3-200380058b25");
+INSERT INTO GD_GE
+	VALUES ("3c1245b8-b5ee-46ed-a9b0-ef2413647a41",
+	"025d8e5d-550e-4f57-bb23-eea2ed432201",
+	"8d15b769-60b4-4335-9b98-add10af18cd4",
+	94,
+	0,
+	'ProjMonitoring::PM_Components::PM_Control::RskMan::Risk_Management');
+INSERT INTO GD_CON
+	VALUES ("3c1245b8-b5ee-46ed-a9b0-ef2413647a41",
+	"00000000-0000-0000-0000-000000000000");
+INSERT INTO GD_CTXT
+	VALUES ("f3122d64-d0d2-4916-8dce-c688bad99750",
+	"3c1245b8-b5ee-46ed-a9b0-ef2413647a41",
+	0,
+	0.000000,
+	0.000000);
+INSERT INTO DIM_ND
+	VALUES (0.000000,
+	0.000000,
+	"f3122d64-d0d2-4916-8dce-c688bad99750");
+INSERT INTO DIM_GE
+	VALUES (0.000000,
+	0.000000,
+	"f3122d64-d0d2-4916-8dce-c688bad99750",
+	"00000000-0000-0000-0000-000000000000");
+INSERT INTO DIM_ELE
+	VALUES ("f3122d64-d0d2-4916-8dce-c688bad99750",
+	0,
+	"00000000-0000-0000-0000-000000000000");
+INSERT INTO GD_CTXT
+	VALUES ("9b31b9c1-874b-4118-9965-1e0e96ed5e3d",
+	"3c1245b8-b5ee-46ed-a9b0-ef2413647a41",
+	2,
+	0.000000,
+	0.000000);
+INSERT INTO DIM_ND
+	VALUES (0.000000,
+	0.000000,
+	"9b31b9c1-874b-4118-9965-1e0e96ed5e3d");
+INSERT INTO DIM_GE
+	VALUES (0.000000,
+	0.000000,
+	"9b31b9c1-874b-4118-9965-1e0e96ed5e3d",
+	"00000000-0000-0000-0000-000000000000");
+INSERT INTO DIM_ELE
+	VALUES ("9b31b9c1-874b-4118-9965-1e0e96ed5e3d",
+	0,
+	"00000000-0000-0000-0000-000000000000");
+INSERT INTO GD_CTXT
+	VALUES ("60bd4ba4-7f36-46df-9e31-ac8808d76f3b",
+	"3c1245b8-b5ee-46ed-a9b0-ef2413647a41",
+	1,
+	0.000000,
+	0.000000);
+INSERT INTO DIM_ND
+	VALUES (0.000000,
+	0.000000,
+	"60bd4ba4-7f36-46df-9e31-ac8808d76f3b");
+INSERT INTO DIM_GE
+	VALUES (0.000000,
+	0.000000,
+	"60bd4ba4-7f36-46df-9e31-ac8808d76f3b",
+	"00000000-0000-0000-0000-000000000000");
+INSERT INTO DIM_ELE
+	VALUES ("60bd4ba4-7f36-46df-9e31-ac8808d76f3b",
+	0,
+	"00000000-0000-0000-0000-000000000000");
+INSERT INTO GD_LS
+	VALUES ("a85f1707-aa7c-4f46-a3d2-e19711fad810",
+	"3c1245b8-b5ee-46ed-a9b0-ef2413647a41",
+	"00000000-0000-0000-0000-000000000000",
+	"edffc496-2f3f-46a3-bc0f-5c64f332af46",
+	"826a2133-26e9-4dc5-93cd-91b7deb8186a");
+INSERT INTO DIM_WAY
+	VALUES ("edffc496-2f3f-46a3-bc0f-5c64f332af46",
+	5324.000000,
+	3324.000000,
+	"3c1245b8-b5ee-46ed-a9b0-ef2413647a41",
+	"00000000-0000-0000-0000-000000000000",
+	"00000000-0000-0000-0000-000000000000");
+INSERT INTO DIM_WAY
+	VALUES ("826a2133-26e9-4dc5-93cd-91b7deb8186a",
+	5399.000000,
+	3324.000000,
+	"3c1245b8-b5ee-46ed-a9b0-ef2413647a41",
+	"00000000-0000-0000-0000-000000000000",
+	"edffc496-2f3f-46a3-bc0f-5c64f332af46");
+INSERT INTO DIM_GE
+	VALUES (0.000000,
+	0.000000,
+	"3c1245b8-b5ee-46ed-a9b0-ef2413647a41",
+	"00000000-0000-0000-0000-000000000000");
+INSERT INTO DIM_ELE
+	VALUES ("3c1245b8-b5ee-46ed-a9b0-ef2413647a41",
+	0,
+	"00000000-0000-0000-0000-000000000000");
+INSERT INTO DIM_ED
+	VALUES ("93cb1e18-a616-4199-907a-581ffeba990e",
+	"00000000-0000-0000-0000-000000000000",
+	"3c1245b8-b5ee-46ed-a9b0-ef2413647a41");
+INSERT INTO GD_GE
+	VALUES ("c6783b7d-2cea-4e98-b5eb-d02c7d2b4e5f",
+	"025d8e5d-550e-4f57-bb23-eea2ed432201",
+	"570d03c6-46e7-409b-a6a0-7cd2008fc54a",
+	108,
+	0,
+	'ProjMonitoring::PM_Components::PM_Control::Shared');
+INSERT INTO GD_SHP
+	VALUES ("c6783b7d-2cea-4e98-b5eb-d02c7d2b4e5f");
+INSERT INTO GD_NCS
+	VALUES ("c6783b7d-2cea-4e98-b5eb-d02c7d2b4e5f");
+INSERT INTO DIM_ND
+	VALUES (200.000000,
+	150.000000,
+	"c6783b7d-2cea-4e98-b5eb-d02c7d2b4e5f");
+INSERT INTO DIM_GE
+	VALUES (4480.000000,
+	3156.000000,
+	"c6783b7d-2cea-4e98-b5eb-d02c7d2b4e5f",
+	"00000000-0000-0000-0000-000000000000");
+INSERT INTO DIM_ELE
+	VALUES ("c6783b7d-2cea-4e98-b5eb-d02c7d2b4e5f",
+	0,
+	"9f1d42b2-199a-4f52-9646-bb726d1220f6");
 INSERT INTO DIM_DIA
 	VALUES ("025d8e5d-550e-4f57-bb23-eea2ed432201",
 	'',
@@ -531,12 +660,13 @@ INSERT INTO SPR_PS
 	VALUES ("d364544e-51d4-462a-be89-bbae9891a61c",
 	'add_Strategic_Goal',
 	'Based on UC00.',
-	'//Creating a new strategic goal requires 3 inputs. A name, a textual description, and a priority of (High, Medium or Low).
+	'//Creating a new strategic goal requires 3 inputs. A name, a textual description, and a 
+//priority of (High, Medium or Low).
 //Call the Strategic_Goal class operation named Create.
 
 SG::Create (SG_Name : param.Goal_ID, Description : param.Description, Priority : param.Priority);
 
-// Send a notification of the creation of a new goal to a manager within Organisation_Management.
+//Send a notification of the creation of a new goal to a manager within Organisation_Management.
 
 send OrgMan::Notify( Relevant_Person:"Manager", Message:"New Goal Created" );
 ',
@@ -638,7 +768,7 @@ INSERT INTO SPR_PS
 	'Report',
 	'',
 	'',
-	3,
+	1,
 	0,
 	4);
 INSERT INTO C_EP_PROXY
@@ -680,12 +810,14 @@ INSERT INTO SPR_PEP
 INSERT INTO SPR_PS
 	VALUES ("ea97a7af-f79a-49ef-9954-9176cf654584",
 	'add_Portfolio',
-	'This signal incorporates not only a new portfolio identifier, but also a strategic goal idetifier.
-Mainly to ensure that the PORTFOLIO is associated with the correct STRATEGIC GOAL right from get-go.
+	'This signal incorporates not only a new portfolio identifier, but also a description and the
+relevant manager.
 
-This is much the same as for adding PROGRAMS.
-Thus the basic aspects of all UC01, UC06 and and UC01-1 are incorporated here.',
-	'',
+Based on UC01, but linking to a strategic goal is not incorporated here.  See the ISM for the
+Portfolio class.',
+	'//Call the Portfolio class operation named Create in order to create a new portfolio.
+
+PF::Create (PF_Name : param.PF_Name, Description : param.Description, Manager : param.Manager);',
 	1,
 	0,
 	1);
@@ -694,11 +826,11 @@ INSERT INTO C_EP_PROXY
 	"a1785323-9842-4f78-9c7c-66eac1ae5d6a",
 	-1,
 	'add_Portfolio',
-	'This signal incorporates not only a new portfolio identifier, but also a strategic goal idetifier.
-Mainly to ensure that the PORTFOLIO is associated with the correct STRATEGIC GOAL right from get-go.
+	'This signal incorporates not only a new portfolio identifier, but also a description and the
+relevant manager.
 
-This is much the same as for adding PROGRAMS.
-Thus the basic aspects of all UC01, UC06 and and UC01-1 are incorporated here.',
+Based on UC01, but linking to a strategic goal is not incorporated here.  See the ISM for the
+Portfolio class.',
 	1,
 	'../../PM_Interfaces/Portfolio_Management/Portfolio_Management.xtuml');
 INSERT INTO SPR_PEP
@@ -709,7 +841,24 @@ INSERT INTO SPR_PS
 	VALUES ("18fea78a-2268-40a0-979f-8dd579475e76",
 	'set_Priority',
 	'',
-	'',
+	'//Generate an event to PF ISM to set priority.
+//First: Need to create an instance handle.
+
+select any Portfolio from instances of PF 
+where (selected.PF_Name == param.PF_Name);
+
+if ( not empty Portfolio)
+
+	LOG::LogInfo( message: "The PRIORITY of PORTFOLIO " + param.PF_Name + " is being set." );
+	send PFMan::Notify(Relevant_Person: Portfolio.Manager, Message:"The PRIORITY of PORTFOLIO " + param.PF_Name + " is being set.");
+			
+	generate PF2:Set_Priority (Priority: param.Priority) to Portfolio;
+
+else
+	LOG::LogFailure( message: "The chosen PORTFOLIO NAME does not exist.  Please choose a different NAME that does exist." );
+end if;
+
+',
 	1,
 	0,
 	2);
@@ -729,7 +878,21 @@ INSERT INTO SPR_PS
 	VALUES ("59b01139-4655-4110-9da7-9c118ee4a461",
 	'close_Portfolio',
 	'',
-	'',
+	'//Close the named portfolio.
+
+select any Portfolio from instances of PF 
+where (selected.PF_Name == param.PF_Name);
+
+if ( not empty Portfolio)
+	
+	LOG::LogInfo( message: "CLOSING PORTFOLIO " + param.PF_Name + "." );	
+	send PFMan::Notify(Relevant_Person: Portfolio.Manager, Message:"CLOSING PORTFOLIO " + param.PF_Name + ".");
+	
+	generate PF17:Close to Portfolio;
+	
+else
+	LOG::LogFailure( message: "The chosen PORTFOLIO NAME does not exist.  Please choose a different NAME that does exist." );
+end if;',
 	1,
 	0,
 	3);
@@ -740,6 +903,502 @@ INSERT INTO C_EP_PROXY
 	'close_Portfolio',
 	'',
 	3,
+	'../../PM_Interfaces/Portfolio_Management/Portfolio_Management.xtuml');
+INSERT INTO SPR_PEP
+	VALUES ("2a7828cc-1d2b-4481-aeee-103ed96e27f7",
+	"c164f6ce-9c1d-401e-a4d2-c16b9856a24f",
+	"b467a081-0749-459a-a87a-fb38bb41339f");
+INSERT INTO SPR_PS
+	VALUES ("2a7828cc-1d2b-4481-aeee-103ed96e27f7",
+	'Notify',
+	'',
+	'',
+	1,
+	0,
+	3);
+INSERT INTO C_EP_PROXY
+	VALUES ("c164f6ce-9c1d-401e-a4d2-c16b9856a24f",
+	"a1785323-9842-4f78-9c7c-66eac1ae5d6a",
+	-1,
+	'Notify',
+	'',
+	3,
+	'../../PM_Interfaces/Portfolio_Management/Portfolio_Management.xtuml');
+INSERT INTO SPR_PEP
+	VALUES ("ae59c623-42ab-4b6d-8aa4-56e0109a9d4a",
+	"5e9e7b7a-f4fc-4b2a-b99f-bce5311bc511",
+	"b467a081-0749-459a-a87a-fb38bb41339f");
+INSERT INTO SPR_PS
+	VALUES ("ae59c623-42ab-4b6d-8aa4-56e0109a9d4a",
+	'state_Mission',
+	'',
+	'//Generate an event to PF ISM to add a MISSION statement to an existing portfolio.
+//First: Need to create an instance handle.
+
+select any Portfolio from instances of PF 
+where (selected.PF_Name == param.PF_Name);
+
+if ( not empty Portfolio)
+	
+	LOG::LogInfo( message: "The MISSION of PORTFOLIO " + param.PF_Name + " is being stated." );	
+	send PFMan::Notify(Relevant_Person: Portfolio.Manager, Message:"The MISSION of PORTFOLIO " + param.PF_Name + " is being stated.");
+	
+	generate PF3:State_Mission (Mission: param.Mission) to Portfolio;
+	
+else
+	LOG::LogFailure( message: "The chosen PORTFOLIO NAME does not exist.  Please choose a different NAME that does exist." );
+end if;',
+	1,
+	0,
+	4);
+INSERT INTO C_EP_PROXY
+	VALUES ("5e9e7b7a-f4fc-4b2a-b99f-bce5311bc511",
+	"a1785323-9842-4f78-9c7c-66eac1ae5d6a",
+	-1,
+	'state_Mission',
+	'',
+	4,
+	'../../PM_Interfaces/Portfolio_Management/Portfolio_Management.xtuml');
+INSERT INTO SPR_PEP
+	VALUES ("78d1919e-0f51-44e2-85cb-c4dced8fbfc6",
+	"d47ff1ff-2c91-419a-bf8f-10ac12ad6451",
+	"b467a081-0749-459a-a87a-fb38bb41339f");
+INSERT INTO SPR_PS
+	VALUES ("78d1919e-0f51-44e2-85cb-c4dced8fbfc6",
+	'state_Vision',
+	'',
+	'//Generate an event to PF ISM to add a VISION statement.
+//First: Need to create an instance handle.
+
+select any Portfolio from instances of PF 
+where (selected.PF_Name == param.PF_Name);
+
+if ( not empty Portfolio)
+	
+	LOG::LogInfo( message: "The VISION of PORTFOLIO " + param.PF_Name + " is being stated." );
+	send PFMan::Notify(Relevant_Person: Portfolio.Manager, Message:"The VISION of PORTFOLIO " + param.PF_Name + " is being stated.");
+	
+	generate PF4:State_Vision (Vision: param.Vision) to Portfolio;
+	
+else
+	LOG::LogFailure( message: "The chosen PORTFOLIO NAME does not exist.  Please choose a different NAME that does exist." );
+end if;',
+	1,
+	0,
+	5);
+INSERT INTO C_EP_PROXY
+	VALUES ("d47ff1ff-2c91-419a-bf8f-10ac12ad6451",
+	"a1785323-9842-4f78-9c7c-66eac1ae5d6a",
+	-1,
+	'state_Vision',
+	'',
+	5,
+	'../../PM_Interfaces/Portfolio_Management/Portfolio_Management.xtuml');
+INSERT INTO SPR_PEP
+	VALUES ("1dcff8c2-dbad-4726-be3c-c81bb00a2365",
+	"c1da6868-fea7-4185-a8a5-98b87fbc0fc6",
+	"b467a081-0749-459a-a87a-fb38bb41339f");
+INSERT INTO SPR_PS
+	VALUES ("1dcff8c2-dbad-4726-be3c-c81bb00a2365",
+	'link_Strategic_Goal',
+	'',
+	'//Select the PORTFOLIO to be linked to a STRATEGIC GOAL.
+
+select any Portfolio from instances of PF
+ where (selected.PF_Name == param.PF_Name);
+ 
+if (not empty Portfolio)
+	
+	LOG::LogInfo( message: "The PORTFOLIO " + param.PF_Name + " is being linked to a STRATEGIC GOAL." );
+	send PFMan::Notify(Relevant_Person: Portfolio.Manager, Message:"The PORTFOLIO  " + param.PF_Name + " is being linked to a STRATEGIC GOAL.");
+
+	generate PF5:Link_To_Strategic_Goal(SG_Name: param.SG_Name) to Portfolio;
+
+else
+	LOG::LogFailure( message: "The chosen PORTFOLIO NAME doesn''t exist.  Please choose a NAME that already exists." );
+end if;
+
+//Is an extension of UCs in accordance with PMI''s Standard for Portfolio Management.',
+	1,
+	0,
+	6);
+INSERT INTO C_EP_PROXY
+	VALUES ("c1da6868-fea7-4185-a8a5-98b87fbc0fc6",
+	"a1785323-9842-4f78-9c7c-66eac1ae5d6a",
+	-1,
+	'link_Strategic_Goal',
+	'',
+	6,
+	'../../PM_Interfaces/Portfolio_Management/Portfolio_Management.xtuml');
+INSERT INTO SPR_PEP
+	VALUES ("39f8b84e-4c95-451f-a318-937b6e034ee3",
+	"8c047522-0700-41f2-8aae-dd0623d69451",
+	"b467a081-0749-459a-a87a-fb38bb41339f");
+INSERT INTO SPR_PS
+	VALUES ("39f8b84e-4c95-451f-a318-937b6e034ee3",
+	'add_Component',
+	'',
+	'//Add either a PROGRAM or a PROJECT component to the PORTFOLIO.
+//First find the PORTFOLIO to which the component is to be added.
+
+select any Portfolio from instances of PF
+where selected.PF_Name == param.PF_Name;
+
+if ( not empty Portfolio)
+	
+	generate PF7:Add_Component(Comp_Name: param.Comp_Name, Comp_Type: param.Comp_Type) to Portfolio;
+	
+else
+	
+	LOG::LogFailure(message: "The chosen PORTFOLIO NAME doesn''t exist.  Please choose a NAME that already exists." );
+	
+end if;',
+	1,
+	0,
+	7);
+INSERT INTO C_EP_PROXY
+	VALUES ("8c047522-0700-41f2-8aae-dd0623d69451",
+	"a1785323-9842-4f78-9c7c-66eac1ae5d6a",
+	-1,
+	'add_Component',
+	'',
+	7,
+	'../../PM_Interfaces/Portfolio_Management/Portfolio_Management.xtuml');
+INSERT INTO SPR_PEP
+	VALUES ("bc66d9ee-0fa5-418d-9311-ab7c7276626b",
+	"cf1927fa-73f7-4f85-806f-f29ca02b9375",
+	"b467a081-0749-459a-a87a-fb38bb41339f");
+INSERT INTO SPR_PS
+	VALUES ("bc66d9ee-0fa5-418d-9311-ab7c7276626b",
+	'link_Stakeholder',
+	'',
+	'//Select the PORTFOLIO to be linked to a STAKEHOLDER.
+
+select any Portfolio from instances of PF
+ where (selected.PF_Name == param.PF_Name);
+ 
+if (not empty Portfolio)
+	
+	LOG::LogInfo( message: "The PORTFOLIO " + param.PF_Name + " is being linked to a STAKEHOLDER." );
+	send PFMan::Notify(Relevant_Person: Portfolio.Manager, Message:"The PORTFOLIO  " + param.PF_Name + " is being linked to a STAKEHOLDER.");
+
+	generate PF6:Link_To_Stakeholder(SH_Name: param.SH_Name) to Portfolio;
+
+else
+	LOG::LogFailure( message: "The chosen PORTFOLIO NAME doesn''t exist.  Please choose a NAME that already exists." );
+end if;
+
+//Is an extension of UCs in accordance with PMI''s Standard for Portfolio Management.',
+	1,
+	0,
+	8);
+INSERT INTO C_EP_PROXY
+	VALUES ("cf1927fa-73f7-4f85-806f-f29ca02b9375",
+	"a1785323-9842-4f78-9c7c-66eac1ae5d6a",
+	-1,
+	'link_Stakeholder',
+	'',
+	8,
+	'../../PM_Interfaces/Portfolio_Management/Portfolio_Management.xtuml');
+INSERT INTO SPR_PEP
+	VALUES ("77023437-7d51-477d-80f2-d1e22001de01",
+	"57ec7f8d-0755-4f92-84bf-a53010f30807",
+	"b467a081-0749-459a-a87a-fb38bb41339f");
+INSERT INTO SPR_PS
+	VALUES ("77023437-7d51-477d-80f2-d1e22001de01",
+	'set_Budget',
+	'',
+	'//Generate an event to PF ISM to set budget.
+//First: Need to create an instance handle.
+
+select any Portfolio from instances of PF 
+where (selected.PF_Name == param.PF_Name);
+
+if ( not empty Portfolio)
+
+	LOG::LogInfo( message: "The BUDGET for PORTFOLIO " + param.PF_Name + " is being set." );
+	send PFMan::Notify(Relevant_Person: Portfolio.Manager, Message:"The BUDGET for PORTFOLIO " + param.PF_Name + " is being set.");
+			
+	generate PF11:Set_Budget (Budget: param.Budget) to Portfolio;
+
+else
+	LOG::LogFailure( message: "The chosen PORTFOLIO NAME does not exist.  Please choose a different NAME that does exist." );
+end if;
+',
+	1,
+	0,
+	9);
+INSERT INTO C_EP_PROXY
+	VALUES ("57ec7f8d-0755-4f92-84bf-a53010f30807",
+	"a1785323-9842-4f78-9c7c-66eac1ae5d6a",
+	-1,
+	'set_Budget',
+	'',
+	9,
+	'../../PM_Interfaces/Portfolio_Management/Portfolio_Management.xtuml');
+INSERT INTO SPR_PEP
+	VALUES ("1120619f-418d-4a61-a8cf-ffcde15362b5",
+	"bf71354c-3206-4d48-abd6-4be8f0ef83ee",
+	"b467a081-0749-459a-a87a-fb38bb41339f");
+INSERT INTO SPR_PS
+	VALUES ("1120619f-418d-4a61-a8cf-ffcde15362b5",
+	'remove_Component',
+	'',
+	'//Remove either a PROGRAM or a PROJECT component from the PORTFOLIO.
+//First find the PORTFOLIO from which the component is to be removed.
+
+select any Portfolio from instances of PF
+where selected.PF_Name == param.PF_Name;
+
+if ( not empty Portfolio)
+	
+	generate PF8:Remove_Component(Comp_Name: param.Comp_Name, Comp_Type: param.Comp_Type) to Portfolio;
+	
+else
+	
+	LOG::LogFailure(message: "The chosen PORTFOLIO NAME doesn''t exist.  Please choose a NAME that already exists." );
+	
+end if;',
+	1,
+	0,
+	7);
+INSERT INTO C_EP_PROXY
+	VALUES ("bf71354c-3206-4d48-abd6-4be8f0ef83ee",
+	"a1785323-9842-4f78-9c7c-66eac1ae5d6a",
+	-1,
+	'remove_Component',
+	'',
+	7,
+	'../../PM_Interfaces/Portfolio_Management/Portfolio_Management.xtuml');
+INSERT INTO SPR_PEP
+	VALUES ("23d5a2c7-8ac5-4a9e-9da5-4b2256f6532f",
+	"3499d353-0fd4-43ce-a7cc-0e279644e92f",
+	"b467a081-0749-459a-a87a-fb38bb41339f");
+INSERT INTO SPR_PS
+	VALUES ("23d5a2c7-8ac5-4a9e-9da5-4b2256f6532f",
+	'change_Manager',
+	'',
+	'//Generate an event to PF ISM to the manager of an existing portfolio.
+//First: Need to create an instance handle.
+
+select any Portfolio from instances of PF 
+where (selected.PF_Name == param.PF_Name);
+
+if ( not empty Portfolio)
+	
+	LOG::LogInfo( message: "The MANAGER of PORTFOLIO " + param.PF_Name + " is being changed." );	
+	send PFMan::Notify(Relevant_Person: Portfolio.Manager, Message:"The MANAGER of PORTFOLIO " + param.PF_Name + " is being changed.");
+	
+	generate PF12:Change_Manager (Manager: param.Manager) to Portfolio;
+	
+else
+	LOG::LogFailure( message: "The chosen PORTFOLIO NAME does not exist.  Please choose a different NAME that does exist." );
+end if;',
+	1,
+	0,
+	10);
+INSERT INTO C_EP_PROXY
+	VALUES ("3499d353-0fd4-43ce-a7cc-0e279644e92f",
+	"a1785323-9842-4f78-9c7c-66eac1ae5d6a",
+	-1,
+	'change_Manager',
+	'',
+	10,
+	'../../PM_Interfaces/Portfolio_Management/Portfolio_Management.xtuml');
+INSERT INTO SPR_PEP
+	VALUES ("0a0e8e26-cf7b-4e0a-8ed1-8d8f28571078",
+	"6046f4d0-ec5e-499a-8a1a-78f63c4fd551",
+	"b467a081-0749-459a-a87a-fb38bb41339f");
+INSERT INTO SPR_PS
+	VALUES ("0a0e8e26-cf7b-4e0a-8ed1-8d8f28571078",
+	'start_Planning',
+	'',
+	'//Generate an event to PF ISM to start planning.
+//First: Need to create an instance handle.
+
+select any Portfolio from instances of PF 
+where (selected.PF_Name == param.PF_Name);
+
+if ( not empty Portfolio)
+
+	LOG::LogInfo( message: "PORTFOLIO " + param.PF_Name + " is ready for planning." );
+	send PFMan::Notify(Relevant_Person: Portfolio.Manager, Message:"PORTFOLIO " + param.PF_Name + " is ready for planning.");
+			
+	generate PF10:Initiation_Complete to Portfolio;
+
+else
+	LOG::LogFailure( message: "The chosen PORTFOLIO NAME does not exist.  Please choose a different NAME that does exist." );
+end if;',
+	1,
+	0,
+	11);
+INSERT INTO C_EP_PROXY
+	VALUES ("6046f4d0-ec5e-499a-8a1a-78f63c4fd551",
+	"a1785323-9842-4f78-9c7c-66eac1ae5d6a",
+	-1,
+	'start_Planning',
+	'',
+	11,
+	'../../PM_Interfaces/Portfolio_Management/Portfolio_Management.xtuml');
+INSERT INTO SPR_PEP
+	VALUES ("53391004-bc62-4ed4-a4c5-d4bf23e12983",
+	"3dd97336-b360-4c07-8287-87aa9988d138",
+	"b467a081-0749-459a-a87a-fb38bb41339f");
+INSERT INTO SPR_PS
+	VALUES ("53391004-bc62-4ed4-a4c5-d4bf23e12983",
+	'start_Executing',
+	'',
+	'//Generate an event to PF ISM to start executing.
+//First: Need to create an instance handle.
+
+select any Portfolio from instances of PF 
+where (selected.PF_Name == param.PF_Name);
+
+if ( not empty Portfolio)
+
+	LOG::LogInfo( message: "PORTFOLIO " + param.PF_Name + " is ready to execute." );
+	send PFMan::Notify(Relevant_Person: Portfolio.Manager, Message:"PORTFOLIO " + param.PF_Name + " is ready to execute.");
+			
+	generate PF15:Planning_Complete to Portfolio;
+
+else
+	LOG::LogFailure( message: "The chosen PORTFOLIO NAME does not exist.  Please choose a different NAME that does exist." );
+end if;',
+	1,
+	0,
+	12);
+INSERT INTO C_EP_PROXY
+	VALUES ("3dd97336-b360-4c07-8287-87aa9988d138",
+	"a1785323-9842-4f78-9c7c-66eac1ae5d6a",
+	-1,
+	'start_Executing',
+	'',
+	12,
+	'../../PM_Interfaces/Portfolio_Management/Portfolio_Management.xtuml');
+INSERT INTO SPR_PEP
+	VALUES ("7078cb35-2d75-4447-98b9-eba663c341a2",
+	"5ddab7ba-8ef1-4ad5-b7dd-903b4c28d9a5",
+	"b467a081-0749-459a-a87a-fb38bb41339f");
+INSERT INTO SPR_PS
+	VALUES ("7078cb35-2d75-4447-98b9-eba663c341a2",
+	'replan',
+	'',
+	'',
+	1,
+	0,
+	13);
+INSERT INTO C_EP_PROXY
+	VALUES ("5ddab7ba-8ef1-4ad5-b7dd-903b4c28d9a5",
+	"a1785323-9842-4f78-9c7c-66eac1ae5d6a",
+	-1,
+	'replan',
+	'',
+	13,
+	'../../PM_Interfaces/Portfolio_Management/Portfolio_Management.xtuml');
+INSERT INTO SPR_PEP
+	VALUES ("3bce6291-ab34-46f8-abb2-ed0b3e3a70ae",
+	"c0ddc215-df60-4681-951d-fd0014e55924",
+	"b467a081-0749-459a-a87a-fb38bb41339f");
+INSERT INTO SPR_PS
+	VALUES ("3bce6291-ab34-46f8-abb2-ed0b3e3a70ae",
+	'describe_Benefit',
+	'',
+	'//Generate an event to PF ISM to record a benefit of the portfolio - strategic goal mix.
+//First: Need to create an instance handle.
+
+select any Portfolio from instances of PF 
+where (selected.PF_Name == param.PF_Name);
+
+if ( not empty Portfolio)
+
+	LOG::LogInfo( message: "A BENEFIT of the PORTFOLIO " + param.PF_Name + " is being described." );
+	send PFMan::Notify(Relevant_Person: Portfolio.Manager, Message:"A BENEFIT of the PORTFOLIO " + param.PF_Name + " is being described.");
+			
+	generate PF9:Describe_Benefit (Description: param.Description) to Portfolio;
+
+else
+	LOG::LogFailure( message: "The chosen PORTFOLIO NAME does not exist.  Please choose a different NAME that does exist." );
+end if;',
+	1,
+	0,
+	14);
+INSERT INTO C_EP_PROXY
+	VALUES ("c0ddc215-df60-4681-951d-fd0014e55924",
+	"a1785323-9842-4f78-9c7c-66eac1ae5d6a",
+	-1,
+	'describe_Benefit',
+	'',
+	14,
+	'../../PM_Interfaces/Portfolio_Management/Portfolio_Management.xtuml');
+INSERT INTO SPR_PEP
+	VALUES ("34a4f2f0-30cb-40b4-a9f3-c594b2a6cff7",
+	"ccfcb65b-12f4-48eb-b8d9-7c16500dfbc0",
+	"b467a081-0749-459a-a87a-fb38bb41339f");
+INSERT INTO SPR_PS
+	VALUES ("34a4f2f0-30cb-40b4-a9f3-c594b2a6cff7",
+	'reactivate_Portfolio',
+	'',
+	'//Reactivate the named portfolio readt to be replanned.
+
+select any Portfolio from instances of PF 
+where (selected.PF_Name == param.PF_Name);
+
+if ( not empty Portfolio)
+	
+	LOG::LogInfo( message: "REACTIVATING PORTFOLIO " + param.PF_Name + "." );	
+	send PFMan::Notify(Relevant_Person: Portfolio.Manager, Message:"REACTIVATING PORTFOLIO " + param.PF_Name + ".");
+	
+	generate PF18:Reactivate to Portfolio;
+	
+else
+	LOG::LogFailure( message: "The chosen PORTFOLIO NAME does not exist.  Please choose a different NAME that does exist." );
+end if;',
+	1,
+	0,
+	3);
+INSERT INTO C_EP_PROXY
+	VALUES ("ccfcb65b-12f4-48eb-b8d9-7c16500dfbc0",
+	"a1785323-9842-4f78-9c7c-66eac1ae5d6a",
+	-1,
+	'reactivate_Portfolio',
+	'',
+	3,
+	'../../PM_Interfaces/Portfolio_Management/Portfolio_Management.xtuml');
+INSERT INTO SPR_PEP
+	VALUES ("f684a8e8-aab7-45ce-81ce-6b3799d94544",
+	"7a7d8a3a-005b-4772-8a05-ab3cc2b89171",
+	"b467a081-0749-459a-a87a-fb38bb41339f");
+INSERT INTO SPR_PS
+	VALUES ("f684a8e8-aab7-45ce-81ce-6b3799d94544",
+	'add_Risk',
+	'',
+	'//Add an identiofied RISK to the PORTFOLIO.
+//First find the PORTFOLIO to which the risk is to be added.
+
+select any Portfolio from instances of PF
+where selected.PF_Name == param.PF_Name;
+
+if ( not empty Portfolio)
+	
+	//Need to provide the PF_Name in order to allow independent management of risks.
+	
+	generate PF13:Identify_Risk(PF_Name: Portfolio.PF_Name, Risk_Name: param.Risk_Name, Description: param.Description) to Portfolio;
+	
+else
+	
+	LOG::LogFailure(message: "The chosen PORTFOLIO NAME doesn''t exist.  Please choose a NAME that already exists." );
+	
+end if;',
+	1,
+	0,
+	15);
+INSERT INTO C_EP_PROXY
+	VALUES ("7a7d8a3a-005b-4772-8a05-ab3cc2b89171",
+	"a1785323-9842-4f78-9c7c-66eac1ae5d6a",
+	-1,
+	'add_Risk',
+	'',
+	15,
 	'../../PM_Interfaces/Portfolio_Management/Portfolio_Management.xtuml');
 INSERT INTO C_I_PROXY
 	VALUES ("a1785323-9842-4f78-9c7c-66eac1ae5d6a",
@@ -980,7 +1639,7 @@ INSERT INTO SPR_PS
 	'Report',
 	'',
 	'',
-	3,
+	1,
 	0,
 	4);
 INSERT INTO C_EP_PROXY
@@ -1068,6 +1727,259 @@ INSERT INTO C_I_PROXY
 	'Project_Management',
 	'An I/F to allow particular communications with Project Managers or their representatives.',
 	'../../PM_Interfaces/Project_Management/Project_Management.xtuml');
+INSERT INTO C_PO
+	VALUES ("45c8f47c-272a-4208-a132-c5aba9d3f1bb",
+	"28e681a8-6b53-4cb5-b80e-d68515a1ba3e",
+	'RskMan',
+	0,
+	0,
+	'');
+INSERT INTO C_IR
+	VALUES ("8d15b769-60b4-4335-9b98-add10af18cd4",
+	"ffeaabc8-1077-4f70-9bf6-cd2883f5e505",
+	"00000000-0000-0000-0000-000000000000",
+	"45c8f47c-272a-4208-a132-c5aba9d3f1bb");
+INSERT INTO C_P
+	VALUES ("8d15b769-60b4-4335-9b98-add10af18cd4",
+	'Risk_Management',
+	'Unnamed Interface',
+	'',
+	'PM_Control::RskMan::Risk_Management');
+INSERT INTO SPR_PEP
+	VALUES ("065eb571-48f5-4d97-b58d-3ccea8621982",
+	"b4b42be1-d703-4b3a-9236-75549121f549",
+	"8d15b769-60b4-4335-9b98-add10af18cd4");
+INSERT INTO SPR_PS
+	VALUES ("065eb571-48f5-4d97-b58d-3ccea8621982",
+	'add_Risk',
+	'',
+	'//Add a risk - typically a classic risk which will require later analysis and the setting of 
+//impact and probability. 
+
+//Call class-based operation of Riks class to add a newly identified risk.
+
+RSK::add_Risk( Comp_Name:param.Comp_Name, Comp_Type:param.Comp_Type, Risk_Name:param.Risk_Name, Description: param.Description);',
+	1,
+	0,
+	15);
+INSERT INTO C_EP_PROXY
+	VALUES ("b4b42be1-d703-4b3a-9236-75549121f549",
+	"ffeaabc8-1077-4f70-9bf6-cd2883f5e505",
+	-1,
+	'add_Risk',
+	'',
+	15,
+	'../../PM_Interfaces/Risk_Management/Risk_Management.xtuml');
+INSERT INTO SPR_PEP
+	VALUES ("75cae2cf-8af2-42fc-a0cd-f37df2581b98",
+	"4ab15dbe-71bc-43c0-8066-dc7bb159651c",
+	"8d15b769-60b4-4335-9b98-add10af18cd4");
+INSERT INTO SPR_PS
+	VALUES ("75cae2cf-8af2-42fc-a0cd-f37df2581b98",
+	'set_Level',
+	'Interface for setting the risk level of an existing risk.',
+	'//Find the risk instance based on name and type and generate the event to activate a request
+//to provide the risk level.
+
+select any Risk from instances of RSK
+where selected.Comp_Name == param.Comp_Name AND selected.Comp_Type == param.Comp_Type;
+
+generate RSK2:Set_Risk_Level to Risk;',
+	1,
+	0,
+	16);
+INSERT INTO C_EP_PROXY
+	VALUES ("4ab15dbe-71bc-43c0-8066-dc7bb159651c",
+	"ffeaabc8-1077-4f70-9bf6-cd2883f5e505",
+	-1,
+	'set_Level',
+	'Interface for setting the risk level of an existing risk.',
+	16,
+	'../../PM_Interfaces/Risk_Management/Risk_Management.xtuml');
+INSERT INTO SPR_PEP
+	VALUES ("4db84314-512d-4a8f-8947-fa40c370b503",
+	"bf56626a-5cd5-43db-9adb-e47ef01179d0",
+	"8d15b769-60b4-4335-9b98-add10af18cd4");
+INSERT INTO SPR_PS
+	VALUES ("4db84314-512d-4a8f-8947-fa40c370b503",
+	'set_Category',
+	'',
+	'//Find the risk instance based on name and type and generate the event to activate a request
+//to provide the risk category.
+
+select any Risk from instances of RSK
+where selected.Comp_Name == param.Comp_Name AND selected.Comp_Type == param.Comp_Type;
+
+generate RSK4:Set_Risk_Category to Risk;',
+	1,
+	0,
+	16);
+INSERT INTO C_EP_PROXY
+	VALUES ("bf56626a-5cd5-43db-9adb-e47ef01179d0",
+	"ffeaabc8-1077-4f70-9bf6-cd2883f5e505",
+	-1,
+	'set_Category',
+	'',
+	16,
+	'../../PM_Interfaces/Risk_Management/Risk_Management.xtuml');
+INSERT INTO SPR_PEP
+	VALUES ("5d04ac36-0455-4eb9-ae04-8407a4002ec7",
+	"55345104-4f96-47b8-bb08-3a743cd0c118",
+	"8d15b769-60b4-4335-9b98-add10af18cd4");
+INSERT INTO SPR_PS
+	VALUES ("5d04ac36-0455-4eb9-ae04-8407a4002ec7",
+	'set_Classification',
+	'',
+	'',
+	3,
+	0,
+	16);
+INSERT INTO C_EP_PROXY
+	VALUES ("55345104-4f96-47b8-bb08-3a743cd0c118",
+	"ffeaabc8-1077-4f70-9bf6-cd2883f5e505",
+	-1,
+	'set_Classification',
+	'',
+	16,
+	'../../PM_Interfaces/Risk_Management/Risk_Management.xtuml');
+INSERT INTO SPR_PEP
+	VALUES ("dd72c3bd-0583-4da8-afe6-9d04ddf025b3",
+	"4693f1a9-784f-44c2-a1a2-2cfd59ba07c5",
+	"8d15b769-60b4-4335-9b98-add10af18cd4");
+INSERT INTO SPR_PS
+	VALUES ("dd72c3bd-0583-4da8-afe6-9d04ddf025b3",
+	'set_Impact',
+	'',
+	'',
+	3,
+	0,
+	16);
+INSERT INTO C_EP_PROXY
+	VALUES ("4693f1a9-784f-44c2-a1a2-2cfd59ba07c5",
+	"ffeaabc8-1077-4f70-9bf6-cd2883f5e505",
+	-1,
+	'set_Impact',
+	'',
+	16,
+	'../../PM_Interfaces/Risk_Management/Risk_Management.xtuml');
+INSERT INTO SPR_PEP
+	VALUES ("b97b6a31-2436-4d57-b07c-511fa21a3bbc",
+	"cade276a-58fa-4459-88e4-d792f024756b",
+	"8d15b769-60b4-4335-9b98-add10af18cd4");
+INSERT INTO SPR_PS
+	VALUES ("b97b6a31-2436-4d57-b07c-511fa21a3bbc",
+	'set_Probability',
+	'',
+	'',
+	3,
+	0,
+	16);
+INSERT INTO C_EP_PROXY
+	VALUES ("cade276a-58fa-4459-88e4-d792f024756b",
+	"ffeaabc8-1077-4f70-9bf6-cd2883f5e505",
+	-1,
+	'set_Probability',
+	'',
+	16,
+	'../../PM_Interfaces/Risk_Management/Risk_Management.xtuml');
+INSERT INTO SPR_PEP
+	VALUES ("b4ec20fe-6c4e-423c-a9ce-dab060350bf3",
+	"a6cccfa4-2fb5-4dda-9c65-6c5ef0af5b03",
+	"8d15b769-60b4-4335-9b98-add10af18cd4");
+INSERT INTO SPR_PS
+	VALUES ("b4ec20fe-6c4e-423c-a9ce-dab060350bf3",
+	'which_Level',
+	'',
+	'',
+	3,
+	0,
+	17);
+INSERT INTO C_EP_PROXY
+	VALUES ("a6cccfa4-2fb5-4dda-9c65-6c5ef0af5b03",
+	"ffeaabc8-1077-4f70-9bf6-cd2883f5e505",
+	-1,
+	'which_Level',
+	'',
+	17,
+	'../../PM_Interfaces/Risk_Management/Risk_Management.xtuml');
+INSERT INTO SPR_PEP
+	VALUES ("ec562230-5f76-480a-a39c-4c95cbb47058",
+	"2d1abbbe-9c83-4a30-8589-527ddabc1631",
+	"8d15b769-60b4-4335-9b98-add10af18cd4");
+INSERT INTO SPR_PS
+	VALUES ("ec562230-5f76-480a-a39c-4c95cbb47058",
+	'this_Level',
+	'',
+	'//Pass on the chosen response value to the request for Risk Level.
+//Currently only deals with PORTFOLIOs.
+//Note that the choices of answer are provided in the signal named which_Level.
+
+select any Risk from instances of RSK
+where selected.Comp_Name == param.Comp_Name;
+
+generate RSK3:Risk_Level_Set(Comp_Name: param.Comp_Name, Risk_Level_Answer: param.Answer) to Risk;',
+	1,
+	0,
+	18);
+INSERT INTO C_EP_PROXY
+	VALUES ("2d1abbbe-9c83-4a30-8589-527ddabc1631",
+	"ffeaabc8-1077-4f70-9bf6-cd2883f5e505",
+	-1,
+	'this_Level',
+	'',
+	18,
+	'../../PM_Interfaces/Risk_Management/Risk_Management.xtuml');
+INSERT INTO SPR_PEP
+	VALUES ("71188f15-a5ba-457b-8176-afd3ab21949e",
+	"b9ba6f21-a1bf-4aff-9d3a-723e02c37983",
+	"8d15b769-60b4-4335-9b98-add10af18cd4");
+INSERT INTO SPR_PS
+	VALUES ("71188f15-a5ba-457b-8176-afd3ab21949e",
+	'which_Category',
+	'',
+	'',
+	3,
+	0,
+	17);
+INSERT INTO C_EP_PROXY
+	VALUES ("b9ba6f21-a1bf-4aff-9d3a-723e02c37983",
+	"ffeaabc8-1077-4f70-9bf6-cd2883f5e505",
+	-1,
+	'which_Category',
+	'',
+	17,
+	'../../PM_Interfaces/Risk_Management/Risk_Management.xtuml');
+INSERT INTO SPR_PEP
+	VALUES ("e3a29ce3-90da-4aa7-8689-327874a691f0",
+	"fdaa5129-06ec-4ff8-b646-a34f5e62035b",
+	"8d15b769-60b4-4335-9b98-add10af18cd4");
+INSERT INTO SPR_PS
+	VALUES ("e3a29ce3-90da-4aa7-8689-327874a691f0",
+	'this_Category',
+	'',
+	'//Pass on the chosen answer value to the question of which Risk Category.
+
+select any Risk from instances of RSK
+where selected.Comp_Name == param.Comp_Name;
+
+generate RSK5:Risk_Category_Set(Comp_Name: param.Comp_Name, Risk_Category_Answer: param.Answer) to Risk;',
+	1,
+	0,
+	18);
+INSERT INTO C_EP_PROXY
+	VALUES ("fdaa5129-06ec-4ff8-b646-a34f5e62035b",
+	"ffeaabc8-1077-4f70-9bf6-cd2883f5e505",
+	-1,
+	'this_Category',
+	'',
+	18,
+	'../../PM_Interfaces/Risk_Management/Risk_Management.xtuml');
+INSERT INTO C_I_PROXY
+	VALUES ("ffeaabc8-1077-4f70-9bf6-cd2883f5e505",
+	"00000000-0000-0000-0000-000000000000",
+	'Risk_Management',
+	'',
+	'../../PM_Interfaces/Risk_Management/Risk_Management.xtuml');
 INSERT INTO PE_PE
 	VALUES ("28e681a8-6b53-4cb5-b80e-d68515a1ba3e",
 	1,
