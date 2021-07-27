@@ -1,4 +1,8 @@
 Vue.component('apexchart', VueApexCharts);
+//Vue.component('datepicker', vuejsDatepicker);
+Vue.use(Vuetable);
+Vue.use(BootstrapVue);
+Vue.use(BootstrapVueIcons);
 Vue.use(VueRouter);
 
 var Home = httpVueLoader('components/home.vue');

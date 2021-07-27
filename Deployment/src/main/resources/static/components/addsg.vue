@@ -1,12 +1,12 @@
 <template>
   <div class="row">
     <h3>Add Strategic Goal</h3>
-    <p v-if="errors.length">
+    <div v-if="errors.length">
       <b>Please correct the following error(s):</b>
     <ul>
       <li v-for="error in errors">{{ error }}</li>
     </ul>
-    </p>
+    </div>
     <div class="col-md-8">
       <form @submit.prevent="processForm">
         <div class="mb-3">
@@ -20,10 +20,10 @@
         <div class="mb-3">
           <label for="priority" class="form-label">Priority</label>
           <select class="form-select" id="priority" v-model="priority" name="priority">
-            <option selected="true" disabled="disabled">Select Priority ...</option>
-            <option value="High">High</option>
-            <option value="Medium">Medium</option>
-            <option value="Low">Low</option>
+            <option value="Select" selected="true" disabled="disabled">Select Priority ...</option>
+            <option value="HIGH">HIGH</option>
+            <option value="MEDIUM">MEDIUM</option>
+            <option value="LOW">LOW</option>
           </select>
         </div>
         <button type="submit" class="btn btn-primary">Add</button> |
@@ -40,19 +40,19 @@
         errors: [],
         name: null,
         description: null,
-        priority: null
+        priority: 'Select'
       }
     },
     methods: {
       async processForm() {
-        if (this.name && this.description && this.priority) {
+        if (this.name && this.description && this.priority != 'Select') {
           const response = await fetch('./addsg', {
             method: 'POST',
             headers: {
               'Accept': 'application/json',
               'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ name: this.name, description: this.description, priority: this.priority })
+            body: JSON.stringify({ goalId: this.name, description: this.description, priority: this.priority })
           });
           this.$router.push({ name: 'org' });
         }
@@ -65,7 +65,7 @@
           if (!this.description) {
             this.errors.push('Description required.');
           }
-          if (!this.priority) {
+          if (this.priority == 'Select') {
             this.errors.push('Priority required.');
           }
         }

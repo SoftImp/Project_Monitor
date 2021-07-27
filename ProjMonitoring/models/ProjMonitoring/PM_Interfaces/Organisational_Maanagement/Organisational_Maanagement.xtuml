@@ -201,6 +201,41 @@ INSERT INTO C_PP
 	0,
 	'',
 	"00000000-0000-0000-0000-000000000000");
+INSERT INTO C_EP
+	VALUES ("625d9ef9-3f4c-4256-afbc-fd379707c65c",
+	"bd829dba-1165-4562-a8f7-e2a65b6e713c",
+	-1,
+	'get_Strategic_Goals',
+	'',
+	5);
+INSERT INTO C_AS
+	VALUES ("625d9ef9-3f4c-4256-afbc-fd379707c65c",
+	'get_Strategic_Goals',
+	'',
+	0,
+	"d0b29d28-b9b6-4fc4-b34c-830654b3e59d");
+INSERT INTO C_EP
+	VALUES ("95679397-1d1b-4005-b69a-2dce3ad964be",
+	"bd829dba-1165-4562-a8f7-e2a65b6e713c",
+	-1,
+	'on_Strategic_Goals',
+	'',
+	6);
+INSERT INTO C_AS
+	VALUES ("95679397-1d1b-4005-b69a-2dce3ad964be",
+	'on_Strategic_Goals',
+	'',
+	1,
+	"625d9ef9-3f4c-4256-afbc-fd379707c65c");
+INSERT INTO C_PP
+	VALUES ("47c83924-5095-48fd-b52a-5eaf787b5988",
+	"95679397-1d1b-4005-b69a-2dce3ad964be",
+	"ba5eda7a-def5-0000-0000-000000000004",
+	'Strategic_Goals',
+	'',
+	0,
+	'',
+	"00000000-0000-0000-0000-000000000000");
 INSERT INTO PE_PE
 	VALUES ("bd829dba-1165-4562-a8f7-e2a65b6e713c",
 	1,

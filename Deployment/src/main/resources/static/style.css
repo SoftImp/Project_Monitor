@@ -4,11 +4,12 @@ body {
 }
 
 /* Style the header */
-header {
+.header-title {
   padding: 15px;
   text-align: center;
-  font-size: 35px;
+  font-size: 40px;
   color: orange;
+  font-weight: bold;
 }
 
 .sidebar {
@@ -55,6 +56,14 @@ div.content {
 .sidebar a.router-link-active {
   background-color: #04AA6D;
   color: white;
+}
+
+.custom-actions button.ui.button {
+    padding: 8px 8px;
+}
+
+.custom-actions button.ui.button > i.icon {
+  margin: auto !important;
 }
 
 @media screen and (max-width: 700px) {

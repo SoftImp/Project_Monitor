@@ -1,5 +1,8 @@
 <template>
   <div>
+    <!-- <input type="date" id="start" name="trip-start" value="2021-01-01">
+    <datepicker :value="state.date"></datepicker> -->
+	
 	<apexchart width="500" type="bar" :options="options" :series="series"></apexchart>
 	<apexchart type="pie" width="380" :options="chartOptions" :series="series2"></apexchart>
   </div>
@@ -39,7 +42,10 @@
                 }
               }
             }]
-          }
+          },
+		state: {
+         date: new Date(2016, 9,  16)
+         }
     }
   }
   };

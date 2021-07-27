@@ -414,6 +414,26 @@ INSERT INTO C_EP_PROXY
 	'',
 	10,
 	'../../../../../ProjMonitoring/models/ProjMonitoring/PM_Interfaces/Program_Management/Program_Management.xtuml');
+INSERT INTO SPR_REP
+	VALUES ("5797118d-d158-4cda-80af-44581712f7aa",
+	"33b15c87-8110-42e8-bad4-5b233fb7b35e",
+	"1e3d6158-f572-4d0b-a34c-6effb4c734bc");
+INSERT INTO SPR_RS
+	VALUES ("5797118d-d158-4cda-80af-44581712f7aa",
+	'Report',
+	'',
+	'',
+	3,
+	0,
+	4);
+INSERT INTO C_EP_PROXY
+	VALUES ("33b15c87-8110-42e8-bad4-5b233fb7b35e",
+	"2fb1cfbf-5a98-466f-9dc8-5c99b1f86c67",
+	-1,
+	'Report',
+	'',
+	4,
+	'../../../../../ProjMonitoring/models/ProjMonitoring/PM_Interfaces/Program_Management/Program_Management.xtuml');
 INSERT INTO C_I_PROXY
 	VALUES ("2fb1cfbf-5a98-466f-9dc8-5c99b1f86c67",
 	"00000000-0000-0000-0000-000000000000",

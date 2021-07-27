@@ -2,22 +2,22 @@ package deployment;
 
 // Spring requires a POJ class for each message - variables must start with a lower case (camel case convention)
 public class StrategicGoalMsg {
-	private String name;
+	private String goalId;
 	private String description;
 	private String priority;
 
 	public StrategicGoalMsg() {
 	}
 
-	public StrategicGoalMsg(String name, String description, String priority) {
+	public StrategicGoalMsg(String goalId, String description, String priority) {
 		super();
-		this.name = name;
+		this.goalId = goalId;
 		this.description = description;
 		this.priority = priority;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setGoalId(String goalId) {
+		this.goalId = goalId;
 	}
 
 	public void setDescription(String description) {
@@ -28,8 +28,8 @@ public class StrategicGoalMsg {
 		this.priority = priority;
 	}
 
-	public String getName() {
-		return name;
+	public String getGoalId() {
+		return goalId;
 	}
 
 	public String getDescription() {

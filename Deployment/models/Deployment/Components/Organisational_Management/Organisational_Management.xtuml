@@ -288,6 +288,66 @@ INSERT INTO C_EP_PROXY
 	'Based on UC00.',
 	2,
 	'../../../../../ProjMonitoring/models/ProjMonitoring/PM_Interfaces/Organisational_Maanagement/Organisational_Maanagement.xtuml');
+INSERT INTO SPR_REP
+	VALUES ("b6b11b59-fb60-499e-a0ae-59e4060c7681",
+	"d0b29d28-b9b6-4fc4-b34c-830654b3e59d",
+	"b7173379-dfb6-4738-a366-a3cbdc3f570e");
+INSERT INTO SPR_RS
+	VALUES ("b6b11b59-fb60-499e-a0ae-59e4060c7681",
+	'Report',
+	'',
+	'',
+	3,
+	0,
+	4);
+INSERT INTO C_EP_PROXY
+	VALUES ("d0b29d28-b9b6-4fc4-b34c-830654b3e59d",
+	"bd829dba-1165-4562-a8f7-e2a65b6e713c",
+	-1,
+	'Report',
+	'',
+	4,
+	'../../../../../ProjMonitoring/models/ProjMonitoring/PM_Interfaces/Organisational_Maanagement/Organisational_Maanagement.xtuml');
+INSERT INTO SPR_REP
+	VALUES ("3651eb71-409e-4231-9705-65519511aceb",
+	"625d9ef9-3f4c-4256-afbc-fd379707c65c",
+	"b7173379-dfb6-4738-a366-a3cbdc3f570e");
+INSERT INTO SPR_RS
+	VALUES ("3651eb71-409e-4231-9705-65519511aceb",
+	'get_Strategic_Goals',
+	'',
+	'',
+	3,
+	0,
+	5);
+INSERT INTO C_EP_PROXY
+	VALUES ("625d9ef9-3f4c-4256-afbc-fd379707c65c",
+	"bd829dba-1165-4562-a8f7-e2a65b6e713c",
+	-1,
+	'get_Strategic_Goals',
+	'',
+	5,
+	'../../../../../ProjMonitoring/models/ProjMonitoring/PM_Interfaces/Organisational_Maanagement/Organisational_Maanagement.xtuml');
+INSERT INTO SPR_REP
+	VALUES ("b1246790-1bfa-4260-8493-54692bb4d59d",
+	"95679397-1d1b-4005-b69a-2dce3ad964be",
+	"b7173379-dfb6-4738-a366-a3cbdc3f570e");
+INSERT INTO SPR_RS
+	VALUES ("b1246790-1bfa-4260-8493-54692bb4d59d",
+	'on_Strategic_Goals',
+	'',
+	'::on_Strategic_Goals( Strategic_Goals:param.Strategic_Goals );',
+	1,
+	0,
+	6);
+INSERT INTO C_EP_PROXY
+	VALUES ("95679397-1d1b-4005-b69a-2dce3ad964be",
+	"bd829dba-1165-4562-a8f7-e2a65b6e713c",
+	-1,
+	'on_Strategic_Goals',
+	'',
+	6,
+	'../../../../../ProjMonitoring/models/ProjMonitoring/PM_Interfaces/Organisational_Maanagement/Organisational_Maanagement.xtuml');
 INSERT INTO C_I_PROXY
 	VALUES ("bd829dba-1165-4562-a8f7-e2a65b6e713c",
 	"00000000-0000-0000-0000-000000000000",

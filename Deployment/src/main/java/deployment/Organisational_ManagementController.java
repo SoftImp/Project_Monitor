@@ -26,24 +26,71 @@ import org.springframework.http.ResponseEntity;
 
 @RestController
 public class Organisational_ManagementController {
+	private static Organisational_ManagementController singleton;
+	private WaitForMsg waitStrategicGoals = new WaitForMsg();
+	
+	public Organisational_ManagementController() {
+		singleton = this;
+	}
+	
+	public static Organisational_ManagementController Singleton() {
+		return singleton;
+	}
+	
 	@PostMapping("/addsg")
 	public ResponseEntity addsg(@RequestBody StrategicGoalMsg sg) {
 		try {
-			System.out.printf("addsg() name: %s, desc: %s, priority: %s\n", sg.getName(), sg.getDescription(), sg.getPriority());
+			System.out.printf("addsg() goalId: %s, desc: %s, priority: %s\n", sg.getGoalId(), sg.getDescription(), sg.getPriority());
 
 			Priority_Level level = Priority_Level.valueOf(sg.getPriority().toUpperCase());
-			/*Priority_Level level = Priority_Level.LOW;
 
-			if (sg.getPriority().equalsIgnoreCase("Medium"))
-				level = Priority_Level.MEDIUM;
-			else if (sg.getPriority().equalsIgnoreCase("High"))
-				level = Priority_Level.HIGH;*/
-
-			Organisational_Management.Singleton().OrgMan().add_Strategic_Goal(sg.getName(), sg.getDescription(), level);
+			Organisational_Management.Singleton().OrgMan().add_Strategic_Goal(sg.getGoalId(), sg.getDescription(), level);
+			waitStrategicGoals.clear();
 			return new ResponseEntity(HttpStatus.OK);
 		} catch (Exception e) {
 			System.out.printf("Exception, %s, in addsg()\n", e);
 			return new ResponseEntity(HttpStatus.BAD_REQUEST);
 		}
+	}
+	
+	@PostMapping("/updatesg")
+	public ResponseEntity updatesg(@RequestBody StrategicGoalMsg sg) {
+		try {
+			System.out.printf("updatesg() goalId: %s, desc: %s, priority: %s\n", sg.getGoalId(), sg.getDescription(), sg.getPriority());
+
+			Priority_Level level = Priority_Level.valueOf(sg.getPriority().toUpperCase());
+
+			Organisational_Management.Singleton().OrgMan().update_Description(sg.getGoalId(), sg.getDescription());
+			Organisational_Management.Singleton().OrgMan().update_Priority(sg.getGoalId(), level);
+			
+			waitStrategicGoals.clear();
+			return new ResponseEntity(HttpStatus.OK);
+		} catch (Exception e) {
+			System.out.printf("Exception, %s, in updatesg()\n", e);
+			return new ResponseEntity(HttpStatus.BAD_REQUEST);
+		}
+	}
+	
+	@GetMapping("/getsg")
+	public TableData getsg() {
+		try {
+			TableData<StrategicGoalMsg> td = new TableData();
+
+			if (!waitStrategicGoals.hasMsg())
+			{
+				Organisational_Management.Singleton().OrgMan().get_Strategic_Goals();
+				waitStrategicGoals.synchroniseAndWait();
+			}
+			
+			td.setData(waitStrategicGoals.getMsg(), StrategicGoalMsg[].class);
+			return td;
+		} catch (Exception e) {
+			System.out.printf("Exception, %s, in getsg()\n", e);
+			return new TableData();
+		}	
+	}
+	
+	public void onStrategicGoals(String strategicGoals) {
+		waitStrategicGoals.onNotify(strategicGoals);
 	}
 }

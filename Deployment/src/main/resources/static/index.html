@@ -4,27 +4,46 @@
 <head>
   <!-- Required meta tags -->
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-  <!-- Bootstrap CSS -->
+  <!-- Bootstrap CSS 
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
-  <script src="https://unpkg.com/vue"></script>
+  <script src="https://unpkg.com/vue"></script>-->
+  
+  <!-- Load required Bootstrap and BootstrapVue CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/bootstrap/dist/css/bootstrap.min.css" />
+  <link type="text/css" rel="stylesheet" href="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.min.css" />
+
+  <!-- Load polyfills to support older browsers -->
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es2015%2CIntersectionObserver" crossorigin="anonymous"></script>
+
+  <!-- Load Vue followed by BootstrapVue -->
+  <script src="https://unpkg.com/vue@latest/dist/vue.min.js"></script>
+  <script src="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.min.js"></script>
+
+  <!-- Load the following for BootstrapVueIcons support -->
+  <script src="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue-icons.min.js"></script>
+  
   <script src="https://unpkg.com/http-vue-loader"></script>
   <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
 
   <script src="https://cdn.jsdelivr.net/npm/apexcharts/dist/apexcharts.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/vue-apexcharts/dist/vue-apexcharts.js"></script>
-	
+
+  <script src="https://unpkg.com/vuetable-2@1.6.0"></script>
+  <!--<script src="https://unpkg.com/vuejs-datepicker"></script>-->
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/semantic.min.css" media="screen" title="no title" charset="utf-8">
   <link rel="stylesheet" href="style.css">
   <title>Project Monitoring System</title>
 </head>
 
 <body>
-  <header>
-    <h2>Project Monitoring System</h2>
-  </header>
+  <div class="header-title">
+    <p>Project Monitoring System</p>
+  </div>	
 
   <noscript>
     <h2 style="color: #ff0000">Seems your browser doesn't support Javascript! Websocket relies on Javascript being
@@ -71,10 +90,10 @@
 
   <!-- Optional JavaScript; choose one of the two! -->
 
-  <!-- Option 1: Bootstrap Bundle with Popper -->
+  <!-- Option 1: Bootstrap Bundle with Popper 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-    crossorigin="anonymous"></script>
+    crossorigin="anonymous"></script>-->
 
   <!-- Option 2: Separate Popper and Bootstrap JS -->
   <!--
