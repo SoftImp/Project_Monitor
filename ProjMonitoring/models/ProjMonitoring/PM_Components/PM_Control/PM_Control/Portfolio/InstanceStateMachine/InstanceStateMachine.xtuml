@@ -610,7 +610,7 @@ INSERT INTO SM_STATE
 	VALUES ("f85bf5e3-b2e0-4cc4-bac1-8a4d202c384a",
 	"76d6b87f-3bc8-41b7-8f27-b6bdecc827e4",
 	"00000000-0000-0000-0000-000000000000",
-	'Planning-Optimising',
+	'Planning Optimising',
 	2,
 	0);
 INSERT INTO SM_CH
@@ -2168,7 +2168,7 @@ INSERT INTO GD_GE
 	"f85bf5e3-b2e0-4cc4-bac1-8a4d202c384a",
 	41,
 	0,
-	'ProjMonitoring::PM_Components::PM_Control::PM_Control::Portfolio::Instance State Machine::Planning-Optimising');
+	'ProjMonitoring::PM_Components::PM_Control::PM_Control::Portfolio::Instance State Machine::Planning Optimising');
 INSERT INTO GD_SHP
 	VALUES ("c3ae724a-0fe6-4054-9580-00a5cee2b2a7");
 INSERT INTO GD_NCS
@@ -3398,7 +3398,7 @@ INSERT INTO GD_GE
 	"e8af0284-ceac-4a50-9186-917185946b97",
 	42,
 	0,
-	'ProjMonitoring::PM_Components::PM_Control::PM_Control::Portfolio::Instance State Machine::Planning-Optimising::PF7: Add_Component');
+	'ProjMonitoring::PM_Components::PM_Control::PM_Control::Portfolio::Instance State Machine::Planning Optimising::PF7: Add_Component');
 INSERT INTO GD_CON
 	VALUES ("7ccc55d2-0cc2-4a41-ac44-3825de5a4111",
 	"00000000-0000-0000-0000-000000000000");
@@ -3524,7 +3524,7 @@ INSERT INTO GD_GE
 	"4e20f3f5-18e1-4ec2-ad21-6e54f506a30f",
 	42,
 	0,
-	'ProjMonitoring::PM_Components::PM_Control::PM_Control::Portfolio::Instance State Machine::Planning-Optimising::PF8: Remove_Component');
+	'ProjMonitoring::PM_Components::PM_Control::PM_Control::Portfolio::Instance State Machine::Planning Optimising::PF8: Remove_Component');
 INSERT INTO GD_CON
 	VALUES ("176ee78c-4f09-4891-8d76-e3e38a730980",
 	"00000000-0000-0000-0000-000000000000");
@@ -3676,7 +3676,7 @@ INSERT INTO GD_GE
 	"e3e48e65-2dae-48e3-80a9-11541fb73e76",
 	42,
 	0,
-	'ProjMonitoring::PM_Components::PM_Control::PM_Control::Portfolio::Instance State Machine::Planning-Optimising::PF2: Set_Priority');
+	'ProjMonitoring::PM_Components::PM_Control::PM_Control::Portfolio::Instance State Machine::Planning Optimising::PF2: Set_Priority');
 INSERT INTO GD_CON
 	VALUES ("7ac6707f-acac-4b6b-a1e5-1e500bd24d05",
 	"00000000-0000-0000-0000-000000000000");
@@ -3802,7 +3802,7 @@ INSERT INTO GD_GE
 	"8fe8461e-9fc7-40d2-b67f-03c3360d4092",
 	42,
 	0,
-	'ProjMonitoring::PM_Components::PM_Control::PM_Control::Portfolio::Instance State Machine::Planning-Optimising::PF11: Set_Budget');
+	'ProjMonitoring::PM_Components::PM_Control::PM_Control::Portfolio::Instance State Machine::Planning Optimising::PF11: Set_Budget');
 INSERT INTO GD_CON
 	VALUES ("b266a9ac-832d-422d-b2d6-030f310b601c",
 	"00000000-0000-0000-0000-000000000000");
@@ -3928,7 +3928,7 @@ INSERT INTO GD_GE
 	"9043f578-bbf9-4308-bde6-6a0a1e26caf8",
 	42,
 	0,
-	'ProjMonitoring::PM_Components::PM_Control::PM_Control::Portfolio::Instance State Machine::Planning-Optimising::PF12: Change_Manager');
+	'ProjMonitoring::PM_Components::PM_Control::PM_Control::Portfolio::Instance State Machine::Planning Optimising::PF12: Change_Manager');
 INSERT INTO GD_CON
 	VALUES ("7ae00a98-17ac-4219-b407-cdf15a3b6419",
 	"00000000-0000-0000-0000-000000000000");
@@ -4113,7 +4113,7 @@ INSERT INTO GD_GE
 	"ce33146c-779a-4596-8cf5-3b7e9f565e26",
 	42,
 	0,
-	'ProjMonitoring::PM_Components::PM_Control::PM_Control::Portfolio::Instance State Machine::Planning-Optimising::PF15: Planning_Complete');
+	'ProjMonitoring::PM_Components::PM_Control::PM_Control::Portfolio::Instance State Machine::Planning Optimising::PF15: Planning_Complete');
 INSERT INTO GD_CON
 	VALUES ("c7814bd4-d9de-4112-b3b6-6e0c9d408c64",
 	"00000000-0000-0000-0000-000000000000");
@@ -4578,7 +4578,7 @@ INSERT INTO GD_GE
 	"97f2a17d-a58f-49d1-bd04-5cc337c37633",
 	42,
 	0,
-	'ProjMonitoring::PM_Components::PM_Control::PM_Control::Portfolio::Instance State Machine::Planning-Optimising::PF13: Identify_Risk');
+	'ProjMonitoring::PM_Components::PM_Control::PM_Control::Portfolio::Instance State Machine::Planning Optimising::PF13: Identify_Risk');
 INSERT INTO GD_CON
 	VALUES ("7a6a975f-0c7f-40db-afbf-d5fc9282f3e6",
 	"00000000-0000-0000-0000-000000000000");

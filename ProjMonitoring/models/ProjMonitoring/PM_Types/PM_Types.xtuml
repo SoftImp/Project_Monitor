@@ -497,21 +497,21 @@ INSERT INTO S_EDT
 	VALUES ("3d8d63a2-d6d7-4e08-b0e3-55d4ec923f64");
 INSERT INTO S_ENUM
 	VALUES ("f6c391e5-1e4a-4801-9095-db9fea0669dd",
-	'Unknown-Known',
+	'Unknown_Known',
 	'Hidden fact.
 Knowledge exists in the community but not with the entity working on the endeavour.',
 	"3d8d63a2-d6d7-4e08-b0e3-55d4ec923f64",
 	"00000000-0000-0000-0000-000000000000");
 INSERT INTO S_ENUM
 	VALUES ("bee72297-dbc2-4fb9-80d5-9bb34d2753c4",
-	'Unknown-Unknown',
+	'Unknown_Unknown',
 	'Emergent risk.
 Knowledge doers not exist within the sphere of influence.',
 	"3d8d63a2-d6d7-4e08-b0e3-55d4ec923f64",
 	"f6c391e5-1e4a-4801-9095-db9fea0669dd");
 INSERT INTO S_ENUM
 	VALUES ("80cd53ae-2c06-4693-b487-be0924dcbde6",
-	'Known-Known',
+	'Known_Known',
 	'Facts & Requirements.
 Managed as part of scope.
 Not a risk.',
@@ -519,7 +519,7 @@ Not a risk.',
 	"bee72297-dbc2-4fb9-80d5-9bb34d2753c4");
 INSERT INTO S_ENUM
 	VALUES ("0974576e-e60d-4150-83c2-97a0fbe8ca49",
-	'Known-Unknown',
+	'Known_Unknown',
 	'Classic risk.
 There is knowledged to identify probablility and impact.',
 	"3d8d63a2-d6d7-4e08-b0e3-55d4ec923f64",
