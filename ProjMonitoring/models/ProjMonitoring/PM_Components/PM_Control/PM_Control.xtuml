@@ -543,8 +543,8 @@ INSERT INTO DIM_ND
 	0.000000,
 	"9b31b9c1-874b-4118-9965-1e0e96ed5e3d");
 INSERT INTO DIM_GE
-	VALUES (0.000000,
-	0.000000,
+	VALUES (5300.000000,
+	3282.000000,
 	"9b31b9c1-874b-4118-9965-1e0e96ed5e3d",
 	"00000000-0000-0000-0000-000000000000");
 INSERT INTO DIM_ELE
@@ -625,6 +625,30 @@ INSERT INTO DIM_GE
 	"00000000-0000-0000-0000-000000000000");
 INSERT INTO DIM_ELE
 	VALUES ("c6783b7d-2cea-4e98-b5eb-d02c7d2b4e5f",
+	0,
+	"9f1d42b2-199a-4f52-9646-bb726d1220f6");
+INSERT INTO GD_GE
+	VALUES ("4100ef4b-cdeb-487c-805f-efa9b2b0016b",
+	"025d8e5d-550e-4f57-bb23-eea2ed432201",
+	"3daf2264-3fdc-406e-8a8a-795cfea37dd5",
+	108,
+	0,
+	'ProjMonitoring::PM_Components::PM_Control::PM_Message');
+INSERT INTO GD_SHP
+	VALUES ("4100ef4b-cdeb-487c-805f-efa9b2b0016b");
+INSERT INTO GD_NCS
+	VALUES ("4100ef4b-cdeb-487c-805f-efa9b2b0016b");
+INSERT INTO DIM_ND
+	VALUES (200.000000,
+	150.000000,
+	"4100ef4b-cdeb-487c-805f-efa9b2b0016b");
+INSERT INTO DIM_GE
+	VALUES (4700.000000,
+	3156.000000,
+	"4100ef4b-cdeb-487c-805f-efa9b2b0016b",
+	"00000000-0000-0000-0000-000000000000");
+INSERT INTO DIM_ELE
+	VALUES ("4100ef4b-cdeb-487c-805f-efa9b2b0016b",
 	0,
 	"9f1d42b2-199a-4f52-9646-bb726d1220f6");
 INSERT INTO DIM_DIA
@@ -778,6 +802,48 @@ INSERT INTO C_EP_PROXY
 	'Report',
 	'',
 	4,
+	'../../PM_Interfaces/Organisational_Maanagement/Organisational_Maanagement.xtuml');
+INSERT INTO SPR_PEP
+	VALUES ("c4e97402-b221-41d8-92d5-757fb1ce3170",
+	"f9037ffe-e727-4cae-a6d0-3f1e52df0eda",
+	"64ca1987-132c-45fc-966a-778f6133e262");
+INSERT INTO SPR_PS
+	VALUES ("c4e97402-b221-41d8-92d5-757fb1ce3170",
+	'get_Strategic_Goals',
+	'',
+	'msg = JsonMsg::get_Strategic_Goals();
+
+send OrgMan::on_Strategic_Goals( Strategic_Goals:msg );',
+	1,
+	0,
+	5);
+INSERT INTO C_EP_PROXY
+	VALUES ("f9037ffe-e727-4cae-a6d0-3f1e52df0eda",
+	"bd829dba-1165-4562-a8f7-e2a65b6e713c",
+	-1,
+	'get_Strategic_Goals',
+	'',
+	5,
+	'../../PM_Interfaces/Organisational_Maanagement/Organisational_Maanagement.xtuml');
+INSERT INTO SPR_PEP
+	VALUES ("b72b7e8b-886f-4060-9cc5-fe5c603d9698",
+	"ca4deab6-70cd-46e8-9263-3602b1a2fb37",
+	"64ca1987-132c-45fc-966a-778f6133e262");
+INSERT INTO SPR_PS
+	VALUES ("b72b7e8b-886f-4060-9cc5-fe5c603d9698",
+	'on_Strategic_Goals',
+	'',
+	'',
+	3,
+	0,
+	6);
+INSERT INTO C_EP_PROXY
+	VALUES ("ca4deab6-70cd-46e8-9263-3602b1a2fb37",
+	"bd829dba-1165-4562-a8f7-e2a65b6e713c",
+	-1,
+	'on_Strategic_Goals',
+	'',
+	6,
 	'../../PM_Interfaces/Organisational_Maanagement/Organisational_Maanagement.xtuml');
 INSERT INTO C_I_PROXY
 	VALUES ("bd829dba-1165-4562-a8f7-e2a65b6e713c",

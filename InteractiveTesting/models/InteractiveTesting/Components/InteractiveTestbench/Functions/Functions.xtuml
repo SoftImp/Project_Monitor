@@ -1,0 +1,79 @@
+-- BP 7.1.6 content: Package syschar: 3 persistence-version: 7.1.6
+
+INSERT INTO EP_PKG
+	VALUES ("ef23a11e-5046-4499-bd97-f9bffbd25a31",
+	"00000000-0000-0000-0000-000000000000",
+	"a4c631fe-3bda-4f7b-b094-34cf87359904",
+	'Functions',
+	'',
+	0);
+INSERT INTO GD_MD
+	VALUES ("ba91640e-359a-48d4-a02d-fa73b89d7091",
+	112,
+	"ef23a11e-5046-4499-bd97-f9bffbd25a31",
+	108,
+	0,
+	0,
+	1,
+	1,
+	1,
+	12,
+	1,
+	0,
+	0,
+	0,
+	0,
+	0,
+	'4.1.17',
+	'InteractiveTesting::Components::InteractiveTestbench::Functions');
+INSERT INTO DIM_DIA
+	VALUES ("ba91640e-359a-48d4-a02d-fa73b89d7091",
+	'',
+	1.000000,
+	0.000000,
+	0.000000,
+	"00000000-0000-0000-0000-000000000000");
+INSERT INTO S_SYNC
+	VALUES ("0ce1aed8-46c7-442b-9ee1-0ff368fcf360",
+	"00000000-0000-0000-0000-000000000000",
+	'Initialise',
+	'',
+	'LOG::LogInfo( message: "InteractiveTestbench - started" );
+::UC00_Add_SG();
+::UC01_Add_Prg();
+//send OrgMan::get_Strategic_Goals();
+',
+	"ba5eda7a-def5-0000-0000-000000000000",
+	1,
+	'',
+	0,
+	1);
+INSERT INTO PE_PE
+	VALUES ("0ce1aed8-46c7-442b-9ee1-0ff368fcf360",
+	1,
+	"ef23a11e-5046-4499-bd97-f9bffbd25a31",
+	"00000000-0000-0000-0000-000000000000",
+	1);
+INSERT INTO PE_PE
+	VALUES ("ef23a11e-5046-4499-bd97-f9bffbd25a31",
+	1,
+	"00000000-0000-0000-0000-000000000000",
+	"79dce7f8-a22a-45cb-8a06-081bb06ff162",
+	7);
+INSERT INTO C_C_PROXY
+	VALUES ("79dce7f8-a22a-45cb-8a06-081bb06ff162",
+	"00000000-0000-0000-0000-000000000000",
+	"00000000-0000-0000-0000-000000000000",
+	'InteractiveTestbench',
+	'',
+	0,
+	"00000000-0000-0000-0000-000000000000",
+	0,
+	'',
+	'',
+	'../InteractiveTestbench.xtuml');
+INSERT INTO S_SYS_PROXY
+	VALUES ("a4c631fe-3bda-4f7b-b094-34cf87359904",
+	'InteractiveTesting',
+	1,
+	'../../../InteractiveTesting.xtuml');

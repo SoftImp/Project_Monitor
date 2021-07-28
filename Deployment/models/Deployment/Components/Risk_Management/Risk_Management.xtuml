@@ -1,0 +1,406 @@
+-- BP 7.1.6 content: Component syschar: 3 persistence-version: 7.1.6
+
+INSERT INTO C_C
+	VALUES ("a723c0b0-1e8e-4194-8f4a-e440e2a826f6",
+	"00000000-0000-0000-0000-000000000000",
+	"00000000-0000-0000-0000-000000000000",
+	'Risk_Management',
+	'',
+	0,
+	"00000000-0000-0000-0000-000000000000",
+	0,
+	'',
+	'');
+INSERT INTO GD_MD
+	VALUES ("fab0aaee-98c6-4b52-bc56-297ff7f08bf1",
+	111,
+	"a723c0b0-1e8e-4194-8f4a-e440e2a826f6",
+	98,
+	0,
+	0,
+	1,
+	1,
+	1,
+	12,
+	1,
+	0,
+	0,
+	0,
+	0,
+	0,
+	'',
+	'Deployment::Components::Risk_Management');
+INSERT INTO GD_GE
+	VALUES ("9a6262ef-fff4-4da1-843e-3355260c5261",
+	"fab0aaee-98c6-4b52-bc56-297ff7f08bf1",
+	"a723c0b0-1e8e-4194-8f4a-e440e2a826f6",
+	103,
+	0,
+	'Deployment::Components::Risk_Management');
+INSERT INTO GD_SHP
+	VALUES ("9a6262ef-fff4-4da1-843e-3355260c5261");
+INSERT INTO GD_CTR
+	VALUES ("9a6262ef-fff4-4da1-843e-3355260c5261");
+INSERT INTO DIM_ND
+	VALUES (471.000000,
+	184.000000,
+	"9a6262ef-fff4-4da1-843e-3355260c5261");
+INSERT INTO DIM_GE
+	VALUES (4100.000000,
+	3100.000000,
+	"9a6262ef-fff4-4da1-843e-3355260c5261",
+	"00000000-0000-0000-0000-000000000000");
+INSERT INTO DIM_ELE
+	VALUES ("9a6262ef-fff4-4da1-843e-3355260c5261",
+	0,
+	"00000000-0000-0000-0000-000000000000");
+INSERT INTO DIM_CON
+	VALUES ("0c9391a6-c88d-4ffd-87a8-4b587ffa2bf6",
+	4296.000000,
+	3284.000000,
+	"9a6262ef-fff4-4da1-843e-3355260c5261");
+INSERT INTO GD_GE
+	VALUES ("7ee45ccf-4409-4b20-bdde-4a3b6c53a869",
+	"fab0aaee-98c6-4b52-bc56-297ff7f08bf1",
+	"579b3a04-f3c0-4568-8c3c-02ca848823b3",
+	93,
+	0,
+	'Deployment::Components::Risk_Management::Port1::Risk_Management');
+INSERT INTO GD_CON
+	VALUES ("7ee45ccf-4409-4b20-bdde-4a3b6c53a869",
+	"00000000-0000-0000-0000-000000000000");
+INSERT INTO GD_CTXT
+	VALUES ("f36d7eb5-94f5-4062-8f8c-df6a39b00bb0",
+	"7ee45ccf-4409-4b20-bdde-4a3b6c53a869",
+	0,
+	0.000000,
+	0.000000);
+INSERT INTO DIM_ND
+	VALUES (0.000000,
+	0.000000,
+	"f36d7eb5-94f5-4062-8f8c-df6a39b00bb0");
+INSERT INTO DIM_GE
+	VALUES (0.000000,
+	0.000000,
+	"f36d7eb5-94f5-4062-8f8c-df6a39b00bb0",
+	"00000000-0000-0000-0000-000000000000");
+INSERT INTO DIM_ELE
+	VALUES ("f36d7eb5-94f5-4062-8f8c-df6a39b00bb0",
+	0,
+	"00000000-0000-0000-0000-000000000000");
+INSERT INTO GD_CTXT
+	VALUES ("2b9c9b73-07ae-4228-8862-ad7f43de85f4",
+	"7ee45ccf-4409-4b20-bdde-4a3b6c53a869",
+	2,
+	0.000000,
+	0.000000);
+INSERT INTO DIM_ND
+	VALUES (0.000000,
+	0.000000,
+	"2b9c9b73-07ae-4228-8862-ad7f43de85f4");
+INSERT INTO DIM_GE
+	VALUES (0.000000,
+	0.000000,
+	"2b9c9b73-07ae-4228-8862-ad7f43de85f4",
+	"00000000-0000-0000-0000-000000000000");
+INSERT INTO DIM_ELE
+	VALUES ("2b9c9b73-07ae-4228-8862-ad7f43de85f4",
+	0,
+	"00000000-0000-0000-0000-000000000000");
+INSERT INTO GD_CTXT
+	VALUES ("c7b33f2e-e585-4bca-991e-ecdd592903ae",
+	"7ee45ccf-4409-4b20-bdde-4a3b6c53a869",
+	1,
+	0.000000,
+	0.000000);
+INSERT INTO DIM_ND
+	VALUES (0.000000,
+	0.000000,
+	"c7b33f2e-e585-4bca-991e-ecdd592903ae");
+INSERT INTO DIM_GE
+	VALUES (0.000000,
+	0.000000,
+	"c7b33f2e-e585-4bca-991e-ecdd592903ae",
+	"00000000-0000-0000-0000-000000000000");
+INSERT INTO DIM_ELE
+	VALUES ("c7b33f2e-e585-4bca-991e-ecdd592903ae",
+	0,
+	"00000000-0000-0000-0000-000000000000");
+INSERT INTO GD_LS
+	VALUES ("5138d3fb-78e2-4bf3-96b5-f006f8f3c19c",
+	"7ee45ccf-4409-4b20-bdde-4a3b6c53a869",
+	"00000000-0000-0000-0000-000000000000",
+	"3d2a4479-ffdb-4617-9d00-5fe2974ca17e",
+	"a6afa1c6-f2b4-4bc3-9b9b-36865609e11b");
+INSERT INTO DIM_WAY
+	VALUES ("3d2a4479-ffdb-4617-9d00-5fe2974ca17e",
+	4296.000000,
+	3284.000000,
+	"7ee45ccf-4409-4b20-bdde-4a3b6c53a869",
+	"00000000-0000-0000-0000-000000000000",
+	"00000000-0000-0000-0000-000000000000");
+INSERT INTO DIM_WAY
+	VALUES ("a6afa1c6-f2b4-4bc3-9b9b-36865609e11b",
+	4296.000000,
+	3354.000000,
+	"7ee45ccf-4409-4b20-bdde-4a3b6c53a869",
+	"00000000-0000-0000-0000-000000000000",
+	"3d2a4479-ffdb-4617-9d00-5fe2974ca17e");
+INSERT INTO DIM_GE
+	VALUES (0.000000,
+	0.000000,
+	"7ee45ccf-4409-4b20-bdde-4a3b6c53a869",
+	"00000000-0000-0000-0000-000000000000");
+INSERT INTO DIM_ELE
+	VALUES ("7ee45ccf-4409-4b20-bdde-4a3b6c53a869",
+	0,
+	"00000000-0000-0000-0000-000000000000");
+INSERT INTO DIM_ED
+	VALUES ("0c9391a6-c88d-4ffd-87a8-4b587ffa2bf6",
+	"00000000-0000-0000-0000-000000000000",
+	"7ee45ccf-4409-4b20-bdde-4a3b6c53a869");
+INSERT INTO DIM_DIA
+	VALUES ("fab0aaee-98c6-4b52-bc56-297ff7f08bf1",
+	'',
+	1.000000,
+	0.000000,
+	0.000000,
+	"00000000-0000-0000-0000-000000000000");
+INSERT INTO C_PO
+	VALUES ("b3b99b8c-79f1-4c9b-9355-a0533414bf1a",
+	"a723c0b0-1e8e-4194-8f4a-e440e2a826f6",
+	'Port1',
+	0,
+	0,
+	'');
+INSERT INTO C_IR
+	VALUES ("579b3a04-f3c0-4568-8c3c-02ca848823b3",
+	"ffeaabc8-1077-4f70-9bf6-cd2883f5e505",
+	"00000000-0000-0000-0000-000000000000",
+	"b3b99b8c-79f1-4c9b-9355-a0533414bf1a");
+INSERT INTO C_R
+	VALUES ("579b3a04-f3c0-4568-8c3c-02ca848823b3",
+	'Risk_Management',
+	'',
+	'Unnamed Interface',
+	'Risk_Management::Port1::Risk_Management');
+INSERT INTO SPR_REP
+	VALUES ("6c0dcdde-6be4-4ddc-b498-74acd3d6e578",
+	"b4b42be1-d703-4b3a-9236-75549121f549",
+	"579b3a04-f3c0-4568-8c3c-02ca848823b3");
+INSERT INTO SPR_RS
+	VALUES ("6c0dcdde-6be4-4ddc-b498-74acd3d6e578",
+	'add_Risk',
+	'',
+	'',
+	3,
+	0,
+	15);
+INSERT INTO C_EP_PROXY
+	VALUES ("b4b42be1-d703-4b3a-9236-75549121f549",
+	"ffeaabc8-1077-4f70-9bf6-cd2883f5e505",
+	-1,
+	'add_Risk',
+	'',
+	15,
+	'../../../../../ProjMonitoring/models/ProjMonitoring/PM_Interfaces/Risk_Management/Risk_Management.xtuml');
+INSERT INTO SPR_REP
+	VALUES ("2002b50b-1c00-4197-98e4-008b3634036c",
+	"4ab15dbe-71bc-43c0-8066-dc7bb159651c",
+	"579b3a04-f3c0-4568-8c3c-02ca848823b3");
+INSERT INTO SPR_RS
+	VALUES ("2002b50b-1c00-4197-98e4-008b3634036c",
+	'set_Level',
+	'Interface for setting the risk level of an existing risk.',
+	'',
+	3,
+	0,
+	16);
+INSERT INTO C_EP_PROXY
+	VALUES ("4ab15dbe-71bc-43c0-8066-dc7bb159651c",
+	"ffeaabc8-1077-4f70-9bf6-cd2883f5e505",
+	-1,
+	'set_Level',
+	'Interface for setting the risk level of an existing risk.',
+	16,
+	'../../../../../ProjMonitoring/models/ProjMonitoring/PM_Interfaces/Risk_Management/Risk_Management.xtuml');
+INSERT INTO SPR_REP
+	VALUES ("6a2fb015-8210-4b0c-983a-2c73e66476a3",
+	"bf56626a-5cd5-43db-9adb-e47ef01179d0",
+	"579b3a04-f3c0-4568-8c3c-02ca848823b3");
+INSERT INTO SPR_RS
+	VALUES ("6a2fb015-8210-4b0c-983a-2c73e66476a3",
+	'set_Category',
+	'',
+	'',
+	3,
+	0,
+	16);
+INSERT INTO C_EP_PROXY
+	VALUES ("bf56626a-5cd5-43db-9adb-e47ef01179d0",
+	"ffeaabc8-1077-4f70-9bf6-cd2883f5e505",
+	-1,
+	'set_Category',
+	'',
+	16,
+	'../../../../../ProjMonitoring/models/ProjMonitoring/PM_Interfaces/Risk_Management/Risk_Management.xtuml');
+INSERT INTO SPR_REP
+	VALUES ("573c3852-9b6e-4647-a82c-fa56d05b3e44",
+	"55345104-4f96-47b8-bb08-3a743cd0c118",
+	"579b3a04-f3c0-4568-8c3c-02ca848823b3");
+INSERT INTO SPR_RS
+	VALUES ("573c3852-9b6e-4647-a82c-fa56d05b3e44",
+	'set_Classification',
+	'',
+	'',
+	3,
+	0,
+	16);
+INSERT INTO C_EP_PROXY
+	VALUES ("55345104-4f96-47b8-bb08-3a743cd0c118",
+	"ffeaabc8-1077-4f70-9bf6-cd2883f5e505",
+	-1,
+	'set_Classification',
+	'',
+	16,
+	'../../../../../ProjMonitoring/models/ProjMonitoring/PM_Interfaces/Risk_Management/Risk_Management.xtuml');
+INSERT INTO SPR_REP
+	VALUES ("fe420df2-8577-4f7c-b79b-09ea83bf4b9b",
+	"4693f1a9-784f-44c2-a1a2-2cfd59ba07c5",
+	"579b3a04-f3c0-4568-8c3c-02ca848823b3");
+INSERT INTO SPR_RS
+	VALUES ("fe420df2-8577-4f7c-b79b-09ea83bf4b9b",
+	'set_Impact',
+	'',
+	'',
+	3,
+	0,
+	16);
+INSERT INTO C_EP_PROXY
+	VALUES ("4693f1a9-784f-44c2-a1a2-2cfd59ba07c5",
+	"ffeaabc8-1077-4f70-9bf6-cd2883f5e505",
+	-1,
+	'set_Impact',
+	'',
+	16,
+	'../../../../../ProjMonitoring/models/ProjMonitoring/PM_Interfaces/Risk_Management/Risk_Management.xtuml');
+INSERT INTO SPR_REP
+	VALUES ("336f5eec-1d6a-4ef4-bafb-cd8f268a7cf8",
+	"cade276a-58fa-4459-88e4-d792f024756b",
+	"579b3a04-f3c0-4568-8c3c-02ca848823b3");
+INSERT INTO SPR_RS
+	VALUES ("336f5eec-1d6a-4ef4-bafb-cd8f268a7cf8",
+	'set_Probability',
+	'',
+	'',
+	3,
+	0,
+	16);
+INSERT INTO C_EP_PROXY
+	VALUES ("cade276a-58fa-4459-88e4-d792f024756b",
+	"ffeaabc8-1077-4f70-9bf6-cd2883f5e505",
+	-1,
+	'set_Probability',
+	'',
+	16,
+	'../../../../../ProjMonitoring/models/ProjMonitoring/PM_Interfaces/Risk_Management/Risk_Management.xtuml');
+INSERT INTO SPR_REP
+	VALUES ("6d842ff2-3ed5-470a-bca6-7c501a2c1614",
+	"a6cccfa4-2fb5-4dda-9c65-6c5ef0af5b03",
+	"579b3a04-f3c0-4568-8c3c-02ca848823b3");
+INSERT INTO SPR_RS
+	VALUES ("6d842ff2-3ed5-470a-bca6-7c501a2c1614",
+	'which_Level',
+	'',
+	'',
+	3,
+	0,
+	17);
+INSERT INTO C_EP_PROXY
+	VALUES ("a6cccfa4-2fb5-4dda-9c65-6c5ef0af5b03",
+	"ffeaabc8-1077-4f70-9bf6-cd2883f5e505",
+	-1,
+	'which_Level',
+	'',
+	17,
+	'../../../../../ProjMonitoring/models/ProjMonitoring/PM_Interfaces/Risk_Management/Risk_Management.xtuml');
+INSERT INTO SPR_REP
+	VALUES ("ec409ddc-3713-44d8-853b-f2545fdb8760",
+	"2d1abbbe-9c83-4a30-8589-527ddabc1631",
+	"579b3a04-f3c0-4568-8c3c-02ca848823b3");
+INSERT INTO SPR_RS
+	VALUES ("ec409ddc-3713-44d8-853b-f2545fdb8760",
+	'this_Level',
+	'',
+	'',
+	3,
+	0,
+	18);
+INSERT INTO C_EP_PROXY
+	VALUES ("2d1abbbe-9c83-4a30-8589-527ddabc1631",
+	"ffeaabc8-1077-4f70-9bf6-cd2883f5e505",
+	-1,
+	'this_Level',
+	'',
+	18,
+	'../../../../../ProjMonitoring/models/ProjMonitoring/PM_Interfaces/Risk_Management/Risk_Management.xtuml');
+INSERT INTO SPR_REP
+	VALUES ("fb8351c9-d783-4c46-b03c-1f07243657ab",
+	"b9ba6f21-a1bf-4aff-9d3a-723e02c37983",
+	"579b3a04-f3c0-4568-8c3c-02ca848823b3");
+INSERT INTO SPR_RS
+	VALUES ("fb8351c9-d783-4c46-b03c-1f07243657ab",
+	'which_Category',
+	'',
+	'',
+	3,
+	0,
+	17);
+INSERT INTO C_EP_PROXY
+	VALUES ("b9ba6f21-a1bf-4aff-9d3a-723e02c37983",
+	"ffeaabc8-1077-4f70-9bf6-cd2883f5e505",
+	-1,
+	'which_Category',
+	'',
+	17,
+	'../../../../../ProjMonitoring/models/ProjMonitoring/PM_Interfaces/Risk_Management/Risk_Management.xtuml');
+INSERT INTO SPR_REP
+	VALUES ("e7f49fd4-1961-4266-8e0e-cefc53b2c8c7",
+	"fdaa5129-06ec-4ff8-b646-a34f5e62035b",
+	"579b3a04-f3c0-4568-8c3c-02ca848823b3");
+INSERT INTO SPR_RS
+	VALUES ("e7f49fd4-1961-4266-8e0e-cefc53b2c8c7",
+	'this_Category',
+	'',
+	'',
+	3,
+	0,
+	18);
+INSERT INTO C_EP_PROXY
+	VALUES ("fdaa5129-06ec-4ff8-b646-a34f5e62035b",
+	"ffeaabc8-1077-4f70-9bf6-cd2883f5e505",
+	-1,
+	'this_Category',
+	'',
+	18,
+	'../../../../../ProjMonitoring/models/ProjMonitoring/PM_Interfaces/Risk_Management/Risk_Management.xtuml');
+INSERT INTO C_I_PROXY
+	VALUES ("ffeaabc8-1077-4f70-9bf6-cd2883f5e505",
+	"00000000-0000-0000-0000-000000000000",
+	'Risk_Management',
+	'',
+	'../../../../../ProjMonitoring/models/ProjMonitoring/PM_Interfaces/Risk_Management/Risk_Management.xtuml');
+INSERT INTO PE_PE
+	VALUES ("a723c0b0-1e8e-4194-8f4a-e440e2a826f6",
+	1,
+	"5aa48725-1594-44c6-a958-31aaf2ce776c",
+	"00000000-0000-0000-0000-000000000000",
+	2);
+INSERT INTO EP_PKG_PROXY
+	VALUES ("5aa48725-1594-44c6-a958-31aaf2ce776c",
+	"385363f2-f297-432a-9a51-63b018ac70a4",
+	"385363f2-f297-432a-9a51-63b018ac70a4",
+	'Components',
+	'',
+	0,
+	'../Components.xtuml');

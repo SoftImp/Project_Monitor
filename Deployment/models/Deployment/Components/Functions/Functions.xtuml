@@ -1,0 +1,71 @@
+-- BP 7.1.6 content: Package syschar: 3 persistence-version: 7.1.6
+
+INSERT INTO EP_PKG
+	VALUES ("de912f7d-fdc0-47f0-84d2-2df168077ea2",
+	"00000000-0000-0000-0000-000000000000",
+	"385363f2-f297-432a-9a51-63b018ac70a4",
+	'Functions',
+	'',
+	0);
+INSERT INTO GD_MD
+	VALUES ("dca50f0b-0c1b-4d50-98bd-047bb59802ef",
+	112,
+	"de912f7d-fdc0-47f0-84d2-2df168077ea2",
+	108,
+	0,
+	0,
+	1,
+	1,
+	1,
+	12,
+	1,
+	0,
+	0,
+	0,
+	0,
+	0,
+	'4.1.17',
+	'Deployment::Components::Functions');
+INSERT INTO DIM_DIA
+	VALUES ("dca50f0b-0c1b-4d50-98bd-047bb59802ef",
+	'',
+	1.000000,
+	0.000000,
+	0.000000,
+	"00000000-0000-0000-0000-000000000000");
+INSERT INTO S_SYNC
+	VALUES ("4ac18dfc-3b31-4a23-9b41-5bc18c20e426",
+	"00000000-0000-0000-0000-000000000000",
+	'Initialise',
+	'',
+	'LOG::LogInfo( message: "Project Monitoring - started" );',
+	"ba5eda7a-def5-0000-0000-000000000000",
+	1,
+	'',
+	0,
+	1);
+INSERT INTO PE_PE
+	VALUES ("4ac18dfc-3b31-4a23-9b41-5bc18c20e426",
+	1,
+	"de912f7d-fdc0-47f0-84d2-2df168077ea2",
+	"00000000-0000-0000-0000-000000000000",
+	1);
+INSERT INTO PE_PE
+	VALUES ("de912f7d-fdc0-47f0-84d2-2df168077ea2",
+	1,
+	"5aa48725-1594-44c6-a958-31aaf2ce776c",
+	"00000000-0000-0000-0000-000000000000",
+	7);
+INSERT INTO EP_PKG_PROXY
+	VALUES ("5aa48725-1594-44c6-a958-31aaf2ce776c",
+	"385363f2-f297-432a-9a51-63b018ac70a4",
+	"385363f2-f297-432a-9a51-63b018ac70a4",
+	'Components',
+	'',
+	0,
+	'../Components.xtuml');
+INSERT INTO S_SYS_PROXY
+	VALUES ("385363f2-f297-432a-9a51-63b018ac70a4",
+	'Deployment',
+	1,
+	'../../Deployment.xtuml');
