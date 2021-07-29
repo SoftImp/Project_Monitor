@@ -17,6 +17,105 @@ and (in particular) the Accountability.org AA1000 Stakeholder Engagement Standar
 As for Risk Management, Stakeholder identification and management is an extension to the 
 functionality described in the UCs.',
 	"00000000-0000-0000-0000-000000000000");
+INSERT INTO O_TFR
+	VALUES ("10056259-a366-47d1-a0c5-cb50ec28cd25",
+	"8bfd1932-93a4-4c0d-8c1f-783f76639038",
+	'Create',
+	'',
+	"ba5eda7a-def5-0000-0000-000000000000",
+	0,
+	'//Add a STAKEHOLDER.
+
+select any Stakeholder from instances of SH
+ where selected.SH_Name == param.SH_Name AND selected.Contact_Phone == param.Con_Phone;
+
+if (empty Stakeholder)
+	create object instance Stakeholder of SH;
+	
+	Stakeholder.SH_Name = param.SH_Name;
+	Stakeholder.Contact_Phone = param.Con_Phone;
+	Stakeholder.Contact_Address = param.Con_Address;
+	Stakeholder.Contact_Email = param.Con_Email;
+	Stakeholder.is_Sponsor = param.is_Sponsor;
+	
+	LOG::LogInfo (message: "A new STAKEHOLDER " + Stakeholder.SH_Name + " has been added.");
+	
+	send OrgMan::Notify( Relevant_Person: "Manager", Message: "A new STAKEHOLDER " + param.SH_Name + " has been created");
+	
+end if;
+
+	
+	',
+	1,
+	'',
+	"00000000-0000-0000-0000-000000000000",
+	0,
+	1);
+INSERT INTO O_TPARM
+	VALUES ("2f92ec84-9d70-489d-b57f-129599a8d898",
+	"10056259-a366-47d1-a0c5-cb50ec28cd25",
+	'SH_Name',
+	"ba5eda7a-def5-0000-0000-000000000004",
+	0,
+	'',
+	"00000000-0000-0000-0000-000000000000",
+	'');
+INSERT INTO O_TPARM
+	VALUES ("2ba91550-572b-4d1c-b504-d00bc811c28c",
+	"10056259-a366-47d1-a0c5-cb50ec28cd25",
+	'Con_Phone',
+	"ba5eda7a-def5-0000-0000-000000000004",
+	0,
+	'',
+	"2f92ec84-9d70-489d-b57f-129599a8d898",
+	'');
+INSERT INTO O_TPARM
+	VALUES ("0ab7cedc-43e5-474e-a7b0-6977d295cc1d",
+	"10056259-a366-47d1-a0c5-cb50ec28cd25",
+	'Con_Address',
+	"ba5eda7a-def5-0000-0000-000000000004",
+	0,
+	'',
+	"2ba91550-572b-4d1c-b504-d00bc811c28c",
+	'');
+INSERT INTO O_TPARM
+	VALUES ("c7dcfed7-2496-4c57-a7cf-cfb06c45d3d8",
+	"10056259-a366-47d1-a0c5-cb50ec28cd25",
+	'Con_Email',
+	"ba5eda7a-def5-0000-0000-000000000004",
+	0,
+	'',
+	"0ab7cedc-43e5-474e-a7b0-6977d295cc1d",
+	'');
+INSERT INTO O_TPARM
+	VALUES ("cf529af4-216f-4255-b31d-f4064ade935e",
+	"10056259-a366-47d1-a0c5-cb50ec28cd25",
+	'is_Sponsor',
+	"05e33b6b-c69a-4c41-8b61-465dd97fe7dd",
+	0,
+	'',
+	"c7dcfed7-2496-4c57-a7cf-cfb06c45d3d8",
+	'');
+INSERT INTO S_DT_PROXY
+	VALUES ("05e33b6b-c69a-4c41-8b61-465dd97fe7dd",
+	"00000000-0000-0000-0000-000000000000",
+	'Answer',
+	'',
+	'',
+	'../../../../PM_Types/PM_Types.xtuml');
+INSERT INTO O_TFR
+	VALUES ("bd8d5b16-5909-40af-8ba3-a4b49adcb9d4",
+	"8bfd1932-93a4-4c0d-8c1f-783f76639038",
+	'add_Current_Role',
+	'',
+	"ba5eda7a-def5-0000-0000-000000000000",
+	1,
+	'',
+	3,
+	'',
+	"10056259-a366-47d1-a0c5-cb50ec28cd25",
+	0,
+	2);
 INSERT INTO O_NBATTR
 	VALUES ("5fb6298d-6d59-4522-bf54-b76c645cbd83",
 	"8bfd1932-93a4-4c0d-8c1f-783f76639038");
@@ -28,7 +127,7 @@ INSERT INTO O_ATTR
 	"8bfd1932-93a4-4c0d-8c1f-783f76639038",
 	"00000000-0000-0000-0000-000000000000",
 	'SH_Name',
-	'',
+	'Full name of a STAKEHOLDER.',
 	'',
 	'SH_Name',
 	0,
@@ -45,12 +144,60 @@ INSERT INTO O_ATTR
 	VALUES ("a1bc38fb-d3d5-406b-8253-a50a9c6cd5c5",
 	"8bfd1932-93a4-4c0d-8c1f-783f76639038",
 	"5fb6298d-6d59-4522-bf54-b76c645cbd83",
-	'Role',
+	'Contact_Phone',
+	'Landline or Mobile (Cell) number.  Should include country and area codes in separate parentheses.
+Should also include a ''+'' sign before country code.',
 	'',
-	'',
-	'Role',
+	'Contact_Phone',
 	0,
-	"ba5eda7a-def5-0000-0000-000000000002",
+	"ba5eda7a-def5-0000-0000-000000000004",
+	'',
+	'');
+INSERT INTO O_NBATTR
+	VALUES ("4a246516-d695-430c-94b7-d14660ac3ad8",
+	"8bfd1932-93a4-4c0d-8c1f-783f76639038");
+INSERT INTO O_BATTR
+	VALUES ("4a246516-d695-430c-94b7-d14660ac3ad8",
+	"8bfd1932-93a4-4c0d-8c1f-783f76639038");
+INSERT INTO O_ATTR
+	VALUES ("4a246516-d695-430c-94b7-d14660ac3ad8",
+	"8bfd1932-93a4-4c0d-8c1f-783f76639038",
+	"a1bc38fb-d3d5-406b-8253-a50a9c6cd5c5",
+	'Contact_Address',
+	'Full contact address of a STAKEHOLDER.  This may be in several parts that may include one or 
+more of the following:
+
+1 - Street Number,
+2 - Street Name,
+3 - Unit Number,
+4 - Building Name,
+5 - Floor/Level Name/Number,
+6 - City/Town/Suburb Name,
+7 - State/Precinct/Province Name etc.,
+8 - Country Name,
+9 - ZIP/Postal Code.',
+	'',
+	'Contact_Address',
+	0,
+	"ba5eda7a-def5-0000-0000-000000000004",
+	'',
+	'');
+INSERT INTO O_NBATTR
+	VALUES ("199de6a6-ede4-4b71-a785-9bc1633c179e",
+	"8bfd1932-93a4-4c0d-8c1f-783f76639038");
+INSERT INTO O_BATTR
+	VALUES ("199de6a6-ede4-4b71-a785-9bc1633c179e",
+	"8bfd1932-93a4-4c0d-8c1f-783f76639038");
+INSERT INTO O_ATTR
+	VALUES ("199de6a6-ede4-4b71-a785-9bc1633c179e",
+	"8bfd1932-93a4-4c0d-8c1f-783f76639038",
+	"4a246516-d695-430c-94b7-d14660ac3ad8",
+	'Contact_Email',
+	'A valid email address.',
+	'',
+	'Contact_Email',
+	0,
+	"ba5eda7a-def5-0000-0000-000000000004",
 	'',
 	'');
 INSERT INTO O_ID

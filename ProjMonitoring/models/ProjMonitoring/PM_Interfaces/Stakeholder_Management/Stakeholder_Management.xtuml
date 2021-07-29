@@ -1,0 +1,117 @@
+-- BP 7.1.6 content: Interface syschar: 3 persistence-version: 7.1.6
+
+INSERT INTO C_I
+	VALUES ("02750e29-0756-478c-83b2-43e938b640ea",
+	"00000000-0000-0000-0000-000000000000",
+	'Stakeholder_Management',
+	'');
+INSERT INTO C_EP
+	VALUES ("e5d330dc-1bc3-4597-b87b-63313ea15fff",
+	"02750e29-0756-478c-83b2-43e938b640ea",
+	-1,
+	'add_Stakeholder',
+	'',
+	1);
+INSERT INTO C_AS
+	VALUES ("e5d330dc-1bc3-4597-b87b-63313ea15fff",
+	'add_Stakeholder',
+	'',
+	0,
+	"00000000-0000-0000-0000-000000000000");
+INSERT INTO C_PP
+	VALUES ("35e235d7-b69f-4f8c-8b8a-fb51d4d894a5",
+	"e5d330dc-1bc3-4597-b87b-63313ea15fff",
+	"ba5eda7a-def5-0000-0000-000000000004",
+	'SH_Name',
+	'',
+	0,
+	'',
+	"00000000-0000-0000-0000-000000000000");
+INSERT INTO C_PP
+	VALUES ("68a3a263-77af-4bae-be40-baa4df673f0b",
+	"e5d330dc-1bc3-4597-b87b-63313ea15fff",
+	"ba5eda7a-def5-0000-0000-000000000004",
+	'Phone',
+	'',
+	0,
+	'',
+	"35e235d7-b69f-4f8c-8b8a-fb51d4d894a5");
+INSERT INTO C_PP
+	VALUES ("0c9ae71b-5285-42b4-9760-5e75cb4c152a",
+	"e5d330dc-1bc3-4597-b87b-63313ea15fff",
+	"ba5eda7a-def5-0000-0000-000000000004",
+	'Address',
+	'',
+	0,
+	'',
+	"68a3a263-77af-4bae-be40-baa4df673f0b");
+INSERT INTO C_PP
+	VALUES ("3f81b03a-f395-4743-8a0f-16b64d180167",
+	"e5d330dc-1bc3-4597-b87b-63313ea15fff",
+	"ba5eda7a-def5-0000-0000-000000000004",
+	'Email',
+	'',
+	0,
+	'',
+	"0c9ae71b-5285-42b4-9760-5e75cb4c152a");
+INSERT INTO C_PP
+	VALUES ("3a2fcfe6-903c-4878-a406-33a7ba3b40b4",
+	"e5d330dc-1bc3-4597-b87b-63313ea15fff",
+	"05e33b6b-c69a-4c41-8b61-465dd97fe7dd",
+	'is_Sponsor',
+	'',
+	0,
+	'',
+	"3f81b03a-f395-4743-8a0f-16b64d180167");
+INSERT INTO S_DT_PROXY
+	VALUES ("05e33b6b-c69a-4c41-8b61-465dd97fe7dd",
+	"00000000-0000-0000-0000-000000000000",
+	'Answer',
+	'',
+	'',
+	'../../PM_Types/PM_Types.xtuml');
+INSERT INTO C_EP
+	VALUES ("9dff93f9-6222-41b3-b12a-d707854ff2e4",
+	"02750e29-0756-478c-83b2-43e938b640ea",
+	-1,
+	'Notify',
+	'',
+	3);
+INSERT INTO C_AS
+	VALUES ("9dff93f9-6222-41b3-b12a-d707854ff2e4",
+	'Notify',
+	'',
+	1,
+	"e5d330dc-1bc3-4597-b87b-63313ea15fff");
+INSERT INTO C_PP
+	VALUES ("d385b559-7b60-4a69-9fda-0d5bec592e3b",
+	"9dff93f9-6222-41b3-b12a-d707854ff2e4",
+	"ba5eda7a-def5-0000-0000-000000000004",
+	'Relevant_Person',
+	'',
+	0,
+	'',
+	"00000000-0000-0000-0000-000000000000");
+INSERT INTO C_PP
+	VALUES ("17b33e3b-1bb4-4c65-98d7-065391e41c6c",
+	"9dff93f9-6222-41b3-b12a-d707854ff2e4",
+	"ba5eda7a-def5-0000-0000-000000000004",
+	'Message',
+	'',
+	0,
+	'',
+	"d385b559-7b60-4a69-9fda-0d5bec592e3b");
+INSERT INTO PE_PE
+	VALUES ("02750e29-0756-478c-83b2-43e938b640ea",
+	1,
+	"077be095-5328-4c6a-8a54-cde91fa66fc5",
+	"00000000-0000-0000-0000-000000000000",
+	6);
+INSERT INTO EP_PKG_PROXY
+	VALUES ("077be095-5328-4c6a-8a54-cde91fa66fc5",
+	"fed360c9-cd00-40a7-9299-ecef1edcb505",
+	"fed360c9-cd00-40a7-9299-ecef1edcb505",
+	'PM_Interfaces',
+	'',
+	0,
+	'../PM_Interfaces.xtuml');

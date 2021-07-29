@@ -1,0 +1,117 @@
+-- BP 7.1.6 content: ModelClass syschar: 3 persistence-version: 7.1.6
+
+INSERT INTO O_OBJ
+	VALUES ("9e38b2bf-c072-42cc-a06f-1fd5996fd1cb",
+	'Entity',
+	16,
+	'ENT',
+	'',
+	"00000000-0000-0000-0000-000000000000");
+INSERT INTO O_TFR
+	VALUES ("91e0eade-bc7d-4e21-8b39-3f73a785bb2d",
+	"9e38b2bf-c072-42cc-a06f-1fd5996fd1cb",
+	'add_Entity',
+	'',
+	"ba5eda7a-def5-0000-0000-000000000000",
+	1,
+	'',
+	3,
+	'',
+	"00000000-0000-0000-0000-000000000000",
+	0,
+	1);
+INSERT INTO O_NBATTR
+	VALUES ("49deca55-2e5a-4329-bc3c-a9f696649ab8",
+	"9e38b2bf-c072-42cc-a06f-1fd5996fd1cb");
+INSERT INTO O_BATTR
+	VALUES ("49deca55-2e5a-4329-bc3c-a9f696649ab8",
+	"9e38b2bf-c072-42cc-a06f-1fd5996fd1cb");
+INSERT INTO O_ATTR
+	VALUES ("49deca55-2e5a-4329-bc3c-a9f696649ab8",
+	"9e38b2bf-c072-42cc-a06f-1fd5996fd1cb",
+	"00000000-0000-0000-0000-000000000000",
+	'Entity_Name',
+	'',
+	'',
+	'Entity_Name',
+	0,
+	"ba5eda7a-def5-0000-0000-000000000004",
+	'',
+	'');
+INSERT INTO O_NBATTR
+	VALUES ("9a23895f-b42b-4978-ad0d-4692449d23f8",
+	"9e38b2bf-c072-42cc-a06f-1fd5996fd1cb");
+INSERT INTO O_BATTR
+	VALUES ("9a23895f-b42b-4978-ad0d-4692449d23f8",
+	"9e38b2bf-c072-42cc-a06f-1fd5996fd1cb");
+INSERT INTO O_ATTR
+	VALUES ("9a23895f-b42b-4978-ad0d-4692449d23f8",
+	"9e38b2bf-c072-42cc-a06f-1fd5996fd1cb",
+	"49deca55-2e5a-4329-bc3c-a9f696649ab8",
+	'Telecom',
+	'',
+	'',
+	'Telecom',
+	0,
+	"ba5eda7a-def5-0000-0000-000000000002",
+	'',
+	'');
+INSERT INTO O_NBATTR
+	VALUES ("d65e463b-c937-4aa9-9f8b-62c5177c9efd",
+	"9e38b2bf-c072-42cc-a06f-1fd5996fd1cb");
+INSERT INTO O_BATTR
+	VALUES ("d65e463b-c937-4aa9-9f8b-62c5177c9efd",
+	"9e38b2bf-c072-42cc-a06f-1fd5996fd1cb");
+INSERT INTO O_ATTR
+	VALUES ("d65e463b-c937-4aa9-9f8b-62c5177c9efd",
+	"9e38b2bf-c072-42cc-a06f-1fd5996fd1cb",
+	"9a23895f-b42b-4978-ad0d-4692449d23f8",
+	'Contact_Address',
+	'',
+	'',
+	'Contact_Address',
+	0,
+	"ba5eda7a-def5-0000-0000-000000000004",
+	'',
+	'');
+INSERT INTO O_NBATTR
+	VALUES ("4f210e4c-a5da-402f-930a-ece2beae87dd",
+	"9e38b2bf-c072-42cc-a06f-1fd5996fd1cb");
+INSERT INTO O_BATTR
+	VALUES ("4f210e4c-a5da-402f-930a-ece2beae87dd",
+	"9e38b2bf-c072-42cc-a06f-1fd5996fd1cb");
+INSERT INTO O_ATTR
+	VALUES ("4f210e4c-a5da-402f-930a-ece2beae87dd",
+	"9e38b2bf-c072-42cc-a06f-1fd5996fd1cb",
+	"d65e463b-c937-4aa9-9f8b-62c5177c9efd",
+	'Contact_Email',
+	'',
+	'',
+	'Contact_Email',
+	0,
+	"ba5eda7a-def5-0000-0000-000000000004",
+	'',
+	'');
+INSERT INTO O_ID
+	VALUES (0,
+	"9e38b2bf-c072-42cc-a06f-1fd5996fd1cb");
+INSERT INTO O_ID
+	VALUES (1,
+	"9e38b2bf-c072-42cc-a06f-1fd5996fd1cb");
+INSERT INTO O_ID
+	VALUES (2,
+	"9e38b2bf-c072-42cc-a06f-1fd5996fd1cb");
+INSERT INTO PE_PE
+	VALUES ("9e38b2bf-c072-42cc-a06f-1fd5996fd1cb",
+	1,
+	"9ad079f3-abc5-417c-8b37-4084fb0e9dde",
+	"00000000-0000-0000-0000-000000000000",
+	4);
+INSERT INTO EP_PKG_PROXY
+	VALUES ("9ad079f3-abc5-417c-8b37-4084fb0e9dde",
+	"00000000-0000-0000-0000-000000000000",
+	"fed360c9-cd00-40a7-9299-ecef1edcb505",
+	'PM_Control',
+	'',
+	0,
+	'../PM_Control.xtuml');

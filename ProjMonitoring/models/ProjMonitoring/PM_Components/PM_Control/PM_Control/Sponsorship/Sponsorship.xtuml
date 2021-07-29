@@ -1,0 +1,93 @@
+-- BP 7.1.6 content: ModelClass syschar: 3 persistence-version: 7.1.6
+
+INSERT INTO O_OBJ
+	VALUES ("a0c064f8-dda5-4a5a-b7c7-58c7d36d5c09",
+	'Sponsorship',
+	21,
+	'Sponsorship',
+	'',
+	"00000000-0000-0000-0000-000000000000");
+INSERT INTO O_NBATTR
+	VALUES ("035d92a0-2e5c-48a9-87cc-67ec8fe84fdc",
+	"a0c064f8-dda5-4a5a-b7c7-58c7d36d5c09");
+INSERT INTO O_BATTR
+	VALUES ("035d92a0-2e5c-48a9-87cc-67ec8fe84fdc",
+	"a0c064f8-dda5-4a5a-b7c7-58c7d36d5c09");
+INSERT INTO O_ATTR
+	VALUES ("035d92a0-2e5c-48a9-87cc-67ec8fe84fdc",
+	"a0c064f8-dda5-4a5a-b7c7-58c7d36d5c09",
+	"00000000-0000-0000-0000-000000000000",
+	'SH_Name',
+	'Full name of a STAKEHOLDER.',
+	'',
+	'SH_Name',
+	0,
+	"ba5eda7a-def5-0000-0000-000000000004",
+	'',
+	'');
+INSERT INTO O_NBATTR
+	VALUES ("f15ddb3c-58dc-4bd8-a504-350ee9fd6a74",
+	"a0c064f8-dda5-4a5a-b7c7-58c7d36d5c09");
+INSERT INTO O_BATTR
+	VALUES ("f15ddb3c-58dc-4bd8-a504-350ee9fd6a74",
+	"a0c064f8-dda5-4a5a-b7c7-58c7d36d5c09");
+INSERT INTO O_ATTR
+	VALUES ("f15ddb3c-58dc-4bd8-a504-350ee9fd6a74",
+	"a0c064f8-dda5-4a5a-b7c7-58c7d36d5c09",
+	"035d92a0-2e5c-48a9-87cc-67ec8fe84fdc",
+	'PF_Name',
+	'',
+	'',
+	'PF_Name',
+	0,
+	"ba5eda7a-def5-0000-0000-000000000004",
+	'',
+	'');
+INSERT INTO O_NBATTR
+	VALUES ("d1fe7558-fd3c-4937-8e23-48f9cce1d584",
+	"a0c064f8-dda5-4a5a-b7c7-58c7d36d5c09");
+INSERT INTO O_BATTR
+	VALUES ("d1fe7558-fd3c-4937-8e23-48f9cce1d584",
+	"a0c064f8-dda5-4a5a-b7c7-58c7d36d5c09");
+INSERT INTO O_ATTR
+	VALUES ("d1fe7558-fd3c-4937-8e23-48f9cce1d584",
+	"a0c064f8-dda5-4a5a-b7c7-58c7d36d5c09",
+	"f15ddb3c-58dc-4bd8-a504-350ee9fd6a74",
+	'is_Sponsor',
+	'Is the STAKEHOLDER a sponsor of the startegic endeavour.  Simple choice of ''Yes'' or ''No''.',
+	'',
+	'is_Sponsor',
+	0,
+	"05e33b6b-c69a-4c41-8b61-465dd97fe7dd",
+	'',
+	'');
+INSERT INTO S_DT_PROXY
+	VALUES ("05e33b6b-c69a-4c41-8b61-465dd97fe7dd",
+	"00000000-0000-0000-0000-000000000000",
+	'Answer',
+	'',
+	'',
+	'../../../../PM_Types/PM_Types.xtuml');
+INSERT INTO O_ID
+	VALUES (0,
+	"a0c064f8-dda5-4a5a-b7c7-58c7d36d5c09");
+INSERT INTO O_ID
+	VALUES (1,
+	"a0c064f8-dda5-4a5a-b7c7-58c7d36d5c09");
+INSERT INTO O_ID
+	VALUES (2,
+	"a0c064f8-dda5-4a5a-b7c7-58c7d36d5c09");
+INSERT INTO PE_PE
+	VALUES ("a0c064f8-dda5-4a5a-b7c7-58c7d36d5c09",
+	1,
+	"9ad079f3-abc5-417c-8b37-4084fb0e9dde",
+	"00000000-0000-0000-0000-000000000000",
+	4);
+INSERT INTO EP_PKG_PROXY
+	VALUES ("9ad079f3-abc5-417c-8b37-4084fb0e9dde",
+	"00000000-0000-0000-0000-000000000000",
+	"fed360c9-cd00-40a7-9299-ecef1edcb505",
+	'PM_Control',
+	'',
+	0,
+	'../PM_Control.xtuml');

@@ -29,6 +29,7 @@ if ( empty Program)
 	create object instance Program of PRG;
 	Program.PRG_Name = param.PRG_Name;
 	Program.Description = param.Description;
+	Program.Owner = param.Owner;
 	LOG::LogInfo( message: "A new PROGRAM has been successfully created." );
 	send OrgMan::Notify(Relevant_Person:"Manager", Message:"A new PROGRAM " + param.PRG_Name + "has been created.");
 else
@@ -60,49 +61,14 @@ INSERT INTO O_TPARM
 	'',
 	"aa86fdfe-75eb-4bcd-b9fb-6c0dc4b00453",
 	'');
-INSERT INTO O_TFR
-	VALUES ("7de1cf66-e82b-492d-b1fd-cf95e1cb7e0e",
-	"fc2339db-f29a-4ff9-915d-62c8814fc04c",
-	'change_Manager',
-	'This operation is based on UC04.',
-	"ba5eda7a-def5-0000-0000-000000000000",
-	1,
-	'//Change a manager to a Program.
-
-select any Program from instances of PRG
- where (selected.PRG_Name == param.PRG_Name);
-
-if ( not empty Program)
-	Program.Manager = param.Manager;
-	LOG::LogInfo(message : "The change to PROGRAM MANAGER has been successful. Relevant parties will be notified.");
-	send OrgMan::Notify(Relevant_Person:"Manager", Message: "The MANAGER of " + param.PRG_Name + "has been changed.");
-else
-	LOG::LogFailure(message : "The chosen PROGRAM does not exist. Perhaps it was misspelt or incorrectly selected");
-end if;
-
-//Based on UC04.',
-	1,
-	'',
+INSERT INTO O_TPARM
+	VALUES ("cae08534-67e1-4332-926b-e3b32e7805b1",
 	"2ef7595a-6873-4d98-80c3-48ca202b8b18",
-	0,
-	2);
-INSERT INTO O_TPARM
-	VALUES ("ec0ea12e-b871-4064-8c4c-2c78d2790510",
-	"7de1cf66-e82b-492d-b1fd-cf95e1cb7e0e",
-	'PRG_Name',
+	'Owner',
 	"ba5eda7a-def5-0000-0000-000000000004",
 	0,
 	'',
-	"00000000-0000-0000-0000-000000000000",
-	'');
-INSERT INTO O_TPARM
-	VALUES ("baacf870-32df-42c1-8417-88b90da2388b",
-	"7de1cf66-e82b-492d-b1fd-cf95e1cb7e0e",
-	'Manager',
-	"ba5eda7a-def5-0000-0000-000000000004",
-	0,
-	'',
-	"ec0ea12e-b871-4064-8c4c-2c78d2790510",
+	"17a46261-9b20-4675-8a2d-e592c644a740",
 	'');
 INSERT INTO O_TFR
 	VALUES ("3b8282a0-e8ad-4a79-93f3-fdac62a5cc0d",
@@ -111,7 +77,7 @@ INSERT INTO O_TFR
 	'An operation to UPDATE an existing goal.
 Based on UC00.',
 	"ba5eda7a-def5-0000-0000-000000000000",
-	1,
+	0,
 	'//Update the description of a Program.
 //An extension of UC01 for when changes might be made to a Program.
 
@@ -129,7 +95,7 @@ end if;
 //Based on UC01.',
 	1,
 	'',
-	"7de1cf66-e82b-492d-b1fd-cf95e1cb7e0e",
+	"2ef7595a-6873-4d98-80c3-48ca202b8b18",
 	0,
 	2);
 INSERT INTO O_TPARM
@@ -156,13 +122,14 @@ INSERT INTO O_TFR
 	'add_Budget',
 	'',
 	"ba5eda7a-def5-0000-0000-000000000000",
-	1,
+	0,
 	'//Add the budget for a Program.
 
 select any Program from instances of PRG
  where (selected.PRG_Name == param.PRG_Name);
 
 if ( not empty Program)
+
 	Program.Budget = param.Budget;
 	LOG::LogInfo(message : "The addition of a BUDGET has been successful. Relevant parties will be notified.");
 	send OrgMan::Notify(Relevant_Person:"Manager", Message: "The BUDGET for " + param.PRG_Name + "has been added.");
@@ -200,9 +167,8 @@ INSERT INTO O_TFR
 	'add_Manager',
 	'',
 	"ba5eda7a-def5-0000-0000-000000000000",
-	1,
-	'// Add a Manager to a Program.
-//Based on UC01, on the assumption that a Manager may not be named at Program creation.
+	0,
+	'// Add or change a Manager of a Program instance.
 
 select any Program from instances of PRG
  where (selected.PRG_Name == param.PRG_Name);
@@ -213,7 +179,9 @@ if ( not empty Program)
 	send OrgMan::Notify(Relevant_Person:"Manager", Message: "The MANAGER for " + param.PRG_Name + "has been added.");
 else
 	LOG::LogFailure(message : "The chosen PROGRAM does not exist. Perhaps it was misspelt or incorrectly selected");
-end if;',
+end if;
+
+//Based on UC01',
 	1,
 	'',
 	"01872604-2f02-4071-8a98-e76e7a98f601",
@@ -238,55 +206,12 @@ INSERT INTO O_TPARM
 	"8f1bc641-6f4c-40f5-b106-4069aa659cda",
 	'');
 INSERT INTO O_TFR
-	VALUES ("7daf3358-a17c-4c18-a24f-29d4b1ff421a",
-	"fc2339db-f29a-4ff9-915d-62c8814fc04c",
-	'add_Owner',
-	'',
-	"ba5eda7a-def5-0000-0000-000000000000",
-	1,
-	'// Add an Owner to a Program.
-//Based on UC01, on the assumption that ownership may not be determined on Program creation.
-
-select any Program from instances of PRG
- where (selected.PRG_Name == param.PRG_Name);
-
-if ( not empty Program)
-	Program.Owner = param.Owner;
-	LOG::LogInfo(message : "The addition of a PROGRAM OWNER has been successful. Relevant parties will be notified.");
-	send OrgMan::Notify(Relevant_Person:"Manager", Message: "The OWNER for " + param.PRG_Name + "has been added.");
-else
-	LOG::LogFailure(message : "The chosen PROGRAM does not exist. Perhaps it was misspelt or incorrectly selected");
-end if;',
-	1,
-	'',
-	"47c6f926-85e3-47cb-bad0-2c29c6b3b8e6",
-	0,
-	4);
-INSERT INTO O_TPARM
-	VALUES ("e8ad38d0-e605-45e6-9c04-b82e00d70052",
-	"7daf3358-a17c-4c18-a24f-29d4b1ff421a",
-	'PRG_Name',
-	"ba5eda7a-def5-0000-0000-000000000004",
-	0,
-	'',
-	"00000000-0000-0000-0000-000000000000",
-	'');
-INSERT INTO O_TPARM
-	VALUES ("a8f12b36-f0b7-444c-996a-9525b68c1a47",
-	"7daf3358-a17c-4c18-a24f-29d4b1ff421a",
-	'Owner',
-	"ba5eda7a-def5-0000-0000-000000000004",
-	0,
-	'',
-	"e8ad38d0-e605-45e6-9c04-b82e00d70052",
-	'');
-INSERT INTO O_TFR
 	VALUES ("46b535c3-2c4b-4129-ab8a-f251d437c2d6",
 	"fc2339db-f29a-4ff9-915d-62c8814fc04c",
 	'add_Start_DMY',
 	'',
 	"ba5eda7a-def5-0000-0000-000000000000",
-	1,
+	0,
 	'//Add Start Date for a Program in DMY format.
 //Based on UC01, on the assumption that the start date may not be determined on creation of the Program.
 
@@ -297,14 +222,18 @@ select any Program from instances of PRG
 
 if ( not empty Program)
 	Program.Start_Date = TIM::create_date(day:param.Day, month:param.Month, year:param.Year, hour:0, minute:0, second:0);
+	//Program.Start_Date = TIM::current_date();
+	
 	LOG::LogInfo(message : "The addition of a START DATE has been successful. Relevant parties will be notified.");
 	send OrgMan::Notify(Relevant_Person:"Manager", Message: "The START DATE for " + param.PRG_Name + "has been added.");
 else
 	LOG::LogFailure(message : "The chosen PROGRAM does not exist. Perhaps it was misspelt or incorrectly selected");
-end if;',
+end if;
+
+//NOTE: Will also need to add code to take in correct value ranges for day, month and year.',
 	1,
 	'',
-	"7daf3358-a17c-4c18-a24f-29d4b1ff421a",
+	"47c6f926-85e3-47cb-bad0-2c29c6b3b8e6",
 	0,
 	5);
 INSERT INTO O_TPARM
@@ -349,7 +278,7 @@ INSERT INTO O_TFR
 	'add_End_DMY',
 	'',
 	"ba5eda7a-def5-0000-0000-000000000000",
-	1,
+	0,
 	'//Add End Date for a Program in DMY format.
 //Based on UC01, on the assumption that the end date may not be determined on creation of the Program.
 
@@ -412,7 +341,7 @@ INSERT INTO O_TFR
 	'add_Milestone',
 	'This operation is based on UC02.',
 	"ba5eda7a-def5-0000-0000-000000000000",
-	1,
+	0,
 	'// Create a new Milestoane for Program by providing a (hopefully) unique name (MS_Name) and setting Percent_Complete to zero.
 //Based on UC02.
 
@@ -468,7 +397,7 @@ INSERT INTO O_TFR
 	'update_Milestone',
 	'This operation is based on UC02.',
 	"ba5eda7a-def5-0000-0000-000000000000",
-	1,
+	0,
 	'// Update an existing Milestoane for a Program by setting Percent_Complete to a value greater than zero.
 //Based on UC03.
 
@@ -547,7 +476,7 @@ INSERT INTO O_TFR
 	'add_Requirement',
 	'This operation is based on UC07.',
 	"ba5eda7a-def5-0000-0000-000000000000",
-	1,
+	0,
 	'// Create a new Requirement for Program by providing a (hopefully) unique name (Req_ID).
 //Based on UC07.
 
@@ -609,10 +538,10 @@ INSERT INTO O_TPARM
 INSERT INTO O_TFR
 	VALUES ("436fd3a9-6009-4cdf-9fc7-d3c2591dd3bf",
 	"fc2339db-f29a-4ff9-915d-62c8814fc04c",
-	'link_To_Startegic_Goal',
+	'link_To_Strategic_Goal',
 	'',
 	"ba5eda7a-def5-0000-0000-000000000000",
-	1,
+	0,
 	'//Associate/Link Program to a Strategic Goal.
 //Based on UC01-1.
 
@@ -665,7 +594,7 @@ INSERT INTO O_TFR
 	'include_In_Portfolio',
 	'',
 	"ba5eda7a-def5-0000-0000-000000000000",
-	1,
+	0,
 	'//Add/link Program to a Portfolio.
 //Based on UC11.
 
@@ -812,7 +741,7 @@ INSERT INTO O_TFR
 	'update_Requirement_Description',
 	'',
 	"ba5eda7a-def5-0000-0000-000000000000",
-	1,
+	0,
 	'//An operation that allows a requirement description to be updated.
 //Assume that the initial Req_ID containing "TBA for" has been updated or needs to be updated.
 
@@ -939,21 +868,22 @@ INSERT INTO O_ATTR
 	'',
 	'');
 INSERT INTO O_NBATTR
-	VALUES ("add2024c-3ca6-44f6-987b-2b43943fef88",
+	VALUES ("5f163553-ff66-41b8-9f8e-07646ace3558",
 	"fc2339db-f29a-4ff9-915d-62c8814fc04c");
 INSERT INTO O_BATTR
-	VALUES ("add2024c-3ca6-44f6-987b-2b43943fef88",
+	VALUES ("5f163553-ff66-41b8-9f8e-07646ace3558",
 	"fc2339db-f29a-4ff9-915d-62c8814fc04c");
 INSERT INTO O_ATTR
-	VALUES ("add2024c-3ca6-44f6-987b-2b43943fef88",
+	VALUES ("5f163553-ff66-41b8-9f8e-07646ace3558",
 	"fc2339db-f29a-4ff9-915d-62c8814fc04c",
-	"ff598b36-100c-4588-b5d7-0cd498a74e1d",
-	'Start_Date',
+	"0a24107a-d245-47af-ad92-7fa69a039763",
+	'Owner',
+	'The name of the OWNER of the initiative that brought about the PROGRAM.  This field can be blank, as it is not applucable to all PROGRAMS
+.',
 	'',
-	'',
-	'Start_Date',
+	'Owner',
 	0,
-	"ba5eda7a-def5-0000-0000-00000000000e",
+	"ba5eda7a-def5-0000-0000-000000000004",
 	'',
 	'');
 INSERT INTO O_NBATTR
@@ -975,21 +905,21 @@ INSERT INTO O_ATTR
 	'',
 	'');
 INSERT INTO O_NBATTR
-	VALUES ("7632ce03-367e-4aa2-9716-18f65df88ebb",
+	VALUES ("add2024c-3ca6-44f6-987b-2b43943fef88",
 	"fc2339db-f29a-4ff9-915d-62c8814fc04c");
 INSERT INTO O_BATTR
-	VALUES ("7632ce03-367e-4aa2-9716-18f65df88ebb",
+	VALUES ("add2024c-3ca6-44f6-987b-2b43943fef88",
 	"fc2339db-f29a-4ff9-915d-62c8814fc04c");
 INSERT INTO O_ATTR
-	VALUES ("7632ce03-367e-4aa2-9716-18f65df88ebb",
+	VALUES ("add2024c-3ca6-44f6-987b-2b43943fef88",
 	"fc2339db-f29a-4ff9-915d-62c8814fc04c",
-	"6ec8f2c5-cc0c-472e-893f-515aca59f34e",
-	'Budget',
-	'The overall (agreed) BUDGET put aside for a PROGRAM.  The value may change during the course of implementing a PROGRAM. ',
+	"ff598b36-100c-4588-b5d7-0cd498a74e1d",
+	'Start_Date',
 	'',
-	'Budget',
+	'',
+	'Start_Date',
 	0,
-	"ba5eda7a-def5-0000-0000-000000000003",
+	"ba5eda7a-def5-0000-0000-00000000000e",
 	'',
 	'');
 INSERT INTO O_NBATTR
@@ -1011,22 +941,21 @@ INSERT INTO O_ATTR
 	'',
 	'');
 INSERT INTO O_NBATTR
-	VALUES ("5f163553-ff66-41b8-9f8e-07646ace3558",
+	VALUES ("7632ce03-367e-4aa2-9716-18f65df88ebb",
 	"fc2339db-f29a-4ff9-915d-62c8814fc04c");
 INSERT INTO O_BATTR
-	VALUES ("5f163553-ff66-41b8-9f8e-07646ace3558",
+	VALUES ("7632ce03-367e-4aa2-9716-18f65df88ebb",
 	"fc2339db-f29a-4ff9-915d-62c8814fc04c");
 INSERT INTO O_ATTR
-	VALUES ("5f163553-ff66-41b8-9f8e-07646ace3558",
+	VALUES ("7632ce03-367e-4aa2-9716-18f65df88ebb",
 	"fc2339db-f29a-4ff9-915d-62c8814fc04c",
-	"0a24107a-d245-47af-ad92-7fa69a039763",
-	'Owner',
-	'The name of the OWNER of the initiative that brought about the PROGRAM.  This field can be blank, as it is not applucable to all PROGRAMS
-.',
+	"6ec8f2c5-cc0c-472e-893f-515aca59f34e",
+	'Budget',
+	'The overall (agreed) BUDGET put aside for a PROGRAM.  The value may change during the course of implementing a PROGRAM. ',
 	'',
-	'Owner',
+	'Budget',
 	0,
-	"ba5eda7a-def5-0000-0000-000000000004",
+	"ba5eda7a-def5-0000-0000-000000000003",
 	'',
 	'');
 INSERT INTO O_ID

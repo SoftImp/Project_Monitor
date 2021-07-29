@@ -1,0 +1,265 @@
+-- BP 7.1.6 content: ModelClass syschar: 3 persistence-version: 7.1.6
+
+INSERT INTO O_OBJ
+	VALUES ("f3120f98-3c16-4319-a21c-dcc0f2470134",
+	'SH_PF_Concerns',
+	18,
+	'SHPFC',
+	'',
+	"00000000-0000-0000-0000-000000000000");
+INSERT INTO O_TFR
+	VALUES ("fc5d2def-715a-4f66-a352-438c17975825",
+	"f3120f98-3c16-4319-a21c-dcc0f2470134",
+	'add_Concern',
+	'',
+	"ba5eda7a-def5-0000-0000-000000000000",
+	1,
+	'',
+	1,
+	'',
+	"00000000-0000-0000-0000-000000000000",
+	0,
+	3);
+INSERT INTO O_NBATTR
+	VALUES ("d1e9e6fa-c3ad-47dd-a642-12f5b0304ecf",
+	"f3120f98-3c16-4319-a21c-dcc0f2470134");
+INSERT INTO O_BATTR
+	VALUES ("d1e9e6fa-c3ad-47dd-a642-12f5b0304ecf",
+	"f3120f98-3c16-4319-a21c-dcc0f2470134");
+INSERT INTO O_ATTR
+	VALUES ("d1e9e6fa-c3ad-47dd-a642-12f5b0304ecf",
+	"f3120f98-3c16-4319-a21c-dcc0f2470134",
+	"00000000-0000-0000-0000-000000000000",
+	'PF_Name',
+	'',
+	'',
+	'PF_Name',
+	0,
+	"ba5eda7a-def5-0000-0000-000000000004",
+	'',
+	'');
+INSERT INTO O_NBATTR
+	VALUES ("b31ec169-e7ed-4b18-a8ab-9d38bdff2676",
+	"f3120f98-3c16-4319-a21c-dcc0f2470134");
+INSERT INTO O_BATTR
+	VALUES ("b31ec169-e7ed-4b18-a8ab-9d38bdff2676",
+	"f3120f98-3c16-4319-a21c-dcc0f2470134");
+INSERT INTO O_ATTR
+	VALUES ("b31ec169-e7ed-4b18-a8ab-9d38bdff2676",
+	"f3120f98-3c16-4319-a21c-dcc0f2470134",
+	"d1e9e6fa-c3ad-47dd-a642-12f5b0304ecf",
+	'SH_Name',
+	'',
+	'',
+	'SH_Name',
+	0,
+	"ba5eda7a-def5-0000-0000-000000000004",
+	'',
+	'');
+INSERT INTO O_NBATTR
+	VALUES ("e698b7c5-253e-463d-acbd-e090c05d36d6",
+	"f3120f98-3c16-4319-a21c-dcc0f2470134");
+INSERT INTO O_BATTR
+	VALUES ("e698b7c5-253e-463d-acbd-e090c05d36d6",
+	"f3120f98-3c16-4319-a21c-dcc0f2470134");
+INSERT INTO O_ATTR
+	VALUES ("e698b7c5-253e-463d-acbd-e090c05d36d6",
+	"f3120f98-3c16-4319-a21c-dcc0f2470134",
+	"b31ec169-e7ed-4b18-a8ab-9d38bdff2676",
+	'Date_Begun',
+	'',
+	'',
+	'Date_Begun',
+	0,
+	"ba5eda7a-def5-0000-0000-000000000002",
+	'',
+	'');
+INSERT INTO O_NBATTR
+	VALUES ("98b01517-6f6a-4a4a-9736-89ac73d12f7d",
+	"f3120f98-3c16-4319-a21c-dcc0f2470134");
+INSERT INTO O_BATTR
+	VALUES ("98b01517-6f6a-4a4a-9736-89ac73d12f7d",
+	"f3120f98-3c16-4319-a21c-dcc0f2470134");
+INSERT INTO O_ATTR
+	VALUES ("98b01517-6f6a-4a4a-9736-89ac73d12f7d",
+	"f3120f98-3c16-4319-a21c-dcc0f2470134",
+	"e698b7c5-253e-463d-acbd-e090c05d36d6",
+	'Date_Ended',
+	'',
+	'',
+	'Date_Ended',
+	0,
+	"ba5eda7a-def5-0000-0000-000000000002",
+	'',
+	'');
+INSERT INTO O_NBATTR
+	VALUES ("639791d0-8be9-4d50-8ecd-a96ce9d27a4e",
+	"f3120f98-3c16-4319-a21c-dcc0f2470134");
+INSERT INTO O_BATTR
+	VALUES ("639791d0-8be9-4d50-8ecd-a96ce9d27a4e",
+	"f3120f98-3c16-4319-a21c-dcc0f2470134");
+INSERT INTO O_ATTR
+	VALUES ("639791d0-8be9-4d50-8ecd-a96ce9d27a4e",
+	"f3120f98-3c16-4319-a21c-dcc0f2470134",
+	"98b01517-6f6a-4a4a-9736-89ac73d12f7d",
+	'Concern_ID',
+	'',
+	'',
+	'Concern_ID',
+	0,
+	"ba5eda7a-def5-0000-0000-000000000002",
+	'',
+	'');
+INSERT INTO O_NBATTR
+	VALUES ("5a63e032-7cca-41de-ad75-528e8b26119e",
+	"f3120f98-3c16-4319-a21c-dcc0f2470134");
+INSERT INTO O_BATTR
+	VALUES ("5a63e032-7cca-41de-ad75-528e8b26119e",
+	"f3120f98-3c16-4319-a21c-dcc0f2470134");
+INSERT INTO O_ATTR
+	VALUES ("5a63e032-7cca-41de-ad75-528e8b26119e",
+	"f3120f98-3c16-4319-a21c-dcc0f2470134",
+	"639791d0-8be9-4d50-8ecd-a96ce9d27a4e",
+	'Described_Concern',
+	'',
+	'',
+	'Described_Concern',
+	0,
+	"ba5eda7a-def5-0000-0000-000000000002",
+	'',
+	'');
+INSERT INTO O_NBATTR
+	VALUES ("832d9132-d30b-473d-a370-8268bceb47b5",
+	"f3120f98-3c16-4319-a21c-dcc0f2470134");
+INSERT INTO O_BATTR
+	VALUES ("832d9132-d30b-473d-a370-8268bceb47b5",
+	"f3120f98-3c16-4319-a21c-dcc0f2470134");
+INSERT INTO O_ATTR
+	VALUES ("832d9132-d30b-473d-a370-8268bceb47b5",
+	"f3120f98-3c16-4319-a21c-dcc0f2470134",
+	"5a63e032-7cca-41de-ad75-528e8b26119e",
+	'is_Sponsor',
+	'Is the STAKEHOLDER a sponsor of the startegic endeavour.  Simple choice of ''Yes'' or ''No''.',
+	'',
+	'is_Sponsor',
+	0,
+	"05e33b6b-c69a-4c41-8b61-465dd97fe7dd",
+	'',
+	'');
+INSERT INTO S_DT_PROXY
+	VALUES ("05e33b6b-c69a-4c41-8b61-465dd97fe7dd",
+	"00000000-0000-0000-0000-000000000000",
+	'Answer',
+	'',
+	'',
+	'../../../../PM_Types/PM_Types.xtuml');
+INSERT INTO O_NBATTR
+	VALUES ("8733cc9f-051e-40b9-8e32-e683ae06e75f",
+	"f3120f98-3c16-4319-a21c-dcc0f2470134");
+INSERT INTO O_BATTR
+	VALUES ("8733cc9f-051e-40b9-8e32-e683ae06e75f",
+	"f3120f98-3c16-4319-a21c-dcc0f2470134");
+INSERT INTO O_ATTR
+	VALUES ("8733cc9f-051e-40b9-8e32-e683ae06e75f",
+	"f3120f98-3c16-4319-a21c-dcc0f2470134",
+	"832d9132-d30b-473d-a370-8268bceb47b5",
+	'Phase_Of_Interest',
+	'A STAKEHOLDER may not have interest in all aspects of the strategic endeavour.  In terms of 
+normal process the following phases provide opportunity for a stakeholder to focus in on a 
+PHASE of major interest:
+
+1 - Defining,
+2 - Planning,
+3 - Implementation/Building
+4 - Delivery,
+5 - Operational
+6 - All phases.
+ ',
+	'',
+	'Phase_Of_Interest',
+	0,
+	"df492928-ee5c-40ad-aa60-6fc07b47662d",
+	'',
+	'');
+INSERT INTO S_DT_PROXY
+	VALUES ("df492928-ee5c-40ad-aa60-6fc07b47662d",
+	"00000000-0000-0000-0000-000000000000",
+	'Phase',
+	'',
+	'',
+	'../../../../PM_Types/PM_Types.xtuml');
+INSERT INTO O_NBATTR
+	VALUES ("52af6e4b-3c96-4383-9ac5-a9c91cd5362e",
+	"f3120f98-3c16-4319-a21c-dcc0f2470134");
+INSERT INTO O_BATTR
+	VALUES ("52af6e4b-3c96-4383-9ac5-a9c91cd5362e",
+	"f3120f98-3c16-4319-a21c-dcc0f2470134");
+INSERT INTO O_ATTR
+	VALUES ("52af6e4b-3c96-4383-9ac5-a9c91cd5362e",
+	"f3120f98-3c16-4319-a21c-dcc0f2470134",
+	"8733cc9f-051e-40b9-8e32-e683ae06e75f",
+	'Degree_Of_Influence',
+	'The degree of influence (typically a stakeholder) has over obtaining strategic goals, or
+program, project success etc.  The degree of influence is often difficult to ascertain.
+It might be determined by assumptions of financial power (or lack thereof),  dictatorial 
+decision making (or ineffective decision making) etc.
+In this case it is merely a qualitative indicator of LOW, MEDIUM or HIGH.',
+	'',
+	'Degree_Of_Influence',
+	0,
+	"e871fa27-70f6-489f-ac44-3b0ee106d0c0",
+	'',
+	'');
+INSERT INTO S_DT_PROXY
+	VALUES ("e871fa27-70f6-489f-ac44-3b0ee106d0c0",
+	"00000000-0000-0000-0000-000000000000",
+	'Degree_Scale',
+	'',
+	'',
+	'../../../../PM_Types/PM_Types.xtuml');
+INSERT INTO O_NBATTR
+	VALUES ("2fca0cc8-e01b-48f7-b3c3-0c726983461c",
+	"f3120f98-3c16-4319-a21c-dcc0f2470134");
+INSERT INTO O_BATTR
+	VALUES ("2fca0cc8-e01b-48f7-b3c3-0c726983461c",
+	"f3120f98-3c16-4319-a21c-dcc0f2470134");
+INSERT INTO O_ATTR
+	VALUES ("2fca0cc8-e01b-48f7-b3c3-0c726983461c",
+	"f3120f98-3c16-4319-a21c-dcc0f2470134",
+	"52af6e4b-3c96-4383-9ac5-a9c91cd5362e",
+	'Degree-Of_Support_For_Benefits',
+	'The BENEFITS of a strategic endeavour should be well-known to all interested stakeholders.
+Of course each stakeholder will have a different impression of what the ultimate benefits might
+be (sometimes contrary to intentions).  Each stakeholder will provide some level of supoort 
+(perhaps NONE) depending on how and when any part of the endeavour might affect them directly.
+A qualitative range of NONE, LOW, MEDIUM, or HIGH should at least be determined for, and better,
+by each stakeholder.',
+	'',
+	'Degree-Of_Support_For_Benefits',
+	0,
+	"e871fa27-70f6-489f-ac44-3b0ee106d0c0",
+	'',
+	'');
+INSERT INTO O_ID
+	VALUES (0,
+	"f3120f98-3c16-4319-a21c-dcc0f2470134");
+INSERT INTO O_ID
+	VALUES (1,
+	"f3120f98-3c16-4319-a21c-dcc0f2470134");
+INSERT INTO O_ID
+	VALUES (2,
+	"f3120f98-3c16-4319-a21c-dcc0f2470134");
+INSERT INTO PE_PE
+	VALUES ("f3120f98-3c16-4319-a21c-dcc0f2470134",
+	1,
+	"9ad079f3-abc5-417c-8b37-4084fb0e9dde",
+	"00000000-0000-0000-0000-000000000000",
+	4);
+INSERT INTO EP_PKG_PROXY
+	VALUES ("9ad079f3-abc5-417c-8b37-4084fb0e9dde",
+	"00000000-0000-0000-0000-000000000000",
+	"fed360c9-cd00-40a7-9299-ecef1edcb505",
+	'PM_Control',
+	'',
+	0,
+	'../PM_Control.xtuml');
