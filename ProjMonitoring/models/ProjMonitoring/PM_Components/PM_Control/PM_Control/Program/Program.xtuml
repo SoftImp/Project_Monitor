@@ -358,7 +358,7 @@ if (not empty Program)
 		Prog_Milestone.MS_Name = param.MS_Name;
 		Prog_Milestone.Percent_Complete = 0.0;
 	
-		relate self to Prog_Milestone across R11.''includes'';
+		relate Program to Prog_Milestone across R11.''includes'';
 	
 		LOG::LogInfo( message: "A new PROGRAM MILESTONE has been successfully created." );
 		send OrgMan::Notify(Relevant_Person:"Manager", Message:"A new PROGRAM MILESTONE " + param.MS_Name + "has been created.");
@@ -493,7 +493,7 @@ if (not empty Program)
 		Requirement.Req_ID = param.Req_ID;
 		Requirement.Description = param.Description;
 	
-		relate self to Requirement across R12.''is to implement'';
+		relate Program to Requirement across R12.''is to implement'';
 	
 		LOG::LogInfo( message: "A new PROGRAM REQUIREMENT has been successfully added." );
 		send OrgMan::Notify(Relevant_Person:"Manager", Message:"A new PROGRAM REQUIREMENT " + param.Req_ID + "has been added.");
@@ -555,7 +555,7 @@ if (not empty Program)
 
 	if ( not empty Strategic_Goal)
 	
-		relate self to Strategic_Goal across R2.''may align with'';
+		relate Program to Strategic_Goal across R2.''may align with'';
 	
 		LOG::LogInfo( message: "A (new) PROGRAM has been associated with a STRATEGIC GOAL." );
 		send OrgMan::Notify(Relevant_Person:"Manager", Message:"A (new) PROGRAM  " + param.PRG_Name + "has been associated with a STRATEGIC GOAL.");
@@ -608,7 +608,7 @@ if (not empty Program)
 
 	if ( not empty Portfolio)
 	
-		relate self to Portfolio across R4.''may be part of'';
+		relate Program to Portfolio across R4.''may be part of'';
 	
 		LOG::LogInfo( message: "A (new) PROGRAM has been added to a PORTFOLIO." );
 		send OrgMan::Notify(Relevant_Person:"Manager", Message:"A PROGRAM  " + param.PRG_Name + "has been added to a PORTFOLIO.");

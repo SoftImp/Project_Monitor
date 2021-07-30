@@ -227,7 +227,7 @@ INSERT INTO O_ATTR
 	VALUES ("2fca0cc8-e01b-48f7-b3c3-0c726983461c",
 	"f3120f98-3c16-4319-a21c-dcc0f2470134",
 	"52af6e4b-3c96-4383-9ac5-a9c91cd5362e",
-	'Degree-Of_Support_For_Benefits',
+	'Degree_Of_Support_For_Benefits',
 	'The BENEFITS of a strategic endeavour should be well-known to all interested stakeholders.
 Of course each stakeholder will have a different impression of what the ultimate benefits might
 be (sometimes contrary to intentions).  Each stakeholder will provide some level of supoort 
@@ -235,7 +235,7 @@ be (sometimes contrary to intentions).  Each stakeholder will provide some level
 A qualitative range of NONE, LOW, MEDIUM, or HIGH should at least be determined for, and better,
 by each stakeholder.',
 	'',
-	'Degree-Of_Support_For_Benefits',
+	'Degree_Of_Support_For_Benefits',
 	0,
 	"e871fa27-70f6-489f-ac44-3b0ee106d0c0",
 	'',
