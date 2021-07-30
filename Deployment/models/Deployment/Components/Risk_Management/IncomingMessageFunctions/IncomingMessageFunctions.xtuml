@@ -1,0 +1,58 @@
+-- BP 7.1.6 content: Package syschar: 3 persistence-version: 7.1.6
+
+INSERT INTO EP_PKG
+	VALUES ("8f0d8ed9-ab24-4fb9-b1ce-66f1662ada61",
+	"00000000-0000-0000-0000-000000000000",
+	"385363f2-f297-432a-9a51-63b018ac70a4",
+	'IncomingMessageFunctions',
+	'',
+	0);
+INSERT INTO GD_MD
+	VALUES ("f8d4fd0f-6cec-49c5-bfaf-a3492c9a61a9",
+	112,
+	"8f0d8ed9-ab24-4fb9-b1ce-66f1662ada61",
+	108,
+	0,
+	0,
+	1,
+	1,
+	1,
+	12,
+	1,
+	0,
+	0,
+	0,
+	0,
+	0,
+	'',
+	'Deployment::Components::Risk_Management::IncomingMessageFunctions');
+INSERT INTO DIM_DIA
+	VALUES ("f8d4fd0f-6cec-49c5-bfaf-a3492c9a61a9",
+	'',
+	1.000000,
+	0.000000,
+	0.000000,
+	"00000000-0000-0000-0000-000000000000");
+INSERT INTO PE_PE
+	VALUES ("8f0d8ed9-ab24-4fb9-b1ce-66f1662ada61",
+	1,
+	"00000000-0000-0000-0000-000000000000",
+	"a723c0b0-1e8e-4194-8f4a-e440e2a826f6",
+	7);
+INSERT INTO C_C_PROXY
+	VALUES ("a723c0b0-1e8e-4194-8f4a-e440e2a826f6",
+	"00000000-0000-0000-0000-000000000000",
+	"00000000-0000-0000-0000-000000000000",
+	'Risk_Management',
+	'',
+	0,
+	"00000000-0000-0000-0000-000000000000",
+	0,
+	'',
+	'',
+	'../Risk_Management.xtuml');
+INSERT INTO S_SYS_PROXY
+	VALUES ("385363f2-f297-432a-9a51-63b018ac70a4",
+	'Deployment',
+	1,
+	'../../../Deployment.xtuml');

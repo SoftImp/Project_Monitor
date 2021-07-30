@@ -1,0 +1,50 @@
+-- BP 7.1.6 content: ModelClass syschar: 3 persistence-version: 7.1.6
+
+INSERT INTO O_OBJ
+	VALUES ("85b0628f-8218-4afe-9117-bf931890238c",
+	'JsonMsg',
+	1,
+	'JsonMsg',
+	'',
+	"00000000-0000-0000-0000-000000000000");
+INSERT INTO O_TFR
+	VALUES ("66a35458-2c4c-47dc-93b3-cf2fd16249ce",
+	"85b0628f-8218-4afe-9117-bf931890238c",
+	'get_Strategic_Goals',
+	'',
+	"ba5eda7a-def5-0000-0000-000000000004",
+	0,
+	'select many goals from instances of SG;
+for each g in goals
+  LOG::LogInfo( message: "sg: " + g.SG_Name + " " + g.Description );
+end for;
+
+return "";',
+	1,
+	'',
+	"00000000-0000-0000-0000-000000000000",
+	0,
+	1);
+INSERT INTO O_ID
+	VALUES (0,
+	"85b0628f-8218-4afe-9117-bf931890238c");
+INSERT INTO O_ID
+	VALUES (1,
+	"85b0628f-8218-4afe-9117-bf931890238c");
+INSERT INTO O_ID
+	VALUES (2,
+	"85b0628f-8218-4afe-9117-bf931890238c");
+INSERT INTO PE_PE
+	VALUES ("85b0628f-8218-4afe-9117-bf931890238c",
+	1,
+	"6e629f19-e11a-49b2-b961-90dca2149cc5",
+	"00000000-0000-0000-0000-000000000000",
+	4);
+INSERT INTO EP_PKG_PROXY
+	VALUES ("6e629f19-e11a-49b2-b961-90dca2149cc5",
+	"00000000-0000-0000-0000-000000000000",
+	"fed360c9-cd00-40a7-9299-ecef1edcb505",
+	'PM_Message',
+	'',
+	0,
+	'../PM_Message.xtuml');

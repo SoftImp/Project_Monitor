@@ -3,7 +3,7 @@
 INSERT INTO C_I
 	VALUES ("bd829dba-1165-4562-a8f7-e2a65b6e713c",
 	"00000000-0000-0000-0000-000000000000",
-	'Organisational_Maanagement',
+	'Organisational_Management',
 	'An I/F to allow particular communications with Organisational Management & Stakeholders.');
 INSERT INTO C_EP
 	VALUES ("76fc72ad-4933-4e85-bfb3-49857370c4be",
@@ -197,6 +197,41 @@ INSERT INTO C_PP
 	"d0b29d28-b9b6-4fc4-b34c-830654b3e59d",
 	"ba5eda7a-def5-0000-0000-000000000004",
 	'Relevant_Person',
+	'',
+	0,
+	'',
+	"00000000-0000-0000-0000-000000000000");
+INSERT INTO C_EP
+	VALUES ("7c5ebe53-4cf7-408d-be17-5d8c571ff115",
+	"bd829dba-1165-4562-a8f7-e2a65b6e713c",
+	-1,
+	'get_Strategic_Goals',
+	'',
+	5);
+INSERT INTO C_AS
+	VALUES ("7c5ebe53-4cf7-408d-be17-5d8c571ff115",
+	'get_Strategic_Goals',
+	'',
+	0,
+	"d0b29d28-b9b6-4fc4-b34c-830654b3e59d");
+INSERT INTO C_EP
+	VALUES ("898fff99-3619-4f5b-9243-2a3ec7b924c3",
+	"bd829dba-1165-4562-a8f7-e2a65b6e713c",
+	-1,
+	'on_Strategic_Goals',
+	'',
+	6);
+INSERT INTO C_AS
+	VALUES ("898fff99-3619-4f5b-9243-2a3ec7b924c3",
+	'on_Strategic_Goals',
+	'',
+	1,
+	"7c5ebe53-4cf7-408d-be17-5d8c571ff115");
+INSERT INTO C_PP
+	VALUES ("06cc5610-04ed-4cf1-a379-706eadf78de7",
+	"898fff99-3619-4f5b-9243-2a3ec7b924c3",
+	"ba5eda7a-def5-0000-0000-000000000004",
+	'Strategic_Goals',
 	'',
 	0,
 	'',
