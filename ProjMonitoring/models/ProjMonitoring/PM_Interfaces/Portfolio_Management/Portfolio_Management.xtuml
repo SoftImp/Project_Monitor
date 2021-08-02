@@ -576,6 +576,41 @@ INSERT INTO C_PP
 	0,
 	'',
 	"2039699d-9056-4d58-bf00-5e6d9ca79d96");
+INSERT INTO C_EP
+	VALUES ("6c33e1d5-1d3c-4655-87b5-bf0801c1ce43",
+	"a1785323-9842-4f78-9c7c-66eac1ae5d6a",
+	-1,
+	'get_Portfolios',
+	'',
+	16);
+INSERT INTO C_AS
+	VALUES ("6c33e1d5-1d3c-4655-87b5-bf0801c1ce43",
+	'get_Portfolios',
+	'',
+	0,
+	"7a7d8a3a-005b-4772-8a05-ab3cc2b89171");
+INSERT INTO C_EP
+	VALUES ("b0b61083-5e62-41fb-9c9d-c007fe9c2f65",
+	"a1785323-9842-4f78-9c7c-66eac1ae5d6a",
+	-1,
+	'on_Portfolios',
+	'',
+	17);
+INSERT INTO C_AS
+	VALUES ("b0b61083-5e62-41fb-9c9d-c007fe9c2f65",
+	'on_Portfolios',
+	'',
+	1,
+	"6c33e1d5-1d3c-4655-87b5-bf0801c1ce43");
+INSERT INTO C_PP
+	VALUES ("f2ce457d-c718-4d87-84d2-c3f9003fb16b",
+	"b0b61083-5e62-41fb-9c9d-c007fe9c2f65",
+	"ba5eda7a-def5-0000-0000-000000000004",
+	'Portfolios',
+	'',
+	0,
+	'',
+	"00000000-0000-0000-0000-000000000000");
 INSERT INTO PE_PE
 	VALUES ("a1785323-9842-4f78-9c7c-66eac1ae5d6a",
 	1,

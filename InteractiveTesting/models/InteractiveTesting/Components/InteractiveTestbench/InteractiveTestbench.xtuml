@@ -214,7 +214,7 @@ INSERT INTO GD_GE
 	"cbdc2053-15bd-4804-81b8-5a717b0563d5",
 	93,
 	0,
-	'InteractiveTesting::Components::InteractiveTestbench::OrgMan::Organisational_Maanagement');
+	'InteractiveTesting::Components::InteractiveTestbench::OrgMan::Organisational_Management');
 INSERT INTO GD_CON
 	VALUES ("44d940a1-b7ed-4832-a845-e6e0845049dd",
 	"00000000-0000-0000-0000-000000000000");
@@ -1125,6 +1125,46 @@ INSERT INTO C_EP_PROXY
 	'',
 	15,
 	'../../../../../ProjMonitoring/models/ProjMonitoring/PM_Interfaces/Portfolio_Management/Portfolio_Management.xtuml');
+INSERT INTO SPR_REP
+	VALUES ("3e679ea5-a09e-4b9c-928e-0f013a91b1a5",
+	"6c33e1d5-1d3c-4655-87b5-bf0801c1ce43",
+	"4905c0e4-7c18-488e-8cf4-bb602df16892");
+INSERT INTO SPR_RS
+	VALUES ("3e679ea5-a09e-4b9c-928e-0f013a91b1a5",
+	'get_Portfolios',
+	'',
+	'',
+	3,
+	0,
+	16);
+INSERT INTO C_EP_PROXY
+	VALUES ("6c33e1d5-1d3c-4655-87b5-bf0801c1ce43",
+	"a1785323-9842-4f78-9c7c-66eac1ae5d6a",
+	-1,
+	'get_Portfolios',
+	'',
+	16,
+	'../../../../../ProjMonitoring/models/ProjMonitoring/PM_Interfaces/Portfolio_Management/Portfolio_Management.xtuml');
+INSERT INTO SPR_REP
+	VALUES ("385ad39f-dbc2-488f-ad66-7b52b38c4386",
+	"b0b61083-5e62-41fb-9c9d-c007fe9c2f65",
+	"4905c0e4-7c18-488e-8cf4-bb602df16892");
+INSERT INTO SPR_RS
+	VALUES ("385ad39f-dbc2-488f-ad66-7b52b38c4386",
+	'on_Portfolios',
+	'',
+	'',
+	3,
+	0,
+	17);
+INSERT INTO C_EP_PROXY
+	VALUES ("b0b61083-5e62-41fb-9c9d-c007fe9c2f65",
+	"a1785323-9842-4f78-9c7c-66eac1ae5d6a",
+	-1,
+	'on_Portfolios',
+	'',
+	17,
+	'../../../../../ProjMonitoring/models/ProjMonitoring/PM_Interfaces/Portfolio_Management/Portfolio_Management.xtuml');
 INSERT INTO C_I_PROXY
 	VALUES ("a1785323-9842-4f78-9c7c-66eac1ae5d6a",
 	"00000000-0000-0000-0000-000000000000",
@@ -1145,10 +1185,10 @@ INSERT INTO C_IR
 	"51c4e6e8-4bfb-4b97-b220-a2cb617626fb");
 INSERT INTO C_R
 	VALUES ("cbdc2053-15bd-4804-81b8-5a717b0563d5",
-	'Organisational_Maanagement',
+	'Organisational_Management',
 	'',
 	'Organisational_Maanagement',
-	'InteractiveTestbench::OrgMan::Organisational_Maanagement');
+	'InteractiveTestbench::OrgMan::Organisational_Management');
 INSERT INTO SPR_REP
 	VALUES ("883b425d-d75a-444c-bb05-84020cf5229e",
 	"76fc72ad-4933-4e85-bfb3-49857370c4be",
@@ -1168,7 +1208,7 @@ INSERT INTO C_EP_PROXY
 	'add_Strategic_Goal',
 	'Based on UC00.',
 	1,
-	'../../../../../ProjMonitoring/models/ProjMonitoring/PM_Interfaces/Organisational_Maanagement/Organisational_Maanagement.xtuml');
+	'../../../../../ProjMonitoring/models/ProjMonitoring/PM_Interfaces/Organisational_Management/Organisational_Management.xtuml');
 INSERT INTO SPR_REP
 	VALUES ("c50ef03c-9785-4323-b87a-632cec1aadcf",
 	"6d65d88f-b602-47af-8987-7acba1849666",
@@ -1188,7 +1228,7 @@ INSERT INTO C_EP_PROXY
 	'update_Description',
 	'Based on UC00.',
 	2,
-	'../../../../../ProjMonitoring/models/ProjMonitoring/PM_Interfaces/Organisational_Maanagement/Organisational_Maanagement.xtuml');
+	'../../../../../ProjMonitoring/models/ProjMonitoring/PM_Interfaces/Organisational_Management/Organisational_Management.xtuml');
 INSERT INTO SPR_REP
 	VALUES ("6d8e954a-8dfe-4b1e-a7d1-1c74a6c4f1e1",
 	"dd06136d-1f07-42ff-a7e4-dbfb97a61fe1",
@@ -1208,7 +1248,7 @@ INSERT INTO C_EP_PROXY
 	'Notify',
 	'',
 	3,
-	'../../../../../ProjMonitoring/models/ProjMonitoring/PM_Interfaces/Organisational_Maanagement/Organisational_Maanagement.xtuml');
+	'../../../../../ProjMonitoring/models/ProjMonitoring/PM_Interfaces/Organisational_Management/Organisational_Management.xtuml');
 INSERT INTO SPR_REP
 	VALUES ("91f018d5-25a0-4ed5-ba17-115782c55864",
 	"81b13772-1ce3-4263-bfad-bf954649aa83",
@@ -1228,7 +1268,7 @@ INSERT INTO C_EP_PROXY
 	'update_Priority',
 	'Based on UC00.',
 	2,
-	'../../../../../ProjMonitoring/models/ProjMonitoring/PM_Interfaces/Organisational_Maanagement/Organisational_Maanagement.xtuml');
+	'../../../../../ProjMonitoring/models/ProjMonitoring/PM_Interfaces/Organisational_Management/Organisational_Management.xtuml');
 INSERT INTO SPR_REP
 	VALUES ("9bfa953f-f175-4036-8ef6-f2c6ce72e83e",
 	"d0b29d28-b9b6-4fc4-b34c-830654b3e59d",
@@ -1248,7 +1288,7 @@ INSERT INTO C_EP_PROXY
 	'Report',
 	'',
 	4,
-	'../../../../../ProjMonitoring/models/ProjMonitoring/PM_Interfaces/Organisational_Maanagement/Organisational_Maanagement.xtuml');
+	'../../../../../ProjMonitoring/models/ProjMonitoring/PM_Interfaces/Organisational_Management/Organisational_Management.xtuml');
 INSERT INTO SPR_REP
 	VALUES ("81b9330b-fc71-4082-b100-4ba6f240ee61",
 	"7c5ebe53-4cf7-408d-be17-5d8c571ff115",
@@ -1268,7 +1308,7 @@ INSERT INTO C_EP_PROXY
 	'get_Strategic_Goals',
 	'',
 	5,
-	'../../../../../ProjMonitoring/models/ProjMonitoring/PM_Interfaces/Organisational_Maanagement/Organisational_Maanagement.xtuml');
+	'../../../../../ProjMonitoring/models/ProjMonitoring/PM_Interfaces/Organisational_Management/Organisational_Management.xtuml');
 INSERT INTO SPR_REP
 	VALUES ("c69ebb08-05de-4734-9eba-4bdf8f57846f",
 	"898fff99-3619-4f5b-9243-2a3ec7b924c3",
@@ -1288,13 +1328,13 @@ INSERT INTO C_EP_PROXY
 	'on_Strategic_Goals',
 	'',
 	6,
-	'../../../../../ProjMonitoring/models/ProjMonitoring/PM_Interfaces/Organisational_Maanagement/Organisational_Maanagement.xtuml');
+	'../../../../../ProjMonitoring/models/ProjMonitoring/PM_Interfaces/Organisational_Management/Organisational_Management.xtuml');
 INSERT INTO C_I_PROXY
 	VALUES ("bd829dba-1165-4562-a8f7-e2a65b6e713c",
 	"00000000-0000-0000-0000-000000000000",
-	'Organisational_Maanagement',
+	'Organisational_Management',
 	'An I/F to allow particular communications with Organisational Management & Stakeholders.',
-	'../../../../../ProjMonitoring/models/ProjMonitoring/PM_Interfaces/Organisational_Maanagement/Organisational_Maanagement.xtuml');
+	'../../../../../ProjMonitoring/models/ProjMonitoring/PM_Interfaces/Organisational_Management/Organisational_Management.xtuml');
 INSERT INTO C_PO
 	VALUES ("56c3dc98-c447-4c36-8288-02cee46453b1",
 	"79dce7f8-a22a-45cb-8a06-081bb06ff162",
@@ -1679,6 +1719,46 @@ INSERT INTO C_EP_PROXY
 	'',
 	17,
 	'../../../../../ProjMonitoring/models/ProjMonitoring/PM_Interfaces/Program_Management/Program_Management.xtuml');
+INSERT INTO SPR_REP
+	VALUES ("6788e593-9137-4739-958b-21ee11441f64",
+	"fddb6e0f-8d7d-4d7d-b24c-0cf4530d4362",
+	"7c868331-1e28-448f-b73d-6f086b19deec");
+INSERT INTO SPR_RS
+	VALUES ("6788e593-9137-4739-958b-21ee11441f64",
+	'get_Programs',
+	'',
+	'',
+	3,
+	0,
+	18);
+INSERT INTO C_EP_PROXY
+	VALUES ("fddb6e0f-8d7d-4d7d-b24c-0cf4530d4362",
+	"2fb1cfbf-5a98-466f-9dc8-5c99b1f86c67",
+	-1,
+	'get_Programs',
+	'',
+	18,
+	'../../../../../ProjMonitoring/models/ProjMonitoring/PM_Interfaces/Program_Management/Program_Management.xtuml');
+INSERT INTO SPR_REP
+	VALUES ("baa1a1a6-a491-477e-8b17-5a2ead2e3775",
+	"a6543aaf-bd58-469a-a622-b7cf237898a2",
+	"7c868331-1e28-448f-b73d-6f086b19deec");
+INSERT INTO SPR_RS
+	VALUES ("baa1a1a6-a491-477e-8b17-5a2ead2e3775",
+	'on_Programs',
+	'',
+	'',
+	3,
+	0,
+	19);
+INSERT INTO C_EP_PROXY
+	VALUES ("a6543aaf-bd58-469a-a622-b7cf237898a2",
+	"2fb1cfbf-5a98-466f-9dc8-5c99b1f86c67",
+	-1,
+	'on_Programs',
+	'',
+	19,
+	'../../../../../ProjMonitoring/models/ProjMonitoring/PM_Interfaces/Program_Management/Program_Management.xtuml');
 INSERT INTO C_I_PROXY
 	VALUES ("2fb1cfbf-5a98-466f-9dc8-5c99b1f86c67",
 	"00000000-0000-0000-0000-000000000000",
@@ -1742,6 +1822,46 @@ INSERT INTO C_EP_PROXY
 	'Notify',
 	'',
 	3,
+	'../../../../../ProjMonitoring/models/ProjMonitoring/PM_Interfaces/Project_Management/Project_Management.xtuml');
+INSERT INTO SPR_REP
+	VALUES ("3f6532d5-3eb7-4214-adbb-2b787df950c5",
+	"59a6fe78-3808-45b9-9926-da54747faa0c",
+	"b2a84b0d-d2d9-472f-aed7-067d181922c4");
+INSERT INTO SPR_RS
+	VALUES ("3f6532d5-3eb7-4214-adbb-2b787df950c5",
+	'get_Projects',
+	'',
+	'',
+	3,
+	0,
+	4);
+INSERT INTO C_EP_PROXY
+	VALUES ("59a6fe78-3808-45b9-9926-da54747faa0c",
+	"6ca8fb7f-c78f-437e-a777-90725b82b541",
+	-1,
+	'get_Projects',
+	'',
+	4,
+	'../../../../../ProjMonitoring/models/ProjMonitoring/PM_Interfaces/Project_Management/Project_Management.xtuml');
+INSERT INTO SPR_REP
+	VALUES ("6a5e0b11-8bcd-47bf-828b-e6946142f87c",
+	"f0394799-6710-4a0c-8ff2-1af2b43c6fb8",
+	"b2a84b0d-d2d9-472f-aed7-067d181922c4");
+INSERT INTO SPR_RS
+	VALUES ("6a5e0b11-8bcd-47bf-828b-e6946142f87c",
+	'on_Projects',
+	'',
+	'',
+	3,
+	0,
+	5);
+INSERT INTO C_EP_PROXY
+	VALUES ("f0394799-6710-4a0c-8ff2-1af2b43c6fb8",
+	"6ca8fb7f-c78f-437e-a777-90725b82b541",
+	-1,
+	'on_Projects',
+	'',
+	5,
 	'../../../../../ProjMonitoring/models/ProjMonitoring/PM_Interfaces/Project_Management/Project_Management.xtuml');
 INSERT INTO C_I_PROXY
 	VALUES ("6ca8fb7f-c78f-437e-a777-90725b82b541",

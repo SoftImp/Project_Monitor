@@ -576,6 +576,46 @@ INSERT INTO C_EP_PROXY
 	'',
 	15,
 	'../../../../../ProjMonitoring/models/ProjMonitoring/PM_Interfaces/Portfolio_Management/Portfolio_Management.xtuml');
+INSERT INTO SPR_REP
+	VALUES ("6b562c54-3b6e-4579-bafa-fe5a0e947305",
+	"6c33e1d5-1d3c-4655-87b5-bf0801c1ce43",
+	"b1456975-17b6-4536-b2a3-e517a5b1f8c3");
+INSERT INTO SPR_RS
+	VALUES ("6b562c54-3b6e-4579-bafa-fe5a0e947305",
+	'get_Portfolios',
+	'',
+	'',
+	3,
+	0,
+	16);
+INSERT INTO C_EP_PROXY
+	VALUES ("6c33e1d5-1d3c-4655-87b5-bf0801c1ce43",
+	"a1785323-9842-4f78-9c7c-66eac1ae5d6a",
+	-1,
+	'get_Portfolios',
+	'',
+	16,
+	'../../../../../ProjMonitoring/models/ProjMonitoring/PM_Interfaces/Portfolio_Management/Portfolio_Management.xtuml');
+INSERT INTO SPR_REP
+	VALUES ("e6f95986-0e99-4480-bb04-d43850173a32",
+	"b0b61083-5e62-41fb-9c9d-c007fe9c2f65",
+	"b1456975-17b6-4536-b2a3-e517a5b1f8c3");
+INSERT INTO SPR_RS
+	VALUES ("e6f95986-0e99-4480-bb04-d43850173a32",
+	'on_Portfolios',
+	'',
+	'::on_Portfolios( Portfolios:param.Portfolios );',
+	1,
+	0,
+	17);
+INSERT INTO C_EP_PROXY
+	VALUES ("b0b61083-5e62-41fb-9c9d-c007fe9c2f65",
+	"a1785323-9842-4f78-9c7c-66eac1ae5d6a",
+	-1,
+	'on_Portfolios',
+	'',
+	17,
+	'../../../../../ProjMonitoring/models/ProjMonitoring/PM_Interfaces/Portfolio_Management/Portfolio_Management.xtuml');
 INSERT INTO C_I_PROXY
 	VALUES ("a1785323-9842-4f78-9c7c-66eac1ae5d6a",
 	"00000000-0000-0000-0000-000000000000",

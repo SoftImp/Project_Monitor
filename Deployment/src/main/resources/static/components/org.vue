@@ -4,30 +4,55 @@
     <p>
       <router-link to="/org/addsg">Add</router-link>
     </p>
-    <vuetable ref="vuetable" api-url="./getsg" :fields="fields">
-      <template slot="actions" scope="props">
-        <div class="custom-actions">
-          <b-button v-b-modal="'modal-updatesg'" class="ui basic button"
-            @click="onAction('edit-item', props.rowData, props.rowIndex)">
-            <i class="edit icon"></i>
-          </b-button>
-        </div>
-      </template>
-    </vuetable>
+    <div>
+      <b-row>
+        <b-col lg="6" class="my-1">
+          <b-form-group
+            label="Filter"
+            label-for="filter-input"
+            label-cols-sm="3"
+            label-align-sm="right"
+            label-size="sm"
+            class="mb-0"
+          >
+            <b-input-group size="sm">
+              <b-form-input
+                id="filter-input"
+                v-model="filter"
+                type="search"
+                placeholder="Type to search..."
+              ></b-form-input>
 
-    <b-modal id="modal-updatesg" ref="modal" title="Update Strategic Goal" @ok="handleOk" @show="resetModal">
+              <b-input-group-append>
+                <b-button :disabled="!filter" @click="filter = ''">Clear</b-button>
+              </b-input-group-append>
+            </b-input-group>
+          </b-form-group>
+        </b-col>
+      </b-row>
+
+      <b-table striped bordered hover :items="items" :fields="fields" :filter="filter">
+        <template #cell(actions)="row">
+          <b-button size="sm" @click="update(row.item, row.index, $event.target)" class="mr-1">
+            Update
+          </b-button>
+        </template>
+      </b-table>
+    </div>
+
+    <b-modal :id="updateModal.id" :title="updateModal.title" @ok="handleOk" @show="resetModal">
       <form ref="form" @submit.stop.prevent="handleSubmit">
         <b-form-group label="Goal Identity:" label-for="input-1">
-          <b-form-input id="input-1" v-model="modal.goalId" type="text" disabled></b-form-input>
+          <b-form-input id="input-1" v-model="updateModal.item.goalId" type="text" disabled></b-form-input>
         </b-form-group>
 
         <b-form-group label="Description:" label-for="input-2" invalid-feedback="Description is required"
-          :state="descState">
-          <b-form-input id="input-2" v-model="modal.description" :state="descState" required></b-form-input>
+          :state="updateModal.descState">
+          <b-form-input id="input-2" v-model="updateModal.item.description" :state="updateModal.descState" required></b-form-input>
         </b-form-group>
 
         <b-form-group label="Priority:" label-for="input-3">
-          <b-form-select id="input-3" v-model="modal.priority" :options="priorities"></b-form-select>
+          <b-form-select id="input-3" v-model="updateModal.item.priority" :options="updateModal.priorities"></b-form-select>
         </b-form-group>
       </form>
     </b-modal>
@@ -38,39 +63,50 @@
   module.exports = {
     data: function () {
       return {
-        updatesg: '',
-        modal: '',
-        priorities: ['HIGH', 'MEDIUM', 'LOW'],
-        descState: null,
+        items: [],
+        filter: null,
+        updateModal: {
+          id: 'update-modal',
+          title: '',
+          priorities: ['HIGH', 'MEDIUM', 'LOW'],
+          descState: null,
+          item: '',
+          orgItem: ''
+        },
         fields: [
-          {
-            name: 'goalId',
-            title: 'Goal Identity'
-          },
-          'description',
-          'priority',
-          {
-            name: '__slot:actions',
-            title: 'Actions',
-            titleClass: 'center aligned',
-            dataClass: 'center aligned',
-          }
+        { key: 'goalId', label: 'Goal Identity', sortable: true },
+        { key: 'description', sortable: false },
+        { key: 'priority', sortable: true },
+        { key: 'actions', label: 'Actions' }
         ]
       }
     },
+    created() {
+    this.fetchData().catch(error => {
+      console.error(error)
+    })
+    },
     methods: {
-      async onAction(action, data, index) {
-        this.updatesg = data;
-        this.modal = JSON.parse(JSON.stringify(data));	// make a copy, assigning will be a reference
-        console.log('slot action: ' + action, data.goalId, index)
+      async fetchData() {
+        const response = await fetch('./getsg');
+        if (response.ok) {
+          const json = await response.json();
+          this.items = json.data;
+        }
       },
+      update(item, index, button) {
+        this.updateModal.orgItem = item;
+        this.updateModal.title = 'Update Strategic Goal: ' + item.goalId;
+        this.updateModal.item = JSON.parse(JSON.stringify(item)); // make a copy, assigning will be a reference
+        this.$root.$emit('bv::show::modal', this.updateModal.id, button);
+      },     
       checkFormValidity() {
         const valid = this.$refs.form.checkValidity()
-        this.descState = valid
+        this.updateModal.descState = valid
         return valid
       },
       resetModal() {
-        this.descState = null
+        this.updateModal.descState = null
       },
       handleOk(bvModalEvt) {
         // Prevent modal from closing
@@ -89,15 +125,15 @@
             'Accept': 'application/json',
             'Content-Type': 'application/json'
           },
-          body: JSON.stringify({ goalId: this.updatesg.goalId, description: this.modal.description, priority: this.modal.priority })
+          body: JSON.stringify({ goalId: this.updateModal.orgItem.goalId, description: this.updateModal.item.description, priority: this.updateModal.item.priority })
         });
 
-        this.updatesg.description = this.modal.description;
-        this.updatesg.priority = this.modal.priority;
+        this.updateModal.orgItem.description = this.updateModal.item.description;
+        this.updateModal.orgItem.priority = this.updateModal.item.priority;
 
         // Hide the modal manually
         this.$nextTick(() => {
-          this.$bvModal.hide('modal-updatesg')
+          this.$bvModal.hide(this.updateModal.id)
         })
       }
     }

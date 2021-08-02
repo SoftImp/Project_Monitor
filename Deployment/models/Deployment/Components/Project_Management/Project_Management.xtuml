@@ -248,6 +248,46 @@ INSERT INTO C_EP_PROXY
 	'',
 	3,
 	'../../../../../ProjMonitoring/models/ProjMonitoring/PM_Interfaces/Project_Management/Project_Management.xtuml');
+INSERT INTO SPR_REP
+	VALUES ("875a3b93-d214-438f-aede-4596002149fa",
+	"59a6fe78-3808-45b9-9926-da54747faa0c",
+	"4c719868-4d7d-492e-92b6-302219648b4c");
+INSERT INTO SPR_RS
+	VALUES ("875a3b93-d214-438f-aede-4596002149fa",
+	'get_Projects',
+	'',
+	'',
+	3,
+	0,
+	4);
+INSERT INTO C_EP_PROXY
+	VALUES ("59a6fe78-3808-45b9-9926-da54747faa0c",
+	"6ca8fb7f-c78f-437e-a777-90725b82b541",
+	-1,
+	'get_Projects',
+	'',
+	4,
+	'../../../../../ProjMonitoring/models/ProjMonitoring/PM_Interfaces/Project_Management/Project_Management.xtuml');
+INSERT INTO SPR_REP
+	VALUES ("9143727d-a507-4024-ab81-ac168766ba66",
+	"f0394799-6710-4a0c-8ff2-1af2b43c6fb8",
+	"4c719868-4d7d-492e-92b6-302219648b4c");
+INSERT INTO SPR_RS
+	VALUES ("9143727d-a507-4024-ab81-ac168766ba66",
+	'on_Projects',
+	'',
+	'::on_Projects( Projects:param.Projects );',
+	1,
+	0,
+	5);
+INSERT INTO C_EP_PROXY
+	VALUES ("f0394799-6710-4a0c-8ff2-1af2b43c6fb8",
+	"6ca8fb7f-c78f-437e-a777-90725b82b541",
+	-1,
+	'on_Projects',
+	'',
+	5,
+	'../../../../../ProjMonitoring/models/ProjMonitoring/PM_Interfaces/Project_Management/Project_Management.xtuml');
 INSERT INTO C_I_PROXY
 	VALUES ("6ca8fb7f-c78f-437e-a777-90725b82b541",
 	"00000000-0000-0000-0000-000000000000",

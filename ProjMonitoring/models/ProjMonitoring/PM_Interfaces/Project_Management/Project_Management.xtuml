@@ -94,6 +94,41 @@ INSERT INTO C_PP
 	0,
 	'',
 	"cd847d7b-902d-4491-a54e-1a9eaa3c7dbe");
+INSERT INTO C_EP
+	VALUES ("59a6fe78-3808-45b9-9926-da54747faa0c",
+	"6ca8fb7f-c78f-437e-a777-90725b82b541",
+	-1,
+	'get_Projects',
+	'',
+	4);
+INSERT INTO C_AS
+	VALUES ("59a6fe78-3808-45b9-9926-da54747faa0c",
+	'get_Projects',
+	'',
+	0,
+	"b4addec1-bfe2-40f7-857a-bb57713fc6d1");
+INSERT INTO C_EP
+	VALUES ("f0394799-6710-4a0c-8ff2-1af2b43c6fb8",
+	"6ca8fb7f-c78f-437e-a777-90725b82b541",
+	-1,
+	'on_Projects',
+	'',
+	5);
+INSERT INTO C_AS
+	VALUES ("f0394799-6710-4a0c-8ff2-1af2b43c6fb8",
+	'on_Projects',
+	'',
+	1,
+	"59a6fe78-3808-45b9-9926-da54747faa0c");
+INSERT INTO C_PP
+	VALUES ("a744112c-3ab4-416b-a49c-c9ca2cffb12e",
+	"f0394799-6710-4a0c-8ff2-1af2b43c6fb8",
+	"ba5eda7a-def5-0000-0000-000000000004",
+	'Projects',
+	'',
+	0,
+	'',
+	"00000000-0000-0000-0000-000000000000");
 INSERT INTO PE_PE
 	VALUES ("6ca8fb7f-c78f-437e-a777-90725b82b541",
 	1,

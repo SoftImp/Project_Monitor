@@ -630,6 +630,41 @@ INSERT INTO C_PP
 	0,
 	'',
 	"37167c20-fa71-4317-9b3e-47f6652fe951");
+INSERT INTO C_EP
+	VALUES ("fddb6e0f-8d7d-4d7d-b24c-0cf4530d4362",
+	"2fb1cfbf-5a98-466f-9dc8-5c99b1f86c67",
+	-1,
+	'get_Programs',
+	'',
+	18);
+INSERT INTO C_AS
+	VALUES ("fddb6e0f-8d7d-4d7d-b24c-0cf4530d4362",
+	'get_Programs',
+	'',
+	0,
+	"6bc93eb2-1d80-4d60-8cd6-4a6e686e2086");
+INSERT INTO C_EP
+	VALUES ("a6543aaf-bd58-469a-a622-b7cf237898a2",
+	"2fb1cfbf-5a98-466f-9dc8-5c99b1f86c67",
+	-1,
+	'on_Programs',
+	'',
+	19);
+INSERT INTO C_AS
+	VALUES ("a6543aaf-bd58-469a-a622-b7cf237898a2",
+	'on_Programs',
+	'',
+	1,
+	"fddb6e0f-8d7d-4d7d-b24c-0cf4530d4362");
+INSERT INTO C_PP
+	VALUES ("fa523d53-dbcc-4aa1-acfa-a679df3c1f8d",
+	"a6543aaf-bd58-469a-a622-b7cf237898a2",
+	"ba5eda7a-def5-0000-0000-000000000004",
+	'Programs',
+	'',
+	0,
+	'',
+	"00000000-0000-0000-0000-000000000000");
 INSERT INTO PE_PE
 	VALUES ("2fb1cfbf-5a98-466f-9dc8-5c99b1f86c67",
 	1,

@@ -25,6 +25,96 @@ return "";',
 	"00000000-0000-0000-0000-000000000000",
 	0,
 	1);
+INSERT INTO O_TFR
+	VALUES ("a819d84b-c714-400e-92e6-f3a976628a08",
+	"85b0628f-8218-4afe-9117-bf931890238c",
+	'get_Portfolios',
+	'',
+	"ba5eda7a-def5-0000-0000-000000000004",
+	0,
+	'select many portfolios from instances of PF;
+for each p in portfolios
+  LOG::LogInfo( message: "pf: " + p.PF_Name + " " + p.Description );
+  
+  select one goal related by p->SG[R1.''aligns with''];
+  if ( not empty goal )
+  	LOG::LogInfo( message: "g: " + goal.SG_Name );
+  end if;
+  
+  select many programs related by p->PRG[R4.''may include''];
+  for each prg in programs
+  	LOG::LogInfo( message: "prg: " + prg.PRG_Name );
+  end for;
+  
+  select many projects related by p->PRJ[R6.''may include''];
+  for each prj in projects
+  	LOG::LogInfo( message: "prj: " + prj.PRJ_Name );
+  end for;
+end for;
+
+return "";',
+	1,
+	'',
+	"66a35458-2c4c-47dc-93b3-cf2fd16249ce",
+	0,
+	2);
+INSERT INTO O_TFR
+	VALUES ("b97c82e9-7927-4ecd-97e3-0abb2a867e6c",
+	"85b0628f-8218-4afe-9117-bf931890238c",
+	'get_Programs',
+	'',
+	"ba5eda7a-def5-0000-0000-000000000004",
+	0,
+	'select many programs from instances of PRG;
+for each p in programs
+  LOG::LogInfo( message: "prg: " + p.PRG_Name + " " + p.Description );
+  
+  select one pf related by p->PF[R4.''may be part of''];
+  if ( not empty pf )
+  	LOG::LogInfo( message: "pf: " + pf.PF_Name );
+  end if;
+  
+  select many projects related by p->PRJ[R5.''may include''];
+  for each prj in projects
+  	LOG::LogInfo( message: "prj: " + prj.PRJ_Name );
+  end for;
+  
+end for;
+
+return "";',
+	1,
+	'',
+	"a819d84b-c714-400e-92e6-f3a976628a08",
+	0,
+	3);
+INSERT INTO O_TFR
+	VALUES ("ad55ed0a-6904-4a72-98a6-50d60bf09eac",
+	"85b0628f-8218-4afe-9117-bf931890238c",
+	'get_Projects',
+	'',
+	"ba5eda7a-def5-0000-0000-000000000004",
+	0,
+	'select many projects from instances of PRJ;
+for each p in projects
+  LOG::LogInfo( message: "prg: " + p.PRJ_Name + " " + p.Description );
+
+  select one goal related by p->SG[R3.''may be driven by''];
+  if ( not empty goal )
+  	LOG::LogInfo( message: "g: " + goal.SG_Name );
+  end if;
+    
+  select one prg related by p->PRG[R5.''may be part of''];
+  if ( not empty prg )
+  	LOG::LogInfo( message: "prg: " + prg.PRG_Name );
+  end if;  
+end for;
+
+return "";',
+	1,
+	'',
+	"b97c82e9-7927-4ecd-97e3-0abb2a867e6c",
+	0,
+	4);
 INSERT INTO O_ID
 	VALUES (0,
 	"85b0628f-8218-4afe-9117-bf931890238c");
