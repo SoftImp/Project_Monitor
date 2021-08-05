@@ -77,20 +77,20 @@ INSERT INTO O_TFR
 	'An operation to UPDATE an existing goal.
 Based on UC00.',
 	"ba5eda7a-def5-0000-0000-000000000000",
-	0,
+	1,
 	'//Update the description of a Program.
 //An extension of UC01 for when changes might be made to a Program.
 
-select any Program from instances of PRG
- where (selected.PRG_Name == param.PRG_Name);
+//select any Program from instances of PRG
+// where (selected.PRG_Name == param.PRG_Name);
 
-if ( not empty Program)
-	Program.Description = param.Description;
+//if ( not empty Program)
+	self.Description = param.Description;
 	LOG::LogInfo(message : "The change to PROGRAM DESCRIPTION has been successful. Relevant parties will be notified.");
-	send OrgMan::Notify(Relevant_Person:"Manager", Message: "The DESCRIPTION of " + param.PRG_Name + "has been changed.");
-else
-	LOG::LogFailure(message : "The chosen PROGRAM does not exist. Perhaps it was misspelt or incorrectly selected");
-end if;
+	send OrgMan::Notify(Relevant_Person:"Manager", Message: "The DESCRIPTION of " + self.PRG_Name + "has been changed.");
+//else
+//	LOG::LogFailure(message : "The chosen PROGRAM does not exist. Perhaps it was misspelt or incorrectly selected");
+//end if;
 
 //Based on UC01.',
 	1,
@@ -99,22 +99,13 @@ end if;
 	0,
 	2);
 INSERT INTO O_TPARM
-	VALUES ("400cf543-6a38-4fe5-819b-d82d0ff84c3b",
-	"3b8282a0-e8ad-4a79-93f3-fdac62a5cc0d",
-	'PRG_Name',
-	"ba5eda7a-def5-0000-0000-000000000004",
-	0,
-	'',
-	"00000000-0000-0000-0000-000000000000",
-	'');
-INSERT INTO O_TPARM
 	VALUES ("d4b283dc-8a7b-435f-a8ea-cd8b7041f336",
 	"3b8282a0-e8ad-4a79-93f3-fdac62a5cc0d",
 	'Description',
 	"ba5eda7a-def5-0000-0000-000000000004",
 	0,
 	'',
-	"400cf543-6a38-4fe5-819b-d82d0ff84c3b",
+	"00000000-0000-0000-0000-000000000000",
 	'');
 INSERT INTO O_TFR
 	VALUES ("01872604-2f02-4071-8a98-e76e7a98f601",
@@ -122,20 +113,21 @@ INSERT INTO O_TFR
 	'add_Budget',
 	'',
 	"ba5eda7a-def5-0000-0000-000000000000",
-	0,
+	1,
 	'//Add the budget for a Program.
 
-select any Program from instances of PRG
- where (selected.PRG_Name == param.PRG_Name);
+//select any Program from instances of PRG
+// where (selected.PRG_Name == param.PRG_Name);
 
-if ( not empty Program)
+//if ( not empty Program)
 
-	Program.Budget = param.Budget;
+	self.Budget = param.Budget;
 	LOG::LogInfo(message : "The addition of a BUDGET has been successful. Relevant parties will be notified.");
 	send OrgMan::Notify(Relevant_Person:"Manager", Message: "The BUDGET for " + param.PRG_Name + "has been added.");
-else
-	LOG::LogFailure(message : "The chosen PROGRAM does not exist. Perhaps it was misspelt or incorrectly selected");
-end if;
+	
+//else
+//	LOG::LogFailure(message : "The chosen PROGRAM does not exist. Perhaps it was misspelt or incorrectly selected");
+//end if;
 
 //Based on UC01, on the assumption that the Budget may not be known on creation of the Program.',
 	1,
@@ -144,22 +136,13 @@ end if;
 	0,
 	3);
 INSERT INTO O_TPARM
-	VALUES ("eaf92366-4692-4998-bd6b-0e83371ff829",
-	"01872604-2f02-4071-8a98-e76e7a98f601",
-	'PRG_Name',
-	"ba5eda7a-def5-0000-0000-000000000004",
-	0,
-	'',
-	"00000000-0000-0000-0000-000000000000",
-	'');
-INSERT INTO O_TPARM
 	VALUES ("a10dac02-4158-401c-b33d-1815e5be0b6a",
 	"01872604-2f02-4071-8a98-e76e7a98f601",
 	'Budget',
 	"ba5eda7a-def5-0000-0000-000000000003",
 	0,
 	'',
-	"eaf92366-4692-4998-bd6b-0e83371ff829",
+	"00000000-0000-0000-0000-000000000000",
 	'');
 INSERT INTO O_TFR
 	VALUES ("47c6f926-85e3-47cb-bad0-2c29c6b3b8e6",
@@ -167,19 +150,21 @@ INSERT INTO O_TFR
 	'add_Manager',
 	'',
 	"ba5eda7a-def5-0000-0000-000000000000",
-	0,
+	1,
 	'// Add or change a Manager of a Program instance.
 
-select any Program from instances of PRG
- where (selected.PRG_Name == param.PRG_Name);
+//select any Program from instances of PRG
+// where (selected.PRG_Name == param.PRG_Name);
 
-if ( not empty Program)
-	Program.Manager = param.Manager;
+//if ( not empty Program)
+
+	self.Manager = param.Manager;
 	LOG::LogInfo(message : "The addition of a PROGRAM MANAGER has been successful. Relevant parties will be notified.");
-	send OrgMan::Notify(Relevant_Person:"Manager", Message: "The MANAGER for " + param.PRG_Name + "has been added.");
-else
-	LOG::LogFailure(message : "The chosen PROGRAM does not exist. Perhaps it was misspelt or incorrectly selected");
-end if;
+	send OrgMan::Notify(Relevant_Person:"Manager", Message: "The MANAGER for " + self.PRG_Name + "has been added.");
+
+//else
+//	LOG::LogFailure(message : "The chosen PROGRAM does not exist. Perhaps it was misspelt or incorrectly selected");
+//end if;
 
 //Based on UC01',
 	1,
@@ -188,22 +173,13 @@ end if;
 	0,
 	4);
 INSERT INTO O_TPARM
-	VALUES ("8f1bc641-6f4c-40f5-b106-4069aa659cda",
-	"47c6f926-85e3-47cb-bad0-2c29c6b3b8e6",
-	'PRG_Name',
-	"ba5eda7a-def5-0000-0000-000000000004",
-	0,
-	'',
-	"00000000-0000-0000-0000-000000000000",
-	'');
-INSERT INTO O_TPARM
 	VALUES ("af105151-548c-4fe0-945f-41aa73834d5f",
 	"47c6f926-85e3-47cb-bad0-2c29c6b3b8e6",
 	'Manager',
 	"ba5eda7a-def5-0000-0000-000000000004",
 	0,
 	'',
-	"8f1bc641-6f4c-40f5-b106-4069aa659cda",
+	"00000000-0000-0000-0000-000000000000",
 	'');
 INSERT INTO O_TFR
 	VALUES ("46b535c3-2c4b-4129-ab8a-f251d437c2d6",
@@ -211,24 +187,26 @@ INSERT INTO O_TFR
 	'add_Start_DMY',
 	'',
 	"ba5eda7a-def5-0000-0000-000000000000",
-	0,
+	1,
 	'//Add Start Date for a Program in DMY format.
 //Based on UC01, on the assumption that the start date may not be determined on creation of the Program.
 
 //The only format supported here is DMY - the order of input parameters.
 
-select any Program from instances of PRG
- where (selected.PRG_Name == param.PRG_Name);
+//select any Program from instances of PRG
+// where (selected.PRG_Name == param.PRG_Name);
 
-if ( not empty Program)
-	Program.Start_Date = TIM::create_date(day:param.Day, month:param.Month, year:param.Year, hour:0, minute:0, second:0);
+//if ( not empty Program)
+
+	self.Start_Date = TIM::create_date(day:param.Day, month:param.Month, year:param.Year, hour:0, minute:0, second:0);
 	//Program.Start_Date = TIM::current_date();
 	
 	LOG::LogInfo(message : "The addition of a START DATE has been successful. Relevant parties will be notified.");
-	send OrgMan::Notify(Relevant_Person:"Manager", Message: "The START DATE for " + param.PRG_Name + "has been added.");
-else
-	LOG::LogFailure(message : "The chosen PROGRAM does not exist. Perhaps it was misspelt or incorrectly selected");
-end if;
+	send OrgMan::Notify(Relevant_Person:"Manager", Message: "The START DATE for " + self.PRG_Name + "has been added.");
+	
+//else
+//	LOG::LogFailure(message : "The chosen PROGRAM does not exist. Perhaps it was misspelt or incorrectly selected");
+//end if;
 
 //NOTE: Will also need to add code to take in correct value ranges for day, month and year.',
 	1,
@@ -237,22 +215,13 @@ end if;
 	0,
 	5);
 INSERT INTO O_TPARM
-	VALUES ("65938f22-4501-454d-a742-b267215f19c9",
-	"46b535c3-2c4b-4129-ab8a-f251d437c2d6",
-	'PRG_Name',
-	"ba5eda7a-def5-0000-0000-000000000004",
-	0,
-	'',
-	"00000000-0000-0000-0000-000000000000",
-	'');
-INSERT INTO O_TPARM
 	VALUES ("7a7123f3-250a-4a32-bd74-d94b99d475f9",
 	"46b535c3-2c4b-4129-ab8a-f251d437c2d6",
 	'Day',
 	"ba5eda7a-def5-0000-0000-000000000002",
 	0,
 	'',
-	"65938f22-4501-454d-a742-b267215f19c9",
+	"00000000-0000-0000-0000-000000000000",
 	'');
 INSERT INTO O_TPARM
 	VALUES ("38ed08e1-0fc9-4d83-9b0d-f5467b67ea7f",
@@ -278,36 +247,29 @@ INSERT INTO O_TFR
 	'add_End_DMY',
 	'',
 	"ba5eda7a-def5-0000-0000-000000000000",
-	0,
+	1,
 	'//Add End Date for a Program in DMY format.
 //Based on UC01, on the assumption that the end date may not be determined on creation of the Program.
 
 //The only format supported here is DMY - the order of input parameters.
 
-select any Program from instances of PRG
- where (selected.PRG_Name == param.PRG_Name);
+//select any Program from instances of PRG
+// where (selected.PRG_Name == param.PRG_Name);
 
-if ( not empty Program)
-	Program.Start_Date = TIM::create_date(day:param.Day, month:param.Month, year:param.Year, hour:0, minute:0, second:0);
+//if ( not empty Program)
+
+	self.Start_Date = TIM::create_date(day:param.Day, month:param.Month, year:param.Year, hour:0, minute:0, second:0);
 	LOG::LogInfo(message : "The addition of an END DATE has been successful. Relevant parties will be notified.");
-	send OrgMan::Notify(Relevant_Person:"Manager", Message: "The END DATE for " + param.PRG_Name + "has been added.");
-else
-	LOG::LogFailure(message : "The chosen PROGRAM does not exist. Perhaps it was misspelt or incorrectly selected");
-end if;',
+	send OrgMan::Notify(Relevant_Person:"Manager", Message: "The END DATE for " + self.PRG_Name + "has been added.");
+	
+//else
+//	LOG::LogFailure(message : "The chosen PROGRAM does not exist. Perhaps it was misspelt or incorrectly selected");
+//end if;',
 	1,
 	'',
 	"46b535c3-2c4b-4129-ab8a-f251d437c2d6",
 	0,
 	5);
-INSERT INTO O_TPARM
-	VALUES ("fa96e0c1-ae09-4500-b0cf-80a6f44cf81c",
-	"a2c13cd0-4a4f-4465-9b53-e0f056145ffc",
-	'PRG_Name',
-	"ba5eda7a-def5-0000-0000-000000000004",
-	0,
-	'',
-	"00000000-0000-0000-0000-000000000000",
-	'');
 INSERT INTO O_TPARM
 	VALUES ("df45d763-3ac8-4c0c-8c1a-08da3b371144",
 	"a2c13cd0-4a4f-4465-9b53-e0f056145ffc",
@@ -315,7 +277,7 @@ INSERT INTO O_TPARM
 	"ba5eda7a-def5-0000-0000-000000000002",
 	0,
 	'',
-	"fa96e0c1-ae09-4500-b0cf-80a6f44cf81c",
+	"00000000-0000-0000-0000-000000000000",
 	'');
 INSERT INTO O_TPARM
 	VALUES ("d12a7c1a-d062-4cad-9214-21e1405218f8",
@@ -341,14 +303,21 @@ INSERT INTO O_TFR
 	'add_Milestone',
 	'This operation is based on UC02.',
 	"ba5eda7a-def5-0000-0000-000000000000",
-	0,
+	1,
 	'// Create a new Milestoane for Program by providing a (hopefully) unique name (MS_Name) and setting Percent_Complete to zero.
 //Based on UC02.
 
-select any Program from instances of PRG
- where (selected.PRG_Name == param.PRG_Name);
+//This is the OAL code necessary for an INSTANCE-BASED operation called from (in this case)
+//Prg::add_Milestaone signal where the call is made.
+//Given that signal contains the code to identify the PRG instance then it is unnecessary to
+//repeat the code identifying the instance here.  So!  The unnecessary code is commented out
+//below.  In addition the ''relate'' statement only needs to refer to ''self'' and not a particular
+//instance handle.
+
+//select any Program from instances of PRG
+// where (selected.PRG_Name == param.PRG_Name);
  
-if (not empty Program)
+//if (not empty Program)
 
 	select any Prog_Milestone from instances of PROGMS
 	 where (selected.MS_Name == param.MS_Name);
@@ -358,16 +327,16 @@ if (not empty Program)
 		Prog_Milestone.MS_Name = param.MS_Name;
 		Prog_Milestone.Percent_Complete = 0.0;
 	
-		relate Program to Prog_Milestone across R11.''includes'';
+		relate self to Prog_Milestone across R11.''includes'';
 	
 		LOG::LogInfo( message: "A new PROGRAM MILESTONE has been successfully created." );
 		send OrgMan::Notify(Relevant_Person:"Manager", Message:"A new PROGRAM MILESTONE " + param.MS_Name + "has been created.");
 	else
 		LOG::LogFailure( message: "The chosen MILESTONE NAME already exists.  Please choose a DIFFERENT NAME that does not already exist." );
 	end if;
-else
-	LOG::LogFailure( message: "The chosen PROGRAM NAME doesn''t exist.  Please choose a NAME that already exists." );
-end if;',
+//else
+//	LOG::LogFailure( message: "The chosen PROGRAM NAME doesn''t exist.  Please choose a NAME that already exists." );
+//end if;',
 	1,
 	'',
 	"a2c13cd0-4a4f-4465-9b53-e0f056145ffc",
@@ -382,35 +351,26 @@ INSERT INTO O_TPARM
 	'',
 	"00000000-0000-0000-0000-000000000000",
 	'');
-INSERT INTO O_TPARM
-	VALUES ("00d2ecd3-9944-486f-b67f-e788670602e6",
-	"c533c965-9bfa-44c7-8442-d071afd4dcd0",
-	'PRG_Name',
-	"ba5eda7a-def5-0000-0000-000000000004",
-	0,
-	'',
-	"97a1d051-8678-41d9-8117-61e7249c73ae",
-	'');
 INSERT INTO O_TFR
 	VALUES ("6c9893b2-a82b-4278-af0f-43c2292c2a3b",
 	"fc2339db-f29a-4ff9-915d-62c8814fc04c",
 	'update_Milestone',
 	'This operation is based on UC02.',
 	"ba5eda7a-def5-0000-0000-000000000000",
-	0,
+	1,
 	'// Update an existing Milestoane for a Program by setting Percent_Complete to a value greater than zero.
 //Based on UC03.
 
 //Firstly make sure the Program exists.
 
-select any Program from instances of PRG
- where (selected.PRG_Name == param.PRG_Name);
+//select any Program from instances of PRG
+// where (selected.PRG_Name == param.PRG_Name);
  
 //If the Program exists check that the associated Milestone also exists.
  
-if (not empty Program)
+//if (not empty Program)
 
-	select any Prog_Milestone related by Program->PROGMS[R11]
+	select any Prog_Milestone related by self->PROGMS[R11]
 	 where (selected.MS_Name == param.MS_Name);
 
 	if ( not empty Prog_Milestone)
@@ -432,12 +392,13 @@ if (not empty Program)
 		send OrgMan::Notify(Relevant_Person:"Manager", Message:"A PROGRAM MILESTONE " + param.MS_Name + "has been updated.");
 	else
 		
-//If one or other doesn''t exists then inform the user.
+//If milestone doesn''t exist then inform the user.
 		LOG::LogFailure( message: "The chosen MILESTONE NAME doesn''t exist.  Please choose a MS NAME that does already exist." );
 	end if;
-else
-	LOG::LogFailure( message: "The chosen PROGRAM NAME doesn''t exist.  Please choose a NAME that already exists." );
-end if;',
+	
+//else
+//	LOG::LogFailure( message: "The chosen PROGRAM NAME doesn''t exist.  Please choose a NAME that already exists." );
+//end if;',
 	1,
 	'',
 	"c533c965-9bfa-44c7-8442-d071afd4dcd0",
@@ -453,22 +414,13 @@ INSERT INTO O_TPARM
 	"00000000-0000-0000-0000-000000000000",
 	'');
 INSERT INTO O_TPARM
-	VALUES ("765b4dd5-2369-4154-b903-0d19e0727d80",
-	"6c9893b2-a82b-4278-af0f-43c2292c2a3b",
-	'PRG_Name',
-	"ba5eda7a-def5-0000-0000-000000000004",
-	0,
-	'',
-	"86adb7e9-0bbd-4047-a40a-ddcc20a5aed0",
-	'');
-INSERT INTO O_TPARM
 	VALUES ("b7275907-e33d-4141-b647-a20d42502801",
 	"6c9893b2-a82b-4278-af0f-43c2292c2a3b",
 	'Percent_Complete',
 	"ba5eda7a-def5-0000-0000-000000000003",
 	0,
 	'',
-	"765b4dd5-2369-4154-b903-0d19e0727d80",
+	"86adb7e9-0bbd-4047-a40a-ddcc20a5aed0",
 	'');
 INSERT INTO O_TFR
 	VALUES ("48598a4a-106f-43d6-986c-b235e94d39a5",
@@ -476,14 +428,14 @@ INSERT INTO O_TFR
 	'add_Requirement',
 	'This operation is based on UC07.',
 	"ba5eda7a-def5-0000-0000-000000000000",
-	0,
+	1,
 	'// Create a new Requirement for Program by providing a (hopefully) unique name (Req_ID).
 //Based on UC07.
 
-select any Program from instances of PRG
- where (selected.PRG_Name == param.PRG_Name);
+//select any Program from instances of PRG
+// where (selected.PRG_Name == param.PRG_Name);
  
-if (not empty Program)
+//if (not empty Program)
 
 	select any Requirement from instances of PRGREQ
 	 where (selected.Req_ID == param.Req_ID);
@@ -493,30 +445,21 @@ if (not empty Program)
 		Requirement.Req_ID = param.Req_ID;
 		Requirement.Description = param.Description;
 	
-		relate Program to Requirement across R12.''is to implement'';
+		relate self to Requirement across R12.''is to implement'';
 	
 		LOG::LogInfo( message: "A new PROGRAM REQUIREMENT has been successfully added." );
 		send OrgMan::Notify(Relevant_Person:"Manager", Message:"A new PROGRAM REQUIREMENT " + param.Req_ID + "has been added.");
 	else
 		LOG::LogFailure( message: "The chosen REQUIREMENT already exists.  Please choose a DIFFERENT ID that does not already exist." );
 	end if;
-else
-	LOG::LogFailure( message: "The chosen PROGRAM NAME doesn''t exist.  Please choose a NAME that already exists." );
-end if;',
+//else
+//	LOG::LogFailure( message: "The chosen PROGRAM NAME doesn''t exist.  Please choose a NAME that already exists." );
+//end if;',
 	1,
 	'',
 	"6c9893b2-a82b-4278-af0f-43c2292c2a3b",
 	0,
 	1);
-INSERT INTO O_TPARM
-	VALUES ("47c40b15-f8aa-441c-838c-87f833685267",
-	"48598a4a-106f-43d6-986c-b235e94d39a5",
-	'PRG_Name',
-	"ba5eda7a-def5-0000-0000-000000000004",
-	0,
-	'',
-	"00000000-0000-0000-0000-000000000000",
-	'');
 INSERT INTO O_TPARM
 	VALUES ("5fa73760-ab7e-441e-9478-d8297a531023",
 	"48598a4a-106f-43d6-986c-b235e94d39a5",
@@ -524,7 +467,7 @@ INSERT INTO O_TPARM
 	"ba5eda7a-def5-0000-0000-000000000004",
 	0,
 	'',
-	"47c40b15-f8aa-441c-838c-87f833685267",
+	"00000000-0000-0000-0000-000000000000",
 	'');
 INSERT INTO O_TPARM
 	VALUES ("b7aaf076-a114-4e35-9bee-36100bd0a795",
@@ -541,44 +484,36 @@ INSERT INTO O_TFR
 	'link_To_Strategic_Goal',
 	'',
 	"ba5eda7a-def5-0000-0000-000000000000",
-	0,
+	1,
 	'//Associate/Link Program to a Strategic Goal.
 //Based on UC01-1.
 
-select any Program from instances of PRG
- where (selected.PRG_Name == param.PRG_Name);
+//select any Program from instances of PRG
+// where (selected.PRG_Name == param.PRG_Name);
  
-if (not empty Program)
+//if (not empty Program)
 
 	select any Strategic_Goal from instances of SG
 	 where (selected.SG_Name == param.SG_Name);
 
 	if ( not empty Strategic_Goal)
 	
-		relate Program to Strategic_Goal across R2.''may align with'';
+		relate self to Strategic_Goal across R2.''may align with'';
 	
 		LOG::LogInfo( message: "A (new) PROGRAM has been associated with a STRATEGIC GOAL." );
-		send OrgMan::Notify(Relevant_Person:"Manager", Message:"A (new) PROGRAM  " + param.PRG_Name + "has been associated with a STRATEGIC GOAL.");
+		send OrgMan::Notify(Relevant_Person:"Manager", Message:"A (new) PROGRAM  " + self.PRG_Name + "has been associated with a STRATEGIC GOAL.");
 	else
 		LOG::LogFailure( message: "The chosen STRATEGIC GOAL does not exist.  Please choose a relevant GOAL that already exists." );
 	end if;
-else
-	LOG::LogFailure( message: "The chosen PROGRAM NAME doesn''t exist.  Please choose a NAME that already exists." );
-end if;',
+	
+//else
+//	LOG::LogFailure( message: "The chosen PROGRAM NAME doesn''t exist.  Please choose a NAME that already exists." );
+//end if;',
 	1,
 	'',
 	"48598a4a-106f-43d6-986c-b235e94d39a5",
 	0,
 	6);
-INSERT INTO O_TPARM
-	VALUES ("6f6e2456-832e-4901-9452-cec16c739dbe",
-	"436fd3a9-6009-4cdf-9fc7-d3c2591dd3bf",
-	'PRG_Name',
-	"ba5eda7a-def5-0000-0000-000000000004",
-	0,
-	'',
-	"00000000-0000-0000-0000-000000000000",
-	'');
 INSERT INTO O_TPARM
 	VALUES ("096ec9aa-3b6d-48e0-8ba7-4928ecc05d5a",
 	"436fd3a9-6009-4cdf-9fc7-d3c2591dd3bf",
@@ -586,7 +521,7 @@ INSERT INTO O_TPARM
 	"ba5eda7a-def5-0000-0000-000000000004",
 	0,
 	'',
-	"6f6e2456-832e-4901-9452-cec16c739dbe",
+	"00000000-0000-0000-0000-000000000000",
 	'');
 INSERT INTO O_TFR
 	VALUES ("540ef00e-3a9a-4200-beb9-e7dbbb2a4aaa",
@@ -594,44 +529,36 @@ INSERT INTO O_TFR
 	'include_In_Portfolio',
 	'',
 	"ba5eda7a-def5-0000-0000-000000000000",
-	0,
+	1,
 	'//Add/link Program to a Portfolio.
 //Based on UC11.
 
-select any Program from instances of PRG
- where (selected.PRG_Name == param.PRG_Name);
+//select any Program from instances of PRG
+// where (selected.PRG_Name == param.PRG_Name);
  
-if (not empty Program)
+//if (not empty Program)
 
 	select any Portfolio from instances of PF
 	 where (selected.PF_Name == param.PF_Name);
 
 	if ( not empty Portfolio)
 	
-		relate Program to Portfolio across R4.''may be part of'';
+		relate self to Portfolio across R4.''may be part of'';
 	
 		LOG::LogInfo( message: "A (new) PROGRAM has been added to a PORTFOLIO." );
-		send OrgMan::Notify(Relevant_Person:"Manager", Message:"A PROGRAM  " + param.PRG_Name + "has been added to a PORTFOLIO.");
+		send OrgMan::Notify(Relevant_Person:"Manager", Message:"A PROGRAM  " + self.PRG_Name + "has been added to a PORTFOLIO" + param.PF_Name + ".");
 	else
 		LOG::LogFailure( message: "The chosen PORTFOLIO does not exist.  Please choose a relevant PORTFOLIO that already exists." );
 	end if;
-else
-	LOG::LogFailure( message: "The chosen PROGRAM NAME doesn''t exist.  Please choose a NAME that already exists." );
-end if;',
+	
+//else
+//	LOG::LogFailure( message: "The chosen PROGRAM NAME doesn''t exist.  Please choose a NAME that already exists." );
+//end if;',
 	1,
 	'',
 	"436fd3a9-6009-4cdf-9fc7-d3c2591dd3bf",
 	0,
 	6);
-INSERT INTO O_TPARM
-	VALUES ("b866aecf-f449-40f9-8576-7fad448c4efa",
-	"540ef00e-3a9a-4200-beb9-e7dbbb2a4aaa",
-	'PRG_Name',
-	"ba5eda7a-def5-0000-0000-000000000004",
-	0,
-	'',
-	"00000000-0000-0000-0000-000000000000",
-	'');
 INSERT INTO O_TPARM
 	VALUES ("f68bbe77-7d09-4bd2-83c9-c5d02bf9196a",
 	"540ef00e-3a9a-4200-beb9-e7dbbb2a4aaa",
@@ -639,7 +566,7 @@ INSERT INTO O_TPARM
 	"ba5eda7a-def5-0000-0000-000000000004",
 	0,
 	'',
-	"b866aecf-f449-40f9-8576-7fad448c4efa",
+	"00000000-0000-0000-0000-000000000000",
 	'');
 INSERT INTO O_TFR
 	VALUES ("da85f395-9780-429b-aec8-86293893ff00",
@@ -652,21 +579,21 @@ INSERT INTO O_TFR
 
 //First select the named Program
 
-select any Program from instances of PRG
- where (selected.PRG_Name == param.PRG_Name);
+//select any Program from instances of PRG
+//where (selected.PRG_Name == param.PRG_Name);
  
- if (not empty Program)
+// if (not empty Program)
  	
  	//If the Program exists then select the related Change Request.
 
-	select any Request related by Program->PRCR[R13]
+	select any Request related by self->PRCR[R13]
 	 where (selected.PRCR_ID == param.Request_ID);
 
 	if ( not empty Request)
 		
 		//If the Change Request exists then select the related Requirement
 		
-		select any Requirement related by Program->PRGREQ[R13]
+		select any Requirement related by self->PRGREQ[R13]
 		where (selected.Req_ID == ("TBA for " + param.Request_ID));
 		
 		if ( not empty Requirement)
@@ -689,11 +616,11 @@ select any Program from instances of PRG
 
 	end if;
 	
-else
+//else
 	
-	LOG::LogFailure( message: "The chosen PROGRAM NAME doesn''t exist.  Please choose a NAME that already exists." );
+//	LOG::LogFailure( message: "The chosen PROGRAM NAME doesn''t exist.  Please choose a NAME that already exists." );
 	
-end if;',
+//end if;',
 	1,
 	'',
 	"540ef00e-3a9a-4200-beb9-e7dbbb2a4aaa",
@@ -706,7 +633,7 @@ INSERT INTO O_TPARM
 	"ba5eda7a-def5-0000-0000-000000000004",
 	0,
 	'',
-	"b5cd333c-67e7-47d8-8e4a-be9d37261af8",
+	"00000000-0000-0000-0000-000000000000",
 	'');
 INSERT INTO O_TPARM
 	VALUES ("13d5ab3c-aae1-4d09-99cb-eb4fa151cb28",
@@ -716,15 +643,6 @@ INSERT INTO O_TPARM
 	0,
 	'',
 	"e76a20b7-da84-4ad5-807b-cd097dc1cea7",
-	'');
-INSERT INTO O_TPARM
-	VALUES ("b5cd333c-67e7-47d8-8e4a-be9d37261af8",
-	"da85f395-9780-429b-aec8-86293893ff00",
-	'PRG_Name',
-	"ba5eda7a-def5-0000-0000-000000000004",
-	0,
-	'',
-	"00000000-0000-0000-0000-000000000000",
 	'');
 INSERT INTO O_TPARM
 	VALUES ("e76a20b7-da84-4ad5-807b-cd097dc1cea7",
@@ -741,20 +659,20 @@ INSERT INTO O_TFR
 	'update_Requirement_Description',
 	'',
 	"ba5eda7a-def5-0000-0000-000000000000",
-	0,
+	1,
 	'//An operation that allows a requirement description to be updated.
 //Assume that the initial Req_ID containing "TBA for" has been updated or needs to be updated.
 
 //First select the named Program
 
-select any Program from instances of PRG
- where (selected.PRG_Name == param.PRG_Name);
+//select any Program from instances of PRG
+ //where (selected.PRG_Name == param.PRG_Name);
  
- if (not empty Program)
+ //if (not empty Program)
  	
  	//If the Program exists then determine if the chosen requirement has derived from a change request.
 
-	select any Requirement related by Program->PRGREQ[R13]
+	select any Requirement related by self->PRGREQ[R13]
 	where (selected.Req_ID == param.Req_ID);
 		
 	if ( not empty Requirement)
@@ -775,7 +693,7 @@ select any Program from instances of PRG
 
 	 //If the Program exists then determine if the requirement hasn''t derived from a change request.	
 	
-	select any Requirement related by Program->PRGREQ[R12.''is to implement'']
+	select any Requirement related by self->PRGREQ[R12.''is to implement'']
 	where (selected.Req_ID == param.Req_ID);
 	
 	if ( not empty Requirement)
@@ -794,11 +712,11 @@ select any Program from instances of PRG
 
 	end if;
 	
-else
+//else
 	
-	LOG::LogFailure( message: "The chosen PROGRAM NAME doesn''t exist.  Please choose a NAME that already exists." );
+	//LOG::LogFailure( message: "The chosen PROGRAM NAME doesn''t exist.  Please choose a NAME that already exists." );
 	
-end if;',
+//end if;',
 	1,
 	'',
 	"da85f395-9780-429b-aec8-86293893ff00",
@@ -814,22 +732,13 @@ INSERT INTO O_TPARM
 	"4c8f713d-a550-492a-8bd2-457cab84c594",
 	'');
 INSERT INTO O_TPARM
-	VALUES ("21e88018-df51-440d-a8ac-994dac3c725e",
-	"83ff4db1-4f38-42cf-bb30-f59aeb85b722",
-	'PRG_Name',
-	"ba5eda7a-def5-0000-0000-000000000004",
-	0,
-	'',
-	"00000000-0000-0000-0000-000000000000",
-	'');
-INSERT INTO O_TPARM
 	VALUES ("4c8f713d-a550-492a-8bd2-457cab84c594",
 	"83ff4db1-4f38-42cf-bb30-f59aeb85b722",
 	'Req_ID',
 	"ba5eda7a-def5-0000-0000-000000000004",
 	0,
 	'',
-	"21e88018-df51-440d-a8ac-994dac3c725e",
+	"00000000-0000-0000-0000-000000000000",
 	'');
 INSERT INTO O_NBATTR
 	VALUES ("6d387035-e437-4136-a89d-e1d7972e194a",

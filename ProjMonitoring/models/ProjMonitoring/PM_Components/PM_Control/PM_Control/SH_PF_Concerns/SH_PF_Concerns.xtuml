@@ -7,19 +7,6 @@ INSERT INTO O_OBJ
 	'SHPFC',
 	'',
 	"00000000-0000-0000-0000-000000000000");
-INSERT INTO O_TFR
-	VALUES ("fc5d2def-715a-4f66-a352-438c17975825",
-	"f3120f98-3c16-4319-a21c-dcc0f2470134",
-	'add_Concern',
-	'',
-	"ba5eda7a-def5-0000-0000-000000000000",
-	1,
-	'',
-	1,
-	'',
-	"00000000-0000-0000-0000-000000000000",
-	0,
-	3);
 INSERT INTO O_NBATTR
 	VALUES ("d1e9e6fa-c3ad-47dd-a642-12f5b0304ecf",
 	"f3120f98-3c16-4319-a21c-dcc0f2470134");
@@ -67,11 +54,11 @@ INSERT INTO O_ATTR
 	"f3120f98-3c16-4319-a21c-dcc0f2470134",
 	"b31ec169-e7ed-4b18-a8ab-9d38bdff2676",
 	'Date_Begun',
-	'',
+	'The date when some activity or association was initiated or started.',
 	'',
 	'Date_Begun',
 	0,
-	"ba5eda7a-def5-0000-0000-000000000002",
+	"ba5eda7a-def5-0000-0000-00000000000e",
 	'',
 	'');
 INSERT INTO O_NBATTR
@@ -85,11 +72,11 @@ INSERT INTO O_ATTR
 	"f3120f98-3c16-4319-a21c-dcc0f2470134",
 	"e698b7c5-253e-463d-acbd-e090c05d36d6",
 	'Date_Ended',
-	'',
+	'The date when some activity or association was ended or stopped.',
 	'',
 	'Date_Ended',
 	0,
-	"ba5eda7a-def5-0000-0000-000000000002",
+	"ba5eda7a-def5-0000-0000-00000000000e",
 	'',
 	'');
 INSERT INTO O_NBATTR
@@ -125,44 +112,19 @@ INSERT INTO O_ATTR
 	'',
 	'Described_Concern',
 	0,
-	"ba5eda7a-def5-0000-0000-000000000002",
+	"ba5eda7a-def5-0000-0000-000000000004",
 	'',
 	'');
 INSERT INTO O_NBATTR
-	VALUES ("832d9132-d30b-473d-a370-8268bceb47b5",
+	VALUES ("8733cc9f-051e-40b9-8e32-e683ae06e75f",
 	"f3120f98-3c16-4319-a21c-dcc0f2470134");
 INSERT INTO O_BATTR
-	VALUES ("832d9132-d30b-473d-a370-8268bceb47b5",
+	VALUES ("8733cc9f-051e-40b9-8e32-e683ae06e75f",
 	"f3120f98-3c16-4319-a21c-dcc0f2470134");
 INSERT INTO O_ATTR
-	VALUES ("832d9132-d30b-473d-a370-8268bceb47b5",
+	VALUES ("8733cc9f-051e-40b9-8e32-e683ae06e75f",
 	"f3120f98-3c16-4319-a21c-dcc0f2470134",
 	"5a63e032-7cca-41de-ad75-528e8b26119e",
-	'is_Sponsor',
-	'Is the STAKEHOLDER a sponsor of the startegic endeavour.  Simple choice of ''Yes'' or ''No''.',
-	'',
-	'is_Sponsor',
-	0,
-	"05e33b6b-c69a-4c41-8b61-465dd97fe7dd",
-	'',
-	'');
-INSERT INTO S_DT_PROXY
-	VALUES ("05e33b6b-c69a-4c41-8b61-465dd97fe7dd",
-	"00000000-0000-0000-0000-000000000000",
-	'Answer',
-	'',
-	'',
-	'../../../../PM_Types/PM_Types.xtuml');
-INSERT INTO O_NBATTR
-	VALUES ("8733cc9f-051e-40b9-8e32-e683ae06e75f",
-	"f3120f98-3c16-4319-a21c-dcc0f2470134");
-INSERT INTO O_BATTR
-	VALUES ("8733cc9f-051e-40b9-8e32-e683ae06e75f",
-	"f3120f98-3c16-4319-a21c-dcc0f2470134");
-INSERT INTO O_ATTR
-	VALUES ("8733cc9f-051e-40b9-8e32-e683ae06e75f",
-	"f3120f98-3c16-4319-a21c-dcc0f2470134",
-	"832d9132-d30b-473d-a370-8268bceb47b5",
 	'Phase_Of_Interest',
 	'A STAKEHOLDER may not have interest in all aspects of the strategic endeavour.  In terms of 
 normal process the following phases provide opportunity for a stakeholder to focus in on a 

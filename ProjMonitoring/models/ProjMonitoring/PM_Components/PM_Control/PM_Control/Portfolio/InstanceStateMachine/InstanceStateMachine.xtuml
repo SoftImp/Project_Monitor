@@ -1597,7 +1597,7 @@ if ( param.Comp_Type == Component_Type::PROGRAM)
 	
 		Initial_Description = "";
 		
-		PRG::Create( PRG_Name: Program.PRG_Name, Description: Initial_Description);
+		PRG::Create( PRG_Name: Program.PRG_Name, Description: Initial_Description, Owner: "");
 		
 		relate self to Program across R4.''may include'';
 	
@@ -1707,7 +1707,7 @@ if ( param.Comp_Type == Component_Type::PROGRAM)
 	
 		Initial_Description = "";
 		
-		PRG::Create( PRG_Name: Program.PRG_Name, Description: Initial_Description);
+		PRG::Create( PRG_Name: Program.PRG_Name, Description: Initial_Description, Owner: "");
 		
 		relate self to Program across R4.''may include'';
 	
@@ -2005,7 +2005,7 @@ INSERT INTO SM_AH
 INSERT INTO SM_ACT
 	VALUES ("c75ebb1a-d10c-476f-beca-40c373d30c88",
 	"76d6b87f-3bc8-41b7-8f27-b6bdecc827e4",
-	3,
+	1,
 	'',
 	'',
 	0);
@@ -2019,7 +2019,7 @@ INSERT INTO SM_AH
 INSERT INTO SM_ACT
 	VALUES ("27a49a26-e885-4fd5-918a-0be8426fe09a",
 	"76d6b87f-3bc8-41b7-8f27-b6bdecc827e4",
-	3,
+	1,
 	'',
 	'',
 	0);

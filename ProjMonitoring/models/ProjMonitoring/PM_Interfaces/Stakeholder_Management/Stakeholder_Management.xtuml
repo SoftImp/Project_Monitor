@@ -10,12 +10,12 @@ INSERT INTO C_EP
 	"02750e29-0756-478c-83b2-43e938b640ea",
 	-1,
 	'add_Stakeholder',
-	'',
+	'Signal to call Stakeholder class operation to add a new stakeholder.',
 	1);
 INSERT INTO C_AS
 	VALUES ("e5d330dc-1bc3-4597-b87b-63313ea15fff",
 	'add_Stakeholder',
-	'',
+	'Signal to call Stakeholder class operation to add a new stakeholder.',
 	0,
 	"00000000-0000-0000-0000-000000000000");
 INSERT INTO C_PP
@@ -54,33 +54,17 @@ INSERT INTO C_PP
 	0,
 	'',
 	"0c9ae71b-5285-42b4-9760-5e75cb4c152a");
-INSERT INTO C_PP
-	VALUES ("3a2fcfe6-903c-4878-a406-33a7ba3b40b4",
-	"e5d330dc-1bc3-4597-b87b-63313ea15fff",
-	"05e33b6b-c69a-4c41-8b61-465dd97fe7dd",
-	'is_Sponsor',
-	'',
-	0,
-	'',
-	"3f81b03a-f395-4743-8a0f-16b64d180167");
-INSERT INTO S_DT_PROXY
-	VALUES ("05e33b6b-c69a-4c41-8b61-465dd97fe7dd",
-	"00000000-0000-0000-0000-000000000000",
-	'Answer',
-	'',
-	'',
-	'../../PM_Types/PM_Types.xtuml');
 INSERT INTO C_EP
 	VALUES ("9dff93f9-6222-41b3-b12a-d707854ff2e4",
 	"02750e29-0756-478c-83b2-43e938b640ea",
 	-1,
 	'Notify',
-	'',
+	'Signal for sending messages to various managers.',
 	3);
 INSERT INTO C_AS
 	VALUES ("9dff93f9-6222-41b3-b12a-d707854ff2e4",
 	'Notify',
-	'',
+	'Signal for sending messages to various managers.',
 	1,
 	"e5d330dc-1bc3-4597-b87b-63313ea15fff");
 INSERT INTO C_PP
@@ -101,6 +85,247 @@ INSERT INTO C_PP
 	0,
 	'',
 	"d385b559-7b60-4a69-9fda-0d5bec592e3b");
+INSERT INTO C_EP
+	VALUES ("3da20cc8-352d-472b-9a28-b174ee69d766",
+	"02750e29-0756-478c-83b2-43e938b640ea",
+	-1,
+	'add_Representation',
+	'Signal to call Stakeholder class operation to add a representation relationship between an 
+ENTITY and an identified STAKEHOLDER.',
+	1);
+INSERT INTO C_AS
+	VALUES ("3da20cc8-352d-472b-9a28-b174ee69d766",
+	'add_Representation',
+	'Signal to call Stakeholder class operation to add a representation relationship between an 
+ENTITY and an identified STAKEHOLDER.',
+	0,
+	"9dff93f9-6222-41b3-b12a-d707854ff2e4");
+INSERT INTO C_PP
+	VALUES ("e760031a-ce8e-4245-bba6-de18e4317c06",
+	"3da20cc8-352d-472b-9a28-b174ee69d766",
+	"ba5eda7a-def5-0000-0000-000000000004",
+	'SH_Name',
+	'',
+	0,
+	'',
+	"00000000-0000-0000-0000-000000000000");
+INSERT INTO C_PP
+	VALUES ("eeb3e53f-cc9f-4cc7-8ffe-755ed883103e",
+	"3da20cc8-352d-472b-9a28-b174ee69d766",
+	"ba5eda7a-def5-0000-0000-000000000004",
+	'ENT_Name',
+	'',
+	0,
+	'',
+	"e760031a-ce8e-4245-bba6-de18e4317c06");
+INSERT INTO C_PP
+	VALUES ("57007636-061b-4d63-9ee2-8e684daed07c",
+	"3da20cc8-352d-472b-9a28-b174ee69d766",
+	"ba5eda7a-def5-0000-0000-00000000000e",
+	'Beginning',
+	'',
+	0,
+	'',
+	"eeb3e53f-cc9f-4cc7-8ffe-755ed883103e");
+INSERT INTO C_PP
+	VALUES ("213a58f6-aa22-493e-9aef-dc6da0f2abf5",
+	"3da20cc8-352d-472b-9a28-b174ee69d766",
+	"ba5eda7a-def5-0000-0000-00000000000e",
+	'Ending',
+	'',
+	0,
+	'',
+	"57007636-061b-4d63-9ee2-8e684daed07c");
+INSERT INTO C_EP
+	VALUES ("b514298f-ff93-4deb-a473-839db1fb88a4",
+	"02750e29-0756-478c-83b2-43e938b640ea",
+	-1,
+	'add_Sponsorship',
+	'A signal to call a Stakeholder class operation to set up a sponsorship relationship between a
+STAKEHOLDER and a PORTFOLIO.',
+	1);
+INSERT INTO C_AS
+	VALUES ("b514298f-ff93-4deb-a473-839db1fb88a4",
+	'add_Sponsorship',
+	'A signal to call a Stakeholder class operation to set up a sponsorship relationship between a
+STAKEHOLDER and a PORTFOLIO.',
+	0,
+	"3da20cc8-352d-472b-9a28-b174ee69d766");
+INSERT INTO C_PP
+	VALUES ("ac74053e-1e95-4c5a-b2a5-0b1240fb68b6",
+	"b514298f-ff93-4deb-a473-839db1fb88a4",
+	"ba5eda7a-def5-0000-0000-000000000004",
+	'SH_Name',
+	'',
+	0,
+	'',
+	"00000000-0000-0000-0000-000000000000");
+INSERT INTO C_PP
+	VALUES ("b0c286b7-cbb8-4a05-8ac5-a49838a89734",
+	"b514298f-ff93-4deb-a473-839db1fb88a4",
+	"ba5eda7a-def5-0000-0000-000000000004",
+	'PF_Name',
+	'',
+	0,
+	'',
+	"ac74053e-1e95-4c5a-b2a5-0b1240fb68b6");
+INSERT INTO C_PP
+	VALUES ("18d480b7-6809-4eea-94b8-879830f3c9f2",
+	"b514298f-ff93-4deb-a473-839db1fb88a4",
+	"05e33b6b-c69a-4c41-8b61-465dd97fe7dd",
+	'is_Sponsor',
+	'',
+	0,
+	'',
+	"b0c286b7-cbb8-4a05-8ac5-a49838a89734");
+INSERT INTO S_DT_PROXY
+	VALUES ("05e33b6b-c69a-4c41-8b61-465dd97fe7dd",
+	"00000000-0000-0000-0000-000000000000",
+	'Answer',
+	'',
+	'',
+	'../../PM_Types/PM_Types.xtuml');
+INSERT INTO C_EP
+	VALUES ("e48b1a3e-7270-4ef1-bed7-ee4e4f756e11",
+	"02750e29-0756-478c-83b2-43e938b640ea",
+	-1,
+	'add_Concern',
+	'Signal to call a Stakeholder class operation to form a relationship between a STAKEHOLDER and
+a PORTFOLIO indicating CONCERNS the Stakeholder has about aspects of the Portfolio.',
+	1);
+INSERT INTO C_AS
+	VALUES ("e48b1a3e-7270-4ef1-bed7-ee4e4f756e11",
+	'add_Concern',
+	'Signal to call a Stakeholder class operation to form a relationship between a STAKEHOLDER and
+a PORTFOLIO indicating CONCERNS the Stakeholder has about aspects of the Portfolio.',
+	0,
+	"b514298f-ff93-4deb-a473-839db1fb88a4");
+INSERT INTO C_PP
+	VALUES ("a00e97a2-9ed2-4348-808d-e2dd7288843e",
+	"e48b1a3e-7270-4ef1-bed7-ee4e4f756e11",
+	"ba5eda7a-def5-0000-0000-000000000004",
+	'SH_Name',
+	'',
+	0,
+	'',
+	"00000000-0000-0000-0000-000000000000");
+INSERT INTO C_PP
+	VALUES ("61589b53-9214-44f3-b4ba-ebacd686e2a3",
+	"e48b1a3e-7270-4ef1-bed7-ee4e4f756e11",
+	"ba5eda7a-def5-0000-0000-000000000004",
+	'PF_Name',
+	'',
+	0,
+	'',
+	"a00e97a2-9ed2-4348-808d-e2dd7288843e");
+INSERT INTO C_PP
+	VALUES ("d5ce59f1-949b-4fda-9fd5-d05ae83a30d4",
+	"e48b1a3e-7270-4ef1-bed7-ee4e4f756e11",
+	"ba5eda7a-def5-0000-0000-00000000000e",
+	'Beginning',
+	'',
+	0,
+	'',
+	"61589b53-9214-44f3-b4ba-ebacd686e2a3");
+INSERT INTO C_PP
+	VALUES ("bad4840e-a351-45dc-9a0e-64ad26e404d7",
+	"e48b1a3e-7270-4ef1-bed7-ee4e4f756e11",
+	"ba5eda7a-def5-0000-0000-00000000000e",
+	'Ending',
+	'',
+	0,
+	'',
+	"d5ce59f1-949b-4fda-9fd5-d05ae83a30d4");
+INSERT INTO C_PP
+	VALUES ("28fc7a9c-a60e-49e9-b3cf-67b02313b262",
+	"e48b1a3e-7270-4ef1-bed7-ee4e4f756e11",
+	"ba5eda7a-def5-0000-0000-000000000002",
+	'Concern',
+	'',
+	0,
+	'',
+	"bad4840e-a351-45dc-9a0e-64ad26e404d7");
+INSERT INTO C_PP
+	VALUES ("7aa8fb3a-be67-4487-bdc3-17d28b7b6bca",
+	"e48b1a3e-7270-4ef1-bed7-ee4e4f756e11",
+	"df492928-ee5c-40ad-aa60-6fc07b47662d",
+	'Interest_Phase',
+	'',
+	0,
+	'',
+	"28fc7a9c-a60e-49e9-b3cf-67b02313b262");
+INSERT INTO S_DT_PROXY
+	VALUES ("df492928-ee5c-40ad-aa60-6fc07b47662d",
+	"00000000-0000-0000-0000-000000000000",
+	'Phase',
+	'',
+	'',
+	'../../PM_Types/PM_Types.xtuml');
+INSERT INTO C_PP
+	VALUES ("e6bfb415-2253-4c29-a51a-89362cb5d10a",
+	"e48b1a3e-7270-4ef1-bed7-ee4e4f756e11",
+	"e871fa27-70f6-489f-ac44-3b0ee106d0c0",
+	'Influence',
+	'',
+	0,
+	'',
+	"7aa8fb3a-be67-4487-bdc3-17d28b7b6bca");
+INSERT INTO S_DT_PROXY
+	VALUES ("e871fa27-70f6-489f-ac44-3b0ee106d0c0",
+	"00000000-0000-0000-0000-000000000000",
+	'Degree_Scale',
+	'',
+	'',
+	'../../PM_Types/PM_Types.xtuml');
+INSERT INTO C_PP
+	VALUES ("ac2fa778-5b5a-4a94-b4ee-10ae8c4f1269",
+	"e48b1a3e-7270-4ef1-bed7-ee4e4f756e11",
+	"e871fa27-70f6-489f-ac44-3b0ee106d0c0",
+	'Benefits_Support',
+	'',
+	0,
+	'',
+	"e6bfb415-2253-4c29-a51a-89362cb5d10a");
+INSERT INTO C_EP
+	VALUES ("5dfcdca4-4c7b-47df-ac69-05f8c0c5679c",
+	"02750e29-0756-478c-83b2-43e938b640ea",
+	-1,
+	'add_Current_Role',
+	'Signal to call a Stakeholder class operation to record a Stakeholder''s current role.',
+	1);
+INSERT INTO C_AS
+	VALUES ("5dfcdca4-4c7b-47df-ac69-05f8c0c5679c",
+	'add_Current_Role',
+	'Signal to call a Stakeholder class operation to record a Stakeholder''s current role.',
+	0,
+	"e48b1a3e-7270-4ef1-bed7-ee4e4f756e11");
+INSERT INTO C_PP
+	VALUES ("71771a49-16c7-463d-b5be-2f404abdfe9e",
+	"5dfcdca4-4c7b-47df-ac69-05f8c0c5679c",
+	"ba5eda7a-def5-0000-0000-000000000004",
+	'SH_Name',
+	'',
+	0,
+	'',
+	"00000000-0000-0000-0000-000000000000");
+INSERT INTO C_PP
+	VALUES ("8548152c-03ef-42e4-96a4-68cbb5d0073c",
+	"5dfcdca4-4c7b-47df-ac69-05f8c0c5679c",
+	"ba5eda7a-def5-0000-0000-000000000004",
+	'Description',
+	'',
+	0,
+	'',
+	"6c670e4e-62e7-497c-ac83-f2cdb1daf941");
+INSERT INTO C_PP
+	VALUES ("6c670e4e-62e7-497c-ac83-f2cdb1daf941",
+	"5dfcdca4-4c7b-47df-ac69-05f8c0c5679c",
+	"ba5eda7a-def5-0000-0000-000000000004",
+	'R_Name',
+	'',
+	0,
+	'',
+	"71771a49-16c7-463d-b5be-2f404abdfe9e");
 INSERT INTO PE_PE
 	VALUES ("02750e29-0756-478c-83b2-43e938b640ea",
 	1,
