@@ -2,7 +2,7 @@
 
 INSERT INTO O_OBJ
 	VALUES ("0a0f4bb3-eec7-4946-a720-5af9fc085f03",
-	'Related_Work_Item',
+	'Work_Item',
 	6,
 	'RWI',
 	'',
@@ -43,10 +43,10 @@ INSERT INTO O_ATTR
 	VALUES ("44523206-21e5-4547-92f0-bb969f6ead11",
 	"0a0f4bb3-eec7-4946-a720-5af9fc085f03",
 	"00000000-0000-0000-0000-000000000000",
-	'Entity_Name',
+	'Item_Name',
 	'The name of a Portfolio, Program or Project.',
 	'',
-	'Entity_Name',
+	'Item_Name',
 	0,
 	"ba5eda7a-def5-0000-0000-000000000004",
 	'',
@@ -87,6 +87,60 @@ INSERT INTO O_ATTR
 	"ba5eda7a-def5-0000-0000-000000000002",
 	'',
 	'');
+INSERT INTO O_NBATTR
+	VALUES ("7c529a2d-3dad-462d-a602-d132d417fa56",
+	"0a0f4bb3-eec7-4946-a720-5af9fc085f03");
+INSERT INTO O_BATTR
+	VALUES ("7c529a2d-3dad-462d-a602-d132d417fa56",
+	"0a0f4bb3-eec7-4946-a720-5af9fc085f03");
+INSERT INTO O_ATTR
+	VALUES ("7c529a2d-3dad-462d-a602-d132d417fa56",
+	"0a0f4bb3-eec7-4946-a720-5af9fc085f03",
+	"4f0c461a-7561-4d36-9f46-a0c8b7049a7e",
+	'PRG_Name',
+	'A unique name given to a PROGRAM.',
+	'',
+	'PRG_Name',
+	0,
+	"ba5eda7a-def5-0000-0000-000000000004",
+	'',
+	'"None"');
+INSERT INTO O_NBATTR
+	VALUES ("7f3cfcd6-b7c6-4aa1-b6e6-a330bf680f52",
+	"0a0f4bb3-eec7-4946-a720-5af9fc085f03");
+INSERT INTO O_BATTR
+	VALUES ("7f3cfcd6-b7c6-4aa1-b6e6-a330bf680f52",
+	"0a0f4bb3-eec7-4946-a720-5af9fc085f03");
+INSERT INTO O_ATTR
+	VALUES ("7f3cfcd6-b7c6-4aa1-b6e6-a330bf680f52",
+	"0a0f4bb3-eec7-4946-a720-5af9fc085f03",
+	"7c529a2d-3dad-462d-a602-d132d417fa56",
+	'PRJ_Name',
+	'The unique name of a running project.',
+	'',
+	'PRJ_Name',
+	0,
+	"ba5eda7a-def5-0000-0000-000000000004",
+	'',
+	'"None"');
+INSERT INTO O_NBATTR
+	VALUES ("e013cd84-060e-40ad-aac9-412051ab4f59",
+	"0a0f4bb3-eec7-4946-a720-5af9fc085f03");
+INSERT INTO O_BATTR
+	VALUES ("e013cd84-060e-40ad-aac9-412051ab4f59",
+	"0a0f4bb3-eec7-4946-a720-5af9fc085f03");
+INSERT INTO O_ATTR
+	VALUES ("e013cd84-060e-40ad-aac9-412051ab4f59",
+	"0a0f4bb3-eec7-4946-a720-5af9fc085f03",
+	"7f3cfcd6-b7c6-4aa1-b6e6-a330bf680f52",
+	'PF_Name',
+	'',
+	'',
+	'PF_Name',
+	0,
+	"ba5eda7a-def5-0000-0000-000000000004",
+	'',
+	'"None"');
 INSERT INTO O_ID
 	VALUES (0,
 	"0a0f4bb3-eec7-4946-a720-5af9fc085f03");

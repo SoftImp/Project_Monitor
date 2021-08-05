@@ -87,22 +87,6 @@ INSERT INTO O_TPARM
 	'',
 	"0ab7cedc-43e5-474e-a7b0-6977d295cc1d",
 	'');
-INSERT INTO O_TPARM
-	VALUES ("cf529af4-216f-4255-b31d-f4064ade935e",
-	"10056259-a366-47d1-a0c5-cb50ec28cd25",
-	'is_Sponsor',
-	"05e33b6b-c69a-4c41-8b61-465dd97fe7dd",
-	0,
-	'',
-	"c7dcfed7-2496-4c57-a7cf-cfb06c45d3d8",
-	'');
-INSERT INTO S_DT_PROXY
-	VALUES ("05e33b6b-c69a-4c41-8b61-465dd97fe7dd",
-	"00000000-0000-0000-0000-000000000000",
-	'Answer',
-	'',
-	'',
-	'../../../../PM_Types/PM_Types.xtuml');
 INSERT INTO O_TFR
 	VALUES ("bd8d5b16-5909-40af-8ba3-a4b49adcb9d4",
 	"8bfd1932-93a4-4c0d-8c1f-783f76639038",
@@ -111,11 +95,126 @@ INSERT INTO O_TFR
 	"ba5eda7a-def5-0000-0000-000000000000",
 	1,
 	'',
-	3,
+	1,
 	'',
 	"10056259-a366-47d1-a0c5-cb50ec28cd25",
 	0,
 	2);
+INSERT INTO O_TPARM
+	VALUES ("0a9c9f15-451a-49e5-898e-0e3d1270048e",
+	"bd8d5b16-5909-40af-8ba3-a4b49adcb9d4",
+	'SH_Name',
+	"ba5eda7a-def5-0000-0000-000000000004",
+	0,
+	'',
+	"00000000-0000-0000-0000-000000000000",
+	'');
+INSERT INTO O_TPARM
+	VALUES ("5f509a3e-d72f-46d4-b68a-4b03fea892c1",
+	"bd8d5b16-5909-40af-8ba3-a4b49adcb9d4",
+	'Description',
+	"ba5eda7a-def5-0000-0000-000000000004",
+	0,
+	'',
+	"222e84e4-d97b-4c38-ae5b-3cd60eaaaedc",
+	'');
+INSERT INTO O_TPARM
+	VALUES ("222e84e4-d97b-4c38-ae5b-3cd60eaaaedc",
+	"bd8d5b16-5909-40af-8ba3-a4b49adcb9d4",
+	'R_Name',
+	"ba5eda7a-def5-0000-0000-000000000004",
+	0,
+	'',
+	"0a9c9f15-451a-49e5-898e-0e3d1270048e",
+	'');
+INSERT INTO O_TFR
+	VALUES ("8eb79e19-24d4-4e4b-9c9d-01c950ab164b",
+	"8bfd1932-93a4-4c0d-8c1f-783f76639038",
+	'add_Representation',
+	'',
+	"ba5eda7a-def5-0000-0000-000000000000",
+	0,
+	'//Add a STAKEHOLDER.
+
+select any Stakeholder from instances of SH
+ 	where selected.SH_Name == param.SH_Name;
+ 	
+ 	if (not empty Stakeholder)
+ 
+		select any Entity from instances of ENT
+			where selected.Entity_Name == param.Entity_Name;
+			
+				if (not empty Entity)
+	
+					create object instance Representation of REP;
+
+					relate Entity to Stakeholder across R21.''is represented by'' using Representation;
+					
+					Representation.SH_Name = param.SH_Name;
+					Representation.Entity_Name = param.Entity_Name;
+					Representation.Date_Begun = param.Date_Begun;
+					Representation.Date_Ended = param.Date_Ended;
+
+				end if;
+	end if;
+	
+	LOG::LogInfo (message: "A new STAKEHOLDER REPRESENTATION for " + Stakeholder.SH_Name + " has been added.");
+	
+	send PFMan::Notify( Relevant_Person: "Manager", Message: "A new STAKEHOLDER REPRESENTATION for " + param.SH_Name + " has been created");',
+	1,
+	'',
+	"bd8d5b16-5909-40af-8ba3-a4b49adcb9d4",
+	0,
+	1);
+INSERT INTO O_TPARM
+	VALUES ("2d9aaea1-c44c-4f08-ac6e-96840e9ad4a3",
+	"8eb79e19-24d4-4e4b-9c9d-01c950ab164b",
+	'SH_Name',
+	"ba5eda7a-def5-0000-0000-000000000004",
+	0,
+	'',
+	"00000000-0000-0000-0000-000000000000",
+	'');
+INSERT INTO O_TPARM
+	VALUES ("6d6789f4-17db-4ae3-aaf4-2bff7b77c056",
+	"8eb79e19-24d4-4e4b-9c9d-01c950ab164b",
+	'Entity_Name',
+	"ba5eda7a-def5-0000-0000-000000000004",
+	0,
+	'',
+	"2d9aaea1-c44c-4f08-ac6e-96840e9ad4a3",
+	'');
+INSERT INTO O_TPARM
+	VALUES ("52f07838-16c9-4412-a114-c6828483bcfb",
+	"8eb79e19-24d4-4e4b-9c9d-01c950ab164b",
+	'Date_Begun',
+	"ba5eda7a-def5-0000-0000-00000000000e",
+	0,
+	'',
+	"6d6789f4-17db-4ae3-aaf4-2bff7b77c056",
+	'');
+INSERT INTO O_TPARM
+	VALUES ("72b1d616-f465-497e-9218-def4ad69591e",
+	"8eb79e19-24d4-4e4b-9c9d-01c950ab164b",
+	'Date_Ended',
+	"ba5eda7a-def5-0000-0000-00000000000e",
+	0,
+	'',
+	"52f07838-16c9-4412-a114-c6828483bcfb",
+	'');
+INSERT INTO O_TFR
+	VALUES ("a3343453-8438-434d-9b55-bf304d088a98",
+	"8bfd1932-93a4-4c0d-8c1f-783f76639038",
+	'add_Concern',
+	'',
+	"ba5eda7a-def5-0000-0000-000000000000",
+	1,
+	'',
+	1,
+	'',
+	"8eb79e19-24d4-4e4b-9c9d-01c950ab164b",
+	0,
+	3);
 INSERT INTO O_NBATTR
 	VALUES ("5fb6298d-6d59-4522-bf54-b76c645cbd83",
 	"8bfd1932-93a4-4c0d-8c1f-783f76639038");
@@ -198,24 +297,6 @@ INSERT INTO O_ATTR
 	'Contact_Email',
 	0,
 	"ba5eda7a-def5-0000-0000-000000000004",
-	'',
-	'');
-INSERT INTO O_NBATTR
-	VALUES ("da51580b-b64a-423d-8641-e043271c1ab9",
-	"8bfd1932-93a4-4c0d-8c1f-783f76639038");
-INSERT INTO O_BATTR
-	VALUES ("da51580b-b64a-423d-8641-e043271c1ab9",
-	"8bfd1932-93a4-4c0d-8c1f-783f76639038");
-INSERT INTO O_ATTR
-	VALUES ("da51580b-b64a-423d-8641-e043271c1ab9",
-	"8bfd1932-93a4-4c0d-8c1f-783f76639038",
-	"199de6a6-ede4-4b71-a785-9bc1633c179e",
-	'is_Sponsor',
-	'',
-	'',
-	'is_Sponsor',
-	0,
-	"05e33b6b-c69a-4c41-8b61-465dd97fe7dd",
 	'',
 	'');
 INSERT INTO O_ID

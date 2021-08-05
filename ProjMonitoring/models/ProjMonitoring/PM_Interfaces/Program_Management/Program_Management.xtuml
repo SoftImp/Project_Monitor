@@ -665,6 +665,55 @@ INSERT INTO C_PP
 	0,
 	'',
 	"00000000-0000-0000-0000-000000000000");
+INSERT INTO C_EP
+	VALUES ("f6d0c8e6-a593-4421-b93c-3fdd162b4ec6",
+	"2fb1cfbf-5a98-466f-9dc8-5c99b1f86c67",
+	-1,
+	'update_Requirement_ID',
+	'',
+	20);
+INSERT INTO C_AS
+	VALUES ("f6d0c8e6-a593-4421-b93c-3fdd162b4ec6",
+	'update_Requirement_ID',
+	'',
+	0,
+	"a6543aaf-bd58-469a-a622-b7cf237898a2");
+INSERT INTO C_PP
+	VALUES ("7a4ba993-3e80-44ed-9204-91d7c4bd9829",
+	"f6d0c8e6-a593-4421-b93c-3fdd162b4ec6",
+	"ba5eda7a-def5-0000-0000-000000000004",
+	'Prog_Name',
+	'',
+	0,
+	'',
+	"00000000-0000-0000-0000-000000000000");
+INSERT INTO C_PP
+	VALUES ("77bf25e0-0981-4f58-aacb-030fb9b5c1f4",
+	"f6d0c8e6-a593-4421-b93c-3fdd162b4ec6",
+	"ba5eda7a-def5-0000-0000-000000000004",
+	'Req_ID',
+	'',
+	0,
+	'',
+	"7a4ba993-3e80-44ed-9204-91d7c4bd9829");
+INSERT INTO C_PP
+	VALUES ("831ae90a-7213-44af-9d36-63f64e867f44",
+	"f6d0c8e6-a593-4421-b93c-3fdd162b4ec6",
+	"ba5eda7a-def5-0000-0000-000000000004",
+	'New_Req_ID',
+	'',
+	0,
+	'',
+	"77bf25e0-0981-4f58-aacb-030fb9b5c1f4");
+INSERT INTO C_PP
+	VALUES ("bb4fc637-5fa9-4974-a8d5-cdc02ad6798e",
+	"f6d0c8e6-a593-4421-b93c-3fdd162b4ec6",
+	"ba5eda7a-def5-0000-0000-000000000004",
+	'Description',
+	'',
+	0,
+	'',
+	"831ae90a-7213-44af-9d36-63f64e867f44");
 INSERT INTO PE_PE
 	VALUES ("2fb1cfbf-5a98-466f-9dc8-5c99b1f86c67",
 	1,
