@@ -220,7 +220,7 @@ INSERT INTO SPR_REP
 INSERT INTO SPR_RS
 	VALUES ("1cf1a3bf-e1da-42b0-93da-14eef4825b2f",
 	'add_Stakeholder',
-	'',
+	'Signal to call Stakeholder class operation to add a new stakeholder.',
 	'',
 	3,
 	0,
@@ -230,7 +230,7 @@ INSERT INTO C_EP_PROXY
 	"02750e29-0756-478c-83b2-43e938b640ea",
 	-1,
 	'add_Stakeholder',
-	'',
+	'Signal to call Stakeholder class operation to add a new stakeholder.',
 	1,
 	'../../../../../ProjMonitoring/models/ProjMonitoring/PM_Interfaces/Stakeholder_Management/Stakeholder_Management.xtuml');
 INSERT INTO SPR_REP
@@ -240,7 +240,7 @@ INSERT INTO SPR_REP
 INSERT INTO SPR_RS
 	VALUES ("34cead71-8c0b-40e7-8354-d301229a818d",
 	'Notify',
-	'',
+	'Signal for sending messages to various managers.',
 	'',
 	3,
 	0,
@@ -250,8 +250,94 @@ INSERT INTO C_EP_PROXY
 	"02750e29-0756-478c-83b2-43e938b640ea",
 	-1,
 	'Notify',
+	'Signal for sending messages to various managers.',
+	3,
+	'../../../../../ProjMonitoring/models/ProjMonitoring/PM_Interfaces/Stakeholder_Management/Stakeholder_Management.xtuml');
+INSERT INTO SPR_REP
+	VALUES ("b1565a66-c3ef-4306-a9b4-d28bc48ceb56",
+	"3da20cc8-352d-472b-9a28-b174ee69d766",
+	"45336264-875b-41a1-aaf6-79d3070dc989");
+INSERT INTO SPR_RS
+	VALUES ("b1565a66-c3ef-4306-a9b4-d28bc48ceb56",
+	'add_Representation',
+	'Signal to call Stakeholder class operation to add a representation relationship between an 
+ENTITY and an identified STAKEHOLDER.',
 	'',
 	3,
+	0,
+	1);
+INSERT INTO C_EP_PROXY
+	VALUES ("3da20cc8-352d-472b-9a28-b174ee69d766",
+	"02750e29-0756-478c-83b2-43e938b640ea",
+	-1,
+	'add_Representation',
+	'Signal to call Stakeholder class operation to add a representation relationship between an 
+ENTITY and an identified STAKEHOLDER.',
+	1,
+	'../../../../../ProjMonitoring/models/ProjMonitoring/PM_Interfaces/Stakeholder_Management/Stakeholder_Management.xtuml');
+INSERT INTO SPR_REP
+	VALUES ("e776eef9-7462-490d-bd79-b88ffa82600b",
+	"b514298f-ff93-4deb-a473-839db1fb88a4",
+	"45336264-875b-41a1-aaf6-79d3070dc989");
+INSERT INTO SPR_RS
+	VALUES ("e776eef9-7462-490d-bd79-b88ffa82600b",
+	'add_Sponsorship',
+	'A signal to call a Stakeholder class operation to set up a sponsorship relationship between a
+STAKEHOLDER and a PORTFOLIO.',
+	'',
+	3,
+	0,
+	1);
+INSERT INTO C_EP_PROXY
+	VALUES ("b514298f-ff93-4deb-a473-839db1fb88a4",
+	"02750e29-0756-478c-83b2-43e938b640ea",
+	-1,
+	'add_Sponsorship',
+	'A signal to call a Stakeholder class operation to set up a sponsorship relationship between a
+STAKEHOLDER and a PORTFOLIO.',
+	1,
+	'../../../../../ProjMonitoring/models/ProjMonitoring/PM_Interfaces/Stakeholder_Management/Stakeholder_Management.xtuml');
+INSERT INTO SPR_REP
+	VALUES ("7ff8c347-23fa-4e91-8ca8-c74c4b67cad3",
+	"e48b1a3e-7270-4ef1-bed7-ee4e4f756e11",
+	"45336264-875b-41a1-aaf6-79d3070dc989");
+INSERT INTO SPR_RS
+	VALUES ("7ff8c347-23fa-4e91-8ca8-c74c4b67cad3",
+	'add_Concern',
+	'Signal to call a Stakeholder class operation to form a relationship between a STAKEHOLDER and
+a PORTFOLIO indicating CONCERNS the Stakeholder has about aspects of the Portfolio.',
+	'',
+	3,
+	0,
+	1);
+INSERT INTO C_EP_PROXY
+	VALUES ("e48b1a3e-7270-4ef1-bed7-ee4e4f756e11",
+	"02750e29-0756-478c-83b2-43e938b640ea",
+	-1,
+	'add_Concern',
+	'Signal to call a Stakeholder class operation to form a relationship between a STAKEHOLDER and
+a PORTFOLIO indicating CONCERNS the Stakeholder has about aspects of the Portfolio.',
+	1,
+	'../../../../../ProjMonitoring/models/ProjMonitoring/PM_Interfaces/Stakeholder_Management/Stakeholder_Management.xtuml');
+INSERT INTO SPR_REP
+	VALUES ("80cbac3a-2538-44c6-af8f-486221df0a7a",
+	"5dfcdca4-4c7b-47df-ac69-05f8c0c5679c",
+	"45336264-875b-41a1-aaf6-79d3070dc989");
+INSERT INTO SPR_RS
+	VALUES ("80cbac3a-2538-44c6-af8f-486221df0a7a",
+	'add_Current_Role',
+	'Signal to call a Stakeholder class operation to record a Stakeholder''s current role.',
+	'',
+	3,
+	0,
+	1);
+INSERT INTO C_EP_PROXY
+	VALUES ("5dfcdca4-4c7b-47df-ac69-05f8c0c5679c",
+	"02750e29-0756-478c-83b2-43e938b640ea",
+	-1,
+	'add_Current_Role',
+	'Signal to call a Stakeholder class operation to record a Stakeholder''s current role.',
+	1,
 	'../../../../../ProjMonitoring/models/ProjMonitoring/PM_Interfaces/Stakeholder_Management/Stakeholder_Management.xtuml');
 INSERT INTO C_I_PROXY
 	VALUES ("02750e29-0756-478c-83b2-43e938b640ea",

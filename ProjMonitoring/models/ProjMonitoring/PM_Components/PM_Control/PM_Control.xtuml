@@ -2588,8 +2588,7 @@ INSERT INTO SPR_PS
 SH::Create( SH_Name: param.SH_Name, 
 			Con_Phone: param.Phone, 
 			Con_Address: param.Address, 
-			Con_Email: param.Email, 
-			is_Sponsor: param.is_Sponsor);
+			Con_Email: param.Email);
 			
 LOG::LogInfo( message: "A new STAKEHOLDER " + param.SH_Name + " is being created");
 

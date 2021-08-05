@@ -36,7 +36,6 @@ if (empty Stakeholder)
 	Stakeholder.Contact_Phone = param.Con_Phone;
 	Stakeholder.Contact_Address = param.Con_Address;
 	Stakeholder.Contact_Email = param.Con_Email;
-	Stakeholder.is_Sponsor = param.is_Sponsor;
 	
 	LOG::LogInfo (message: "A new STAKEHOLDER " + Stakeholder.SH_Name + " has been added.");
 	

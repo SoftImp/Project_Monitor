@@ -1559,7 +1559,6 @@ if ( not empty Stakeholder)
 	create object instance Concerns of SHPFC;
 	Concerns.SH_Name = param.SH_Name;
 	Concerns.PF_Name = self.PF_Name;
-	Concerns.is_Sponsor = Stakeholder.is_Sponsor;
 	
 	relate self to Stakeholder across R17.''has interest of'' using Concerns;
 	

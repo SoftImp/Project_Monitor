@@ -123,7 +123,7 @@ INSERT INTO O_TFR
 
 	self.Budget = param.Budget;
 	LOG::LogInfo(message : "The addition of a BUDGET has been successful. Relevant parties will be notified.");
-	send OrgMan::Notify(Relevant_Person:"Manager", Message: "The BUDGET for " + param.PRG_Name + "has been added.");
+	send OrgMan::Notify(Relevant_Person:"Manager", Message: "The BUDGET for " + self.PRG_Name + "has been added.");
 	
 //else
 //	LOG::LogFailure(message : "The chosen PROGRAM does not exist. Perhaps it was misspelt or incorrectly selected");
