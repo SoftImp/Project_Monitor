@@ -43,12 +43,12 @@
     <b-modal :id="updateModal.id" :title="updateModal.title" @ok="handleOk" @show="resetModal">
       <form ref="form" @submit.stop.prevent="handleSubmit">
         <b-form-group label="Goal Identity:" label-for="input-1">
-          <b-form-input id="input-1" v-model="updateModal.item.goalId" type="text" disabled></b-form-input>
+          <b-form-input id="input-1" v-model="updateModal.item.name" type="text" disabled></b-form-input>
         </b-form-group>
 
         <b-form-group label="Description:" label-for="input-2" invalid-feedback="Description is required"
           :state="updateModal.descState">
-          <b-form-input id="input-2" v-model="updateModal.item.description" :state="updateModal.descState" required></b-form-input>
+          <b-form-input id="input-2" v-model.trim="updateModal.item.description" :state="updateModal.descState" required></b-form-input>
         </b-form-group>
 
         <b-form-group label="Priority:" label-for="input-3">
@@ -74,7 +74,7 @@
           orgItem: ''
         },
         fields: [
-        { key: 'goalId', label: 'Goal Identity', sortable: true },
+        { key: 'name', label: 'Goal Identity', sortable: true },
         { key: 'description', sortable: false },
         { key: 'priority', sortable: true },
         { key: 'actions', label: 'Actions' }
@@ -96,7 +96,7 @@
       },
       update(item, index, button) {
         this.updateModal.orgItem = item;
-        this.updateModal.title = 'Update Strategic Goal: ' + item.goalId;
+        this.updateModal.title = 'Update Strategic Goal: ' + item.name;
         this.updateModal.item = JSON.parse(JSON.stringify(item)); // make a copy, assigning will be a reference
         this.$root.$emit('bv::show::modal', this.updateModal.id, button);
       },     
@@ -125,7 +125,7 @@
             'Accept': 'application/json',
             'Content-Type': 'application/json'
           },
-          body: JSON.stringify({ goalId: this.updateModal.orgItem.goalId, description: this.updateModal.item.description, priority: this.updateModal.item.priority })
+          body: JSON.stringify({ name: this.updateModal.orgItem.name, description: this.updateModal.item.description, priority: this.updateModal.item.priority })
         });
 
         this.updateModal.orgItem.description = this.updateModal.item.description;

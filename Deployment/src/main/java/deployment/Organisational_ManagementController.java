@@ -45,17 +45,17 @@ public class Organisational_ManagementController {
 				waitStrategicGoals.synchroniseAndWait();
 			}
 
-			if (waitStrategicGoals.getMsg().contains("\"goalId\":\"" + sg.getGoalId() + "\"")) {
-				System.out.printf("addsg() goalId: %s already exists\n", sg.getGoalId());
+			if (waitStrategicGoals.getMsg().contains("\"goalId\":\"" + sg.getName() + "\"")) {
+				System.out.printf("addsg() goalId: %s already exists\n", sg.getName());
 				return new ResponseEntity(HttpStatus.NOT_ACCEPTABLE);
 			}
 
-			System.out.printf("addsg() goalId: %s, desc: %s, priority: %s\n", sg.getGoalId(), sg.getDescription(),
+			System.out.printf("addsg() goalId: %s, desc: %s, priority: %s\n", sg.getName(), sg.getDescription(),
 					sg.getPriority());
 
 			Priority_Level level = Priority_Level.valueOf(sg.getPriority().toUpperCase());
 
-			Organisational_Management.Singleton().OrgMan().add_Strategic_Goal(sg.getGoalId(), sg.getDescription(),
+			Organisational_Management.Singleton().OrgMan().add_Strategic_Goal(sg.getName(), sg.getDescription(),
 					level);
 			waitStrategicGoals.clear();
 			return new ResponseEntity(HttpStatus.OK);
@@ -68,13 +68,13 @@ public class Organisational_ManagementController {
 	@PostMapping("/updatesg")
 	public ResponseEntity updatesg(@RequestBody StrategicGoalMsg sg) {
 		try {
-			System.out.printf("updatesg() goalId: %s, desc: %s, priority: %s\n", sg.getGoalId(), sg.getDescription(),
+			System.out.printf("updatesg() goalId: %s, desc: %s, priority: %s\n", sg.getName(), sg.getDescription(),
 					sg.getPriority());
 
 			Priority_Level level = Priority_Level.valueOf(sg.getPriority().toUpperCase());
 
-			Organisational_Management.Singleton().OrgMan().update_Description(sg.getGoalId(), sg.getDescription());
-			Organisational_Management.Singleton().OrgMan().update_Priority(sg.getGoalId(), level);
+			Organisational_Management.Singleton().OrgMan().update_Description(sg.getName(), sg.getDescription());
+			Organisational_Management.Singleton().OrgMan().update_Priority(sg.getName(), level);
 
 			waitStrategicGoals.clear();
 			return new ResponseEntity(HttpStatus.OK);

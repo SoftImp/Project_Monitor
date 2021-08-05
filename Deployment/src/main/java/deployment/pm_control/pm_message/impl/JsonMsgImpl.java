@@ -30,6 +30,7 @@ import java.util.ArrayList;
 import java.util.List;
 import org.json.JSONArray;
 import deployment.StrategicGoalMsg;
+import deployment.PortfolioMsg;
 
 public class JsonMsgImpl extends ModelInstance<JsonMsg,PM_Control> implements JsonMsg {
 
@@ -85,27 +86,37 @@ public class JsonMsgImpl extends ModelInstance<JsonMsg,PM_Control> implements Js
         public String get_Portfolios() throws XtumlException {
             PortfolioSet portfolios = context().Portfolio_instances();
             Portfolio p;
+            ArrayList<PortfolioMsg> msgArr = new ArrayList<PortfolioMsg>();
             for ( Iterator<Portfolio> _p_iter = portfolios.elements().iterator(); _p_iter.hasNext(); ) {
                 p = _p_iter.next();
                 context().LOG().LogInfo( ( ( "pf: " + p.getPF_Name() ) + " " ) + p.getDescription() );
+                PortfolioMsg msg = new PortfolioMsg(p.getPF_Name(), p.getDescription(), p.getManager());
                 Strategic_Goal goal = p.R1_aligns_with_Strategic_Goal();
                 if ( !goal.isEmpty() ) {
                     context().LOG().LogInfo( "g: " + goal.getSG_Name() );
+                    msg.setStrategicGoal(goal.getSG_Name());
                 }
                 ProgramSet programs = p.R4_may_include_Program();
                 Program prg;
                 for ( Iterator<Program> _prg_iter = programs.elements().iterator(); _prg_iter.hasNext(); ) {
                     prg = _prg_iter.next();
                     context().LOG().LogInfo( "prg: " + prg.getPRG_Name() );
+                    msg.addProgram(prg.getPRG_Name());
                 }
                 ProjectSet projects = p.R6_may_include_Project();
                 Project prj;
                 for ( Iterator<Project> _prj_iter = projects.elements().iterator(); _prj_iter.hasNext(); ) {
                     prj = _prj_iter.next();
                     context().LOG().LogInfo( "prj: " + prj.getPRJ_Name() );
+                    msg.addProject(prj.getPRJ_Name());
                 }
+                
+                msgArr.add(msg);
             }
-            return "";
+
+            JSONArray jsArray = new JSONArray(msgArr);
+			context().LOG().LogInfo("Portfolios: " + jsArray.toString());
+            return jsArray.toString();
         }
 
         public String get_Programs() throws XtumlException {
@@ -157,7 +168,7 @@ public class JsonMsgImpl extends ModelInstance<JsonMsg,PM_Control> implements Js
             }
 			
 			JSONArray jsArray = new JSONArray(msgArr);
-			context().LOG().LogInfo("JSON: " + jsArray.toString());
+			context().LOG().LogInfo("Strategic_Goals: " + jsArray.toString());
             return jsArray.toString();
         }
 
