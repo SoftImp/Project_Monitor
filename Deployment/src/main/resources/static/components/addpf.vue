@@ -55,14 +55,14 @@
           createid: 'modal-createprg',
           title: 'Associate Programs',
           label: 'Programs:',
-          url: './getsg',
+          url: './getprg',
           mode: 'multi',
           selected: [],
           fields: [
             'selected',
-            { key: 'name', label: 'Goal Identity' },
-            { key: 'description' },
-            { key: 'priority' }
+            { key: 'name', label: 'Program', sortable: true },
+            { key: 'description', sortable: false },
+            { key: 'owner', sortable: true },
           ]
         },
         assoc_prj: {

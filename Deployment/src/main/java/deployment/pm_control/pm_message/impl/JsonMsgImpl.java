@@ -31,6 +31,8 @@ import java.util.List;
 import org.json.JSONArray;
 import deployment.StrategicGoalMsg;
 import deployment.PortfolioMsg;
+import deployment.ProgramMsg;
+import deployment.ProjectMsg;
 
 public class JsonMsgImpl extends ModelInstance<JsonMsg,PM_Control> implements JsonMsg {
 
@@ -89,25 +91,25 @@ public class JsonMsgImpl extends ModelInstance<JsonMsg,PM_Control> implements Js
             ArrayList<PortfolioMsg> msgArr = new ArrayList<PortfolioMsg>();
             for ( Iterator<Portfolio> _p_iter = portfolios.elements().iterator(); _p_iter.hasNext(); ) {
                 p = _p_iter.next();
-                context().LOG().LogInfo( ( ( "pf: " + p.getPF_Name() ) + " " ) + p.getDescription() );
+                //context().LOG().LogInfo( ( ( "pf: " + p.getPF_Name() ) + " " ) + p.getDescription() );
                 PortfolioMsg msg = new PortfolioMsg(p.getPF_Name(), p.getDescription(), p.getManager());
                 Strategic_Goal goal = p.R1_aligns_with_Strategic_Goal();
                 if ( !goal.isEmpty() ) {
-                    context().LOG().LogInfo( "g: " + goal.getSG_Name() );
+                    //context().LOG().LogInfo( "g: " + goal.getSG_Name() );
                     msg.setStrategicGoal(goal.getSG_Name());
                 }
                 ProgramSet programs = p.R4_may_include_Program();
                 Program prg;
                 for ( Iterator<Program> _prg_iter = programs.elements().iterator(); _prg_iter.hasNext(); ) {
                     prg = _prg_iter.next();
-                    context().LOG().LogInfo( "prg: " + prg.getPRG_Name() );
+                    //context().LOG().LogInfo( "prg: " + prg.getPRG_Name() );
                     msg.addProgram(prg.getPRG_Name());
                 }
                 ProjectSet projects = p.R6_may_include_Project();
                 Project prj;
                 for ( Iterator<Project> _prj_iter = projects.elements().iterator(); _prj_iter.hasNext(); ) {
                     prj = _prj_iter.next();
-                    context().LOG().LogInfo( "prj: " + prj.getPRJ_Name() );
+                    //context().LOG().LogInfo( "prj: " + prj.getPRJ_Name() );
                     msg.addProject(prj.getPRJ_Name());
                 }
                 
@@ -122,39 +124,62 @@ public class JsonMsgImpl extends ModelInstance<JsonMsg,PM_Control> implements Js
         public String get_Programs() throws XtumlException {
             ProgramSet programs = context().Program_instances();
             Program p;
+            ArrayList<ProgramMsg> msgArr = new ArrayList<ProgramMsg>();
             for ( Iterator<Program> _p_iter = programs.elements().iterator(); _p_iter.hasNext(); ) {
                 p = _p_iter.next();
-                context().LOG().LogInfo( ( ( "prg: " + p.getPRG_Name() ) + " " ) + p.getDescription() );
+                //context().LOG().LogInfo( ( ( "prg: " + p.getPRG_Name() ) + " " ) + p.getDescription() );
+                ProgramMsg msg = new ProgramMsg(p.getPRG_Name(), p.getDescription(), p.getOwner());
+                Strategic_Goal goal = p.R2_may_align_with_Strategic_Goal();
+                if ( !goal.isEmpty() ) {
+                    //context().LOG().LogInfo( "g: " + goal.getSG_Name() );
+                    msg.setStrategicGoal(goal.getSG_Name());
+                }
                 Portfolio pf = p.R4_may_be_part_of_Portfolio();
                 if ( !pf.isEmpty() ) {
-                    context().LOG().LogInfo( "pf: " + pf.getPF_Name() );
+                    //context().LOG().LogInfo( "pf: " + pf.getPF_Name() );
+                    msg.setPortfolio(pf.getPF_Name());
                 }
                 ProjectSet projects = p.R5_may_include_Project();
                 Project prj;
                 for ( Iterator<Project> _prj_iter = projects.elements().iterator(); _prj_iter.hasNext(); ) {
                     prj = _prj_iter.next();
-                    context().LOG().LogInfo( "prj: " + prj.getPRJ_Name() );
+                    //context().LOG().LogInfo( "prj: " + prj.getPRJ_Name() );
+                    msg.addProject(prj.getPRJ_Name());
                 }
+
+                msgArr.add(msg);
             }
-            return "";
+
+            JSONArray jsArray = new JSONArray(msgArr);
+			context().LOG().LogInfo("Programs: " + jsArray.toString());
+            return jsArray.toString();
         }
 
         public String get_Projects() throws XtumlException {
             ProjectSet projects = context().Project_instances();
             Project p;
+            ArrayList<ProjectMsg> msgArr = new ArrayList<ProjectMsg>();
             for ( Iterator<Project> _p_iter = projects.elements().iterator(); _p_iter.hasNext(); ) {
                 p = _p_iter.next();
-                context().LOG().LogInfo( ( ( "prg: " + p.getPRJ_Name() ) + " " ) + p.getDescription() );
+                //context().LOG().LogInfo( ( ( "prg: " + p.getPRJ_Name() ) + " " ) + p.getDescription() );
+                ProjectMsg msg = new ProjectMsg(p.getPRJ_Name(), p.getDescription());
                 Strategic_Goal goal = p.R3_may_be_driven_by_Strategic_Goal();
                 if ( !goal.isEmpty() ) {
-                    context().LOG().LogInfo( "g: " + goal.getSG_Name() );
+                    //context().LOG().LogInfo( "g: " + goal.getSG_Name() );
+                    msg.setStrategicGoal(goal.getSG_Name());
                 }
                 Program prg = p.R5_may_be_part_of_Program();
                 if ( !prg.isEmpty() ) {
-                    context().LOG().LogInfo( "prg: " + prg.getPRG_Name() );
+                   // context().LOG().LogInfo( "prg: " + prg.getPRG_Name() );
+                    msg.setProgram(prg.getPRG_Name());
                 }
+
+                msgArr.add(msg);
             }
-            return "";
+
+            JSONArray jsArray = new JSONArray(msgArr);
+			context().LOG().LogInfo("Projects: " + jsArray.toString());
+            return jsArray.toString();
         }
 
         public String get_Strategic_Goals() throws XtumlException {
