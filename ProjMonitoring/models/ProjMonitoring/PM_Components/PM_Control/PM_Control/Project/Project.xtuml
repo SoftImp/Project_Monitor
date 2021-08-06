@@ -66,10 +66,10 @@ INSERT INTO O_TFR
 	'//Include a Project in a Program.
 //Based on UC11.
 
-select any Project from instances of PRJ
- where (selected.PRJ_Name == param.PRJ_Name);
+//select any Project from instances of PRJ
+ //where (selected.PRJ_Name == param.PRJ_Name);
  
-if (not empty Project)
+//if (not empty Project)
 
 	select any Program from instances of PRG
 	 where (selected.PRG_Name == param.PRG_Name);
@@ -79,13 +79,13 @@ if (not empty Project)
 		relate self to Program across R5.''may be part of'';
 	
 		LOG::LogInfo( message: "A PROJECT has been included in a PROGRAM." );
-		send OrgMan::Notify(Relevant_Person:"Manager", Message:"A PROJECT  " + param.PRJ_Name + "has been added to a PROGRAM.");
+		send OrgMan::Notify(Relevant_Person:"Manager", Message:"A PROJECT  " + self.PRJ_Name + "has been added to a PROGRAM.");
 	else
 		LOG::LogFailure( message: "The chosen PROGRAM does not exist.  Please choose a relevant PROGRAM that already exists." );
 	end if;
-else
-	LOG::LogFailure( message: "The chosen PROJECT NAME doesn''t exist.  Please choose a NAME that already exists." );
-end if;',
+//else
+//	LOG::LogFailure( message: "The chosen PROJECT NAME doesn''t exist.  Please choose a NAME that already exists." );
+//end if;',
 	1,
 	'',
 	"084de765-a9ba-466d-98e9-e025d572cc9e",
@@ -95,15 +95,6 @@ INSERT INTO O_TPARM
 	VALUES ("16c92503-a9fd-4a44-85ca-b06d5ea7bbfb",
 	"654efed3-3d24-40a2-98ae-e135fc0d505a",
 	'PRG_Name',
-	"ba5eda7a-def5-0000-0000-000000000004",
-	0,
-	'',
-	"2c1b7319-03d3-4674-9a7a-2b992321ce6b",
-	'');
-INSERT INTO O_TPARM
-	VALUES ("2c1b7319-03d3-4674-9a7a-2b992321ce6b",
-	"654efed3-3d24-40a2-98ae-e135fc0d505a",
-	'PRJ_Name',
 	"ba5eda7a-def5-0000-0000-000000000004",
 	0,
 	'',
@@ -119,10 +110,10 @@ INSERT INTO O_TFR
 	'//Include a Project within a Portfolio.
 //Based on UC11.
 
-select any Project from instances of PRJ
- where (selected.PRJ_Name == param.PRJ_Name);
+//select any Project from instances of PRJ
+// where (selected.PRJ_Name == param.PRJ_Name);
  
-if (not empty Project)
+//if (not empty Project)
 
 	select any Portfolio from instances of PF
 	 where (selected.PF_Name == param.PF_Name);
@@ -132,27 +123,18 @@ if (not empty Project)
 		relate self to Portfolio across R6.''may be part of'';
 	
 		LOG::LogInfo( message: "A PROJECT has been added to a PORTFOLIO." );
-		send OrgMan::Notify(Relevant_Person:"Manager", Message:"A PROJECT  " + param.PRJ_Name + "has been added to a PORTFOLIO.");
+		send OrgMan::Notify(Relevant_Person:"Manager", Message:"A PROJECT  " + self.PRJ_Name + "has been added to a PORTFOLIO.");
 	else
 		LOG::LogFailure( message: "The chosen PORTFOLIO does not exist.  Please choose a relevant PORTFOLIO that already exists." );
 	end if;
-else
-	LOG::LogFailure( message: "The chosen PROJECT NAME doesn''t exist.  Please choose a NAME that already exists." );
-end if;',
+//else
+//	LOG::LogFailure( message: "The chosen PROJECT NAME doesn''t exist.  Please choose a NAME that already exists." );
+//end if;',
 	1,
 	'',
 	"654efed3-3d24-40a2-98ae-e135fc0d505a",
 	0,
 	6);
-INSERT INTO O_TPARM
-	VALUES ("95dba634-9b8f-4cc3-af15-30df7f3237e2",
-	"af8ecc64-9927-43c7-8ec3-060934c41504",
-	'PRJ_Name',
-	"ba5eda7a-def5-0000-0000-000000000004",
-	0,
-	'',
-	"00000000-0000-0000-0000-000000000000",
-	'');
 INSERT INTO O_TPARM
 	VALUES ("13d461f4-d7c8-4e5f-b924-fb021a8c8347",
 	"af8ecc64-9927-43c7-8ec3-060934c41504",
@@ -160,7 +142,7 @@ INSERT INTO O_TPARM
 	"ba5eda7a-def5-0000-0000-000000000004",
 	0,
 	'',
-	"95dba634-9b8f-4cc3-af15-30df7f3237e2",
+	"00000000-0000-0000-0000-000000000000",
 	'');
 INSERT INTO O_NBATTR
 	VALUES ("63751c42-d788-4dec-a3cf-cda6d54b5aae",

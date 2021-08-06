@@ -15,15 +15,42 @@
     <!-- Modal -->
     <b-modal :id="assoc.id" ref="select-modal" :title="assoc.title" @ok="handleOk" @show="fetchData">
       <div>
+        <b-row>
+          <b-col lg="10" class="my-1">
+            <b-form-group
+              label="Filter"
+              label-for="filter-input"
+              label-cols-sm="3"
+              label-align-sm="right"
+              label-size="sm"
+              class="mb-1"
+            >
+              <b-input-group size="sm">
+                <b-form-input
+                  id="filter-input"
+                  v-model="filter"
+                  type="search"
+                  placeholder="Type to search..."
+                ></b-form-input>
+
+                <b-input-group-append>
+                  <b-button :disabled="!filter" @click="filter = ''">Clear</b-button>
+                </b-input-group-append>
+              </b-input-group>
+            </b-form-group>
+          </b-col>
+        </b-row>
         <b-table
           :items="items"
           :fields="assoc.fields"
           :select-mode="assoc.mode"
+          :filter="filter"
           responsive="sm"
           ref="selectableTable"
           selectable
           striped 
           bordered
+          hover
           @row-selected="onRowSelected"
         >    
           <!--Example scoped slot for select state illustrative purposes -->
@@ -61,6 +88,7 @@
     data: function () {
       return {
         items: [],
+        filter: null,
         rowselected: [],
         prg: {
           name : '',
@@ -81,6 +109,7 @@
     methods: {    
       async fetchData() {
         //this.items = [];
+        this.filter = null;
         const response = await fetch(this.assoc.url);
         if (response.ok) {
           const json = await response.json();

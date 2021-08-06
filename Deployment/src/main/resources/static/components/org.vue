@@ -6,14 +6,14 @@
     </p>
     <div>
       <b-row>
-        <b-col lg="6" class="my-1">
+        <b-col lg="10" class="my-1">
           <b-form-group
             label="Filter"
             label-for="filter-input"
             label-cols-sm="3"
             label-align-sm="right"
             label-size="sm"
-            class="mb-0"
+            class="mb-1"
           >
             <b-input-group size="sm">
               <b-form-input
@@ -82,9 +82,9 @@
       }
     },
     created() {
-    this.fetchData().catch(error => {
-      console.error(error)
-    })
+      this.fetchData().catch(error => {
+        console.error(error)
+      })
     },
     methods: {
       async fetchData() {
