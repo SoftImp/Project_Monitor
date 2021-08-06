@@ -144,6 +144,41 @@ INSERT INTO O_TPARM
 	'',
 	"00000000-0000-0000-0000-000000000000",
 	'');
+INSERT INTO O_TFR
+	VALUES ("7824396b-9e4a-45ea-a108-a0d27fec3a74",
+	"18044797-4249-419f-8f55-d5516f5ef7b5",
+	'link_To_Strategic_Goal',
+	'',
+	"ba5eda7a-def5-0000-0000-000000000000",
+	1,
+	'//Associate/Link Project to a Strategic Goal.
+
+select any Strategic_Goal from instances of SG
+ where (selected.SG_Name == param.SG_Name);
+
+if ( not empty Strategic_Goal)
+
+	relate self to Strategic_Goal across R3.''may be driven by'';
+
+	LOG::LogInfo( message: "A (new) PROJECT has been associated with a STRATEGIC GOAL." );
+	send OrgMan::Notify(Relevant_Person:"Manager", Message:"A (new) PROJECT  " + self.PRJ_Name + "has been associated with a STRATEGIC GOAL.");
+else
+	LOG::LogFailure( message: "The chosen STRATEGIC GOAL does not exist.  Please choose a relevant GOAL that already exists." );
+end if;',
+	1,
+	'',
+	"af8ecc64-9927-43c7-8ec3-060934c41504",
+	0,
+	7);
+INSERT INTO O_TPARM
+	VALUES ("a80e59c8-9154-49de-aa12-9abd2ae84fa6",
+	"7824396b-9e4a-45ea-a108-a0d27fec3a74",
+	'SG_Name',
+	"ba5eda7a-def5-0000-0000-000000000004",
+	0,
+	'',
+	"00000000-0000-0000-0000-000000000000",
+	'');
 INSERT INTO O_NBATTR
 	VALUES ("63751c42-d788-4dec-a3cf-cda6d54b5aae",
 	"18044797-4249-419f-8f55-d5516f5ef7b5");
