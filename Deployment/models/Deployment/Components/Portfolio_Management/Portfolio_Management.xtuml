@@ -616,6 +616,46 @@ INSERT INTO C_EP_PROXY
 	'',
 	17,
 	'../../../../../ProjMonitoring/models/ProjMonitoring/PM_Interfaces/Portfolio_Management/Portfolio_Management.xtuml');
+INSERT INTO SPR_REP
+	VALUES ("0896afea-c21b-4196-bdb3-ac7ef554a674",
+	"cc55a039-66af-4713-bb34-2cf5513cffb6",
+	"b1456975-17b6-4536-b2a3-e517a5b1f8c3");
+INSERT INTO SPR_RS
+	VALUES ("0896afea-c21b-4196-bdb3-ac7ef554a674",
+	'unlink_Strategic_Goal',
+	'',
+	'',
+	3,
+	0,
+	18);
+INSERT INTO C_EP_PROXY
+	VALUES ("cc55a039-66af-4713-bb34-2cf5513cffb6",
+	"a1785323-9842-4f78-9c7c-66eac1ae5d6a",
+	-1,
+	'unlink_Strategic_Goal',
+	'',
+	18,
+	'../../../../../ProjMonitoring/models/ProjMonitoring/PM_Interfaces/Portfolio_Management/Portfolio_Management.xtuml');
+INSERT INTO SPR_REP
+	VALUES ("d24e635d-cec2-4108-aa5c-1f58812ca887",
+	"15138150-819d-4f2c-ab1c-c2859e8cd402",
+	"b1456975-17b6-4536-b2a3-e517a5b1f8c3");
+INSERT INTO SPR_RS
+	VALUES ("d24e635d-cec2-4108-aa5c-1f58812ca887",
+	'update_Description',
+	'',
+	'',
+	3,
+	0,
+	19);
+INSERT INTO C_EP_PROXY
+	VALUES ("15138150-819d-4f2c-ab1c-c2859e8cd402",
+	"a1785323-9842-4f78-9c7c-66eac1ae5d6a",
+	-1,
+	'update_Description',
+	'',
+	19,
+	'../../../../../ProjMonitoring/models/ProjMonitoring/PM_Interfaces/Portfolio_Management/Portfolio_Management.xtuml');
 INSERT INTO C_I_PROXY
 	VALUES ("a1785323-9842-4f78-9c7c-66eac1ae5d6a",
 	"00000000-0000-0000-0000-000000000000",

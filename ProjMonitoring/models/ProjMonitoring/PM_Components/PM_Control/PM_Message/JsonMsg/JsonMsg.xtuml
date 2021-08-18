@@ -17,6 +17,21 @@ INSERT INTO O_TFR
 	'select many goals from instances of SG;
 for each g in goals
   LOG::LogInfo( message: "sg: " + g.SG_Name + " " + g.Description );
+  
+  select many projects related by g->PRJ[R3.''may drive''];
+  for each prj in projects
+  	LOG::LogInfo( message: "prj: " + prj.PRJ_Name );
+  end for;
+  
+  select many programs related by g->PRG[R2.''may drive''];
+  for each prg in programs
+  	LOG::LogInfo( message: "prg: " + prg.PRG_Name );
+  end for;
+  
+  select many portfolios related by g->PF[R1.''may drive''];
+  for each pf in portfolios
+  	LOG::LogInfo( message: "pf: " + pf.PF_Name );
+  end for; 
 end for;
 
 return "";',
@@ -68,7 +83,12 @@ INSERT INTO O_TFR
 	'select many programs from instances of PRG;
 for each p in programs
   LOG::LogInfo( message: "prg: " + p.PRG_Name + " " + p.Description );
-  
+ 
+  select one goal related by p->SG[R2.''may align with''];
+  if ( not empty goal )
+  	LOG::LogInfo( message: "g: " + goal.SG_Name );
+  end if;
+   
   select one pf related by p->PF[R4.''may be part of''];
   if ( not empty pf )
   	LOG::LogInfo( message: "pf: " + pf.PF_Name );
@@ -78,7 +98,6 @@ for each p in programs
   for each prj in projects
   	LOG::LogInfo( message: "prj: " + prj.PRJ_Name );
   end for;
-  
 end for;
 
 return "";',
@@ -107,6 +126,11 @@ for each p in projects
   if ( not empty prg )
   	LOG::LogInfo( message: "prg: " + prg.PRG_Name );
   end if;  
+  
+  select one pf related by p->PF[R6.''may be part of''];
+  if ( not empty pf )
+  	LOG::LogInfo( message: "pf: " + pf.PF_Name );
+  end if;
 end for;
 
 return "";',

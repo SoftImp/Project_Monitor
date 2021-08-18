@@ -69,6 +69,34 @@ INSERT INTO O_TPARM
 	'',
 	"8376c58e-69ed-488e-bd99-d200e4364235",
 	'');
+INSERT INTO O_TFR
+	VALUES ("dda4f67d-a53c-4dcb-b0de-42f2effb7b12",
+	"ebd48d02-0571-4979-8fde-ce5707451104",
+	'update_Description',
+	'',
+	"ba5eda7a-def5-0000-0000-000000000000",
+	1,
+	'//Update the description of a Portfolio.
+
+
+self.Description = param.Description;
+LOG::LogInfo(message : "The change to PORTFOLIO DESCRIPTION has been successful. Relevant parties will be notified.");
+send OrgMan::Notify(Relevant_Person:"Manager", Message: "The DESCRIPTION of " + self.PF_Name + "has been changed.");
+',
+	1,
+	'',
+	"f58a25b6-c422-44a3-83fe-f3df326f72ad",
+	0,
+	2);
+INSERT INTO O_TPARM
+	VALUES ("69d0ac5b-7454-4dc4-9355-b9dcc03fe53a",
+	"dda4f67d-a53c-4dcb-b0de-42f2effb7b12",
+	'Description',
+	"ba5eda7a-def5-0000-0000-000000000004",
+	0,
+	'',
+	"00000000-0000-0000-0000-000000000000",
+	'');
 INSERT INTO O_NBATTR
 	VALUES ("65174a28-305f-4ca8-ae8c-9bbc3e3320f5",
 	"ebd48d02-0571-4979-8fde-ce5707451104");

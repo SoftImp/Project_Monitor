@@ -40,27 +40,29 @@ public class Program_ManagementController {
 	@PostMapping("/addprg")
 	public ResponseEntity addprg(@RequestBody ProgramMsg msg) {
 		try {
-			if (!waitPrograms.hasMsg()) {
-				Program_Management.Singleton().PrgMan().get_Programs();
-				waitPrograms.synchroniseAndWait();
-			}
-
-			if (waitPrograms.getMsg().contains("\"name\":\"" + msg.getName() + "\"")) {
-				System.out.printf("addpf() name: %s already exists\n", msg.getName());
+			TableData<ProgramMsg> td = getprg();
+			if (td.findById(msg.getName()) != null) {
+				System.out.printf("addpf() goalId: %s already exists\n", msg.getName());
 				return new ResponseEntity(HttpStatus.NOT_ACCEPTABLE);
 			}
 
-			System.out.printf("addpf() name: %s, desc: %s\n", msg.getName(), msg.getDescription());
+			//System.out.printf("addpf() name: %s, desc: %s\n", msg.getName(), msg.getDescription());
 
 			Program_Management.Singleton().PrgMan().add_Program(msg.getName(), msg.getDescription(), msg.getOwner());
 
-			if (msg.getStrategicGoal().length() > 0)
+			if (!msg.getStrategicGoal().isEmpty())
 				Program_Management.Singleton().PrgMan().link_Strategic_Goal(msg.getName(), msg.getStrategicGoal());
+
+			for (String project : msg.getProjects()) 
+				Program_Management.Singleton().PrgMan().add_Project(msg.getName(), project);	
+
+			if (!msg.getPortfolio().isEmpty())				
+				Program_Management.Singleton().PrgMan().add_To_Portfolio(msg.getName(), msg.getPortfolio());
 
 			waitPrograms.clear();
 			return new ResponseEntity(HttpStatus.OK);
 		} catch (Exception e) {
-			System.out.printf("Exception, %s, in addsg()\n", e);
+			System.out.printf("Exception, %s, in addprg()\n", e);
 			return new ResponseEntity(HttpStatus.BAD_REQUEST);
 		}
 	}
@@ -68,13 +70,37 @@ public class Program_ManagementController {
 	@PostMapping("/updateprg")
 	public ResponseEntity updatesg(@RequestBody ProgramMsg msg) {
 		try {
-			System.out.printf("updatepf() name: %s, desc: %s, owner: %s\n", msg.getName(), msg.getDescription(), msg.getOwner());
+			//System.out.printf("updateprg() name: %s, desc: %s, owner: %s\n", msg.getName(), msg.getDescription(), msg.getOwner());
 
-			//Priority_Level level = Priority_Level.valueOf(sg.getPriority().toUpperCase());
+			TableData<ProgramMsg> td = getprg();
+			ProgramMsg oldPrg = td.findById(msg.getName()); 
+			if (oldPrg == null)
+				throw new Exception("updateprg() - Program not found: " + msg.getName());
 
-			//Organisational_Management.Singleton().OrgMan().update_Description(sg.getGoalId(), sg.getDescription());
-			//Organisational_Management.Singleton().OrgMan().update_Priority(sg.getGoalId(), level);
+			if (!oldPrg.getDescription().equals(msg.getDescription()))
+				Program_Management.Singleton().PrgMan().update_Description(msg.getName(), msg.getDescription());
+			
+			if (!oldPrg.getStrategicGoal().equals(msg.getStrategicGoal())) {
+				if (!oldPrg.getStrategicGoal().isEmpty())
+					Program_Management.Singleton().PrgMan().unlink_Strategic_Goal(msg.getName(), oldPrg.getStrategicGoal());
 
+				if (!msg.getStrategicGoal().isEmpty())	
+					Program_Management.Singleton().PrgMan().link_Strategic_Goal(msg.getName(), msg.getStrategicGoal());
+			}	
+
+			for (String project : oldPrg.getProjects()) {
+				if (msg.getProjects().stream().filter(p -> p.equals(project)).findAny().orElse(null) == null)
+					Program_Management.Singleton().PrgMan().remove_Project(msg.getName(), project);
+			}
+
+			for (String project : msg.getProjects()) {
+				if (oldPrg.getProjects().stream().filter(p -> p.equals(project)).findAny().orElse(null) == null)
+					Program_Management.Singleton().PrgMan().add_Project(msg.getName(), project);
+			}
+
+			if (!oldPrg.getPortfolio().equals(msg.getPortfolio()) && !msg.getPortfolio().isEmpty()) 
+				Program_Management.Singleton().PrgMan().add_To_Portfolio(msg.getName(), msg.getPortfolio());	
+			
 			waitPrograms.clear();
 			return new ResponseEntity(HttpStatus.OK);
 		} catch (Exception e) {
@@ -86,7 +112,6 @@ public class Program_ManagementController {
 	@GetMapping("/initprg")
 	public ResponseEntity initprg() {
 		try {
-			/*Organisational_Management.Singleton().OrgMan().add_Strategic_Goal("Goal1", "Goal1", Priority_Level.LOW);*/
 			Program_Management.Singleton().PrgMan().add_Program("Program1", "Program1", "Owner");
 			Program_Management.Singleton().PrgMan().add_Program("Program2", "Program2", "Owner");
 			waitPrograms.clear();
@@ -98,7 +123,7 @@ public class Program_ManagementController {
 	}
 
 	@GetMapping("/getprg")
-	public TableData getpf() {
+	public TableData getprg() {
 		try {
 			TableData<ProgramMsg> td = new TableData();
 
@@ -108,6 +133,7 @@ public class Program_ManagementController {
 			}
 
 			td.setData(waitPrograms.getMsg(), ProgramMsg[].class);
+			waitPrograms.clear(); // TMP - clear messages
 			return td;
 		} catch (Exception e) {
 			System.out.printf("Exception, %s, in getprg()\n", e);

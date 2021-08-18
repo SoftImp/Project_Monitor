@@ -6,6 +6,8 @@ import deployment.PM_Control;
 import deployment.Portfolio_Management;
 import deployment.Program_Management;
 import deployment.Project_Management;
+import deployment.Risk_Management;
+import deployment.Stakeholder_Management;
 
 import io.ciera.runtime.summit.application.ApplicationExecutor;
 import io.ciera.runtime.summit.application.IApplication;
@@ -20,19 +22,18 @@ import java.util.Arrays;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-
 @SpringBootApplication
 public class DeploymentApplication implements IApplication {
 
     private IComponent<?>[] components;
     private ApplicationExecutor[] executors;
-    private static DeploymentApplication singleton;
+	private static DeploymentApplication singleton;
 
     public DeploymentApplication() {
-    	singleton = this;
-        components = new IComponent<?>[5];
+		singleton = this;
+        components = new IComponent<?>[7];
         executors = new ApplicationExecutor[1];
-        setup( null, null );
+		setup( null, null );
         initialize();
     }
 
@@ -53,33 +54,47 @@ public class DeploymentApplication implements IApplication {
                 executors[i] = new ApplicationExecutor( "DeploymentApplicationExecutor" + i, args );
             }
         }
-        components[4] = new Project_Management(this, executors[0], 4);
-        components[2] = new Portfolio_Management(this, executors[0], 2);
-        components[1] = new PM_Control(this, executors[0], 1);
         components[0] = new Organisational_Management(this, executors[0], 0);
+        components[1] = new PM_Control(this, executors[0], 1);
+        components[4] = new Project_Management(this, executors[0], 4);
+        components[5] = new Risk_Management(this, executors[0], 5);
         components[3] = new Program_Management(this, executors[0], 3);
-        ((Portfolio_Management)components[2]).PFMan().satisfy(((PM_Control)components[1]).PFMan());
-        ((PM_Control)components[1]).PFMan().satisfy(((Portfolio_Management)components[2]).PFMan());
+        components[6] = new Stakeholder_Management(this, executors[0], 6);
+        components[2] = new Portfolio_Management(this, executors[0], 2);
         ((Organisational_Management)components[0]).OrgMan().satisfy(((PM_Control)components[1]).OrgMan());
         ((PM_Control)components[1]).OrgMan().satisfy(((Organisational_Management)components[0]).OrgMan());
+        ((Project_Management)components[4]).PrjMan().satisfy(((PM_Control)components[1]).PrjMan());
+        ((PM_Control)components[1]).PrjMan().satisfy(((Project_Management)components[4]).PrjMan());
+        ((Risk_Management)components[5]).RskMan().satisfy(((PM_Control)components[1]).RskMan());
+        ((PM_Control)components[1]).RskMan().satisfy(((Risk_Management)components[5]).RskMan());
         ((Program_Management)components[3]).PrgMan().satisfy(((PM_Control)components[1]).PrgMan());
         ((PM_Control)components[1]).PrgMan().satisfy(((Program_Management)components[3]).PrgMan());
+        ((Stakeholder_Management)components[6]).SHMan().satisfy(((PM_Control)components[1]).SHMan());
+        ((PM_Control)components[1]).SHMan().satisfy(((Stakeholder_Management)components[6]).SHMan());
+        ((Portfolio_Management)components[2]).PFMan().satisfy(((PM_Control)components[1]).PFMan());
+        ((PM_Control)components[1]).PFMan().satisfy(((Portfolio_Management)components[2]).PFMan());
     }
 
-    public Project_Management Project_Management() {
-        return (Project_Management)components[4];
-    }
-    public Portfolio_Management Portfolio_Management() {
-        return (Portfolio_Management)components[2];
+    public Organisational_Management Organisational_Management() {
+        return (Organisational_Management)components[0];
     }
     public PM_Control PM_Control() {
         return (PM_Control)components[1];
     }
-    public Organisational_Management Organisational_Management() {
-        return (Organisational_Management)components[0];
+    public Project_Management Project_Management() {
+        return (Project_Management)components[4];
+    }
+    public Risk_Management Risk_Management() {
+        return (Risk_Management)components[5];
     }
     public Program_Management Program_Management() {
         return (Program_Management)components[3];
+    }
+    public Stakeholder_Management Stakeholder_Management() {
+        return (Stakeholder_Management)components[6];
+    }
+    public Portfolio_Management Portfolio_Management() {
+        return (Portfolio_Management)components[2];
     }
 
     @Override

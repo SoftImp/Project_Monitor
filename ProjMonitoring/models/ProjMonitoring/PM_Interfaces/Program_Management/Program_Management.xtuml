@@ -714,6 +714,99 @@ INSERT INTO C_PP
 	0,
 	'',
 	"831ae90a-7213-44af-9d36-63f64e867f44");
+INSERT INTO C_EP
+	VALUES ("8fe3d80e-b05e-4d9a-921c-c94a932e6528",
+	"2fb1cfbf-5a98-466f-9dc8-5c99b1f86c67",
+	-1,
+	'unlink_Strategic_Goal',
+	'',
+	21);
+INSERT INTO C_AS
+	VALUES ("8fe3d80e-b05e-4d9a-921c-c94a932e6528",
+	'unlink_Strategic_Goal',
+	'',
+	0,
+	"f6d0c8e6-a593-4421-b93c-3fdd162b4ec6");
+INSERT INTO C_PP
+	VALUES ("0b1be745-eddb-4c33-8217-6c86f4ccc8bb",
+	"8fe3d80e-b05e-4d9a-921c-c94a932e6528",
+	"ba5eda7a-def5-0000-0000-000000000004",
+	'Prog_Name',
+	'',
+	0,
+	'',
+	"00000000-0000-0000-0000-000000000000");
+INSERT INTO C_PP
+	VALUES ("ad3184db-8647-4ee2-8a00-ce6aac27c4fb",
+	"8fe3d80e-b05e-4d9a-921c-c94a932e6528",
+	"ba5eda7a-def5-0000-0000-000000000004",
+	'SG_Name',
+	'',
+	0,
+	'',
+	"0b1be745-eddb-4c33-8217-6c86f4ccc8bb");
+INSERT INTO C_EP
+	VALUES ("f9109f34-8890-4450-8cfe-db164367f46c",
+	"2fb1cfbf-5a98-466f-9dc8-5c99b1f86c67",
+	-1,
+	'add_Project',
+	'',
+	22);
+INSERT INTO C_AS
+	VALUES ("f9109f34-8890-4450-8cfe-db164367f46c",
+	'add_Project',
+	'',
+	0,
+	"8fe3d80e-b05e-4d9a-921c-c94a932e6528");
+INSERT INTO C_PP
+	VALUES ("c5a73535-86c8-415f-aff9-1a6611a82fc6",
+	"f9109f34-8890-4450-8cfe-db164367f46c",
+	"ba5eda7a-def5-0000-0000-000000000004",
+	'Prog_Name',
+	'',
+	0,
+	'',
+	"00000000-0000-0000-0000-000000000000");
+INSERT INTO C_PP
+	VALUES ("0c57853a-a504-4883-b64f-44f46b885c1b",
+	"f9109f34-8890-4450-8cfe-db164367f46c",
+	"ba5eda7a-def5-0000-0000-000000000004",
+	'PRJ_Name',
+	'',
+	0,
+	'',
+	"c5a73535-86c8-415f-aff9-1a6611a82fc6");
+INSERT INTO C_EP
+	VALUES ("db09d0a2-10f5-4888-a042-d665dbf30c91",
+	"2fb1cfbf-5a98-466f-9dc8-5c99b1f86c67",
+	-1,
+	'remove_Project',
+	'',
+	23);
+INSERT INTO C_AS
+	VALUES ("db09d0a2-10f5-4888-a042-d665dbf30c91",
+	'remove_Project',
+	'',
+	0,
+	"f9109f34-8890-4450-8cfe-db164367f46c");
+INSERT INTO C_PP
+	VALUES ("8b614bf7-f3cc-47fc-9a76-94ba1a7ebe7d",
+	"db09d0a2-10f5-4888-a042-d665dbf30c91",
+	"ba5eda7a-def5-0000-0000-000000000004",
+	'Prog_Name',
+	'',
+	0,
+	'',
+	"00000000-0000-0000-0000-000000000000");
+INSERT INTO C_PP
+	VALUES ("b53774e4-cd11-440d-b592-04f95ac495a2",
+	"db09d0a2-10f5-4888-a042-d665dbf30c91",
+	"ba5eda7a-def5-0000-0000-000000000004",
+	'PRJ_Name',
+	'',
+	0,
+	'',
+	"8b614bf7-f3cc-47fc-9a76-94ba1a7ebe7d");
 INSERT INTO PE_PE
 	VALUES ("2fb1cfbf-5a98-466f-9dc8-5c99b1f86c67",
 	1,

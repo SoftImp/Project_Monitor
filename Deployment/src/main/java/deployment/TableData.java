@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Arrays;
 import com.google.gson.Gson;
 
-public class TableData<T> {
+public class TableData<T extends AbstractMsg> {
 	private List<T> data;
 
 	public TableData() {
@@ -16,5 +16,9 @@ public class TableData<T> {
 
 	public List getData() {
 		return data;
+	}
+
+	public T findById(final String id) {
+		return data.stream().filter(p -> p.getId().equals(id)).findAny().orElse(null);
 	}
 }

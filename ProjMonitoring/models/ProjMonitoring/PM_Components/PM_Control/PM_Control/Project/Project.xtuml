@@ -179,6 +179,100 @@ INSERT INTO O_TPARM
 	'',
 	"00000000-0000-0000-0000-000000000000",
 	'');
+INSERT INTO O_TFR
+	VALUES ("6ed2be18-1a75-4517-ba0f-a9539f49139f",
+	"18044797-4249-419f-8f55-d5516f5ef7b5",
+	'unlink_From_Strategic_Goal',
+	'',
+	"ba5eda7a-def5-0000-0000-000000000000",
+	1,
+	'//Associate/Unlink Project to a Strategic Goal.
+
+select any Strategic_Goal from instances of SG
+ where (selected.SG_Name == param.SG_Name);
+
+if ( not empty Strategic_Goal)
+
+	unrelate self from Strategic_Goal across R3.''may be driven by'';
+
+	LOG::LogInfo( message: "A (new) PROJECT has been unlinked with a STRATEGIC GOAL." );
+	send OrgMan::Notify(Relevant_Person:"Manager", Message:"A (new) PROJECT  " + self.PRJ_Name + "has been unlinked with a STRATEGIC GOAL.");
+else
+	LOG::LogFailure( message: "The chosen STRATEGIC GOAL does not exist.  Please choose a relevant GOAL that already exists." );
+end if;
+',
+	1,
+	'',
+	"7824396b-9e4a-45ea-a108-a0d27fec3a74",
+	0,
+	8);
+INSERT INTO O_TPARM
+	VALUES ("ed72d763-77c7-499b-87eb-4716fa18fbe5",
+	"6ed2be18-1a75-4517-ba0f-a9539f49139f",
+	'SG_Name',
+	"ba5eda7a-def5-0000-0000-000000000004",
+	0,
+	'',
+	"00000000-0000-0000-0000-000000000000",
+	'');
+INSERT INTO O_TFR
+	VALUES ("9ce3e01a-893a-4ace-9325-cded4e1d3419",
+	"18044797-4249-419f-8f55-d5516f5ef7b5",
+	'exclude_From_Program',
+	'',
+	"ba5eda7a-def5-0000-0000-000000000000",
+	1,
+	'select one program related by self->PRG[R5.''may be part of''];
+
+if ( not empty program )
+	unrelate self from program across R5.''may be part of'';
+	LOG::LogInfo( message: "A PROJECT has been excluded from a PROGRAM." );
+	send OrgMan::Notify(Relevant_Person:"Manager", Message:"A PROJECT  " + self.PRJ_Name + "has been excluded from a PROGRAM.");
+else
+	LOG::LogFailure( message: "The chosen PROGRAM does not exist.  Please choose a relevant PROGRAM that already included in the Project." );	
+end if;',
+	1,
+	'',
+	"6ed2be18-1a75-4517-ba0f-a9539f49139f",
+	0,
+	9);
+INSERT INTO O_TPARM
+	VALUES ("ae713323-b8bb-4485-bc7a-fe0062ae9f28",
+	"9ce3e01a-893a-4ace-9325-cded4e1d3419",
+	'PRG_Name',
+	"ba5eda7a-def5-0000-0000-000000000004",
+	0,
+	'',
+	"00000000-0000-0000-0000-000000000000",
+	'');
+INSERT INTO O_TFR
+	VALUES ("c9ef3ba2-814b-4002-8ac6-7f440ec25dc8",
+	"18044797-4249-419f-8f55-d5516f5ef7b5",
+	'update_Description',
+	'',
+	"ba5eda7a-def5-0000-0000-000000000000",
+	1,
+	'//Update the description of a Project.
+
+
+self.Description = param.Description;
+LOG::LogInfo(message : "The change to PROJECT DESCRIPTION has been successful. Relevant parties will be notified.");
+send OrgMan::Notify(Relevant_Person:"Manager", Message: "The DESCRIPTION of " + self.PRJ_Name + "has been changed.");
+',
+	1,
+	'',
+	"9ce3e01a-893a-4ace-9325-cded4e1d3419",
+	0,
+	10);
+INSERT INTO O_TPARM
+	VALUES ("54bdcf67-8bbe-4a6d-aa32-78e7416ee68b",
+	"c9ef3ba2-814b-4002-8ac6-7f440ec25dc8",
+	'Description',
+	"ba5eda7a-def5-0000-0000-000000000004",
+	0,
+	'',
+	"00000000-0000-0000-0000-000000000000",
+	'');
 INSERT INTO O_NBATTR
 	VALUES ("63751c42-d788-4dec-a3cf-cda6d54b5aae",
 	"18044797-4249-419f-8f55-d5516f5ef7b5");

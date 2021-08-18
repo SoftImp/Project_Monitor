@@ -13,7 +13,7 @@
     </b-form-group>
 
     <!-- Modal -->
-    <b-modal :id="assoc.id" ref="select-modal" :title="assoc.title" @ok="handleOk" @show="fetchData">
+    <b-modal size="lg" :id="assoc.id" ref="select-modal" :title="assoc.title" @ok="handleOk" @show="fetchData">
       <div>
         <b-row>
           <b-col lg="10" class="my-1">
@@ -45,10 +45,10 @@
           :fields="assoc.fields"
           :select-mode="assoc.mode"
           :filter="filter"
+          sticky-header="true"
           responsive="sm"
           ref="selectableTable"
           selectable
-          striped 
           bordered
           hover
           @row-selected="onRowSelected"
@@ -64,14 +64,17 @@
               <span class="sr-only">Not selected</span>
             </template>
           </template>
+          <template #cell(description)="data">
+            <span class="textlines" v-b-popover.hover.top.html="'<pre>' + data.value + '</pre>'" title="Description">{{ data.value}}</span>
+          </template>
         </b-table>
       </div>
     </b-modal> 
-    <b-modal v-if="assoc.createid == 'modal-createprg'" :id="assoc.createid"  title="Create Program" @ok="handleCreateOk">
+    <b-modal size="lg" v-if="assoc.createid == 'modal-createprg'" :id="assoc.createid"  title="Create Program" @ok="handleCreateOk">
       <formgroupprg :prg="prg" ref="modalcreate" @ok="createOk"></formgroupprg>
     </b-modal>   
 
-    <b-modal v-if="assoc.createid == 'modal-createprj'" :id="assoc.createid"  title="Create Project" @ok="handleCreateOk">
+    <b-modal size="lg" v-if="assoc.createid == 'modal-createprj'" :id="assoc.createid"  title="Create Project" @ok="handleCreateOk">
       <formgroupprj :prj="prj" ref="modalcreate" @ok="createOk"></formgroupprj>
     </b-modal> 
   </div>
@@ -93,7 +96,9 @@
         prg: {
           name : '',
           description: '',
-          owner: ''
+          owner: '',
+          strategicGoal: '',
+          portfolio: ''
         },
         prj: {
           name : '',

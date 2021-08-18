@@ -1,41 +1,40 @@
 <template>
   <div>
-    <h3>Add Program</h3>
+    <h3>Add Project</h3>
     <b-form @submit="onSubmit">
 
-      <formgroupprg :prg="prg" ref="formaddprg"></formgroupprg>
+      <formgroupprj :prj="prj" ref="formaddprj"></formgroupprj>
 
       <b-button type="submit" variant="primary">Add</b-button> |
-      <router-link to="/prg">Back to List</router-link> 
+      <router-link to="/prj">Back to List</router-link> 
     </b-form>
   </div>
 </template>
 
 <script>
-  var formgroupprg = httpVueLoader('components/formgroupprg.vue');
+  var formgroupprj = httpVueLoader('components/formgroupprj.vue');
 
   module.exports = {
     data: function () {
       return {
-        prg: {
+        prj: {
           name : '',
           description: '',
-          owner: '',
           strategicGoal: '',
-          portfolio: '',
-          projects:[]
+          program: '',
+          portfolio: ''
         }
 	    }
     },
 	  methods: {
       async onSubmit(event) {
         event.preventDefault();
-        await this.$refs.formaddprg.handleSubmit(null);
-        this.$router.push({ name: 'prg' });
+        await this.$refs.formaddprj.handleSubmit(null);
+        this.$router.push({ name: 'prj' });
       }
      },
     components: {
-      'formgroupprg': formgroupprg
+      'formgroupprj': formgroupprj
     }
   };
 </script>

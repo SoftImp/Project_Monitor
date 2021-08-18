@@ -1,11 +1,17 @@
 <template>
   <div>
     <b-form-group label="Project Name:" label-for="input-1" invalid-feedback="Name is required" :state="state.name">
-        <b-form-input id="input-1" ref="name" v-model.trim="prj.name" type="text" :disabled="disabledName" :state="state.name" required></b-form-input>
+      <template v-if="mode === 'add'">
+        <b-form-input id="input-1" ref="name" v-model.trim="prj.name" :state="state.name" required></b-form-input>
+      </template>
+      <template v-else>
+        <b-form-input id="input-1" ref="name" :value="prj.name" readonly="true" :state="state.name" required></b-form-input>
+      </template>
     </b-form-group>
 
     <b-form-group label="Description:" label-for="input-2" invalid-feedback="Description is required" :state="state.desc">
-        <b-form-input id="input-2" ref="description" v-model.trim="prj.description" :state="state.desc" required></b-form-input>
+      <!--<b-form-input id="input-2" ref="description" v-model.trim="prj.description" :state="state.desc" required></b-form-input>-->
+      <b-form-textarea id="input-2" ref="description" v-model.trim="prj.description" :state="state.desc"></b-form-textarea>
     </b-form-group>     
 
   <associate :assoc="assoc_sg"></associate>
@@ -20,7 +26,10 @@
   module.exports = {
     props: {
       prj: Object,
-      disabledName: null  
+      mode: {
+        type: String,
+        default: 'add'
+      }
     },
     data: function () {
       return {
@@ -46,18 +55,24 @@
         assoc_prg: {
           id: 'modal-prj-associateprg',
           createid: '',
-          title: 'Associate Programs',
-          label: 'Programs:',
-          url: './getsg',
+          title: 'Associate Program',
+          label: 'Program:',
+          url: './getprg',
           mode: 'single',
           selected: [],
           fields: [
             'selected',
-            { key: 'name', label: 'Goal Identity' },
+            { key: 'name', label: 'Program' },
             { key: 'description' },
-            { key: 'priority' }
+            { key: 'owner' }
           ]
         }
+      }
+    },
+    created() {
+      if (this.mode === 'update') {       
+        this.assoc_sg.selected.push(this.prj.strategicGoal);
+        this.assoc_prg.selected.push(this.prj.program);
       }
     },
     methods: { 
@@ -72,20 +87,6 @@
 
         return true;
       },
-      resetFormValidity(value) {
-        for (const s in this.state) {
-          this.state[s] = null;
-        }
-
-        if (value) {
-          for (const s in this.prj) {
-            if (typeof(this.prj[s]) == "object")
-              this.prj[s] = [];
-            else
-              this.prj[s] = '';
-          }
-        }
-      },
       handleOk(bvModalEvt, modalId) {
         // Prevent modal from closing
         if (bvModalEvt)
@@ -98,20 +99,25 @@
           return;
         }
 
-        /*const response = await fetch('./addprj', {
+        this.prj.strategicGoal = (this.assoc_sg.selected.length > 0) ? this.assoc_sg.selected[0] : "";
+        this.prj.program = (this.assoc_prg.selected.length > 0) ? this.assoc_prg.selected[0] : "";
+
+        let url = './addprj';
+        if (this.mode === 'update')
+          url = '/updateprj';
+
+        const response = await fetch(url, {
           method: 'POST',
           headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
           },
-          body: JSON.stringify({ name: this.name, description: this.description, manager: this.manager, 
-            strategicGoal: strategicgoal, programs: this.assoc_prj.selected, projects: this.assoc_prj.selected})
-        });*/
+          body: JSON.stringify(this.prj)
+        });
 
         this.$emit('ok', this.prj.name);  // Notify parent
 
         if (modalId) {
-          this.resetFormValidity(true);
           // Hide the modal manually
           this.$nextTick(() => {
             this.$bvModal.hide(modalId)

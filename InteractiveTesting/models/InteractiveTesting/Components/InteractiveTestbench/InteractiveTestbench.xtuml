@@ -1165,6 +1165,46 @@ INSERT INTO C_EP_PROXY
 	'',
 	17,
 	'../../../../../ProjMonitoring/models/ProjMonitoring/PM_Interfaces/Portfolio_Management/Portfolio_Management.xtuml');
+INSERT INTO SPR_REP
+	VALUES ("cfa46ff0-2a98-4504-be76-39336fb51c7d",
+	"cc55a039-66af-4713-bb34-2cf5513cffb6",
+	"4905c0e4-7c18-488e-8cf4-bb602df16892");
+INSERT INTO SPR_RS
+	VALUES ("cfa46ff0-2a98-4504-be76-39336fb51c7d",
+	'unlink_Strategic_Goal',
+	'',
+	'',
+	3,
+	0,
+	18);
+INSERT INTO C_EP_PROXY
+	VALUES ("cc55a039-66af-4713-bb34-2cf5513cffb6",
+	"a1785323-9842-4f78-9c7c-66eac1ae5d6a",
+	-1,
+	'unlink_Strategic_Goal',
+	'',
+	18,
+	'../../../../../ProjMonitoring/models/ProjMonitoring/PM_Interfaces/Portfolio_Management/Portfolio_Management.xtuml');
+INSERT INTO SPR_REP
+	VALUES ("735fb5d5-7814-4888-9786-ddbfc93f628a",
+	"15138150-819d-4f2c-ab1c-c2859e8cd402",
+	"4905c0e4-7c18-488e-8cf4-bb602df16892");
+INSERT INTO SPR_RS
+	VALUES ("735fb5d5-7814-4888-9786-ddbfc93f628a",
+	'update_Description',
+	'',
+	'',
+	3,
+	0,
+	19);
+INSERT INTO C_EP_PROXY
+	VALUES ("15138150-819d-4f2c-ab1c-c2859e8cd402",
+	"a1785323-9842-4f78-9c7c-66eac1ae5d6a",
+	-1,
+	'update_Description',
+	'',
+	19,
+	'../../../../../ProjMonitoring/models/ProjMonitoring/PM_Interfaces/Portfolio_Management/Portfolio_Management.xtuml');
 INSERT INTO C_I_PROXY
 	VALUES ("a1785323-9842-4f78-9c7c-66eac1ae5d6a",
 	"00000000-0000-0000-0000-000000000000",
@@ -1779,6 +1819,66 @@ INSERT INTO C_EP_PROXY
 	'',
 	20,
 	'../../../../../ProjMonitoring/models/ProjMonitoring/PM_Interfaces/Program_Management/Program_Management.xtuml');
+INSERT INTO SPR_REP
+	VALUES ("ced66992-0776-45e8-a53c-4cca1e7954e5",
+	"8fe3d80e-b05e-4d9a-921c-c94a932e6528",
+	"7c868331-1e28-448f-b73d-6f086b19deec");
+INSERT INTO SPR_RS
+	VALUES ("ced66992-0776-45e8-a53c-4cca1e7954e5",
+	'unlink_Strategic_Goal',
+	'',
+	'',
+	3,
+	0,
+	21);
+INSERT INTO C_EP_PROXY
+	VALUES ("8fe3d80e-b05e-4d9a-921c-c94a932e6528",
+	"2fb1cfbf-5a98-466f-9dc8-5c99b1f86c67",
+	-1,
+	'unlink_Strategic_Goal',
+	'',
+	21,
+	'../../../../../ProjMonitoring/models/ProjMonitoring/PM_Interfaces/Program_Management/Program_Management.xtuml');
+INSERT INTO SPR_REP
+	VALUES ("da1a76af-5ebc-4f0d-a1f1-dc00fee7033d",
+	"f9109f34-8890-4450-8cfe-db164367f46c",
+	"7c868331-1e28-448f-b73d-6f086b19deec");
+INSERT INTO SPR_RS
+	VALUES ("da1a76af-5ebc-4f0d-a1f1-dc00fee7033d",
+	'add_Project',
+	'',
+	'',
+	3,
+	0,
+	22);
+INSERT INTO C_EP_PROXY
+	VALUES ("f9109f34-8890-4450-8cfe-db164367f46c",
+	"2fb1cfbf-5a98-466f-9dc8-5c99b1f86c67",
+	-1,
+	'add_Project',
+	'',
+	22,
+	'../../../../../ProjMonitoring/models/ProjMonitoring/PM_Interfaces/Program_Management/Program_Management.xtuml');
+INSERT INTO SPR_REP
+	VALUES ("ac597e11-8328-4b9f-80e6-a14e18c81197",
+	"db09d0a2-10f5-4888-a042-d665dbf30c91",
+	"7c868331-1e28-448f-b73d-6f086b19deec");
+INSERT INTO SPR_RS
+	VALUES ("ac597e11-8328-4b9f-80e6-a14e18c81197",
+	'remove_Project',
+	'',
+	'',
+	3,
+	0,
+	23);
+INSERT INTO C_EP_PROXY
+	VALUES ("db09d0a2-10f5-4888-a042-d665dbf30c91",
+	"2fb1cfbf-5a98-466f-9dc8-5c99b1f86c67",
+	-1,
+	'remove_Project',
+	'',
+	23,
+	'../../../../../ProjMonitoring/models/ProjMonitoring/PM_Interfaces/Program_Management/Program_Management.xtuml');
 INSERT INTO C_I_PROXY
 	VALUES ("2fb1cfbf-5a98-466f-9dc8-5c99b1f86c67",
 	"00000000-0000-0000-0000-000000000000",
@@ -1962,6 +2062,66 @@ INSERT INTO C_EP_PROXY
 	'link_Strategic_Goal',
 	'',
 	9,
+	'../../../../../ProjMonitoring/models/ProjMonitoring/PM_Interfaces/Project_Management/Project_Management.xtuml');
+INSERT INTO SPR_REP
+	VALUES ("3bd04352-a096-4456-a5bf-ab8e83eb2fac",
+	"ef4e2760-3259-448a-bb60-8355ca669189",
+	"b2a84b0d-d2d9-472f-aed7-067d181922c4");
+INSERT INTO SPR_RS
+	VALUES ("3bd04352-a096-4456-a5bf-ab8e83eb2fac",
+	'unlink_Strategic_Goal',
+	'',
+	'',
+	3,
+	0,
+	10);
+INSERT INTO C_EP_PROXY
+	VALUES ("ef4e2760-3259-448a-bb60-8355ca669189",
+	"6ca8fb7f-c78f-437e-a777-90725b82b541",
+	-1,
+	'unlink_Strategic_Goal',
+	'',
+	10,
+	'../../../../../ProjMonitoring/models/ProjMonitoring/PM_Interfaces/Project_Management/Project_Management.xtuml');
+INSERT INTO SPR_REP
+	VALUES ("7e5ec28a-5c1f-4c5e-9e5f-c07f38cda1be",
+	"6d54e7fb-469c-4fb3-a2ad-f0fefa4dd9c6",
+	"b2a84b0d-d2d9-472f-aed7-067d181922c4");
+INSERT INTO SPR_RS
+	VALUES ("7e5ec28a-5c1f-4c5e-9e5f-c07f38cda1be",
+	'remove_From_Program',
+	'',
+	'',
+	3,
+	0,
+	11);
+INSERT INTO C_EP_PROXY
+	VALUES ("6d54e7fb-469c-4fb3-a2ad-f0fefa4dd9c6",
+	"6ca8fb7f-c78f-437e-a777-90725b82b541",
+	-1,
+	'remove_From_Program',
+	'',
+	11,
+	'../../../../../ProjMonitoring/models/ProjMonitoring/PM_Interfaces/Project_Management/Project_Management.xtuml');
+INSERT INTO SPR_REP
+	VALUES ("341d9c2b-5673-417d-9e46-5f1ad094e832",
+	"2d18198f-82d9-4c6a-b9b9-45ff540b9810",
+	"b2a84b0d-d2d9-472f-aed7-067d181922c4");
+INSERT INTO SPR_RS
+	VALUES ("341d9c2b-5673-417d-9e46-5f1ad094e832",
+	'update_Description',
+	'',
+	'',
+	3,
+	0,
+	12);
+INSERT INTO C_EP_PROXY
+	VALUES ("2d18198f-82d9-4c6a-b9b9-45ff540b9810",
+	"6ca8fb7f-c78f-437e-a777-90725b82b541",
+	-1,
+	'update_Description',
+	'',
+	12,
 	'../../../../../ProjMonitoring/models/ProjMonitoring/PM_Interfaces/Project_Management/Project_Management.xtuml');
 INSERT INTO C_I_PROXY
 	VALUES ("6ca8fb7f-c78f-437e-a777-90725b82b541",
