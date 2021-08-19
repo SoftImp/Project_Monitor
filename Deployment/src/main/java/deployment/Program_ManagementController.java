@@ -80,6 +80,9 @@ public class Program_ManagementController {
 			if (!oldPrg.getDescription().equals(msg.getDescription()))
 				Program_Management.Singleton().PrgMan().update_Description(msg.getName(), msg.getDescription());
 			
+			if (!oldPrg.getOwner().equals(msg.getOwner()))
+				Program_Management.Singleton().PrgMan().update_Owner(msg.getName(), msg.getOwner());				
+			
 			if (!oldPrg.getStrategicGoal().equals(msg.getStrategicGoal())) {
 				if (!oldPrg.getStrategicGoal().isEmpty())
 					Program_Management.Singleton().PrgMan().unlink_Strategic_Goal(msg.getName(), oldPrg.getStrategicGoal());

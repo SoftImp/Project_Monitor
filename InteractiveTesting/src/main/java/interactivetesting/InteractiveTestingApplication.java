@@ -60,6 +60,10 @@ public class InteractiveTestingApplication implements IApplication {
         ((PM_Control)components[1]).PrgMan().satisfy(((InteractiveTestbench)components[0]).PrgMan());
         ((InteractiveTestbench)components[0]).PrjMan().satisfy(((PM_Control)components[1]).PrjMan());
         ((PM_Control)components[1]).PrjMan().satisfy(((InteractiveTestbench)components[0]).PrjMan());
+        ((InteractiveTestbench)components[0]).RskMan().satisfy(((PM_Control)components[1]).RskMan());
+        ((PM_Control)components[1]).RskMan().satisfy(((InteractiveTestbench)components[0]).RskMan());
+        ((InteractiveTestbench)components[0]).SHMan().satisfy(((PM_Control)components[1]).SHMan());
+        ((PM_Control)components[1]).SHMan().satisfy(((InteractiveTestbench)components[0]).SHMan());
     }
 
     public PM_Control PM_Control() {

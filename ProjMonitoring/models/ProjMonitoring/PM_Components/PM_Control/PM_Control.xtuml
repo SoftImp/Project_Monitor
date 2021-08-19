@@ -2351,6 +2351,35 @@ INSERT INTO C_EP_PROXY
 	'',
 	23,
 	'../../PM_Interfaces/Program_Management/Program_Management.xtuml');
+INSERT INTO SPR_PEP
+	VALUES ("1e071060-6856-496e-83e1-df9fee88ec22",
+	"ad13b01a-921a-4514-bf9d-b2589a304d10",
+	"35edcf68-532e-49b2-95f8-dce040a2c330");
+INSERT INTO SPR_PS
+	VALUES ("1e071060-6856-496e-83e1-df9fee88ec22",
+	'update_Owner',
+	'',
+	'//Signal to Program class operation to update a description of a Program instance.
+
+select any Program from instances of PRG
+ where (selected.PRG_Name == param.Prog_Name);
+
+if ( not empty Program)
+
+	Program.update_Owner( Owner: param.Owner);
+	
+end if;',
+	1,
+	0,
+	24);
+INSERT INTO C_EP_PROXY
+	VALUES ("ad13b01a-921a-4514-bf9d-b2589a304d10",
+	"2fb1cfbf-5a98-466f-9dc8-5c99b1f86c67",
+	-1,
+	'update_Owner',
+	'',
+	24,
+	'../../PM_Interfaces/Program_Management/Program_Management.xtuml');
 INSERT INTO C_I_PROXY
 	VALUES ("2fb1cfbf-5a98-466f-9dc8-5c99b1f86c67",
 	"00000000-0000-0000-0000-000000000000",

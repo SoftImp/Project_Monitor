@@ -92,11 +92,6 @@ public class Organisational_ManagementController {
 			Organisational_Management.Singleton().OrgMan().add_Strategic_Goal("Goal3", "Goal3", Priority_Level.LOW);
 			Organisational_Management.Singleton().OrgMan().add_Strategic_Goal("Goal4", "Goal4", Priority_Level.MEDIUM);
 			Organisational_Management.Singleton().OrgMan().add_Strategic_Goal("Goal5", "Goal5", Priority_Level.MEDIUM);
-			Organisational_Management.Singleton().OrgMan().add_Strategic_Goal("Goal6", "Goal6", Priority_Level.LOW);
-			Organisational_Management.Singleton().OrgMan().add_Strategic_Goal("Goal7", "Goal7", Priority_Level.HIGH);
-			Organisational_Management.Singleton().OrgMan().add_Strategic_Goal("Goal8", "Goal8", Priority_Level.MEDIUM);
-			Organisational_Management.Singleton().OrgMan().add_Strategic_Goal("Goal9", "Goal9", Priority_Level.HIGH);
-			Organisational_Management.Singleton().OrgMan().add_Strategic_Goal("Goal10", "Goal10", Priority_Level.MEDIUM);
 			waitStrategicGoals.clear();
 			return new ResponseEntity(HttpStatus.OK);
 		} catch (Exception e) {

@@ -41,7 +41,8 @@ INSERT INTO S_SYNC
 	'LOG::LogInfo( message: "InteractiveTestbench - started" );
 ::UC00_Add_SG();
 ::UC01_Add_Prg();
-//send OrgMan::get_Strategic_Goals();
+::UC02_Add_Milestone();
+::UC03_Update_Milestone();
 ',
 	"ba5eda7a-def5-0000-0000-000000000000",
 	1,

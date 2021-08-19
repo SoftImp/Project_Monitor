@@ -58,7 +58,8 @@ INSERT INTO S_SYNC
 	"00000000-0000-0000-0000-000000000000",
 	'UC00_Display_SG',
 	'',
-	'//select many sg from instances of OrgMan::
+	'send OrgMan::get_Strategic_Goals();
+
 ',
 	"ba5eda7a-def5-0000-0000-000000000000",
 	1,
@@ -77,10 +78,8 @@ INSERT INTO S_SYNC
 	'UC01_Add_Prg',
 	'',
 	'
-Start_Date = TIM::create_date(day:1, month:6, year:2021, hour:0, minute:0, second:0);
-End_Date = TIM::create_date(day:1, month:12, year:2021, hour:0, minute:0, second:0);
-
-send PrgMan::add_Program( Prog_Name:"Prg1", Goal_ID:"Goal1", Description:"test Prg", Start_Date:Start_Date, End_Date: End_Date, Budget:100.00, Manager:"Mgr1", Owner:"Owner1" );
+send PrgMan::add_Program( Prog_Name:"Prg1", Description:"test Prg", Owner:"owner1" );
+send PrgMan::add_Program( Prog_Name:"Prg2", Description:"test Prg", Owner:"owner2" );
 
 ',
 	"ba5eda7a-def5-0000-0000-000000000000",
@@ -99,9 +98,9 @@ INSERT INTO S_SYNC
 	"00000000-0000-0000-0000-000000000000",
 	'UC02_Add_Milestone',
 	'',
-	'Date = TIM::create_date(day:1, month:12, year:2021, hour:0, minute:0, second:0);
+	'//Date = TIM::create_date(day:1, month:12, year:2021, hour:0, minute:0, second:0);
 
-send PrgMan::add_Milestone( MS_Name: "MS_1", Prog_Name: "Prg1", Completion_Date: Date, Percent_Complete: 10.0 );
+send PrgMan::add_Milestone( MS_Name:"MS_1", Prog_Name:"Prg1" );
 ',
 	"ba5eda7a-def5-0000-0000-000000000000",
 	1,
@@ -119,9 +118,9 @@ INSERT INTO S_SYNC
 	"00000000-0000-0000-0000-000000000000",
 	'UC03_Update_Milestone',
 	'',
-	'//send PrgMan::update_Milestone( MS_Name: "MS_1", Prog_Name: "Prg1", Percent_Complete: 50.0);
+	'send PrgMan::update_Milestone( MS_Name: "MS_1", Prog_Name: "Prg1", Percent_Complete: 50.0);
 
-//send PrgMan::update_Milestone( MS_Name: "MS_1", Prog_Name: "Prg1", Percent_Complete: 100.0);',
+send PrgMan::update_Milestone( MS_Name: "MS_1", Prog_Name: "Prg1", Percent_Complete: 100.0);',
 	"ba5eda7a-def5-0000-0000-000000000000",
 	1,
 	'',

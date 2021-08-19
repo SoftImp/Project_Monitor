@@ -21,10 +21,12 @@ public class StrategicGoalMsg extends AbstractMsg {
 		portfolios = new ArrayList<String>();
 		programs = new ArrayList<String>();
     	projects = new ArrayList<String>();
+		name = "";
+		description = "";
+		priority = "";
 	}
 
 	public StrategicGoalMsg(String name, String description, String priority) {
-		super();
 		this.name = name;
 		this.description = description;
 		this.priority = priority;

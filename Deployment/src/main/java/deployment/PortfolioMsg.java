@@ -27,10 +27,16 @@ public class PortfolioMsg extends AbstractMsg {
     projects = new ArrayList<String>();
     currentState = 0;
     budget = 0d;
+    name = "";
+    description = "";
+    strategicGoal = "";
+    priority = "";
+    vision = "";
+    mission = "";
+    manager = "";
   }
 
   public PortfolioMsg(String name, String description, String manager) {
-    super();
     this.name = name;
     this.description = description;
     this.manager = manager;
@@ -38,6 +44,10 @@ public class PortfolioMsg extends AbstractMsg {
     this.projects = new ArrayList<String>();
     this.currentState = 0;
     budget = 0d;
+    strategicGoal = "";
+    priority = "";
+    vision = "";
+    mission = "";
   }
 
   public void setName(String name) {

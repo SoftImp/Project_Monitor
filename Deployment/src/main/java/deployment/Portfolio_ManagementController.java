@@ -76,7 +76,7 @@ public class Portfolio_ManagementController {
 			waitPortfolios.clear();
 			return new ResponseEntity(HttpStatus.OK);
 		} catch (Exception e) {
-			System.out.printf("Exception, %s, in addsg()\n", e);
+			System.out.printf("Exception, %s, in addpf()\n", e);
 			return new ResponseEntity(HttpStatus.BAD_REQUEST);
 		}
 	}

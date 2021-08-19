@@ -21,14 +21,20 @@ public class ProgramMsg extends AbstractMsg {
   
   public ProgramMsg() {
     projects = new ArrayList<String>();
+    name = "";
+    description = "";
+    owner = "";
+    strategicGoal = "";
+    portfolio = "";
   }
 
   public ProgramMsg(String name, String description, String owner) {
-    super();
     this.name = name;
     this.description = description;
     this.owner = owner;
     this.projects = new ArrayList<String>();
+    this.strategicGoal = "";
+    this.portfolio = "";
   }
 
   public void setName(String name) {

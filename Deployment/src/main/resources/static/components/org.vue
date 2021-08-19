@@ -44,8 +44,12 @@
             <b-th></b-th>
           </b-tr>
         </template>
+        <!-- Popover for description -->
         <template #cell(description)="data">
           <span class="textlines" v-b-popover.hover.top.html="'<pre>' + data.value + '</pre>'" title="Description">{{ data.value}}</span>
+        </template>
+        <template #cell(priority)="data">
+          <b-badge pill class="fullwidth" :variant="priority_variant[priorities.indexOf(data.value)]">{{data.value}}</b-badge>
         </template>
         <!-- Popover for portfolios -->
         <template #cell(portfolios)="data">

@@ -848,6 +848,32 @@ INSERT INTO O_TPARM
 	'',
 	"00000000-0000-0000-0000-000000000000",
 	'');
+INSERT INTO O_TFR
+	VALUES ("de07254c-7b71-44ad-8c99-119aa1cc04ed",
+	"fc2339db-f29a-4ff9-915d-62c8814fc04c",
+	'update_Owner',
+	'',
+	"ba5eda7a-def5-0000-0000-000000000000",
+	1,
+	'self.Owner = param.Owner;
+
+LOG::LogInfo( message: "A PROGRAM OWNER has been successfully updated." );
+send OrgMan::Notify(Relevant_Person:"Manager", Message:"A PROGRAM OWNER " + param.Owner + " as been updated.");
+',
+	1,
+	'',
+	"4d5070b4-7dcd-4c80-afba-1e3f7063e7d2",
+	0,
+	10);
+INSERT INTO O_TPARM
+	VALUES ("a3e743ab-ecd7-4933-ba1c-9795a06c2757",
+	"de07254c-7b71-44ad-8c99-119aa1cc04ed",
+	'Owner',
+	"ba5eda7a-def5-0000-0000-000000000004",
+	0,
+	'',
+	"00000000-0000-0000-0000-000000000000",
+	'');
 INSERT INTO O_NBATTR
 	VALUES ("6d387035-e437-4136-a89d-e1d7972e194a",
 	"fc2339db-f29a-4ff9-915d-62c8814fc04c");

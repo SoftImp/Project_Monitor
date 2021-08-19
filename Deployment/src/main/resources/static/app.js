@@ -1,7 +1,6 @@
 Vue.component('apexchart', VueApexCharts);
-//Vue.use(Vuetable);
 Vue.use(BootstrapVue);
-Vue.use(BootstrapVueIcons);
+//Vue.use(BootstrapVueIcons);
 Vue.use(VueRouter);
 
 const pf_state = ["Initialise", "Closed", "Executing", "Planning"];

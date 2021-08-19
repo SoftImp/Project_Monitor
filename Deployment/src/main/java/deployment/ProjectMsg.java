@@ -17,12 +17,19 @@ public class ProjectMsg extends AbstractMsg {
 	}
   
   public ProjectMsg() {
+    name = "";
+    description = "";
+    strategicGoal = "";
+    program = "";
+    portfolio = "";
   }
 
   public ProjectMsg(String name, String description) {
-    super();
     this.name = name;
     this.description = description;
+    this.strategicGoal = "";
+    this.program = "";
+    this.portfolio = "";
   }
 
   public void setName(String name) {

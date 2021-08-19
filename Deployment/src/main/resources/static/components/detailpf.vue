@@ -1,7 +1,13 @@
 <template>
   <div>
-    <b-card :title="pf.name" :sub-title="status">
+    <b-card :title="pf.name"> <!-- :sub-title="status">-->
       <b-row>
+        <b-col md="2" class="mb-2">
+          <b-card-text>Status:</b-card-text>
+        </b-col>
+        <b-col md="10">
+          <b-card-text><strong>{{pf_state[pf.currentState]}}</strong></b-card-text>
+        </b-col>
         <b-col md="2" class="mb-2">
           <b-card-text>Manager:</b-card-text>
         </b-col>

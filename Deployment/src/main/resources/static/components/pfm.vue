@@ -37,6 +37,12 @@
             <!--Update-->
             {{pf_state[row.item.currentState]}}
           </b-button>
+          <!--<b-button size="sm" @click="row.toggleDetails">
+            {{ row.detailsShowing ? '<' : '>' }}
+          </b-button> -->
+          <b-form-checkbox size="sm" class="mt-1" v-model="row.detailsShowing" @change="row.toggleDetails">
+            Details
+          </b-form-checkbox>
         </template>
         <template #thead-top="data">
           <b-tr>
@@ -44,6 +50,9 @@
             <b-th colspan="3" class="text-center">Associated</b-th>
             <b-th></b-th>
           </b-tr>
+        </template>
+        <template #row-details="row">
+          <detailpf :pf="row.item"></detailpf>   
         </template>
         <!-- Popover for description -->
         <template #cell(description)="data">

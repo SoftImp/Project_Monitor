@@ -807,6 +807,37 @@ INSERT INTO C_PP
 	0,
 	'',
 	"8b614bf7-f3cc-47fc-9a76-94ba1a7ebe7d");
+INSERT INTO C_EP
+	VALUES ("ad13b01a-921a-4514-bf9d-b2589a304d10",
+	"2fb1cfbf-5a98-466f-9dc8-5c99b1f86c67",
+	-1,
+	'update_Owner',
+	'',
+	24);
+INSERT INTO C_AS
+	VALUES ("ad13b01a-921a-4514-bf9d-b2589a304d10",
+	'update_Owner',
+	'',
+	0,
+	"db09d0a2-10f5-4888-a042-d665dbf30c91");
+INSERT INTO C_PP
+	VALUES ("c0e2d5ca-6da2-4c76-9a0d-f99e028ea8d1",
+	"ad13b01a-921a-4514-bf9d-b2589a304d10",
+	"ba5eda7a-def5-0000-0000-000000000004",
+	'Prog_Name',
+	'',
+	0,
+	'',
+	"00000000-0000-0000-0000-000000000000");
+INSERT INTO C_PP
+	VALUES ("93ffe0b1-bdd0-4f15-abfd-66cfa7f61552",
+	"ad13b01a-921a-4514-bf9d-b2589a304d10",
+	"ba5eda7a-def5-0000-0000-000000000004",
+	'Owner',
+	'',
+	0,
+	'',
+	"c0e2d5ca-6da2-4c76-9a0d-f99e028ea8d1");
 INSERT INTO PE_PE
 	VALUES ("2fb1cfbf-5a98-466f-9dc8-5c99b1f86c67",
 	1,
