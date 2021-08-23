@@ -5,7 +5,12 @@ INSERT INTO O_OBJ
 	'JsonMsg',
 	1,
 	'JsonMsg',
-	'',
+	'This class is a workaround to allow messages to be passed as data structures - something that 
+Ciera does not support.
+The separation of these otherwise other-class operations has had to be done because Ciera does 
+not re-incorporate hand-written code with auto-generated code within classes upon recompiles.
+This class contains all hand-written code which is not overwritten upon recompile.  This is 
+really the main reason it exist.',
 	"00000000-0000-0000-0000-000000000000");
 INSERT INTO O_TFR
 	VALUES ("66a35458-2c4c-47dc-93b3-cf2fd16249ce",
