@@ -714,6 +714,64 @@ INSERT INTO C_PP
 	0,
 	'',
 	"831ae90a-7213-44af-9d36-63f64e867f44");
+INSERT INTO C_EP
+	VALUES ("bd2ed5cf-c73d-47f9-b692-849724f2e6a1",
+	"2fb1cfbf-5a98-466f-9dc8-5c99b1f86c67",
+	-1,
+	'Notify_Performance',
+	'',
+	3);
+INSERT INTO C_AS
+	VALUES ("bd2ed5cf-c73d-47f9-b692-849724f2e6a1",
+	'Notify_Performance',
+	'',
+	1,
+	"f6d0c8e6-a593-4421-b93c-3fdd162b4ec6");
+INSERT INTO C_PP
+	VALUES ("fc9840ef-2118-424d-8927-99f0b4479c58",
+	"bd2ed5cf-c73d-47f9-b692-849724f2e6a1",
+	"ba5eda7a-def5-0000-0000-000000000004",
+	'Relevant_Person',
+	'',
+	0,
+	'',
+	"00000000-0000-0000-0000-000000000000");
+INSERT INTO C_PP
+	VALUES ("6a7c1999-ab48-454a-ad76-a4cf82e241c8",
+	"bd2ed5cf-c73d-47f9-b692-849724f2e6a1",
+	"ba5eda7a-def5-0000-0000-000000000004",
+	'Message_Part1',
+	'',
+	0,
+	'',
+	"9bfcbe54-9c94-4f95-a42c-5bcfb590d7e6");
+INSERT INTO C_PP
+	VALUES ("9bfcbe54-9c94-4f95-a42c-5bcfb590d7e6",
+	"bd2ed5cf-c73d-47f9-b692-849724f2e6a1",
+	"ba5eda7a-def5-0000-0000-000000000002",
+	'TL_Type_Num',
+	'',
+	0,
+	'',
+	"fc9840ef-2118-424d-8927-99f0b4479c58");
+INSERT INTO C_PP
+	VALUES ("d567afaf-f8a8-463d-9dca-a94be2ea4dc3",
+	"bd2ed5cf-c73d-47f9-b692-849724f2e6a1",
+	"ba5eda7a-def5-0000-0000-000000000002",
+	'TL_Total',
+	'',
+	0,
+	'',
+	"6a7c1999-ab48-454a-ad76-a4cf82e241c8");
+INSERT INTO C_PP
+	VALUES ("a5a48a9b-0bb9-4f80-a2c7-1ed172655fac",
+	"bd2ed5cf-c73d-47f9-b692-849724f2e6a1",
+	"ba5eda7a-def5-0000-0000-000000000004",
+	'Message_Part2',
+	'',
+	0,
+	'',
+	"d567afaf-f8a8-463d-9dca-a94be2ea4dc3");
 INSERT INTO PE_PE
 	VALUES ("2fb1cfbf-5a98-466f-9dc8-5c99b1f86c67",
 	1,

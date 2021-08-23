@@ -17,30 +17,52 @@ INSERT INTO O_TFR
 	'This operation is based on UC17.',
 	"ba5eda7a-def5-0000-0000-000000000000",
 	0,
-	'//Creating a Summary Report requires
+	'//Creating a Summary Report for a Program requires
 //1: identifying that the chosen Program exists,
-//2: identifying each project that is associated with the program,
-//3: creating a set of instances representing the contents of the report,
-//4: indicating overal non-performance of the program for which the summary repaort has been created.
+//2: identifying each Project that is associated with the Program,
+//3: creating a set of instances representing the last Performance Reports of each related 
+//   Project as the contents of the Summary Report,
+//4: indicating overall (non-)performance of the Program in Traffic Light value percentages.
 
 create object instance Summary_Report of SUMREP;
 
 select any Program from instances of PRG
 where (selected.PRG_Name == param.PRG_Name);
 
+//relate Summary_Report to Program -> PRJ[R5.''may include''] -> PERFREP[R14.''may be recorded in''];
+
 if (not empty Program)
+	
+	//Select all the related Projects'' Performance Reports.
+	
 	select many Reports related by Program -> PRJ[R5.''may include''] -> PERFREP[R14.''may be recorded in''];
 	// I think this last statement should provide an instance set that only includes existing performance reports.
-
+	
+	//Identify the last reports for each Project and add them to the Summary Report.
+	
+ 		last_pref_report = 0;
+		
+		for each report in Reports
+			while (report.Rep_ID > last_pref_report)
+			last_pref_report = report.Rep_ID;
+			end while;
+			select any report related by Program -> PRJ[R5.''may include''] -> PERFREP[R14.''may be recorded in''] where selected.Rep_ID == last_pref_report;
+			relate Summary_Report to report across R16.''is extracted from'';
+			Summary_Report.PRJ_Name = report.PRJ_Name;
+			Summary_Report.Traffic_Light = report.Traffic_Light;
+		end for;
+		
 	Summary_Report.PRG_Name = param.PRG_Name;
 	Summary_Report.Date = TIM::current_date();
 	
 	LOG::LogInfo( message: "A new SUMMARY REPORT has been successfully created." );
 	
-	//List the RED (non-performing) projects first.
+	//List the RED (non-performing) Projects among the Summary Report first.
+	
+	select many Sum_Reps related by Program -> SUMREP[R18.''may be produced for'']; 
 	
 	red_ones = 0;
-	for each Report in Reports
+	for each Report in Sum_Reps
 		while (Report.Traffic_Light == Status_Colour::RED)
 			send OrgMan::Report(Relevant_Person:"Manager", PRG_Name:param.PRG_Name, PRJ_Name:Report.PRJ_Name, Traffic_Light:Report.Traffic_Light);
 			send PrgMan::Report(Relevant_Person:"Manager", PRG_Name:param.PRG_Name, PRJ_Name:Report.PRJ_Name, Traffic_Light:Report.Traffic_Light);
@@ -50,10 +72,10 @@ if (not empty Program)
 	
 	LOG::LogInfo( message: "All ''RED'' Projects have been listed." );
 	
-	//List the AMBER (under-performing) projects second.
+	//List the AMBER (under-performing) Projects second.
 		
 	amber_ones = 0;
-	for each Report in Reports
+	for each Report in Sum_Reps
 		while (Report.Traffic_Light == Status_Colour::AMBER)
 			send OrgMan::Report(Relevant_Person:"Manager", PRG_Name:param.PRG_Name, PRJ_Name:Report.PRJ_Name, Traffic_Light:Report.Traffic_Light);
 			send PrgMan::Report(Relevant_Person:"Manager", PRG_Name:param.PRG_Name, PRJ_Name:Report.PRJ_Name, Traffic_Light:Report.Traffic_Light);
@@ -63,10 +85,10 @@ if (not empty Program)
 	
 	LOG::LogInfo( message: "All ''AMBER'' Projects have been listed." );
 	
-	//List the GREEN (performing) projects last.
+	//List the GREEN (performing) Projects last.
 		
 	green_ones = 0;
-	for each Report in Reports
+	for each Report in Sum_Reps
 		while (Report.Traffic_Light == Status_Colour::GREEN)
 			send OrgMan::Report(Relevant_Person:"Manager", PRG_Name:param.PRG_Name, PRJ_Name:Report.PRJ_Name, Traffic_Light:Report.Traffic_Light);
 			send PrgMan::Report(Relevant_Person:"Manager", PRG_Name:param.PRG_Name, PRJ_Name:Report.PRJ_Name, Traffic_Light:Report.Traffic_Light);
@@ -80,13 +102,18 @@ if (not empty Program)
 		
 	total = red_ones + amber_ones + green_ones;
 	
-	//Provide an indication of degree of non-performance of the overal program for which this summary report has been prepared.		
+	//Provide an indication of degree of (non-)performance of the overal program for which this Summary Report has been prepared.		
 	
 	LOG::LogInteger( message:red_ones); LOG::LogInfo( message: " out of " ); LOG::LogInteger( message:total); LOG::LogInfo( message: " are NOT PERFORMING WELL." );
+	PrgMan::Notify_Performance( Relevant_Person:"Manager", TL_Type_Num: red_ones, Message_Part1:" out of ", TL_Total: total, Message_Part2:" are NOT PERFORMING WELL." );
+	LOG::LogInteger( message:amber_ones); LOG::LogInfo( message: " out of " ); LOG::LogInteger( message:total); LOG::LogInfo( message: " are UNDER-PERFORMING." );
+	PrgMan::Notify_Performance( Relevant_Person:"Manager", TL_Type_Num: amber_ones, Message_Part1:" out of ", TL_Total: total, Message_Part2:" are UNDER-PERFORMING." );
+	LOG::LogInteger( message:green_ones); LOG::LogInfo( message: " out of " ); LOG::LogInteger( message:total); LOG::LogInfo( message: " are PERFORMING WELL." );
+	PrgMan::Notify_Performance( Relevant_Person:"Manager", TL_Type_Num: green_ones, Message_Part1:" out of ", TL_Total: total, Message_Part2:" are PERFORMING WELL." );
 	
 else
 	
-	LOG::LogFailure( message: "The chosen PROGRAM NAME does not exist.  Please choose a different NAME from those that already exist." );
+	LOG::LogFailure( message: "The chosen PROGRAM NAME " + param.PRG_Name + " does not exist.  Please choose a NAME from those that already exist." );
 
 end if;',
 	1,
@@ -175,6 +202,24 @@ INSERT INTO O_ATTR
 	'Date',
 	0,
 	"ba5eda7a-def5-0000-0000-00000000000e",
+	'',
+	'');
+INSERT INTO O_NBATTR
+	VALUES ("0129ceaf-3c3f-4017-8a5c-8380a5bf30a2",
+	"e1e375a8-101a-4533-9544-1b3ba91e8e62");
+INSERT INTO O_BATTR
+	VALUES ("0129ceaf-3c3f-4017-8a5c-8380a5bf30a2",
+	"e1e375a8-101a-4533-9544-1b3ba91e8e62");
+INSERT INTO O_ATTR
+	VALUES ("0129ceaf-3c3f-4017-8a5c-8380a5bf30a2",
+	"e1e375a8-101a-4533-9544-1b3ba91e8e62",
+	"294cc165-fad4-4a7a-9723-fd32c43a60e1",
+	'PRJ_Name',
+	'',
+	'',
+	'PRJ_Name',
+	0,
+	"ba5eda7a-def5-0000-0000-000000000004",
 	'',
 	'');
 INSERT INTO O_ID
