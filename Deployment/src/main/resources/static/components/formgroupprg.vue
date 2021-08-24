@@ -1,15 +1,21 @@
 <template>
   <div>
     <b-form-group label="Program Name:" label-for="input-1" invalid-feedback="Name is required" :state="state.name">
-        <b-form-input id="input-1" ref="name" v-model.trim="prg.name" type="text" :disabled="disabledName" :state="state.name" required></b-form-input>
+      <template v-if="mode === 'add'">
+        <b-form-input id="input-1" ref="name" v-model.trim="prg.name" :state="state.name" required></b-form-input>
+      </template>
+      <template v-else>
+        <b-form-input id="input-1" ref="name" :value="prg.name" readonly="true" :state="state.name" required></b-form-input>
+      </template>
     </b-form-group>
 
     <b-form-group label="Description:" label-for="input-2" invalid-feedback="Description is required" :state="state.desc">
-        <b-form-input id="input-2" ref="description" v-model.trim="prg.description" :state="state.desc" required></b-form-input>
+      <!--<b-form-input id="input-2" ref="description" v-model.trim="prg.description" :state="state.desc" required></b-form-input>-->
+      <b-form-textarea id="input-2" ref="description" v-model.trim="prg.description" :state="state.desc" required></b-form-textarea>  
     </b-form-group>     
 
     <b-form-group label="Owner:" label-for="input-3" invalid-feedback="Owner is required" :state="state.owner">
-        <b-form-input id="input-3" ref="owner" v-model.trim="prg.owner" :state="state.owner" required></b-form-input>
+      <b-form-input id="input-3" ref="owner" v-model.trim="prg.owner" :state="state.owner" required></b-form-input>
     </b-form-group>  
 
     <associate :assoc="assoc_sg"></associate>
@@ -23,7 +29,10 @@
   module.exports = {
     props: {
       prg: Object,
-      disabledName: null  
+      mode: {
+        type: String,
+        default: 'add'
+      }
     },
     data: function () {
       return {
@@ -52,16 +61,21 @@
           createid: '',
           title: 'Associate Projects',
           label: 'Projects:',
-          url: './getsg',
+          url: './getprj',
           mode: 'multi',
           selected: [],
           fields: [
             'selected',
-            { key: 'name', label: 'Goal Identity' },
-            { key: 'description' },
-            { key: 'priority' }
+            { key: 'name', label: 'Project' },
+            { key: 'description' }
           ]
         }
+      }
+    },
+    created() {
+      if (this.mode === 'update') {
+        this.assoc_sg.selected.push(this.prg.strategicGoal);
+        this.assoc_prj.selected = this.prg.projects;
       }
     },
     methods: { 
@@ -77,19 +91,6 @@
 
         return true;
       },
-      resetFormValidity(value) {
-        for (const s in this.state) {
-          this.state[s] = null;
-        }
-        if (value) {
-          for (const s in this.prg) {
-            if (typeof(this.prg[s]) == "object")
-              this.prg[s] = [];
-            else
-              this.prg[s] = '';
-         }
-        }
-      },
       handleOk(bvModalEvt, modalId) {
         // Prevent modal from closing
         if (bvModalEvt)
@@ -102,20 +103,25 @@
           return;
         }
 
-        /*const response = await fetch('./addprg', {
+        this.prg.strategicGoal = (this.assoc_sg.selected.length > 0) ? this.assoc_sg.selected[0] : this.prg.strategicGoal = "";
+        this.prg.projects = this.assoc_prj.selected;
+
+        let url = './addprg';
+        if (this.mode === 'update')
+          url = '/updateprg';
+
+        const response = await fetch(url, {
           method: 'POST',
           headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
           },
-          body: JSON.stringify({ name: this.name, description: this.description, manager: this.manager, 
-            strategicGoal: strategicgoal, programs: this.assoc_prg.selected, projects: this.assoc_prj.selected})
-        });*/
+          body: JSON.stringify(this.prg)
+        });
 
         this.$emit('ok', this.prg.name);  // Notify parent
         
         if (modalId) {
-          this.resetFormValidity(true);
           // Hide the modal manually
           this.$nextTick(() => {
             this.$bvModal.hide(modalId)

@@ -31,11 +31,18 @@
         </b-col>
       </b-row>
 
-      <b-table striped bordered hover :items="items" :fields="fields" :filter="filter">
+      <b-table bordered hover :items="items" :fields="fields" :filter="filter" head-variant="light">
         <template #cell(actions)="row">
           <b-button size="sm" @click="update(row.item, row.index, $event.target)" class="mr-1">
-            Update
+            <!--Update-->
+            {{pf_state[row.item.currentState]}}
           </b-button>
+          <!--<b-button size="sm" @click="row.toggleDetails">
+            {{ row.detailsShowing ? '<' : '>' }}
+          </b-button> -->
+          <b-form-checkbox size="sm" class="mt-1" v-model="row.detailsShowing" @change="row.toggleDetails">
+            Details
+          </b-form-checkbox>
         </template>
         <template #thead-top="data">
           <b-tr>
@@ -44,34 +51,76 @@
             <b-th></b-th>
           </b-tr>
         </template>
+        <template #row-details="row">
+          <detailpf :pf="row.item"></detailpf>   
+        </template>
+        <!-- Popover for description -->
+        <template #cell(description)="data">
+            <span class="textlines" v-b-popover.hover.top.html="'<pre>' + data.value + '</pre>'" title="Description">{{data.value}}</span>
+        </template>
+        <!-- Popover for Strategic Goal -->
+        <template #cell(strategicGoal)="data">
+          <!--<h5><b-badge variant="info">{{data.value}}</b-badge></h5>-->
+          <template v-if="data.value != ''">
+            <h5><b-badge class="fullwidth" variant="info" v-b-popover.hover.html="getBadgeList(data.value)" title="Associated Strategic Goal">
+              {{data.value}}</b-badge></h5>
+            </template>
+        </template>
+        <!-- Popover for programs -->
+        <template #cell(programs)="data">
+          <template  v-if="data.value.length > 0">
+            <h5><b-badge class="fullwidth" variant="info" v-b-popover.hover.html="getBadgeList(data.value)" title="Associated Programs">
+              <b-badge class="floatright" variant="light">{{data.value.length}}</b-badge>{{data.value[0]}}</b-badge></h5>
+          </template>
+        </template>
+        <!-- Popover for projects -->
+        <template #cell(projects)="data">
+          <template  v-if="data.value.length > 0">
+            <h5><b-badge class="fullwidth" variant="info" v-b-popover.hover.html="getBadgeList(data.value)" title="Associated Projects">
+              <b-badge class="floatright" variant="light">{{data.value.length}}</b-badge>{{data.value[0]}}</b-badge></h5>
+          </template>
+        </template>
       </b-table>
     </div>
 
-    <b-modal :id="updateModal.id" :title="updateModal.title" @ok="handleOk" @show="resetModal">
-      <form ref="form" @submit.stop.prevent="handleSubmit">
-        <b-form-group label="Portfolio Name:" label-for="input-1">
-          <b-form-input id="input-1" v-model="updateModal.item.name" type="text" disabled></b-form-input>
-        </b-form-group>
+    <b-modal size="lg" :id="updateModal.id" :title="updateModal.title" @ok="handleOk">
+      <formgrouppf :pf="updateModal.item" ref="modalupdatepf" :mode="updateModal.mode" @ok="onSubmitted"></formgrouppf>
 
-        <b-form-group label="Description:" label-for="input-2" invalid-feedback="Description is required"
-          :state="updateModal.descState">
-          <b-form-input id="input-2" required ref="description" v-model.trim="updateModal.item.description" :state="updateModal.descState"></b-form-input>
-        </b-form-group>
-
-        <b-form-group label="Manager:" label-for="input-3" invalid-feedback="Manager is required"
-          :state="updateModal.managerState">
-          <b-form-input id="input-3" required ref="manager" v-model.trim="updateModal.item.manager" :state="updateModal.managerState"></b-form-input>
-        </b-form-group>
-
-        <!--<b-form-group label="Priority:" label-for="input-3">
-          <b-form-select id="input-3" v-model="updateModal.item.priority" :options="updateModal.priorities"></b-form-select>
-        </b-form-group>-->
-      </form>
+      <template #modal-footer="{ cancel, ok }">
+        <!-- Emulate built in modal footer ok and cancel button actions -->
+        <b-button variant="secondary" @click="cancel()">
+          Cancel
+        </b-button>
+        <b-button variant="primary" v-if="pf_state[updateModal.item.currentState] !== 'Closed'" @click="ok()">
+          Save
+        </b-button>
+        <b-button variant="success" v-if="pf_state[updateModal.item.currentState] !== 'Closed'" @click="onComplete">
+          <template v-if="pf_state[updateModal.item.currentState] !== 'Executing'">
+            Complete
+          </template>
+          <template v-else>
+            Close
+          </template>  
+        </b-button>
+        <template v-if="pf_state[updateModal.item.currentState] === 'Executing'">
+          <b-button variant="danger" @click="onReplan">
+            Replan
+          </b-button>
+        </template>
+        <template v-if="pf_state[updateModal.item.currentState] === 'Closed'">
+          <b-button variant="danger" @click="onReactivate">
+            Reactivate
+          </b-button>
+        </template>
+      </template>
     </b-modal>
   </div>
 </template>
 
 <script>
+  var formgrouppf = httpVueLoader('components/formgrouppf.vue');
+  var detailpf = httpVueLoader('components/detailpf.vue');
+
   module.exports = {
     data: function () {
       return {
@@ -79,17 +128,16 @@
         filter: null,
         updateModal: {
           id: 'update-modal',
+          idPlanning: 'update-modal-planning',
           title: '',
-          priorities: ['HIGH', 'MEDIUM', 'LOW'],
-          descState: null,
-          managerState: null,
           item: '',
-          orgItem: ''
+          orgItem: '',
+          mode: ''
         },
         fields: [
         { key: 'name', label: 'Portfolio', sortable: true },
         { key: 'description', sortable: false },
-        { key: 'manager', sortable: false },
+        { key: 'manager', sortable: true },
         { key: 'strategicGoal', label: 'Strategic Goal', sortable: true },
         { key: 'programs', sortable: true },
         { key: 'projects', sortable: true },
@@ -112,47 +160,57 @@
       },
       update(item, index, button) {
         this.updateModal.orgItem = item;
-        this.updateModal.title = 'Update Portfolio: ' + item.name;
         this.updateModal.item = JSON.parse(JSON.stringify(item)); // make a copy, assigning will be a reference
-        this.$root.$emit('bv::show::modal', this.updateModal.id, button);
-      },     
-      checkFormValidity() {
-        this.updateModal.descState = this.$refs.description.checkValidity();
-        this.updateModal.managerState = this.$refs.manager.checkValidity();
-        return (this.updateModal.descState && this.updateModal.managerState);
-      },
-      resetModal() {
-        this.updateModal.descState = null;
-        this.updateModal.managerState = null;
-      },
-      handleOk(bvModalEvt) {
-        // Prevent modal from closing
-        bvModalEvt.preventDefault()
-        // Trigger submit handler
-        this.handleSubmit()
-      },
-      async handleSubmit(bvModalEvt) {
-        if (!this.checkFormValidity()) {
-          return
+
+        if (pf_state[item.currentState] === 'Initialise')
+          this.updateModal.title = 'Initialise Portfolio: ' + item.name;
+        else if (pf_state[item.currentState] === 'Planning') 
+          this.updateModal.title = 'Planning/Optimising Portfolio: ' + item.name;
+        else if (pf_state[item.currentState] === 'Executing')
+          this.updateModal.title = 'Executing Portfolio: ' + item.name;
+        else if (pf_state[item.currentState] === 'Closed')
+          this.updateModal.title = 'Closed Portfolio: ' + item.name;
+        else {
+          alert('Unknown Portfolio state!');
+          return;
         }
 
-        /*const response = await fetch('./updatepf', {
-          method: 'POST',
-          headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({ goalId: this.updateModal.orgItem.goalId, description: this.updateModal.item.description, priority: this.updateModal.item.priority })
-        });*/
+        this.updateModal.mode = pf_state[item.currentState];
+        this.$root.$emit('bv::show::modal', this.updateModal.id, button);
+      },     
+      handleOk(bvModalEvt) {
+        this.$refs.modalupdatepf.handleOk(bvModalEvt, this.updateModal.id, 'save');
+      },
+      onSubmitted(pfname) {
+        //for (const i in this.updateModal.orgItem)
+          //this.updateModal.orgItem[i] = this.updateModal.item[i];
+        // TODO - should only updated the changed portfolio
+        this.fetchData().catch(error => {
+          console.error(error)
+        });
+      },
+      onComplete() {
+        let action = 'save';
 
-        this.updateModal.orgItem.description = this.updateModal.item.description;
-        this.updateModal.orgItem.manager = this.updateModal.item.manager;
+        if (pf_state[this.updateModal.orgItem.currentState] === 'Initialise')
+          action = 'initcomplete';
+        else if (pf_state[this.updateModal.orgItem.currentState] === 'Planning')  
+          action = 'plancomplete';
+        else if (pf_state[this.updateModal.orgItem.currentState] === 'Executing') 
+          action = 'execomplete';
 
-        // Hide the modal manually
-        this.$nextTick(() => {
-          this.$bvModal.hide(this.updateModal.id)
-        })
+        this.$refs.modalupdatepf.handleOk(null, this.updateModal.id, action);
+      },
+      onReplan() {
+        this.$refs.modalupdatepf.handleOk(null, this.updateModal.id, 'replan');
+      },
+      onReactivate() {
+        this.$refs.modalupdatepf.handleOk(null, this.updateModal.id, 'reactivate');
       }
+    },
+    components: {
+      'formgrouppf': formgrouppf,
+      'detailpf': detailpf
     }
   };
 </script>

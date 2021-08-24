@@ -3,21 +3,33 @@ package deployment;
 import java.util.ArrayList;
 import java.util.List;
 
-// Spring requires a POJ class for each message - variables must start with a lower case (camel case convention)
-public class ProjectMsg {
+// Spring requires a POJO class for each message - variables must start with a lower case (camel case convention)
+public class ProjectMsg extends AbstractMsg {
   private String name;
   private String description;
   private String strategicGoal;
   private String program;
   private String portfolio;
 
+  @Override
+	public String getId() {
+		return name;
+	}
+  
   public ProjectMsg() {
+    name = "";
+    description = "";
+    strategicGoal = "";
+    program = "";
+    portfolio = "";
   }
 
   public ProjectMsg(String name, String description) {
-    super();
     this.name = name;
     this.description = description;
+    this.strategicGoal = "";
+    this.program = "";
+    this.portfolio = "";
   }
 
   public void setName(String name) {
@@ -41,7 +53,7 @@ public class ProjectMsg {
   }
 
   public String getPortfolio() {
-    return portfolio;
+    return portfolio == null ? "" : portfolio;
   }
 
   public void setStrategicGoal(String strategicGoal) {
@@ -49,7 +61,7 @@ public class ProjectMsg {
   }
 
   public String getStrategicGoal() {
-    return strategicGoal;
+    return strategicGoal == null ? "" : strategicGoal;
   }
 
   public void setProgram(String program) {
@@ -57,6 +69,6 @@ public class ProjectMsg {
   }
 
   public String getProgram() {
-    return program;
+    return program == null ? "" : program;
   }
 }

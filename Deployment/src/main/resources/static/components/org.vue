@@ -31,35 +31,59 @@
         </b-col>
       </b-row>
 
-      <b-table striped bordered hover :items="items" :fields="fields" :filter="filter">
+      <b-table bordered hover :items="items" :fields="fields" :filter="filter" head-variant="light">
         <template #cell(actions)="row">
           <b-button size="sm" @click="update(row.item, row.index, $event.target)" class="mr-1">
             Update
           </b-button>
         </template>
+        <template #thead-top="data">
+          <b-tr>
+            <b-th colspan="3"><span class="sr-only">Program</span></b-th>
+            <b-th colspan="3" class="text-center">Associated</b-th>
+            <b-th></b-th>
+          </b-tr>
+        </template>
+        <!-- Popover for description -->
+        <template #cell(description)="data">
+          <span class="textlines" v-b-popover.hover.top.html="'<pre>' + data.value + '</pre>'" title="Description">{{ data.value}}</span>
+        </template>
+        <template #cell(priority)="data">
+          <b-badge pill class="fullwidth" :variant="priority_variant[priorities.indexOf(data.value)]">{{data.value}}</b-badge>
+        </template>
+        <!-- Popover for portfolios -->
+        <template #cell(portfolios)="data">
+          <template  v-if="data.value.length > 0">
+            <h5><b-badge class="fullwidth" variant="info" v-b-popover.hover.html="getBadgeList(data.value)" title="Associated Portfolios">
+              <b-badge class="floatright" variant="light">{{data.value.length}}</b-badge>{{data.value[0]}}</b-badge></h5>
+          </template>
+        </template>
+        <!-- Popover for programs -->
+        <template #cell(programs)="data">
+          <template  v-if="data.value.length > 0">
+            <h5><b-badge class="fullwidth" variant="info" v-b-popover.hover.html="getBadgeList(data.value)" title="Associated Programs">
+              <b-badge class="floatright" variant="light">{{data.value.length}}</b-badge>{{data.value[0]}}</b-badge></h5>
+          </template>
+        </template>
+        <!-- Popover for projects -->
+        <template #cell(projects)="data">
+          <template  v-if="data.value.length > 0">
+            <h5><b-badge class="fullwidth" variant="info" v-b-popover.hover.html="getBadgeList(data.value)" title="Associated Projects">
+              <b-badge class="floatright" variant="light">{{data.value.length}}</b-badge>{{data.value[0]}}</b-badge></h5>
+          </template>
+        </template>
       </b-table>
     </div>
 
-    <b-modal :id="updateModal.id" :title="updateModal.title" @ok="handleOk" @show="resetModal">
-      <form ref="form" @submit.stop.prevent="handleSubmit">
-        <b-form-group label="Goal Identity:" label-for="input-1">
-          <b-form-input id="input-1" v-model="updateModal.item.name" type="text" disabled></b-form-input>
-        </b-form-group>
-
-        <b-form-group label="Description:" label-for="input-2" invalid-feedback="Description is required"
-          :state="updateModal.descState">
-          <b-form-input id="input-2" v-model.trim="updateModal.item.description" :state="updateModal.descState" required></b-form-input>
-        </b-form-group>
-
-        <b-form-group label="Priority:" label-for="input-3">
-          <b-form-select id="input-3" v-model="updateModal.item.priority" :options="updateModal.priorities"></b-form-select>
-        </b-form-group>
-      </form>
+    <b-modal size="lg" :id="updateModal.id" :title="updateModal.title" @ok="handleOk">
+      <formgroupsg :sg="updateModal.item" ref="modalupdatesg" mode="update" @ok="onSubmitted"></formgroupsg>
     </b-modal>
   </div>
 </template>
 
 <script>
+  var formgroupsg = httpVueLoader('components/formgroupsg.vue');
+
   module.exports = {
     data: function () {
       return {
@@ -68,8 +92,6 @@
         updateModal: {
           id: 'update-modal',
           title: '',
-          priorities: ['HIGH', 'MEDIUM', 'LOW'],
-          descState: null,
           item: '',
           orgItem: ''
         },
@@ -77,6 +99,9 @@
         { key: 'name', label: 'Goal Identity', sortable: true },
         { key: 'description', sortable: false },
         { key: 'priority', sortable: true },
+        { key: 'portfolios', sortable: true },
+        { key: 'programs', sortable: true },
+        { key: 'projects', sortable: true },
         { key: 'actions', label: 'Actions' }
         ]
       }
@@ -99,43 +124,22 @@
         this.updateModal.title = 'Update Strategic Goal: ' + item.name;
         this.updateModal.item = JSON.parse(JSON.stringify(item)); // make a copy, assigning will be a reference
         this.$root.$emit('bv::show::modal', this.updateModal.id, button);
-      },     
-      checkFormValidity() {
-        const valid = this.$refs.form.checkValidity()
-        this.updateModal.descState = valid
-        return valid
       },
       resetModal() {
         this.updateModal.descState = null
       },
       handleOk(bvModalEvt) {
-        // Prevent modal from closing
-        bvModalEvt.preventDefault()
-        // Trigger submit handler
-        this.handleSubmit()
+        this.$refs.modalupdatesg.handleOk(bvModalEvt, this.updateModal.id);
       },
-      async handleSubmit(bvModalEvt) {
-        if (!this.checkFormValidity()) {
-          return
-        }
-
-        const response = await fetch('./updatesg', {
-          method: 'POST',
-          headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({ name: this.updateModal.orgItem.name, description: this.updateModal.item.description, priority: this.updateModal.item.priority })
+      onSubmitted(sgname) {
+        // TODO - should only updated the changed strategic goal
+        this.fetchData().catch(error => {
+          console.error(error)
         });
-
-        this.updateModal.orgItem.description = this.updateModal.item.description;
-        this.updateModal.orgItem.priority = this.updateModal.item.priority;
-
-        // Hide the modal manually
-        this.$nextTick(() => {
-          this.$bvModal.hide(this.updateModal.id)
-        })
       }
+    },
+    components: {
+      'formgroupsg': formgroupsg
     }
   };
 </script>

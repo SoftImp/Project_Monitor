@@ -40,18 +40,11 @@ public class Organisational_ManagementController {
 	@PostMapping("/addsg")
 	public ResponseEntity addsg(@RequestBody StrategicGoalMsg sg) {
 		try {
-			if (!waitStrategicGoals.hasMsg()) {
-				Organisational_Management.Singleton().OrgMan().get_Strategic_Goals();
-				waitStrategicGoals.synchroniseAndWait();
-			}
+			TableData<StrategicGoalMsg> td = getsg();
+			if (td.findById(sg.getName()) != null)
+				throw new Exception("addsg() - Strategic Goal already exists: " + sg.getName());
 
-			if (waitStrategicGoals.getMsg().contains("\"goalId\":\"" + sg.getName() + "\"")) {
-				System.out.printf("addsg() goalId: %s already exists\n", sg.getName());
-				return new ResponseEntity(HttpStatus.NOT_ACCEPTABLE);
-			}
-
-			System.out.printf("addsg() goalId: %s, desc: %s, priority: %s\n", sg.getName(), sg.getDescription(),
-					sg.getPriority());
+			//System.out.printf("addsg() goalId: %s, desc: %s, priority: %s\n", sg.getName(), sg.getDescription(), sg.getPriority());
 
 			Priority_Level level = Priority_Level.valueOf(sg.getPriority().toUpperCase());
 
@@ -68,13 +61,20 @@ public class Organisational_ManagementController {
 	@PostMapping("/updatesg")
 	public ResponseEntity updatesg(@RequestBody StrategicGoalMsg sg) {
 		try {
-			System.out.printf("updatesg() goalId: %s, desc: %s, priority: %s\n", sg.getName(), sg.getDescription(),
-					sg.getPriority());
+			//System.out.printf("updatesg() goalId: %s, desc: %s, priority: %s\n", sg.getName(), sg.getDescription(), sg.getPriority());
 
-			Priority_Level level = Priority_Level.valueOf(sg.getPriority().toUpperCase());
+			TableData<StrategicGoalMsg> td = getsg();
+			StrategicGoalMsg oldSG = td.findById(sg.getName()); 
+			if (oldSG == null)
+				throw new Exception("updatesg() - Strategic Goal not found: " + sg.getName());
 
-			Organisational_Management.Singleton().OrgMan().update_Description(sg.getName(), sg.getDescription());
-			Organisational_Management.Singleton().OrgMan().update_Priority(sg.getName(), level);
+			if (!oldSG.getDescription().equals(sg.getDescription()))
+				Organisational_Management.Singleton().OrgMan().update_Description(sg.getName(), sg.getDescription());
+
+			if (!oldSG.getPriority().equals(sg.getPriority())) {
+				Priority_Level level = Priority_Level.valueOf(sg.getPriority().toUpperCase());
+				Organisational_Management.Singleton().OrgMan().update_Priority(sg.getName(), level);
+			}
 
 			waitStrategicGoals.clear();
 			return new ResponseEntity(HttpStatus.OK);
@@ -92,11 +92,6 @@ public class Organisational_ManagementController {
 			Organisational_Management.Singleton().OrgMan().add_Strategic_Goal("Goal3", "Goal3", Priority_Level.LOW);
 			Organisational_Management.Singleton().OrgMan().add_Strategic_Goal("Goal4", "Goal4", Priority_Level.MEDIUM);
 			Organisational_Management.Singleton().OrgMan().add_Strategic_Goal("Goal5", "Goal5", Priority_Level.MEDIUM);
-			Organisational_Management.Singleton().OrgMan().add_Strategic_Goal("Goal6", "Goal6", Priority_Level.LOW);
-			Organisational_Management.Singleton().OrgMan().add_Strategic_Goal("Goal7", "Goal7", Priority_Level.HIGH);
-			Organisational_Management.Singleton().OrgMan().add_Strategic_Goal("Goal8", "Goal8", Priority_Level.MEDIUM);
-			Organisational_Management.Singleton().OrgMan().add_Strategic_Goal("Goal9", "Goal9", Priority_Level.HIGH);
-			Organisational_Management.Singleton().OrgMan().add_Strategic_Goal("Goal10", "Goal10", Priority_Level.MEDIUM);
 			waitStrategicGoals.clear();
 			return new ResponseEntity(HttpStatus.OK);
 		} catch (Exception e) {
@@ -116,6 +111,7 @@ public class Organisational_ManagementController {
 			}
 
 			td.setData(waitStrategicGoals.getMsg(), StrategicGoalMsg[].class);
+			waitStrategicGoals.clear(); // TMP - clear messages
 			return td;
 		} catch (Exception e) {
 			System.out.printf("Exception, %s, in getsg()\n", e);

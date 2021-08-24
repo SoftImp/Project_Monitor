@@ -1,7 +1,7 @@
 package deployment;
 
 
-import deployment.portfolio_management.Portfolio_ManagementPFMan;
+import deployment.project_management.Project_ManagementPrjMan;
 
 import io.ciera.runtime.summit.application.IApplication;
 import io.ciera.runtime.summit.application.IRunContext;
@@ -17,12 +17,12 @@ import java.util.Properties;
 import java.util.TreeMap;
 
 
-public class Portfolio_Management extends Component<Portfolio_Management> {
+public class Project_Management extends Component<Project_Management> {
 
     private Map<String, Class<?>> classDirectory;
-    private static Portfolio_Management Singleton;
+    private static Project_Management Singleton;
 
-    public Portfolio_Management(IApplication app, IRunContext runContext, int populationId) {
+    public Project_Management(IApplication app, IRunContext runContext, int populationId) {
         super(app, runContext, populationId);
 
 
@@ -31,15 +31,15 @@ public class Portfolio_Management extends Component<Portfolio_Management> {
         Singleton = this;
     }
 
-    public static Portfolio_Management Singleton() {
+    public static Project_Management Singleton() {
         return Singleton;
     }
 
     // domain functions
-    public void on_Portfolios( final String p_Portfolios ) throws XtumlException {
+    public void on_Projects( final String p_Projects ) throws XtumlException {
         try {
-			//System.out.printf("on_Portfolios() JSON: %s\n", p_Portfolios);	
-            Portfolio_ManagementController.Singleton().on_Portfolios( p_Portfolios );
+			//System.out.printf("on_Projects() JSON: %s\n", p_Projects);	
+            Project_ManagementController.Singleton().on_Projects( p_Projects );
       	} catch ( Exception e ) {}
     }
 
@@ -55,10 +55,10 @@ public class Portfolio_Management extends Component<Portfolio_Management> {
 
 
     // ports
-    private Portfolio_ManagementPFMan Portfolio_ManagementPFMan;
-    public Portfolio_ManagementPFMan PFMan() {
-        if ( null == Portfolio_ManagementPFMan ) Portfolio_ManagementPFMan = new Portfolio_ManagementPFMan( this, null );
-        return Portfolio_ManagementPFMan;
+    private Project_ManagementPrjMan Project_ManagementPrjMan;
+    public Project_ManagementPrjMan PrjMan() {
+        if ( null == Project_ManagementPrjMan ) Project_ManagementPrjMan = new Project_ManagementPrjMan( this, null );
+        return Project_ManagementPrjMan;
     }
 
 
@@ -75,7 +75,7 @@ public class Portfolio_Management extends Component<Portfolio_Management> {
     public String getVersion() {
         Properties prop = new Properties();
         try {
-            prop.load(getClass().getResourceAsStream("Portfolio_ManagementProperties.properties"));
+            prop.load(getClass().getResourceAsStream("Project_ManagementProperties.properties"));
         } catch (IOException e) { /* do nothing */ }
         return prop.getProperty("version", "Unknown");
     }
@@ -83,7 +83,7 @@ public class Portfolio_Management extends Component<Portfolio_Management> {
     public String getVersionDate() {
         Properties prop = new Properties();
         try {
-            prop.load(getClass().getResourceAsStream("Portfolio_ManagementProperties.properties"));
+            prop.load(getClass().getResourceAsStream("Project_ManagementProperties.properties"));
         } catch (IOException e) { /* do nothing */ }
         return prop.getProperty("version_date", "Unknown");
     }
@@ -105,7 +105,7 @@ public class Portfolio_Management extends Component<Portfolio_Management> {
     }
 
     @Override
-    public Portfolio_Management context() {
+    public Project_Management context() {
         return this;
     }
 

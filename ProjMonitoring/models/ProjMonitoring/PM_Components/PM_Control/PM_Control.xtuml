@@ -1454,7 +1454,21 @@ INSERT INTO SPR_PS
 	VALUES ("7078cb35-2d75-4447-98b9-eba663c341a2",
 	'replan',
 	'',
-	'',
+	'//Replan the named portfolio ready to be replanned.
+
+select any Portfolio from instances of PF 
+where (selected.PF_Name == param.PF_Name);
+
+if ( not empty Portfolio)
+	
+	LOG::LogInfo( message: "REPLAN PORTFOLIO " + param.PF_Name + "." );	
+	send PFMan::Notify(Relevant_Person: Portfolio.Manager, Message:"REPLAN PORTFOLIO " + param.PF_Name + ".");
+	
+	generate PF16:Replan to Portfolio;
+	
+else
+	LOG::LogFailure( message: "The chosen PORTFOLIO NAME does not exist.  Please choose a different NAME that does exist." );
+end if;',
 	1,
 	0,
 	13);
@@ -1612,6 +1626,71 @@ INSERT INTO C_EP_PROXY
 	'on_Portfolios',
 	'',
 	17,
+	'../../PM_Interfaces/Portfolio_Management/Portfolio_Management.xtuml');
+INSERT INTO SPR_PEP
+	VALUES ("986ddf73-c10c-4d69-a406-1b9619d9ad14",
+	"cc55a039-66af-4713-bb34-2cf5513cffb6",
+	"b467a081-0749-459a-a87a-fb38bb41339f");
+INSERT INTO SPR_PS
+	VALUES ("986ddf73-c10c-4d69-a406-1b9619d9ad14",
+	'unlink_Strategic_Goal',
+	'',
+	'//Select the PORTFOLIO to be unlinked to a STRATEGIC GOAL.
+
+select any Portfolio from instances of PF
+ where (selected.PF_Name == param.PF_Name);
+ 
+if (not empty Portfolio)
+	
+	LOG::LogInfo( message: "The PORTFOLIO " + param.PF_Name + " is being unlinked to a STRATEGIC GOAL." );
+	send PFMan::Notify(Relevant_Person: Portfolio.Manager, Message:"The PORTFOLIO  " + param.PF_Name + " is being unlinked to a STRATEGIC GOAL.");
+
+	generate PF19:Unlink_From_Strategic_Goal(SG_Name: param.SG_Name) to Portfolio;
+
+else
+	LOG::LogFailure( message: "The chosen PORTFOLIO NAME doesn''t exist.  Please choose a NAME that already exists." );
+end if;
+
+//Is an extension of UCs in accordance with PMI''s Standard for Portfolio Management.',
+	1,
+	0,
+	18);
+INSERT INTO C_EP_PROXY
+	VALUES ("cc55a039-66af-4713-bb34-2cf5513cffb6",
+	"a1785323-9842-4f78-9c7c-66eac1ae5d6a",
+	-1,
+	'unlink_Strategic_Goal',
+	'',
+	18,
+	'../../PM_Interfaces/Portfolio_Management/Portfolio_Management.xtuml');
+INSERT INTO SPR_PEP
+	VALUES ("a30c4aa3-5a0a-42b1-8438-26e8752f94d1",
+	"15138150-819d-4f2c-ab1c-c2859e8cd402",
+	"b467a081-0749-459a-a87a-fb38bb41339f");
+INSERT INTO SPR_PS
+	VALUES ("a30c4aa3-5a0a-42b1-8438-26e8752f94d1",
+	'update_Description',
+	'',
+	'//Signal to Portfolio class operation to update a description of a Portfolio instance.
+
+select any Portfolio from instances of PF
+ where (selected.PF_Name == param.PF_Name);
+
+if ( not empty Portfolio)
+
+	Portfolio.update_Description( Description: param.Description);
+	
+end if;',
+	1,
+	0,
+	19);
+INSERT INTO C_EP_PROXY
+	VALUES ("15138150-819d-4f2c-ab1c-c2859e8cd402",
+	"a1785323-9842-4f78-9c7c-66eac1ae5d6a",
+	-1,
+	'update_Description',
+	'',
+	19,
 	'../../PM_Interfaces/Portfolio_Management/Portfolio_Management.xtuml');
 INSERT INTO C_I_PROXY
 	VALUES ("a1785323-9842-4f78-9c7c-66eac1ae5d6a",
@@ -2207,6 +2286,122 @@ INSERT INTO C_EP_PROXY
 	'',
 	3,
 	'../../PM_Interfaces/Program_Management/Program_Management.xtuml');
+INSERT INTO SPR_PEP
+	VALUES ("39c4ebf5-c1e8-4a54-b821-f687f86cdc55",
+	"8fe3d80e-b05e-4d9a-921c-c94a932e6528",
+	"35edcf68-532e-49b2-95f8-dce040a2c330");
+INSERT INTO SPR_PS
+	VALUES ("39c4ebf5-c1e8-4a54-b821-f687f86cdc55",
+	'unlink_Strategic_Goal',
+	'',
+	'//Signal to Program operation to ulink a Program instance to a Strategic Goal.
+
+select any Program from instances of PRG
+ where (selected.PRG_Name == param.Prog_Name);
+ 
+if (not empty Program)
+	
+	Program.unlink_From_Strategic_Goal( SG_Name: param.SG_Name);
+
+end if;',
+	1,
+	0,
+	21);
+INSERT INTO C_EP_PROXY
+	VALUES ("8fe3d80e-b05e-4d9a-921c-c94a932e6528",
+	"2fb1cfbf-5a98-466f-9dc8-5c99b1f86c67",
+	-1,
+	'unlink_Strategic_Goal',
+	'',
+	21,
+	'../../PM_Interfaces/Program_Management/Program_Management.xtuml');
+INSERT INTO SPR_PEP
+	VALUES ("d2d100bd-3f4a-45f0-99d6-9c1b65df9272",
+	"f9109f34-8890-4450-8cfe-db164367f46c",
+	"35edcf68-532e-49b2-95f8-dce040a2c330");
+INSERT INTO SPR_PS
+	VALUES ("d2d100bd-3f4a-45f0-99d6-9c1b65df9272",
+	'add_Project',
+	'',
+	'//Signal to call Program operation to add a Project.
+
+select any Program from instances of PRG
+ where (selected.PRG_Name == param.Prog_Name);
+ 
+if (not empty Program)
+	
+	Program.add_Project( PRJ_Name: param.PRJ_Name );
+
+end if;',
+	1,
+	0,
+	22);
+INSERT INTO C_EP_PROXY
+	VALUES ("f9109f34-8890-4450-8cfe-db164367f46c",
+	"2fb1cfbf-5a98-466f-9dc8-5c99b1f86c67",
+	-1,
+	'add_Project',
+	'',
+	22,
+	'../../PM_Interfaces/Program_Management/Program_Management.xtuml');
+INSERT INTO SPR_PEP
+	VALUES ("3a8c10b8-72ad-4d98-8c44-a245a66e7230",
+	"db09d0a2-10f5-4888-a042-d665dbf30c91",
+	"35edcf68-532e-49b2-95f8-dce040a2c330");
+INSERT INTO SPR_PS
+	VALUES ("3a8c10b8-72ad-4d98-8c44-a245a66e7230",
+	'remove_Project',
+	'',
+	'//Signal to call Program operation to remove a Project.
+
+select any Program from instances of PRG
+ where (selected.PRG_Name == param.Prog_Name);
+ 
+if (not empty Program)
+	
+	Program.remove_Project( PRJ_Name: param.PRJ_Name );
+
+end if;',
+	1,
+	0,
+	23);
+INSERT INTO C_EP_PROXY
+	VALUES ("db09d0a2-10f5-4888-a042-d665dbf30c91",
+	"2fb1cfbf-5a98-466f-9dc8-5c99b1f86c67",
+	-1,
+	'remove_Project',
+	'',
+	23,
+	'../../PM_Interfaces/Program_Management/Program_Management.xtuml');
+INSERT INTO SPR_PEP
+	VALUES ("1e071060-6856-496e-83e1-df9fee88ec22",
+	"ad13b01a-921a-4514-bf9d-b2589a304d10",
+	"35edcf68-532e-49b2-95f8-dce040a2c330");
+INSERT INTO SPR_PS
+	VALUES ("1e071060-6856-496e-83e1-df9fee88ec22",
+	'update_Owner',
+	'',
+	'//Signal to Program class operation to update a description of a Program instance.
+
+select any Program from instances of PRG
+ where (selected.PRG_Name == param.Prog_Name);
+
+if ( not empty Program)
+
+	Program.update_Owner( Owner: param.Owner);
+	
+end if;',
+	1,
+	0,
+	24);
+INSERT INTO C_EP_PROXY
+	VALUES ("ad13b01a-921a-4514-bf9d-b2589a304d10",
+	"2fb1cfbf-5a98-466f-9dc8-5c99b1f86c67",
+	-1,
+	'update_Owner',
+	'',
+	24,
+	'../../PM_Interfaces/Program_Management/Program_Management.xtuml');
 INSERT INTO C_I_PROXY
 	VALUES ("2fb1cfbf-5a98-466f-9dc8-5c99b1f86c67",
 	"00000000-0000-0000-0000-000000000000",
@@ -2428,6 +2623,93 @@ INSERT INTO C_EP_PROXY
 	'link_Strategic_Goal',
 	'',
 	9,
+	'../../PM_Interfaces/Project_Management/Project_Management.xtuml');
+INSERT INTO SPR_PEP
+	VALUES ("833ca65e-1ffd-4e02-8f32-a7a7dbff05d2",
+	"ef4e2760-3259-448a-bb60-8355ca669189",
+	"5736ce8c-64ba-431b-913c-f9dab14aa11f");
+INSERT INTO SPR_PS
+	VALUES ("833ca65e-1ffd-4e02-8f32-a7a7dbff05d2",
+	'unlink_Strategic_Goal',
+	'',
+	'//Signal to Project operation to unlink a Project instance to a Strategic Goal.
+
+select any Project from instances of PRJ
+ where (selected.PRJ_Name == param.PRJ_Name);
+ 
+if (not empty Project)
+	
+	Project.unlink_From_Strategic_Goal( SG_Name: param.SG_Name);
+
+end if;',
+	1,
+	0,
+	10);
+INSERT INTO C_EP_PROXY
+	VALUES ("ef4e2760-3259-448a-bb60-8355ca669189",
+	"6ca8fb7f-c78f-437e-a777-90725b82b541",
+	-1,
+	'unlink_Strategic_Goal',
+	'',
+	10,
+	'../../PM_Interfaces/Project_Management/Project_Management.xtuml');
+INSERT INTO SPR_PEP
+	VALUES ("9e6636a5-1296-4b92-8a69-f3f15ea43bc6",
+	"6d54e7fb-469c-4fb3-a2ad-f0fefa4dd9c6",
+	"5736ce8c-64ba-431b-913c-f9dab14aa11f");
+INSERT INTO SPR_PS
+	VALUES ("9e6636a5-1296-4b92-8a69-f3f15ea43bc6",
+	'remove_From_Program',
+	'',
+	'//Signal to call Project operation to exclude a Program within a Project.
+
+select any Project from instances of PRJ
+ where (selected.PRJ_Name == param.PRJ_Name);
+ 
+if (not empty Project)
+	
+	Project.exclude_From_Program( PRG_Name: param.Prog_Name);
+
+end if;',
+	1,
+	0,
+	11);
+INSERT INTO C_EP_PROXY
+	VALUES ("6d54e7fb-469c-4fb3-a2ad-f0fefa4dd9c6",
+	"6ca8fb7f-c78f-437e-a777-90725b82b541",
+	-1,
+	'remove_From_Program',
+	'',
+	11,
+	'../../PM_Interfaces/Project_Management/Project_Management.xtuml');
+INSERT INTO SPR_PEP
+	VALUES ("fb4b0102-1ca4-461a-a136-ca77bb83702e",
+	"2d18198f-82d9-4c6a-b9b9-45ff540b9810",
+	"5736ce8c-64ba-431b-913c-f9dab14aa11f");
+INSERT INTO SPR_PS
+	VALUES ("fb4b0102-1ca4-461a-a136-ca77bb83702e",
+	'update_Description',
+	'',
+	'//Signal to Project operation to update description.
+
+select any Project from instances of PRJ
+ where (selected.PRJ_Name == param.PRJ_Name);
+ 
+if (not empty Project)
+	
+	Project.update_Description( Description: param.Description );
+
+end if;',
+	1,
+	0,
+	12);
+INSERT INTO C_EP_PROXY
+	VALUES ("2d18198f-82d9-4c6a-b9b9-45ff540b9810",
+	"6ca8fb7f-c78f-437e-a777-90725b82b541",
+	-1,
+	'update_Description',
+	'',
+	12,
 	'../../PM_Interfaces/Project_Management/Project_Management.xtuml');
 INSERT INTO C_I_PROXY
 	VALUES ("6ca8fb7f-c78f-437e-a777-90725b82b541",

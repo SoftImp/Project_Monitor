@@ -740,6 +740,140 @@ INSERT INTO O_TPARM
 	'',
 	"00000000-0000-0000-0000-000000000000",
 	'');
+INSERT INTO O_TFR
+	VALUES ("e4d53743-5cfa-4da9-b29b-9327bf404e27",
+	"fc2339db-f29a-4ff9-915d-62c8814fc04c",
+	'unlink_From_Strategic_Goal',
+	'',
+	"ba5eda7a-def5-0000-0000-000000000000",
+	1,
+	'//Associate/Link Program to a Strategic Goal.
+//Based on UC01-1.
+
+select any Strategic_Goal from instances of SG
+ where (selected.SG_Name == param.SG_Name);
+
+if ( not empty Strategic_Goal)
+
+	unrelate self from Strategic_Goal across R2.''may align with'';
+
+	LOG::LogInfo( message: "A (new) PROGRAM has been unlinked with a STRATEGIC GOAL." );
+	send OrgMan::Notify(Relevant_Person:"Manager", Message:"A (new) PROGRAM  " + self.PRG_Name + " has been unlinked with a STRATEGIC GOAL.");
+else
+	LOG::LogFailure( message: "The chosen STRATEGIC GOAL does not exist.  Please choose a relevant GOAL that already exists." );
+end if;
+',
+	1,
+	'',
+	"83ff4db1-4f38-42cf-bb30-f59aeb85b722",
+	0,
+	7);
+INSERT INTO O_TPARM
+	VALUES ("eaa2f420-6004-48a2-83b8-a5f794d67f46",
+	"e4d53743-5cfa-4da9-b29b-9327bf404e27",
+	'SG_Name',
+	"ba5eda7a-def5-0000-0000-000000000004",
+	0,
+	'',
+	"00000000-0000-0000-0000-000000000000",
+	'');
+INSERT INTO O_TFR
+	VALUES ("66d09883-161e-4235-a258-d812cdf51858",
+	"fc2339db-f29a-4ff9-915d-62c8814fc04c",
+	'add_Project',
+	'',
+	"ba5eda7a-def5-0000-0000-000000000000",
+	1,
+	'//Add/link Project to a Program.
+
+select any Project from instances of PRJ
+ where (selected.PRJ_Name == param.PRJ_Name);
+
+if ( not empty Project)
+
+	relate self to Project across R5.''may include'';
+
+	LOG::LogInfo( message: "A (new) PROJECT has been added to a PROGRAM." );
+	send OrgMan::Notify(Relevant_Person:"Manager", Message:"A PROJECT  " + param.PRJ_Name + " has been added to a PROGRAM " + self.PRG_Name + ".");
+else
+	LOG::LogFailure( message: "The chosen PROJECT does not exist.  Please choose a relevant PROJECT that already exists." );
+end if;',
+	1,
+	'',
+	"e4d53743-5cfa-4da9-b29b-9327bf404e27",
+	0,
+	8);
+INSERT INTO O_TPARM
+	VALUES ("ad5fa9ad-0a99-41f5-99ba-478a8c752506",
+	"66d09883-161e-4235-a258-d812cdf51858",
+	'PRJ_Name',
+	"ba5eda7a-def5-0000-0000-000000000004",
+	0,
+	'',
+	"00000000-0000-0000-0000-000000000000",
+	'');
+INSERT INTO O_TFR
+	VALUES ("4d5070b4-7dcd-4c80-afba-1e3f7063e7d2",
+	"fc2339db-f29a-4ff9-915d-62c8814fc04c",
+	'remove_Project',
+	'',
+	"ba5eda7a-def5-0000-0000-000000000000",
+	1,
+	'//Reomve/unlink Program to a Project.
+
+select any Project from instances of PRJ
+ where (selected.PRJ_Name == param.PRJ_Name);
+
+if ( not empty Project)
+
+	unrelate self from Project across R5.''may include'';
+
+	LOG::LogInfo( message: "A (new) PROJECT has been removed from a PROGRAM." );
+	send OrgMan::Notify(Relevant_Person:"Manager", Message:"A (new) PROGRAM  " + self.PRG_Name + " has been removed from a PROJECT.");
+else
+	LOG::LogFailure( message: "The chosen PROJECT does not exist.  Please choose a relevant PROJECT that already exists." );
+end if;
+',
+	1,
+	'',
+	"66d09883-161e-4235-a258-d812cdf51858",
+	0,
+	9);
+INSERT INTO O_TPARM
+	VALUES ("f2b2bee9-9ee1-4c4f-abf2-8e6585f841e2",
+	"4d5070b4-7dcd-4c80-afba-1e3f7063e7d2",
+	'PRJ_Name',
+	"ba5eda7a-def5-0000-0000-000000000004",
+	0,
+	'',
+	"00000000-0000-0000-0000-000000000000",
+	'');
+INSERT INTO O_TFR
+	VALUES ("de07254c-7b71-44ad-8c99-119aa1cc04ed",
+	"fc2339db-f29a-4ff9-915d-62c8814fc04c",
+	'update_Owner',
+	'',
+	"ba5eda7a-def5-0000-0000-000000000000",
+	1,
+	'self.Owner = param.Owner;
+
+LOG::LogInfo( message: "A PROGRAM OWNER has been successfully updated." );
+send OrgMan::Notify(Relevant_Person:"Manager", Message:"A PROGRAM OWNER " + param.Owner + " as been updated.");
+',
+	1,
+	'',
+	"4d5070b4-7dcd-4c80-afba-1e3f7063e7d2",
+	0,
+	10);
+INSERT INTO O_TPARM
+	VALUES ("a3e743ab-ecd7-4933-ba1c-9795a06c2757",
+	"de07254c-7b71-44ad-8c99-119aa1cc04ed",
+	'Owner',
+	"ba5eda7a-def5-0000-0000-000000000004",
+	0,
+	'',
+	"00000000-0000-0000-0000-000000000000",
+	'');
 INSERT INTO O_NBATTR
 	VALUES ("6d387035-e437-4136-a89d-e1d7972e194a",
 	"fc2339db-f29a-4ff9-915d-62c8814fc04c");

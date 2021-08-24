@@ -11,6 +11,7 @@ import deployment.pm_control.pm_control.ProjectSet;
 import deployment.pm_control.pm_control.Strategic_Goal;
 import deployment.pm_control.pm_control.Strategic_GoalSet;
 import deployment.pm_control.pm_message.JsonMsg;
+import pm_types.Priority_Level;
 
 import io.ciera.runtime.instanceloading.InstanceCreatedDelta;
 import io.ciera.runtime.summit.application.ActionHome;
@@ -93,6 +94,14 @@ public class JsonMsgImpl extends ModelInstance<JsonMsg,PM_Control> implements Js
                 p = _p_iter.next();
                 //context().LOG().LogInfo( ( ( "pf: " + p.getPF_Name() ) + " " ) + p.getDescription() );
                 PortfolioMsg msg = new PortfolioMsg(p.getPF_Name(), p.getDescription(), p.getManager());
+                msg.setVision(p.getVision());
+                msg.setMission(p.getMission());
+                msg.setBudget(p.getBudget());
+                msg.setcurrentState(p.getCurrentState());
+
+                if (p.getPriority() != Priority_Level.UNINITIALIZED_ENUM)
+                    msg.setPriority(p.getPriority().toString());
+
                 Strategic_Goal goal = p.R1_aligns_with_Strategic_Goal();
                 if ( !goal.isEmpty() ) {
                     //context().LOG().LogInfo( "g: " + goal.getSG_Name() );
@@ -112,12 +121,12 @@ public class JsonMsgImpl extends ModelInstance<JsonMsg,PM_Control> implements Js
                     //context().LOG().LogInfo( "prj: " + prj.getPRJ_Name() );
                     msg.addProject(prj.getPRJ_Name());
                 }
-                
+
                 msgArr.add(msg);
             }
 
             JSONArray jsArray = new JSONArray(msgArr);
-			context().LOG().LogInfo("Portfolios: " + jsArray.toString());
+			//context().LOG().LogInfo("Portfolios: " + jsArray.toString());
             return jsArray.toString();
         }
 
@@ -151,7 +160,7 @@ public class JsonMsgImpl extends ModelInstance<JsonMsg,PM_Control> implements Js
             }
 
             JSONArray jsArray = new JSONArray(msgArr);
-			context().LOG().LogInfo("Programs: " + jsArray.toString());
+			//context().LOG().LogInfo("Programs: " + jsArray.toString());
             return jsArray.toString();
         }
 
@@ -173,12 +182,17 @@ public class JsonMsgImpl extends ModelInstance<JsonMsg,PM_Control> implements Js
                    // context().LOG().LogInfo( "prg: " + prg.getPRG_Name() );
                     msg.setProgram(prg.getPRG_Name());
                 }
+                Portfolio pf = p.R6_may_be_part_of_Portfolio();
+                if ( !pf.isEmpty() ) {
+                    //context().LOG().LogInfo( "pf: " + pf.getPRG_Name() );
+                    msg.setPortfolio(pf.getPF_Name());
+                }
 
                 msgArr.add(msg);
             }
 
             JSONArray jsArray = new JSONArray(msgArr);
-			context().LOG().LogInfo("Projects: " + jsArray.toString());
+			//context().LOG().LogInfo("Projects: " + jsArray.toString());
             return jsArray.toString();
         }
 
@@ -189,11 +203,35 @@ public class JsonMsgImpl extends ModelInstance<JsonMsg,PM_Control> implements Js
             for ( Iterator<Strategic_Goal> _g_iter = goals.elements().iterator(); _g_iter.hasNext(); ) {
                 g = _g_iter.next();
                 //context().LOG().LogInfo( ( ( "sg: " + g.getSG_Name() ) + " " ) + g.getDescription() );
-				msgArr.add(new StrategicGoalMsg(g.getSG_Name(), g.getDescription(), g.getPriority().toString()));	
+                StrategicGoalMsg msg = new StrategicGoalMsg(g.getSG_Name(), g.getDescription(), g.getPriority().toString());
+
+                ProjectSet projects = g.R3_may_drive_Project();
+                Project prj;
+                for ( Iterator<Project> _prj_iter = projects.elements().iterator(); _prj_iter.hasNext(); ) {
+                    prj = _prj_iter.next();
+                    //context().LOG().LogInfo( "prj: " + prj.getPRJ_Name() );
+                    msg.addProject(prj.getPRJ_Name());
+                }
+                ProgramSet programs = g.R2_may_drive_Program();
+                Program prg;
+                for ( Iterator<Program> _prg_iter = programs.elements().iterator(); _prg_iter.hasNext(); ) {
+                    prg = _prg_iter.next();
+                    //context().LOG().LogInfo( "prg: " + prg.getPRG_Name() );
+                    msg.addProgram(prg.getPRG_Name());
+                }
+                PortfolioSet portfolios = g.R1_may_drive_Portfolio();
+                Portfolio pf;
+                for ( Iterator<Portfolio> _pf_iter = portfolios.elements().iterator(); _pf_iter.hasNext(); ) {
+                    pf = _pf_iter.next();
+                    //context().LOG().LogInfo( "pf: " + pf.getPF_Name() );
+                    msg.addPortfolio(pf.getPF_Name());
+                }
+
+                msgArr.add(msg);
             }
-			
+
 			JSONArray jsArray = new JSONArray(msgArr);
-			context().LOG().LogInfo("Strategic_Goals: " + jsArray.toString());
+			//context().LOG().LogInfo("Strategic_Goals: " + jsArray.toString());
             return jsArray.toString();
         }
 
