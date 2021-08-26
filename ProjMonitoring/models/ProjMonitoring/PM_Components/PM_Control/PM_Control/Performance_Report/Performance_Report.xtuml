@@ -47,6 +47,8 @@ if ( not empty Project)
 		Performance_Report.PRJ_Name = param.PRJ_Name;
 		Performance_Report.Rep_ID = 1;
 		
+		relate Project to Performance_Report across R14.''may be recorded in'';
+		
 		LOG::LogInfo( message: "A PERFORMANCE REPORT has been successfully created." );
 		send OrgMan::Notify(Relevant_Person:"Manager", Message:"A new PERFORMANCE REPORT " + param.PRJ_Name + "has been created.");
 		
@@ -60,9 +62,9 @@ if ( not empty Project)
  		last_report = 0;
 		
 		for each report in Reports
-			while (report.Rep_ID > last_report)
-			last_report = report.Rep_ID;
-			end while;
+			if (report.Rep_ID > last_report)
+				last_report = report.Rep_ID;
+			end if;
 		end for;
 		
 		//Now create a new report and incrementing the number of the last report.	
@@ -70,6 +72,8 @@ if ( not empty Project)
 		create object instance Performance_Report of PERFREP;
 		Performance_Report.PRJ_Name = param.PRJ_Name;
 		Performance_Report.Rep_ID = last_report + 1;
+		
+		relate Project to Performance_Report across R14.''may be recorded in'';
 		
 		LOG::LogInfo( message: "A new empty PERFORMANCE REPORT has been successfully created." );
 		send OrgMan::Notify(Relevant_Person:"Manager", Message:"A new PERFORMANCE REPORT " + param.PRJ_Name + "has been created.");

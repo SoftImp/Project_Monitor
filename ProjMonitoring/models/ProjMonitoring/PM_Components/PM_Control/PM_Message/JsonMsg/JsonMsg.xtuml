@@ -136,6 +136,12 @@ for each p in projects
   if ( not empty pf )
   	LOG::LogInfo( message: "pf: " + pf.PF_Name );
   end if;
+  
+  select many reports related by p->PERFREP[R14.''may be recorded in''];	
+  for each rep in reports
+  	LOG::LogInteger( message: rep.Rep_ID );
+  end for;	
+ 	
 end for;
 
 return "";',
