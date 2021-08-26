@@ -83,9 +83,9 @@ if ( not empty Project)
 		Performance_Report.EV = param.EV;
 		LOG::LogReal( message: "Earned Value is" , r: param.EV);
 		Performance_Report.PV = param.PV;
-		LOG::LogReal( message: "Planned Value is" , r: param.BAC);
+		LOG::LogReal( message: "Planned Value is" , r: param.PV);
 		Performance_Report.AC = param.AC;
-		LOG::LogReal( message: "Actual Cost is" , r: param.BAC);
+		LOG::LogReal( message: "Actual Cost is" , r: param.AC);
 		
 	//Calculate Variances
 	
