@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.util.Map;
 import java.util.Properties;
 import java.util.TreeMap;
+import java.util.List;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -98,6 +99,18 @@ public class Project_ManagementController {
 			return new ResponseEntity(HttpStatus.OK);
 		} catch (Exception e) {
 			System.out.printf("Exception, %s, in updateprj()\n", e);
+			return new ResponseEntity(HttpStatus.BAD_REQUEST);
+		}
+	}
+
+	@PostMapping("/addevdata")
+	public ResponseEntity addevdata(@RequestBody EarnedValueMsg ev, @RequestParam(value="project", required=true) String project) {
+		try {
+			Project_Management.Singleton().PrjMan().input_EV_Data(project, ev.getBac(), ev.getEv(), ev.getPv(), ev.getAc());
+			return new ResponseEntity(HttpStatus.OK);
+		}
+		catch (Exception e) {
+			System.out.printf("Exception, %s, in addevdata()\n", e);
 			return new ResponseEntity(HttpStatus.BAD_REQUEST);
 		}
 	}

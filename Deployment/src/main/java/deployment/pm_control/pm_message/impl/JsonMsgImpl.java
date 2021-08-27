@@ -2,6 +2,8 @@ package deployment.pm_control.pm_message.impl;
 
 
 import deployment.PM_Control;
+import deployment.pm_control.pm_control.Performance_Report;
+import deployment.pm_control.pm_control.Performance_ReportSet;
 import deployment.pm_control.pm_control.Portfolio;
 import deployment.pm_control.pm_control.PortfolioSet;
 import deployment.pm_control.pm_control.Program;
@@ -186,6 +188,14 @@ public class JsonMsgImpl extends ModelInstance<JsonMsg,PM_Control> implements Js
                 if ( !pf.isEmpty() ) {
                     //context().LOG().LogInfo( "pf: " + pf.getPRG_Name() );
                     msg.setPortfolio(pf.getPF_Name());
+                }
+
+                Performance_ReportSet reports = p.R14_may_be_recorded_in_Performance_Report();
+                Performance_Report rep;
+                for ( Iterator<Performance_Report> _rep_iter = reports.elements().iterator(); _rep_iter.hasNext(); ) {
+                    rep = _rep_iter.next();
+                    //context().LOG().LogInteger( rep.getRep_ID() );
+                    msg.addEarnedValue(rep.getRep_ID(), rep.getBAC(), rep.getEV(), rep.getPV(), rep.getAC());
                 }
 
                 msgArr.add(msg);

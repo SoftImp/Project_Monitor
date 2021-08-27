@@ -141,7 +141,7 @@
         { key: 'strategicGoal', label: 'Strategic Goal', sortable: true },
         { key: 'programs', sortable: true },
         { key: 'projects', sortable: true },
-        { key: 'actions', label: 'Actions', tdClass: 'text-left' }
+        { key: 'actions', label: 'Status', tdClass: 'text-left' }
         ]
       }
     },

@@ -33,8 +33,11 @@
 
       <b-table bordered hover :items="items" :fields="fields" :filter="filter" head-variant="light">
         <template #cell(actions)="row">
-          <b-button size="sm" @click="update(row.item, row.index, $event.target)" class="mr-1">
+          <b-button size="sm" @click="update(row.item, row.index, $event.target)" class="mr-1 mb-1" v-b-tooltip.hover :title="getUpdateTitle(row.item)">
             Update
+          </b-button>
+          <b-button size="sm" @click="updateEvData(row.item, row.index, $event.target)" class="mb-1" v-b-tooltip.hover title="Earned Value Data">
+            <b-icon icon="bar-chart-steps"></b-icon>
           </b-button>
         </template>
         <template #thead-top="data">
@@ -76,11 +79,15 @@
     <b-modal size="lg" :id="updateModal.id" :title="updateModal.title" @ok="handleOk">
       <formgroupprj :prj="updateModal.item" ref="modalupdateprj" mode="update" @ok="onSubmitted"></formgroupprj>
     </b-modal>
+    <b-modal size="lg" :id="updateModal.idEvData" :title="updateModal.title" @hidden="handleEvDataHidden" ok-only>
+      <prjevd :prj="updateModal.item" ref="modalevdata" @ok="onSubmitted"></prjevd>
+    </b-modal>
   </div>
 </template>
 
 <script>
   var formgroupprj = httpVueLoader('components/formgroupprj.vue');
+  var prjevd = httpVueLoader('components/prjevd.vue');
 
   module.exports = {
     data: function () {
@@ -97,6 +104,7 @@
         ],
         updateModal: {
           id: 'update-modal-prj',
+          idEvData: 'update-modal-prj-evdata',
           title: '',
           item: '',
           orgItem: ''
@@ -116,14 +124,27 @@
           this.items = json.data;
         }
       },
+      getUpdateTitle(item) {
+        return 'Update ' + item.name;
+      },
       update(item, index, button) {
         this.updateModal.orgItem = item;
         this.updateModal.title = 'Update Project: ' + item.name;
         this.updateModal.item = JSON.parse(JSON.stringify(item)); // make a copy, assigning will be a reference
         this.$root.$emit('bv::show::modal', this.updateModal.id, button);
       },
-      async handleOk(bvModalEvt) {
+      updateEvData(item, index, button) {
+        this.updateModal.orgItem = item;
+        this.updateModal.title = 'Earned Value Data: ' + item.name;
+        this.updateModal.item = JSON.parse(JSON.stringify(item)); // make a copy, assigning will be a reference
+        this.$root.$emit('bv::show::modal', this.updateModal.idEvData, button);
+      },
+      handleOk(bvModalEvt) {
         this.$refs.modalupdateprj.handleOk(bvModalEvt, this.updateModal.id);     
+      },
+      handleEvDataHidden() {
+        if (this.updateModal.orgItem.earnedValues.length != this.updateModal.item.earnedValues.length) 
+          this.onSubmitted(this.updateModal.item.name);
       },
       onSubmitted(prjname) {
         // TODO - should only updated the changed project
@@ -133,7 +154,8 @@
       }
     },
     components: {
-      'formgroupprj': formgroupprj
+      'formgroupprj': formgroupprj,
+      'prjevd': prjevd
     }
   };
 </script>
