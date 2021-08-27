@@ -4,12 +4,12 @@
 	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee 
 	http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
 	metadata-complete="true">
-
+<!-- 
   	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>/WEB-INF/spring/spring-servlet.xml</param-value>
 	</context-param>
-	
+ -->	
 	<context-param>
 	    <param-name>contextClass</param-name>
 	    <param-value>
@@ -21,6 +21,20 @@
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
+	
+	<filter>
+  		<filter-name>SetPostCharacterEncodingFilter</filter-name>
+  		<filter-class>org.apache.catalina.filters.SetCharacterEncodingFilter</filter-class>
+  		<init-param>
+  			<param-name>encoding</param-name>
+  			<param-value>UTF-8</param-value>
+  		</init-param>
+  	</filter>
+  	
+	<filter-mapping>
+  		<filter-name>SetPostCharacterEncodingFilter</filter-name>
+  		<url-pattern>/* </url-pattern>
+  	</filter-mapping>
 
 	<!-- Processes application requests -->
 	<servlet>
