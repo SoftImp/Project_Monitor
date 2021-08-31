@@ -106,7 +106,7 @@ public class Organisational_ManagementController {
 			TableData<StrategicGoalMsg> td = new TableData();
 
 			if (!waitStrategicGoals.hasMsg()) {
-				Organisational_Management.Singleton().OrgMan().get_Strategic_Goals();
+				Organisational_Management.Singleton().OrgMan().get_Strategic_Goals("");
 				waitStrategicGoals.synchroniseAndWait();
 			}
 
@@ -119,7 +119,7 @@ public class Organisational_ManagementController {
 		}
 	}
 
-	public void onStrategicGoals(String strategicGoals) {
-		waitStrategicGoals.onNotify(strategicGoals);
+	public void onStrategicGoals(final String p_Strategic_Goals,  final String p_SG_Name) {
+		waitStrategicGoals.onNotify(p_Strategic_Goals);
 	}
 }

@@ -131,7 +131,7 @@ public class Program_ManagementController {
 			TableData<ProgramMsg> td = new TableData();
 
 			if (!waitPrograms.hasMsg()) {
-				Program_Management.Singleton().PrgMan().get_Programs();
+				Program_Management.Singleton().PrgMan().get_Programs("");
 				waitPrograms.synchroniseAndWait();
 			}
 
@@ -144,7 +144,7 @@ public class Program_ManagementController {
 		}
 	}
 
-	public void on_Programs(String programs) {
-		waitPrograms.onNotify(programs);
+	public void on_Programs(final String p_Programs, final String p_PRG_Name) {
+		waitPrograms.onNotify(p_Programs);
 	}
 }

@@ -36,10 +36,10 @@ public class Portfolio_Management extends Component<Portfolio_Management> {
     }
 
     // domain functions
-    public void on_Portfolios( final String p_Portfolios ) throws XtumlException {
+    public void on_Portfolios( final String p_Portfolios, final String p_PF_Name ) throws XtumlException {
         try {
 			//System.out.printf("on_Portfolios() JSON: %s\n", p_Portfolios);	
-            Portfolio_ManagementController.Singleton().on_Portfolios( p_Portfolios );
+            Portfolio_ManagementController.Singleton().on_Portfolios( p_Portfolios, p_PF_Name );
       	} catch ( Exception e ) {}
     }
 
