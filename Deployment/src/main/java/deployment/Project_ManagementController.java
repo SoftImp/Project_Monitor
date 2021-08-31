@@ -15,6 +15,8 @@ import java.io.IOException;
 import java.util.Map;
 import java.util.Properties;
 import java.util.TreeMap;
+import java.util.List;
+import java.util.ArrayList;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,11 +25,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import com.google.gson.Gson;
 
 @RestController
 public class Project_ManagementController {
 	private static Project_ManagementController singleton;
 	private WaitForMsg waitProjects = new WaitForMsg();
+	ArrayList<WaitForSingleMsg> waitForSingle = new ArrayList<WaitForSingleMsg>();
 
 	public Project_ManagementController() {
 		singleton = this;
@@ -102,6 +106,18 @@ public class Project_ManagementController {
 		}
 	}
 
+	@PostMapping("/addevdata")
+	public ResponseEntity addevdata(@RequestBody EarnedValueMsg ev, @RequestParam(value="project", required=true) String project) {
+		try {
+			Project_Management.Singleton().PrjMan().input_EV_Data(project, ev.getBac(), ev.getEv(), ev.getPv(), ev.getAc());
+			return new ResponseEntity(HttpStatus.OK);
+		}
+		catch (Exception e) {
+			System.out.printf("Exception, %s, in addevdata()\n", e);
+			return new ResponseEntity(HttpStatus.BAD_REQUEST);
+		}
+	}
+
 	@GetMapping("/initprj")
 	public ResponseEntity initprj() {
 		try {
@@ -124,7 +140,7 @@ public class Project_ManagementController {
 			TableData<ProjectMsg> td = new TableData();
 
 			if (!waitProjects.hasMsg()) {
-				Project_Management.Singleton().PrjMan().get_Projects();
+				Project_Management.Singleton().PrjMan().get_Projects("");
 				waitProjects.synchroniseAndWait();
 			}
 
@@ -137,7 +153,42 @@ public class Project_ManagementController {
 		}
 	}
 
-	public void on_Projects(String projects) {
-		waitProjects.onNotify(projects);
+	@GetMapping("/getperfrep")
+	public PerfRepMsg getperfrep(@RequestParam(value="project", required=true) String project, @RequestParam(value="repId", required=true) int repId) {
+		try {
+			//System.out.printf("getperfrep() project: %s, repId: %d\n", project, repId);
+
+			WaitForSingleMsg waitPerfRep = new WaitForSingleMsg(project, repId);
+			waitForSingle.add(waitPerfRep);
+
+			Project_Management.Singleton().PrjMan().get_Perf_Rep(project, repId);
+			waitPerfRep.synchroniseAndWait();
+
+			PerfRepMsg msg = new Gson().fromJson(waitPerfRep.getMsg(), PerfRepMsg.class);
+
+			waitForSingle.remove(waitPerfRep);
+			return msg;
+		} catch (Exception e) {
+			System.out.printf("Exception, %s, in getperfrep()\n", e);
+			return new PerfRepMsg();
+		}
+	}
+
+	public void on_Projects(final String p_Projects, final String p_PRJ_Name) {
+		waitProjects.onNotify(p_Projects);
+	}
+
+	public void on_Perf_Rep( final String p_PRJ_Name,  final int p_Rep_ID,  final String p_Perf_Rep ) {
+		boolean found = false;
+		for (WaitForSingleMsg waitFor : waitForSingle) {
+			if (waitFor.isWaitfor(p_PRJ_Name, p_Rep_ID)) {
+				waitFor.onNotify(p_Perf_Rep);
+				found = true;
+				break;
+			}
+		}
+
+		if (!found)
+			System.out.printf("on_Perf_Rep() - WaitForSingleMsg unable to find project: %s, repId: %d\n", p_PRJ_Name, p_Rep_ID);
 	}
 }

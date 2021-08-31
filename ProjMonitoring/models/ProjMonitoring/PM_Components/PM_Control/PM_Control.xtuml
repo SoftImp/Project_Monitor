@@ -916,9 +916,9 @@ INSERT INTO SPR_PS
 	VALUES ("d49e3acb-9634-47d0-8b0c-88caf5c5cf67",
 	'get_Strategic_Goals',
 	'',
-	'msg = JsonMsg::get_Strategic_Goals();
+	'msg = JsonMsg::get_Strategic_Goals( SG_Name:param.SG_Name );
 
-send OrgMan::on_Strategic_Goals( Strategic_Goals:msg );',
+send OrgMan::on_Strategic_Goals( Strategic_Goals:msg, SG_Name:param.SG_Name );',
 	1,
 	0,
 	5);
@@ -1593,9 +1593,9 @@ INSERT INTO SPR_PS
 	VALUES ("73434320-0530-470e-9830-4abd8c223875",
 	'get_Portfolios',
 	'',
-	'msg = JsonMsg::get_Portfolios();
+	'msg = JsonMsg::get_Portfolios( PF_Name:param.PF_Name );
 
-send PFMan::on_Portfolios( Portfolios: msg );',
+send PFMan::on_Portfolios( Portfolios: msg, PF_Name:param.PF_Name );',
 	1,
 	0,
 	16);
@@ -1937,7 +1937,9 @@ INSERT INTO SPR_PS
 	VALUES ("d7894576-c561-4f43-907b-c1697ee2e165",
 	'produce_Summary_Report',
 	'',
-	'',
+	'//Signal to call the Create operation for a new Summary Report.
+
+SUMREP::Create( PRG_Name: param.Prog_Name );',
 	1,
 	0,
 	9);
@@ -2201,9 +2203,9 @@ INSERT INTO SPR_PS
 	VALUES ("6337c019-8512-458d-9c20-db131f23b468",
 	'get_Programs',
 	'',
-	'msg = JsonMsg::get_Programs();
+	'msg = JsonMsg::get_Programs( PRG_Name:param.PRG_Name );
 
-send PrgMan::on_Programs( Programs:msg );',
+send PrgMan::on_Programs( Programs:msg, PRG_Name:param.PRG_Name );',
 	1,
 	0,
 	18);
@@ -2263,6 +2265,26 @@ INSERT INTO C_EP_PROXY
 	'update_Requirement_ID',
 	'',
 	20,
+	'../../PM_Interfaces/Program_Management/Program_Management.xtuml');
+INSERT INTO SPR_PEP
+	VALUES ("80ba2081-c8ba-4b31-9731-b250a5c1c2c4",
+	"bd2ed5cf-c73d-47f9-b692-849724f2e6a1",
+	"35edcf68-532e-49b2-95f8-dce040a2c330");
+INSERT INTO SPR_PS
+	VALUES ("80ba2081-c8ba-4b31-9731-b250a5c1c2c4",
+	'Notify_Performance',
+	'',
+	'',
+	3,
+	0,
+	3);
+INSERT INTO C_EP_PROXY
+	VALUES ("bd2ed5cf-c73d-47f9-b692-849724f2e6a1",
+	"2fb1cfbf-5a98-466f-9dc8-5c99b1f86c67",
+	-1,
+	'Notify_Performance',
+	'',
+	3,
 	'../../PM_Interfaces/Program_Management/Program_Management.xtuml');
 INSERT INTO SPR_PEP
 	VALUES ("39c4ebf5-c1e8-4a54-b821-f687f86cdc55",
@@ -2459,9 +2481,9 @@ INSERT INTO SPR_PS
 	VALUES ("65e6bd03-c2c1-41d9-819c-db5a6e2124b4",
 	'get_Projects',
 	'',
-	'msg = JsonMsg::get_Projects();
+	'msg = JsonMsg::get_Projects( PRJ_Name:param.PRJ_Name );
 
-send PrjMan::on_Projects( Projects:msg );',
+send PrjMan::on_Projects( Projects:msg, PRJ_Name:param.PRJ_Name );',
 	1,
 	0,
 	4);
@@ -2688,6 +2710,48 @@ INSERT INTO C_EP_PROXY
 	'update_Description',
 	'',
 	12,
+	'../../PM_Interfaces/Project_Management/Project_Management.xtuml');
+INSERT INTO SPR_PEP
+	VALUES ("a996c205-bb41-425d-ba87-43e78048c98f",
+	"57601f05-263c-4d60-9112-d94fbfde9a99",
+	"5736ce8c-64ba-431b-913c-f9dab14aa11f");
+INSERT INTO SPR_PS
+	VALUES ("a996c205-bb41-425d-ba87-43e78048c98f",
+	'get_Perf_Rep',
+	'',
+	'msg = JsonMsg::get_Perf_Rep( PRJ_Name:param.PRJ_Name, Rep_ID:param.Rep_ID );
+
+send PrjMan::on_Perf_Rep( PRJ_Name:param.PRJ_Name, Rep_ID:param.Rep_ID, Perf_Rep:msg );',
+	1,
+	0,
+	13);
+INSERT INTO C_EP_PROXY
+	VALUES ("57601f05-263c-4d60-9112-d94fbfde9a99",
+	"6ca8fb7f-c78f-437e-a777-90725b82b541",
+	-1,
+	'get_Perf_Rep',
+	'',
+	13,
+	'../../PM_Interfaces/Project_Management/Project_Management.xtuml');
+INSERT INTO SPR_PEP
+	VALUES ("d1285414-af88-4726-b6e5-09e914ac7e3c",
+	"1c94008b-3302-4409-8c11-1d4ca3db119b",
+	"5736ce8c-64ba-431b-913c-f9dab14aa11f");
+INSERT INTO SPR_PS
+	VALUES ("d1285414-af88-4726-b6e5-09e914ac7e3c",
+	'on_Perf_Rep',
+	'',
+	'',
+	3,
+	0,
+	14);
+INSERT INTO C_EP_PROXY
+	VALUES ("1c94008b-3302-4409-8c11-1d4ca3db119b",
+	"6ca8fb7f-c78f-437e-a777-90725b82b541",
+	-1,
+	'on_Perf_Rep',
+	'',
+	14,
 	'../../PM_Interfaces/Project_Management/Project_Management.xtuml');
 INSERT INTO C_I_PROXY
 	VALUES ("6ca8fb7f-c78f-437e-a777-90725b82b541",
@@ -3025,7 +3089,7 @@ INSERT INTO SPR_PS
 	'Signal to call Stakeholder class operation to add a representation relationship between an 
 ENTITY and an identified STAKEHOLDER.',
 	'',
-	3,
+	1,
 	0,
 	1);
 INSERT INTO C_EP_PROXY
@@ -3047,7 +3111,7 @@ INSERT INTO SPR_PS
 	'A signal to call a Stakeholder class operation to set up a sponsorship relationship between a
 STAKEHOLDER and a PORTFOLIO.',
 	'',
-	3,
+	1,
 	0,
 	1);
 INSERT INTO C_EP_PROXY
@@ -3069,7 +3133,7 @@ INSERT INTO SPR_PS
 	'Signal to call a Stakeholder class operation to form a relationship between a STAKEHOLDER and
 a PORTFOLIO indicating CONCERNS the Stakeholder has about aspects of the Portfolio.',
 	'',
-	3,
+	1,
 	0,
 	1);
 INSERT INTO C_EP_PROXY

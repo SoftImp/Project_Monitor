@@ -36,10 +36,10 @@ public class Organisational_Management extends Component<Organisational_Manageme
     }
 
     // domain functions
-    public void on_Strategic_Goals( final String p_Strategic_Goals ) throws XtumlException {
+    public void on_Strategic_Goals( final String p_Strategic_Goals,  final String p_SG_Name ) throws XtumlException {
 		try {
 			//System.out.printf("on_Strategic_Goals() JSON: %s\n", p_Strategic_Goals);	
-            Organisational_ManagementController.Singleton().onStrategicGoals( p_Strategic_Goals );
+            Organisational_ManagementController.Singleton().onStrategicGoals( p_Strategic_Goals,  p_SG_Name );
       	} catch ( Exception e ) {}
     }
 

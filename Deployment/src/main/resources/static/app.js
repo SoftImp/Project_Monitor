@@ -6,6 +6,8 @@ Vue.use(VueRouter);
 const pf_state = ["Initialise", "Closed", "Executing", "Planning"];
 const priorities = [{ text: 'Select Priority ...', value: '' }, 'HIGH', 'MEDIUM', 'LOW'];
 const priority_variant = ['', 'danger', 'primary', 'secondary'];
+const status_colour = ['GREEN', 'AMBER', 'RED'];
+const status_variant = ['success', 'warning', 'danger'];
 
 var Home = httpVueLoader('components/home.vue');
 var org = httpVueLoader('components/org.vue');

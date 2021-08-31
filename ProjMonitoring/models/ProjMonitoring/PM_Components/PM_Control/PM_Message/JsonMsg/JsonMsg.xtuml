@@ -5,7 +5,12 @@ INSERT INTO O_OBJ
 	'JsonMsg',
 	1,
 	'JsonMsg',
-	'',
+	'This class is a workaround to allow messages to be passed as data structures - something that 
+Ciera does not support.
+The separation of these otherwise other-class operations has had to be done because Ciera does 
+not re-incorporate hand-written code with auto-generated code within classes upon recompiles.
+This class contains all hand-written code which is not overwritten upon recompile.  This is 
+really the main reason it exist.',
 	"00000000-0000-0000-0000-000000000000");
 INSERT INTO O_TFR
 	VALUES ("66a35458-2c4c-47dc-93b3-cf2fd16249ce",
@@ -14,25 +19,33 @@ INSERT INTO O_TFR
 	'',
 	"ba5eda7a-def5-0000-0000-000000000004",
 	0,
-	'select many goals from instances of SG;
-for each g in goals
-  LOG::LogInfo( message: "sg: " + g.SG_Name + " " + g.Description );
-  
-  select many projects related by g->PRJ[R3.''may drive''];
-  for each prj in projects
-  	LOG::LogInfo( message: "prj: " + prj.PRJ_Name );
-  end for;
-  
-  select many programs related by g->PRG[R2.''may drive''];
-  for each prg in programs
-  	LOG::LogInfo( message: "prg: " + prg.PRG_Name );
-  end for;
-  
-  select many portfolios related by g->PF[R1.''may drive''];
-  for each pf in portfolios
-  	LOG::LogInfo( message: "pf: " + pf.PF_Name );
-  end for; 
-end for;
+	'if (param.SG_Name != "")
+	select any g from instances of SG
+	where (selected.SG_Name == param.SG_Name);
+	if (not empty g)
+		LOG::LogInfo( message: "sg: " + g.SG_Name + " " + g.Description );
+	end if;
+else	
+	select many goals from instances of SG;
+	for each g in goals
+	  LOG::LogInfo( message: "sg: " + g.SG_Name + " " + g.Description );
+	  
+	  select many projects related by g->PRJ[R3.''may drive''];
+	  for each prj in projects
+	  	LOG::LogInfo( message: "prj: " + prj.PRJ_Name );
+	  end for;
+	  
+	  select many programs related by g->PRG[R2.''may drive''];
+	  for each prg in programs
+	  	LOG::LogInfo( message: "prg: " + prg.PRG_Name );
+	  end for;
+	  
+	  select many portfolios related by g->PF[R1.''may drive''];
+	  for each pf in portfolios
+	  	LOG::LogInfo( message: "pf: " + pf.PF_Name );
+	  end for; 
+	end for;
+end if;
 
 return "";',
 	1,
@@ -40,6 +53,15 @@ return "";',
 	"00000000-0000-0000-0000-000000000000",
 	0,
 	1);
+INSERT INTO O_TPARM
+	VALUES ("9664fdc5-363c-4cc2-9118-f351b3c2d73f",
+	"66a35458-2c4c-47dc-93b3-cf2fd16249ce",
+	'SG_Name',
+	"ba5eda7a-def5-0000-0000-000000000004",
+	0,
+	'',
+	"00000000-0000-0000-0000-000000000000",
+	'');
 INSERT INTO O_TFR
 	VALUES ("a819d84b-c714-400e-92e6-f3a976628a08",
 	"85b0628f-8218-4afe-9117-bf931890238c",
@@ -47,25 +69,34 @@ INSERT INTO O_TFR
 	'',
 	"ba5eda7a-def5-0000-0000-000000000004",
 	0,
-	'select many portfolios from instances of PF;
-for each p in portfolios
-  LOG::LogInfo( message: "pf: " + p.PF_Name + " " + p.Description );
-  
-  select one goal related by p->SG[R1.''aligns with''];
-  if ( not empty goal )
-  	LOG::LogInfo( message: "g: " + goal.SG_Name );
-  end if;
-  
-  select many programs related by p->PRG[R4.''may include''];
-  for each prg in programs
-  	LOG::LogInfo( message: "prg: " + prg.PRG_Name );
-  end for;
-  
-  select many projects related by p->PRJ[R6.''may include''];
-  for each prj in projects
-  	LOG::LogInfo( message: "prj: " + prj.PRJ_Name );
-  end for;
-end for;
+	'if (param.PF_Name != "")	
+	select any p from instances of PF
+	 where (selected.PF_Name == param.PF_Name);
+	 
+	if (not empty p) 
+		LOG::LogInfo( message: "pf: " + p.PF_Name + " " + p.Description );
+	end if;
+else
+	select many portfolios from instances of PF;
+	for each p in portfolios
+	  LOG::LogInfo( message: "pf: " + p.PF_Name + " " + p.Description );
+	  
+	  select one goal related by p->SG[R1.''aligns with''];
+	  if ( not empty goal )
+	  	LOG::LogInfo( message: "g: " + goal.SG_Name );
+	  end if;
+	  
+	  select many programs related by p->PRG[R4.''may include''];
+	  for each prg in programs
+	  	LOG::LogInfo( message: "prg: " + prg.PRG_Name );
+	  end for;
+	  
+	  select many projects related by p->PRJ[R6.''may include''];
+	  for each prj in projects
+	  	LOG::LogInfo( message: "prj: " + prj.PRJ_Name );
+	  end for;
+	end for;
+end if;
 
 return "";',
 	1,
@@ -73,6 +104,15 @@ return "";',
 	"66a35458-2c4c-47dc-93b3-cf2fd16249ce",
 	0,
 	2);
+INSERT INTO O_TPARM
+	VALUES ("2ab18eb1-decd-4d86-b4d0-d8999bbc45e2",
+	"a819d84b-c714-400e-92e6-f3a976628a08",
+	'PF_Name',
+	"ba5eda7a-def5-0000-0000-000000000004",
+	0,
+	'',
+	"00000000-0000-0000-0000-000000000000",
+	'');
 INSERT INTO O_TFR
 	VALUES ("b97c82e9-7927-4ecd-97e3-0abb2a867e6c",
 	"85b0628f-8218-4afe-9117-bf931890238c",
@@ -80,25 +120,34 @@ INSERT INTO O_TFR
 	'',
 	"ba5eda7a-def5-0000-0000-000000000004",
 	0,
-	'select many programs from instances of PRG;
-for each p in programs
-  LOG::LogInfo( message: "prg: " + p.PRG_Name + " " + p.Description );
- 
-  select one goal related by p->SG[R2.''may align with''];
-  if ( not empty goal )
-  	LOG::LogInfo( message: "g: " + goal.SG_Name );
-  end if;
-   
-  select one pf related by p->PF[R4.''may be part of''];
-  if ( not empty pf )
-  	LOG::LogInfo( message: "pf: " + pf.PF_Name );
-  end if;
-  
-  select many projects related by p->PRJ[R5.''may include''];
-  for each prj in projects
-  	LOG::LogInfo( message: "prj: " + prj.PRJ_Name );
-  end for;
-end for;
+	'if (param.PRG_Name != "")
+	select any p from instances of PRG
+	 where (selected.PRG_Name == param.PRG_Name);
+	
+	if (not empty p)
+		LOG::LogInfo( message: "prg: " + p.PRG_Name + " " + p.Description );
+	end if;
+else
+	select many programs from instances of PRG;
+	for each p in programs
+	  LOG::LogInfo( message: "prg: " + p.PRG_Name + " " + p.Description );
+	 
+	  select one goal related by p->SG[R2.''may align with''];
+	  if ( not empty goal )
+	  	LOG::LogInfo( message: "g: " + goal.SG_Name );
+	  end if;
+	   
+	  select one pf related by p->PF[R4.''may be part of''];
+	  if ( not empty pf )
+	  	LOG::LogInfo( message: "pf: " + pf.PF_Name );
+	  end if;
+	  
+	  select many projects related by p->PRJ[R5.''may include''];
+	  for each prj in projects
+	  	LOG::LogInfo( message: "prj: " + prj.PRJ_Name );
+	  end for;
+	end for;
+end if;	
 
 return "";',
 	1,
@@ -106,6 +155,15 @@ return "";',
 	"a819d84b-c714-400e-92e6-f3a976628a08",
 	0,
 	3);
+INSERT INTO O_TPARM
+	VALUES ("9734be11-3f52-4df8-ab4e-2a815b9e84d7",
+	"b97c82e9-7927-4ecd-97e3-0abb2a867e6c",
+	'PRG_Name',
+	"ba5eda7a-def5-0000-0000-000000000004",
+	0,
+	'',
+	"00000000-0000-0000-0000-000000000000",
+	'');
 INSERT INTO O_TFR
 	VALUES ("ad55ed0a-6904-4a72-98a6-50d60bf09eac",
 	"85b0628f-8218-4afe-9117-bf931890238c",
@@ -113,25 +171,39 @@ INSERT INTO O_TFR
 	'',
 	"ba5eda7a-def5-0000-0000-000000000004",
 	0,
-	'select many projects from instances of PRJ;
-for each p in projects
-  LOG::LogInfo( message: "prg: " + p.PRJ_Name + " " + p.Description );
-
-  select one goal related by p->SG[R3.''may be driven by''];
-  if ( not empty goal )
-  	LOG::LogInfo( message: "g: " + goal.SG_Name );
-  end if;
-    
-  select one prg related by p->PRG[R5.''may be part of''];
-  if ( not empty prg )
-  	LOG::LogInfo( message: "prg: " + prg.PRG_Name );
-  end if;  
-  
-  select one pf related by p->PF[R6.''may be part of''];
-  if ( not empty pf )
-  	LOG::LogInfo( message: "pf: " + pf.PF_Name );
-  end if;
-end for;
+	'if (param.PRJ_Name != "")
+	select any p from instances of PRJ
+ 	 where (selected.PRJ_Name == param.PRJ_Name);
+ 	 
+ 	if (not empty p)
+ 		LOG::LogInfo( message: "prg: " + p.PRJ_Name + " " + p.Description );
+ 	end if;
+else 		
+	select many projects from instances of PRJ;
+	for each p in projects
+	  LOG::LogInfo( message: "prg: " + p.PRJ_Name + " " + p.Description );
+	
+	  select one goal related by p->SG[R3.''may be driven by''];
+	  if ( not empty goal )
+	  	LOG::LogInfo( message: "g: " + goal.SG_Name );
+	  end if;
+	    
+	  select one prg related by p->PRG[R5.''may be part of''];
+	  if ( not empty prg )
+	  	LOG::LogInfo( message: "prg: " + prg.PRG_Name );
+	  end if;  
+	  
+	  select one pf related by p->PF[R6.''may be part of''];
+	  if ( not empty pf )
+	  	LOG::LogInfo( message: "pf: " + pf.PF_Name );
+	  end if;
+	  
+	  select many reports related by p->PERFREP[R14.''may be recorded in''];	
+	  for each rep in reports
+	  	LOG::LogInteger( message: rep.Rep_ID );
+	  end for;		 	
+	end for;
+end if;	
 
 return "";',
 	1,
@@ -139,6 +211,65 @@ return "";',
 	"b97c82e9-7927-4ecd-97e3-0abb2a867e6c",
 	0,
 	4);
+INSERT INTO O_TPARM
+	VALUES ("42d88fc9-e358-4a21-8800-216a268b245c",
+	"ad55ed0a-6904-4a72-98a6-50d60bf09eac",
+	'PRJ_Name',
+	"ba5eda7a-def5-0000-0000-000000000004",
+	0,
+	'',
+	"00000000-0000-0000-0000-000000000000",
+	'');
+INSERT INTO O_TFR
+	VALUES ("23fe229e-ea01-45f8-bfe7-03a840fd662c",
+	"85b0628f-8218-4afe-9117-bf931890238c",
+	'get_Perf_Rep',
+	'',
+	"ba5eda7a-def5-0000-0000-000000000004",
+	0,
+	'//Get a performance report for a project by Rep_ID.
+
+//Check that the named project exists.
+
+select any Project from instances of PRJ
+ where (selected.PRJ_Name == param.PRJ_Name);
+
+if (not empty Project)
+  	select many reports related by Project->PERFREP[R14.''may be recorded in''];	
+  	for each rep in reports
+  		if (rep.Rep_ID == param.Rep_ID)
+  			LOG::LogInteger( message: rep.Rep_ID );
+  			break;
+  		end if;
+	end for;
+else
+	LOG::LogFailure( message: "The chosen PROJECT " + param.PRJ_Name + " does not exist.  Please choose a PROJECT NAME that already exists." );
+end if;
+
+return "";',
+	1,
+	'',
+	"ad55ed0a-6904-4a72-98a6-50d60bf09eac",
+	0,
+	5);
+INSERT INTO O_TPARM
+	VALUES ("898aba45-cd98-4ad2-abc7-c2bc2122a9a7",
+	"23fe229e-ea01-45f8-bfe7-03a840fd662c",
+	'PRJ_Name',
+	"ba5eda7a-def5-0000-0000-000000000004",
+	0,
+	'',
+	"00000000-0000-0000-0000-000000000000",
+	'');
+INSERT INTO O_TPARM
+	VALUES ("bc575d4d-5540-4ed5-a2b9-093c5356fd9e",
+	"23fe229e-ea01-45f8-bfe7-03a840fd662c",
+	'Rep_ID',
+	"ba5eda7a-def5-0000-0000-000000000002",
+	0,
+	'',
+	"898aba45-cd98-4ad2-abc7-c2bc2122a9a7",
+	'');
 INSERT INTO O_ID
 	VALUES (0,
 	"85b0628f-8218-4afe-9117-bf931890238c");

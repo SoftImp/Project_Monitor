@@ -194,7 +194,7 @@ public class Portfolio_ManagementController {
 			TableData<PortfolioMsg> td = new TableData();
 
 			if (!waitPortfolios.hasMsg()) {
-				Portfolio_Management.Singleton().PFMan().get_Portfolios();
+				Portfolio_Management.Singleton().PFMan().get_Portfolios("");
 				waitPortfolios.synchroniseAndWait();
 			}
 
@@ -207,7 +207,7 @@ public class Portfolio_ManagementController {
 		}
 	}
 
-	public void on_Portfolios(String portfolios) {
-		waitPortfolios.onNotify(portfolios);
+	public void on_Portfolios(final String p_Portfolios, final String p_PF_Name) {
+		waitPortfolios.onNotify(p_Portfolios);
 	}
 }

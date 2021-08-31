@@ -14,7 +14,15 @@ INSERT INTO O_TFR
 	VALUES ("963fa6c9-de69-4936-9e4d-7681eb74fb88",
 	"debe4626-cfe9-48fd-8112-e083c26efc69",
 	'Create',
-	'This operation is based on UC12.',
+	'This operation is based on UC12.
+It creates a new report, based on Earned Value, after receiving the necessary inputs of:
+1. An existing project name.
+2. BAC (Budget at Completion) - precalculated.
+3. EV (Earned Value) - precalculated.
+4. PV (Planned Value) - precalculated.
+5. AC (Actual Cost) - precalculated.
+
+See Table 7-1, page 267 PMBoK Guide 6th Edition.',
 	"ba5eda7a-def5-0000-0000-000000000000",
 	0,
 	'//Create a new performance report for a project.
@@ -27,8 +35,9 @@ select any Project from instances of PRJ
 if ( not empty Project)
 	
 	//If it exists then check whether any performance report exists for the named project.
-	//If a report doesn''t then create the new report with Rep_ID = 1.  Remembering to also make Last_Rep_ID = 1.
-	//If it does exist then create the new report with Rep_ID = Last_Rep_ID + 1.
+	//If a report doesn''t exist then create the new report with Rep_ID = 1 -
+	//Remembering to also make Last_Rep_ID = 1.
+	//If it does exist then create the new report with (new) Rep_ID = Last_Rep_ID + 1.
 	
 	select any Performance_Report from instances of PERFREP
  	where (selected.PRJ_Name == param.PRJ_Name);
@@ -38,12 +47,14 @@ if ( not empty Project)
 		Performance_Report.PRJ_Name = param.PRJ_Name;
 		Performance_Report.Rep_ID = 1;
 		
+		relate Project to Performance_Report across R14.''may be recorded in'';
+		
 		LOG::LogInfo( message: "A PERFORMANCE REPORT has been successfully created." );
 		send OrgMan::Notify(Relevant_Person:"Manager", Message:"A new PERFORMANCE REPORT " + param.PRJ_Name + "has been created.");
 		
 	else
 		
-		//Firstly find the last report for the project.
+		//Firstly find the last performance report for the project.
 		
 		select many Reports from instances of PERFREP
  		where (selected.PRJ_Name == param.PRJ_Name);
@@ -51,9 +62,9 @@ if ( not empty Project)
  		last_report = 0;
 		
 		for each report in Reports
-			while (report.Rep_ID > last_report)
-			last_report = report.Rep_ID;
-			end while;
+			if (report.Rep_ID > last_report)
+				last_report = report.Rep_ID;
+			end if;
 		end for;
 		
 		//Now create a new report and incrementing the number of the last report.	
@@ -61,6 +72,8 @@ if ( not empty Project)
 		create object instance Performance_Report of PERFREP;
 		Performance_Report.PRJ_Name = param.PRJ_Name;
 		Performance_Report.Rep_ID = last_report + 1;
+		
+		relate Project to Performance_Report across R14.''may be recorded in'';
 		
 		LOG::LogInfo( message: "A new empty PERFORMANCE REPORT has been successfully created." );
 		send OrgMan::Notify(Relevant_Person:"Manager", Message:"A new PERFORMANCE REPORT " + param.PRJ_Name + "has been created.");
@@ -74,18 +87,25 @@ if ( not empty Project)
 		Performance_Report.EV = param.EV;
 		LOG::LogReal( message: "Earned Value is" , r: param.EV);
 		Performance_Report.PV = param.PV;
-		LOG::LogReal( message: "Planned Value is" , r: param.BAC);
+		LOG::LogReal( message: "Planned Value is" , r: param.PV);
 		Performance_Report.AC = param.AC;
-		LOG::LogReal( message: "Actual Cost is" , r: param.BAC);
-
-else
-		LOG::LogFailure( message: "The chosen PROJECT does not exist.  Please choose a PROJECT NAME that already exists." );
-end if;
-
-//Call operation to Calculate Variances for the last report.
-
-	PERFREP::calc_EV_Vars( PRJ_Name:param.PRJ_Name);
+		LOG::LogReal( message: "Actual Cost is" , r: param.AC);
+		
+	//Calculate Variances
 	
+	Performance_Report.calc_EV_Variances();
+	
+	//Calculate Performance Indices
+	
+	Performance_Report.calc_EV_Perf_Indices();
+	
+	//Calculate Completion Estimates
+	
+	Performance_Report.calc_Completion_Estimates();
+	
+else
+		LOG::LogFailure( message: "The chosen PROJECT " + param.PRJ_Name + " does not exist.  Please choose a PROJECT NAME that already exists." );
+end if;
 	
 // Based on UC12.',
 	1,
@@ -139,348 +159,232 @@ INSERT INTO O_TPARM
 	"b2602f4a-ab54-4e7e-af8f-f3a981a56e98",
 	'');
 INSERT INTO O_TFR
-	VALUES ("17ac84a4-8234-4318-8a48-06273d723012",
+	VALUES ("26d9a35c-572c-4fbb-b115-7d154b4dc1a4",
 	"debe4626-cfe9-48fd-8112-e083c26efc69",
-	'calc_EV_Vars',
-	'This operation is based on UC13.',
+	'calc_EV_Variances',
+	'This operation is based on UC13.
+It is a continuation of the Performance_Report.Create operation and uses the Earned Value
+inputs of this latter operation to calculate Cost and Schedule Variance to add to the project
+Performance Report.',
 	"ba5eda7a-def5-0000-0000-000000000000",
-	0,
-	'//Calculate Variances relating to the last report for a specific project.
+	1,
+	'//Calculate Variances relating to the current report for a specific project.
 
-//Check that the named project exists.
-
-select any Project from instances of PRJ
- where (selected.PRJ_Name == param.PRJ_Name);
-
-if ( not empty Project)
-	
-	//If it exists then check whether any performance report exists for the named project.
-	//If a report doesn''t then create the new report with Rep_ID = 1.  Remembering to also make Last_Rep_ID = 1.
-	//If it does exist then create the new report with Rep_ID = Last_Rep_ID + 1.
-	
-	select many Reports from instances of PERFREP
- 	where (selected.PRJ_Name == param.PRJ_Name);
- 	
- 		last_report = 0;
-		
-		for each report in Reports
-			while (report.Rep_ID > last_report)
-			last_report = report.Rep_ID;
-			end while;
-		end for;
-
-		create object instance Performance_Report of PERFREP;
-		Performance_Report.PRJ_Name = param.PRJ_Name;
-		Performance_Report.Rep_ID = last_report + 1;
-		
-		LOG::LogInfo( message: "A PERFORMANCE REPORT has been successfully updated with cost & schedule variances." );
-		send OrgMan::Notify(Relevant_Person:"Manager", Message:"A PERFORMANCE REPORT " + param.PRJ_Name + "has been updated with cost & schedule variances.");
-	
 	//Now use the base Earned Value parameters to calculate the variances.
 	
 	//Cost Variance
 	
-		Performance_Report.CV = Performance_Report.EV - Performance_Report.AC;
+		self.CV = self.EV - self.AC;
 		
-		LOG::LogReal( message: "Cost Variance has been calculate at" , r: Performance_Report.CV);
+		LOG::LogReal( message: "Cost Variance has been calculate at" , r: self.CV);
 		
 	//Schedule Variance
 		
-		Performance_Report.SV = Performance_Report.EV - Performance_Report.PV;
+		self.SV = self.EV - self.PV;
 		
-		LOG::LogReal( message: "Earned Value is" , r: Performance_Report.SV);
+		LOG::LogReal( message: "Schedule Variance is" , r: self.SV);
+		
+	LOG::LogInfo( message: "A PERFORMANCE REPORT for " + self.PRJ_Name + " has been successfully updated with cost & schedule variances." );
+	send OrgMan::Notify(Relevant_Person:"Manager", Message:"A PERFORMANCE REPORT for " + self.PRJ_Name + "has been updated with cost & schedule variances.");	
 
-
-else
-		LOG::LogFailure( message: "The chosen PROJECT does not exist.  Please choose a PROJECT NAME that already exists." );
-end if;
-
-//Call operation to Calculate Variances for the last report.
-
-	PERFREP::calc_EV_PIs(PRJ_Name:param.PRJ_Name);
-	
-	
 // Based on UC13.',
 	1,
 	'',
 	"963fa6c9-de69-4936-9e4d-7681eb74fb88",
 	0,
 	2);
-INSERT INTO O_TPARM
-	VALUES ("3d9a9f59-a8c6-409f-938f-d47a59c2aa6c",
-	"17ac84a4-8234-4318-8a48-06273d723012",
-	'PRJ_Name',
-	"ba5eda7a-def5-0000-0000-000000000004",
-	0,
-	'',
-	"00000000-0000-0000-0000-000000000000",
-	'');
 INSERT INTO O_TFR
-	VALUES ("46c04271-b532-400b-8347-20e00407300a",
+	VALUES ("8a04eb1b-d0cd-4028-a024-000179ecda22",
 	"debe4626-cfe9-48fd-8112-e083c26efc69",
-	'calc_EV_PIs',
-	'This operation is based on UC14.',
+	'calc_EV_Perf_Indices',
+	'This operation is based on UC14.
+It (also) is a continuation of the Performance_Report.Create operation after Cost & Schedule 
+Variances have been calculated. It produces the Cost & Schedule Performance Indices to add to 
+the project Performance Report.',
 	"ba5eda7a-def5-0000-0000-000000000000",
-	0,
-	'//Calculate Performance Indices relating to the last report for a specific project.
+	1,
+	'//Calculate Performance Indices relating to the current report for a specific project.
 
-//Check that the named project exists.
-
-select any Project from instances of PRJ
- where (selected.PRJ_Name == param.PRJ_Name);
-
-if ( not empty Project)
+//Now use the base Earned Value parameters to calculate the performance indices.
 	
-	//If it exists then check whether any performance report exists for the named project.
-	//If a report doesn''t then create the new report with Rep_ID = 1.  Remembering to also make Last_Rep_ID = 1.
-	//If it does exist then create the new report with Rep_ID = Last_Rep_ID + 1.
+//Cost Performance Index
 	
-	select many Reports from instances of PERFREP
- 	where (selected.PRJ_Name == param.PRJ_Name);
- 	
- 		last_report = 0;
+	self.CPI = self.EV / self.AC;
 		
-		for each report in Reports
-			while (report.Rep_ID > last_report)
-			last_report = report.Rep_ID;
-			end while;
-		end for;
-
-		create object instance Performance_Report of PERFREP;
-		Performance_Report.PRJ_Name = param.PRJ_Name;
-		Performance_Report.Rep_ID = last_report + 1;
+	LOG::LogReal( message: "Cost Performance Index has been calculated at" , r: self.CPI);
 		
-		LOG::LogInfo( message: "A PERFORMANCE REPORT has been successfully updated with performance indices." );
-		send OrgMan::Notify(Relevant_Person:"Manager", Message:"A PERFORMANCE REPORT " + param.PRJ_Name + "has been updated with performance indices.");
+	// Determine performance message content and notify manager.
 	
-	//Now use the base Earned Value parameters to calculate the performance indices.
-	
-	//Cost Performance Index
-	
-		Performance_Report.CPI = Performance_Report.EV / Performance_Report.AC;
+	CPI = self.CPI;
 		
-		LOG::LogReal( message: "Cost Performance Index has been calculated at" , r: Performance_Report.CPI);
+	if (CPI < 0.95)
+			
+		LOG::LogInfo( message: "Project is OVER budget by more than 5%.");
+			
+		send PrjMan::Notify( Relevant_Person: "Manager", Message: "Project " + self.PRJ_Name + " is OVER budget by more than 5%. If the project is similarly BEHIND schedule, then a replan may be required!");
+			
+	elif (1.0 > CPI and CPI > 0.95)
+			
+		LOG::LogInfo( message: "Project is OVER budget by less than 5%.");
+			
+		send PrjMan::Notify( Relevant_Person: "Manager", Message: "Project " + self.PRJ_Name + " is OVER budget by less than 5%. Keep watch!");
+			
+			
+	elif (CPI == 1.0)
 		
-		// Determine performance message content and notify manager.
-		
-		CPI = Performance_Report.CPI;
-		
-		if (CPI < 0.95)
+		LOG::LogInfo( message: "Project is ON budget.");
 			
-			LOG::LogInfo( message: "Project is OVER budget by more than 5%.");
-			
-			send PrjMan::Notify( Relevant_Person: "Manager", Message: "Project is OVER budget by more than 5%. If the project is similarly BEHIND schedule, then a replan may be required!");
-			
-		elif (1.0 > CPI and CPI > 0.95)
-			
-			LOG::LogInfo( message: "Project is OVER budget by less than 5%.");
-			
-			send PrjMan::Notify( Relevant_Person: "Manager", Message: "Project is OVER budget by less than 5%. Keep watch!");
+		send PrjMan::Notify( Relevant_Person: "Manager", Message: "Project " + self.PRJ_Name + " is ON budget. Excellent!");
 			
 			
-		elif (CPI == 1.0)
-		
-			LOG::LogInfo( message: "Project is ON budget.");
+	elif (1.0 < CPI and CPI < 1.05)
 			
-			send PrjMan::Notify( Relevant_Person: "Manager", Message: "Project is ON budget. Excellent!");
+		LOG::LogInfo( message: "Project is UNDER budget by less than 5%.");
 			
-			
-		elif (1.0 < CPI and CPI < 1.05)
-			
-			LOG::LogInfo( message: "Project is UNDER budget by less than 5%.");
-			
-			send PrjMan::Notify( Relevant_Person: "Manager", Message: "Project is UNDER budget by less than 5%. Super!");
+		send PrjMan::Notify( Relevant_Person: "Manager", Message: "Project " + self.PRJ_Name + " is UNDER budget by less than 5%. Super!");
 			
 			
-		else
+	else
 			
-			LOG::LogInfo( message: "Project is UNDER budget by more than 5%.");
+		LOG::LogInfo( message: "Project is UNDER budget by more than 5%.");
 			
-			send PrjMan::Notify( Relevant_Person: "Manager", Message: "Project is UNDER budget by more than 5%. If the project is similarly ahead schedule, then a replan may be required!");
+		send PrjMan::Notify( Relevant_Person: "Manager", Message: "Project " + self.PRJ_Name + " is UNDER budget by more than 5%. If the project is similarly ahead schedule, then a replan may be required!");
 			
-		end if;			
+	end if;			
 		
 		
-	//Schedule Performance Index
+//Schedule Performance Index
 		
-		Performance_Report.SPI = Performance_Report.EV / Performance_Report.PV;
+	self.SPI = self.EV / self.PV;
 		
-		LOG::LogReal( message: "Schedule Performance Index is" , r: Performance_Report.SPI);
+	LOG::LogReal( message: "Schedule Performance Index is" , r: self.SPI);
 		
-		//Determine performance message content and notify manager.
+	//Determine performance message content and notify manager.
 		
-		SPI = Performance_Report.SPI;
+	SPI = self.SPI;
 		
-		if (SPI < 0.95)
+	if (SPI < 0.95)
 			
-			LOG::LogInfo( message: "Project is BEHIND schedule by more than 5%.");
+		LOG::LogInfo( message: "Project is BEHIND schedule by more than 5%.");
 			
-			send PrjMan::Notify( Relevant_Person: "Manager", Message: "Project is BEHIND schedule by more than 5%. If the project is similarly OVER budget, then a replan may be required!");
+		send PrjMan::Notify( Relevant_Person: "Manager", Message: "Project " + self.PRJ_Name + " is BEHIND schedule by more than 5%. If the project is similarly OVER budget, then a replan may be required!");
 			
-		elif (1.0 > SPI and SPI > 0.95)
+	elif (1.0 > SPI and SPI > 0.95)
 			
-			LOG::LogInfo( message: "Project is BEHIND schedule by less than 5%.");
+		LOG::LogInfo( message: "Project is BEHIND schedule by less than 5%.");
 			
-			send PrjMan::Notify( Relevant_Person: "Manager", Message: "Project is BEHIND schedule by less than 5%. Keep watch!");
+		send PrjMan::Notify( Relevant_Person: "Manager", Message: "Project " + self.PRJ_Name + " is BEHIND schedule by less than 5%. Keep watch!");
 			
 			
-		elif (SPI == 1.0)
+	elif (SPI == 1.0)
 		
-			LOG::LogInfo( message: "Project is ON schedule.");
+		LOG::LogInfo( message: "Project is ON schedule.");
 			
-			send PrjMan::Notify( Relevant_Person: "Manager", Message: "Project is ON schedule. Excellent!");
+		send PrjMan::Notify( Relevant_Person: "Manager", Message: "Project " + self.PRJ_Name + " is ON schedule. Excellent!");
 			
 			
-		elif (1.0 < SPI and SPI < 1.05)
+	elif (1.0 < SPI and SPI < 1.05)
 			
-			LOG::LogInfo( message: "Project is AHEAD of schedule by less than 5%.");
+		LOG::LogInfo( message: "Project is AHEAD of schedule by less than 5%.");
 			
-			send PrjMan::Notify( Relevant_Person: "Manager", Message: "Project is AHEAD of schedule by less than 5%. Super!");
+		send PrjMan::Notify( Relevant_Person: "Manager", Message: "Project " + self.PRJ_Name + " is AHEAD of schedule by less than 5%. Super!");
 			
-		else
+	else
 			
-			LOG::LogInfo( message: "Project is AHEAD of schedule by more than 5%.");
+		LOG::LogInfo( message: "Project is AHEAD of schedule by more than 5%.");
 			
-			send PrjMan::Notify( Relevant_Person: "Manager", Message: "Project is AHEAD of schedule by more than 5%. If the project is similarly UNDER budget, then a replan may be required!");
+		send PrjMan::Notify( Relevant_Person: "Manager", Message: "Project " + self.PRJ_Name + " is AHEAD of schedule by more than 5%. If the project is similarly UNDER budget, then a replan may be required!");
+			
+	end if;
+		
+// Determine the colour status of the project.  The colour is an indicator of overall performance and should be read in conjunction with the messages above.
+		
+	if (CPI < 0.95 and SPI < 0.95)
+			
+		self.Traffic_Light = Status_Colour::RED;
+			
+	elif (CPI > 0.95 and SPI < 0.95)
+			
+		if (CPI < 1.0)
+			
+			self.Traffic_Light = Status_Colour::AMBER;
 			
 		end if;
-		
-		// Determine the colour status of the project.  The colour is an indicator of overall performance and should be read in conjunction with the messages above.
-		
-		if (CPI < 0.95 and SPI < 0.95)
 			
-			Performance_Report.Traffic_Light = Status_Colour::RED;
+	elif (SPI > 0.95 and CPI < 0.95)
 			
-		elif (CPI > 0.95 and SPI < 0.95)
+		if (SPI < 1.0)
 			
-			if (CPI < 1.0)
+			self.Traffic_Light = Status_Colour::AMBER;
 			
-			Performance_Report.Traffic_Light = Status_Colour::AMBER;
+		end if;			
 			
-			end if;
+	elif (CPI >= 1.0 and SPI > 0.95)
 			
-		elif (SPI > 0.95 and CPI < 0.95)
-			
-			if (SPI < 1.0)
-			
-			Performance_Report.Traffic_Light = Status_Colour::AMBER;
-			
-			end if;			
-			
-		elif (CPI >= 1.0 and SPI > 0.95)
-			
-			Performance_Report.Traffic_Light = Status_Colour::GREEN;
+		self.Traffic_Light = Status_Colour::GREEN;
 
-		elif (SPI >= 1.0 and CPI > 0.95)
+	elif (SPI >= 1.0 and CPI > 0.95)
 			
-			Performance_Report.Traffic_Light = Status_Colour::GREEN;
+		self.Traffic_Light = Status_Colour::GREEN;
 			
-		end if;												
-
-else
+	end if;
 	
-		LOG::LogFailure( message: "The chosen PROJECT does not exist.  Please choose a PROJECT NAME that already exists." );
+	LOG::LogInfo( message: "A PERFORMANCE REPORT for " + self.PRJ_Name + " has been successfully updated with performance indices." );
+	send OrgMan::Notify(Relevant_Person:"Manager", Message:"A PERFORMANCE REPORT for " + self.PRJ_Name + " has been updated with performance indices.");
+	
+																									
 		
-end if;
-
-//Call operation to Calculate Variances for the last report.
-
-		PERFREP::calc_Completion_Estimates(PRJ_Name:param.PRJ_Name);
-		
-		
-// Based on UC14 and UC14-1',
+//Based on UC14 and UC14-1 and includes the essential aspects of UC17 in readiness for 
+//inclusion in a Summary Report.',
 	1,
 	'',
-	"17ac84a4-8234-4318-8a48-06273d723012",
+	"26d9a35c-572c-4fbb-b115-7d154b4dc1a4",
 	0,
 	3);
-INSERT INTO O_TPARM
-	VALUES ("c2b83670-083e-4446-994a-253cd99e3699",
-	"46c04271-b532-400b-8347-20e00407300a",
-	'PRJ_Name',
-	"ba5eda7a-def5-0000-0000-000000000004",
-	0,
-	'',
-	"00000000-0000-0000-0000-000000000000",
-	'');
 INSERT INTO O_TFR
-	VALUES ("dbdc7629-e770-4522-910f-17fae3c525b4",
+	VALUES ("dbb67bda-ba2a-46cc-a034-551a233a50ca",
 	"debe4626-cfe9-48fd-8112-e083c26efc69",
 	'calc_Completion_Estimates',
-	'This operation is based on UC15.',
+	'This operation is based on UC15.
+It (also) is a continuation of the Performance_Report.Create operation after Cost & Schedule 
+Variances & Performance Indices have been calculated. It calculates the Completion Estimates to 
+add to the project Performance Report.',
 	"ba5eda7a-def5-0000-0000-000000000000",
-	0,
-	'//Calculate Completion Estimates relating to the last report for a specific project.
-
-//Check that the named project exists.
-
-select any Project from instances of PRJ
- where (selected.PRJ_Name == param.PRJ_Name);
-
-if ( not empty Project)
+	1,
+	'//Calculate Completion Estimates relating to the current report for a specific project.
+		
+	LOG::LogInfo( message: "A PERFORMANCE REPORT has been successfully updated with completion estimates." );
+	send OrgMan::Notify(Relevant_Person:"Manager", Message:"A PERFORMANCE REPORT " + self.PRJ_Name + "has been updated with completion estimates.");
 	
-	//If it exists then check whether any performance report exists for the named project.
-	//If a report doesn''t then create the new report with Rep_ID = 1.  Remembering to also make Last_Rep_ID = 1.
-	//If it does exist then create the new report with Rep_ID = Last_Rep_ID + 1.
+//Now use the base Earned Value parameters to calculate the variances.
 	
-	select many Reports from instances of PERFREP
- 	where (selected.PRJ_Name == param.PRJ_Name);
- 	
- 		last_report = 0;
-		
-		for each report in Reports
-			while (report.Rep_ID > last_report)
-			last_report = report.Rep_ID;
-			end while;
-		end for;
-
-		create object instance Performance_Report of PERFREP;
-		Performance_Report.PRJ_Name = param.PRJ_Name;
-		Performance_Report.Rep_ID = last_report + 1;
-		
-		LOG::LogInfo( message: "A PERFORMANCE REPORT has been successfully updated with completion estimates." );
-		send OrgMan::Notify(Relevant_Person:"Manager", Message:"A PERFORMANCE REPORT " + param.PRJ_Name + "has been updated with completion estimates.");
+//Estimate AT Completion  -- must be calculated first.
 	
-	//Now use the base Earned Value parameters to calculate the variances.
+	self.EAC = self.BAC / self.CPI;
+		
+	LOG::LogReal( message: "Estimate At Completion has been calculated at" , r: self.EAC);
+		
+//Variance AT Completion
+		
+	self.VAC = self.BAC - self.EAC;
+		
+	LOG::LogReal( message: "Variance At Completion is" , r: self.VAC);
+		
+//Estimate TO Complete
+		
+	self.ETC = self.EAC - self.AC;
+		
+	LOG::LogReal( message: "Estimate to Complete is" , r: self.ETC);		
+
+	LOG::LogInfo( message: "A PERFORMANCE REPORT has been successfully updated with completion estimates." );
+	send OrgMan::Notify(Relevant_Person:"Manager", Message:"A PERFORMANCE REPORT for " + self.PRJ_Name + "has been updated with completion estimates.");
 	
-	//Estimate at Completion  -- must be calculated first.
-	
-		Performance_Report.EAC = Performance_Report.BAC / Performance_Report.CPI;
-		
-		LOG::LogReal( message: "Estimate At Completion has been calculated at" , r: Performance_Report.EAC);
-		
-	//Variance at Completion
-		
-		Performance_Report.VAC = Performance_Report.BAC - Performance_Report.EAC;
-		
-		LOG::LogReal( message: "Variance At Completion is" , r: Performance_Report.VAC);
-		
-	//Estimate to Complete
-		
-		Performance_Report.ETC = Performance_Report.EAC - Performance_Report.AC;
-		
-		LOG::LogReal( message: "Estimate to Complete is" , r: Performance_Report.ETC);		
-
-
-else
-		LOG::LogFailure( message: "The chosen PROJECT does not exist.  Please choose a PROJECT NAME that already exists." );
-end if;
-
 // Based on UC15.',
 	1,
 	'',
-	"46c04271-b532-400b-8347-20e00407300a",
+	"8a04eb1b-d0cd-4028-a024-000179ecda22",
 	0,
 	5);
-INSERT INTO O_TPARM
-	VALUES ("240b3af9-3e5e-4b1a-bc24-b9479e49b1df",
-	"dbdc7629-e770-4522-910f-17fae3c525b4",
-	'PRJ_Name',
-	"ba5eda7a-def5-0000-0000-000000000004",
-	0,
-	'',
-	"00000000-0000-0000-0000-000000000000",
-	'');
 INSERT INTO O_NBATTR
 	VALUES ("76434f9b-b069-4b88-92d7-3a523a006d3c",
 	"debe4626-cfe9-48fd-8112-e083c26efc69");
@@ -692,7 +596,7 @@ INSERT INTO O_ATTR
 	"debe4626-cfe9-48fd-8112-e083c26efc69",
 	"a43523ec-c977-42c7-b1b8-bdaf405c2577",
 	'Rep_ID',
-	'',
+	'The integer number (starting at 1) given to each successive performance report for a project.',
 	'',
 	'Rep_ID',
 	0,
@@ -710,7 +614,7 @@ INSERT INTO O_ATTR
 	"debe4626-cfe9-48fd-8112-e083c26efc69",
 	"4e736cb5-235e-4c53-a0d6-778a00658620",
 	'PRJ_Name',
-	'',
+	'The unique name of a project.',
 	'',
 	'PRJ_Name',
 	0,
@@ -728,7 +632,8 @@ INSERT INTO O_ATTR
 	"debe4626-cfe9-48fd-8112-e083c26efc69",
 	"a406f926-5945-4a0d-ac2e-1b2855263f65",
 	'Traffic_Light',
-	'',
+	'An enumerator that uses the base type of "Status_Colour" to represent the meaning of traffic
+light signals: RED (Stop), AMBER (Proceed with caution) and GREEN (Go). ',
 	'',
 	'Traffic_Light',
 	0,

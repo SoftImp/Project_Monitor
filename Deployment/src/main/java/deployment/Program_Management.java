@@ -36,10 +36,10 @@ public class Program_Management extends Component<Program_Management> {
     }
 
     // domain functions
-    public void on_Programs( final String p_Programs ) throws XtumlException {
+    public void on_Programs( final String p_Programs, final String p_PRG_Name ) throws XtumlException {
         try {
 			//System.out.printf("on_Programs() JSON: %s\n", p_Programs);	
-            Program_ManagementController.Singleton().on_Programs( p_Programs );
+            Program_ManagementController.Singleton().on_Programs( p_Programs,  p_PRG_Name);
       	} catch ( Exception e ) {}
     }
 

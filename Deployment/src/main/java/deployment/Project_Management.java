@@ -36,10 +36,17 @@ public class Project_Management extends Component<Project_Management> {
     }
 
     // domain functions
-    public void on_Projects( final String p_Projects ) throws XtumlException {
+    public void on_Perf_Rep( final String p_PRJ_Name,  final int p_Rep_ID,  final String p_Perf_Rep ) throws XtumlException {
+        try {
+			//System.out.printf("on_Perf_Rep() JSON: %s\n", p_Perf_Rep);	
+            Project_ManagementController.Singleton().on_Perf_Rep( p_PRJ_Name,  p_Rep_ID, p_Perf_Rep );
+      	} catch ( Exception e ) {}
+    }
+
+    public void on_Projects( final String p_Projects, final String p_PRJ_Name ) throws XtumlException {
         try {
 			//System.out.printf("on_Projects() JSON: %s\n", p_Projects);	
-            Project_ManagementController.Singleton().on_Projects( p_Projects );
+            Project_ManagementController.Singleton().on_Projects( p_Projects,  p_PRJ_Name);
       	} catch ( Exception e ) {}
     }
 

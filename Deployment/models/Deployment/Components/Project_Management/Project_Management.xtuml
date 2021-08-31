@@ -276,7 +276,7 @@ INSERT INTO SPR_RS
 	VALUES ("9143727d-a507-4024-ab81-ac168766ba66",
 	'on_Projects',
 	'',
-	'::on_Projects( Projects:param.Projects );',
+	'::on_Projects( Projects:param.Projects, PRJ_Name:param.PRJ_Name );',
 	1,
 	0,
 	5);
@@ -427,6 +427,46 @@ INSERT INTO C_EP_PROXY
 	'update_Description',
 	'',
 	12,
+	'../../../../../ProjMonitoring/models/ProjMonitoring/PM_Interfaces/Project_Management/Project_Management.xtuml');
+INSERT INTO SPR_REP
+	VALUES ("20908363-6e4a-463e-a153-ac7e60dc97f1",
+	"57601f05-263c-4d60-9112-d94fbfde9a99",
+	"4c719868-4d7d-492e-92b6-302219648b4c");
+INSERT INTO SPR_RS
+	VALUES ("20908363-6e4a-463e-a153-ac7e60dc97f1",
+	'get_Perf_Rep',
+	'',
+	'',
+	3,
+	0,
+	13);
+INSERT INTO C_EP_PROXY
+	VALUES ("57601f05-263c-4d60-9112-d94fbfde9a99",
+	"6ca8fb7f-c78f-437e-a777-90725b82b541",
+	-1,
+	'get_Perf_Rep',
+	'',
+	13,
+	'../../../../../ProjMonitoring/models/ProjMonitoring/PM_Interfaces/Project_Management/Project_Management.xtuml');
+INSERT INTO SPR_REP
+	VALUES ("376c6a7a-4306-425c-b8f6-044d92eccd4f",
+	"1c94008b-3302-4409-8c11-1d4ca3db119b",
+	"4c719868-4d7d-492e-92b6-302219648b4c");
+INSERT INTO SPR_RS
+	VALUES ("376c6a7a-4306-425c-b8f6-044d92eccd4f",
+	'on_Perf_Rep',
+	'',
+	'::on_Perf_Rep( PRJ_Name:param.PRJ_Name, Rep_ID:param.Rep_ID, Perf_Rep:param.Perf_Rep );',
+	1,
+	0,
+	14);
+INSERT INTO C_EP_PROXY
+	VALUES ("1c94008b-3302-4409-8c11-1d4ca3db119b",
+	"6ca8fb7f-c78f-437e-a777-90725b82b541",
+	-1,
+	'on_Perf_Rep',
+	'',
+	14,
 	'../../../../../ProjMonitoring/models/ProjMonitoring/PM_Interfaces/Project_Management/Project_Management.xtuml');
 INSERT INTO C_I_PROXY
 	VALUES ("6ca8fb7f-c78f-437e-a777-90725b82b541",
