@@ -1899,6 +1899,26 @@ INSERT INTO C_EP_PROXY
 	'',
 	24,
 	'../../../../../ProjMonitoring/models/ProjMonitoring/PM_Interfaces/Program_Management/Program_Management.xtuml');
+INSERT INTO SPR_REP
+	VALUES ("4bdc5d72-7598-4160-84ed-4b1fcaad1f06",
+	"bd2ed5cf-c73d-47f9-b692-849724f2e6a1",
+	"7c868331-1e28-448f-b73d-6f086b19deec");
+INSERT INTO SPR_RS
+	VALUES ("4bdc5d72-7598-4160-84ed-4b1fcaad1f06",
+	'Notify_Performance',
+	'',
+	'',
+	3,
+	0,
+	3);
+INSERT INTO C_EP_PROXY
+	VALUES ("bd2ed5cf-c73d-47f9-b692-849724f2e6a1",
+	"2fb1cfbf-5a98-466f-9dc8-5c99b1f86c67",
+	-1,
+	'Notify_Performance',
+	'',
+	3,
+	'../../../../../ProjMonitoring/models/ProjMonitoring/PM_Interfaces/Program_Management/Program_Management.xtuml');
 INSERT INTO C_I_PROXY
 	VALUES ("2fb1cfbf-5a98-466f-9dc8-5c99b1f86c67",
 	"00000000-0000-0000-0000-000000000000",
@@ -2142,6 +2162,46 @@ INSERT INTO C_EP_PROXY
 	'update_Description',
 	'',
 	12,
+	'../../../../../ProjMonitoring/models/ProjMonitoring/PM_Interfaces/Project_Management/Project_Management.xtuml');
+INSERT INTO SPR_REP
+	VALUES ("580ca1b1-af07-42bf-9547-c22e82eceacc",
+	"57601f05-263c-4d60-9112-d94fbfde9a99",
+	"b2a84b0d-d2d9-472f-aed7-067d181922c4");
+INSERT INTO SPR_RS
+	VALUES ("580ca1b1-af07-42bf-9547-c22e82eceacc",
+	'get_Perf_Rep',
+	'',
+	'',
+	3,
+	0,
+	13);
+INSERT INTO C_EP_PROXY
+	VALUES ("57601f05-263c-4d60-9112-d94fbfde9a99",
+	"6ca8fb7f-c78f-437e-a777-90725b82b541",
+	-1,
+	'get_Perf_Rep',
+	'',
+	13,
+	'../../../../../ProjMonitoring/models/ProjMonitoring/PM_Interfaces/Project_Management/Project_Management.xtuml');
+INSERT INTO SPR_REP
+	VALUES ("6792268a-50e1-4f39-9208-fe4a737e7b90",
+	"1c94008b-3302-4409-8c11-1d4ca3db119b",
+	"b2a84b0d-d2d9-472f-aed7-067d181922c4");
+INSERT INTO SPR_RS
+	VALUES ("6792268a-50e1-4f39-9208-fe4a737e7b90",
+	'on_Perf_Rep',
+	'',
+	'',
+	3,
+	0,
+	14);
+INSERT INTO C_EP_PROXY
+	VALUES ("1c94008b-3302-4409-8c11-1d4ca3db119b",
+	"6ca8fb7f-c78f-437e-a777-90725b82b541",
+	-1,
+	'on_Perf_Rep',
+	'',
+	14,
 	'../../../../../ProjMonitoring/models/ProjMonitoring/PM_Interfaces/Project_Management/Project_Management.xtuml');
 INSERT INTO C_I_PROXY
 	VALUES ("6ca8fb7f-c78f-437e-a777-90725b82b541",

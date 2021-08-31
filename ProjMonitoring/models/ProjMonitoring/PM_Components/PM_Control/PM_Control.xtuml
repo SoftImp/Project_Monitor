@@ -916,9 +916,9 @@ INSERT INTO SPR_PS
 	VALUES ("d49e3acb-9634-47d0-8b0c-88caf5c5cf67",
 	'get_Strategic_Goals',
 	'',
-	'msg = JsonMsg::get_Strategic_Goals();
+	'msg = JsonMsg::get_Strategic_Goals( SG_Name:param.SG_Name );
 
-send OrgMan::on_Strategic_Goals( Strategic_Goals:msg );',
+send OrgMan::on_Strategic_Goals( Strategic_Goals:msg, SG_Name:param.SG_Name );',
 	1,
 	0,
 	5);
@@ -1593,9 +1593,9 @@ INSERT INTO SPR_PS
 	VALUES ("73434320-0530-470e-9830-4abd8c223875",
 	'get_Portfolios',
 	'',
-	'msg = JsonMsg::get_Portfolios();
+	'msg = JsonMsg::get_Portfolios( PF_Name:param.PF_Name );
 
-send PFMan::on_Portfolios( Portfolios: msg );',
+send PFMan::on_Portfolios( Portfolios: msg, PF_Name:param.PF_Name );',
 	1,
 	0,
 	16);
@@ -2203,9 +2203,9 @@ INSERT INTO SPR_PS
 	VALUES ("6337c019-8512-458d-9c20-db131f23b468",
 	'get_Programs',
 	'',
-	'msg = JsonMsg::get_Programs();
+	'msg = JsonMsg::get_Programs( PRG_Name:param.PRG_Name );
 
-send PrgMan::on_Programs( Programs:msg );',
+send PrgMan::on_Programs( Programs:msg, PRG_Name:param.PRG_Name );',
 	1,
 	0,
 	18);
@@ -2481,9 +2481,9 @@ INSERT INTO SPR_PS
 	VALUES ("65e6bd03-c2c1-41d9-819c-db5a6e2124b4",
 	'get_Projects',
 	'',
-	'msg = JsonMsg::get_Projects();
+	'msg = JsonMsg::get_Projects( PRJ_Name:param.PRJ_Name );
 
-send PrjMan::on_Projects( Projects:msg );',
+send PrjMan::on_Projects( Projects:msg, PRJ_Name:param.PRJ_Name );',
 	1,
 	0,
 	4);
@@ -2710,6 +2710,48 @@ INSERT INTO C_EP_PROXY
 	'update_Description',
 	'',
 	12,
+	'../../PM_Interfaces/Project_Management/Project_Management.xtuml');
+INSERT INTO SPR_PEP
+	VALUES ("a996c205-bb41-425d-ba87-43e78048c98f",
+	"57601f05-263c-4d60-9112-d94fbfde9a99",
+	"5736ce8c-64ba-431b-913c-f9dab14aa11f");
+INSERT INTO SPR_PS
+	VALUES ("a996c205-bb41-425d-ba87-43e78048c98f",
+	'get_Perf_Rep',
+	'',
+	'msg = JsonMsg::get_Perf_Rep( PRJ_Name:param.PRJ_Name, Rep_ID:param.Rep_ID );
+
+send PrjMan::on_Perf_Rep( PRJ_Name:param.PRJ_Name, Rep_ID:param.Rep_ID, Perf_Rep:msg );',
+	1,
+	0,
+	13);
+INSERT INTO C_EP_PROXY
+	VALUES ("57601f05-263c-4d60-9112-d94fbfde9a99",
+	"6ca8fb7f-c78f-437e-a777-90725b82b541",
+	-1,
+	'get_Perf_Rep',
+	'',
+	13,
+	'../../PM_Interfaces/Project_Management/Project_Management.xtuml');
+INSERT INTO SPR_PEP
+	VALUES ("d1285414-af88-4726-b6e5-09e914ac7e3c",
+	"1c94008b-3302-4409-8c11-1d4ca3db119b",
+	"5736ce8c-64ba-431b-913c-f9dab14aa11f");
+INSERT INTO SPR_PS
+	VALUES ("d1285414-af88-4726-b6e5-09e914ac7e3c",
+	'on_Perf_Rep',
+	'',
+	'',
+	3,
+	0,
+	14);
+INSERT INTO C_EP_PROXY
+	VALUES ("1c94008b-3302-4409-8c11-1d4ca3db119b",
+	"6ca8fb7f-c78f-437e-a777-90725b82b541",
+	-1,
+	'on_Perf_Rep',
+	'',
+	14,
 	'../../PM_Interfaces/Project_Management/Project_Management.xtuml');
 INSERT INTO C_I_PROXY
 	VALUES ("6ca8fb7f-c78f-437e-a777-90725b82b541",

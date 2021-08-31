@@ -182,7 +182,7 @@ Performance Report.',
 		
 		self.SV = self.EV - self.PV;
 		
-		LOG::LogReal( message: "Earned Value is" , r: self.SV);
+		LOG::LogReal( message: "Schedule Variance is" , r: self.SV);
 		
 	LOG::LogInfo( message: "A PERFORMANCE REPORT for " + self.PRJ_Name + " has been successfully updated with cost & schedule variances." );
 	send OrgMan::Notify(Relevant_Person:"Manager", Message:"A PERFORMANCE REPORT for " + self.PRJ_Name + "has been updated with cost & schedule variances.");	

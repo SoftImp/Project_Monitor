@@ -602,7 +602,7 @@ INSERT INTO SPR_RS
 	VALUES ("b1cda115-9c13-4cf2-99d3-63ea497defe3",
 	'on_Programs',
 	'',
-	'::on_Programs( Programs:param.Programs );',
+	'::on_Programs( Programs:param.Programs, PRG_Name:param.PRG_Name );',
 	1,
 	0,
 	19);
@@ -713,6 +713,26 @@ INSERT INTO C_EP_PROXY
 	'update_Owner',
 	'',
 	24,
+	'../../../../../ProjMonitoring/models/ProjMonitoring/PM_Interfaces/Program_Management/Program_Management.xtuml');
+INSERT INTO SPR_REP
+	VALUES ("a5323432-6676-4b28-940c-9ee8ae8f2566",
+	"bd2ed5cf-c73d-47f9-b692-849724f2e6a1",
+	"1e3d6158-f572-4d0b-a34c-6effb4c734bc");
+INSERT INTO SPR_RS
+	VALUES ("a5323432-6676-4b28-940c-9ee8ae8f2566",
+	'Notify_Performance',
+	'',
+	'',
+	3,
+	0,
+	3);
+INSERT INTO C_EP_PROXY
+	VALUES ("bd2ed5cf-c73d-47f9-b692-849724f2e6a1",
+	"2fb1cfbf-5a98-466f-9dc8-5c99b1f86c67",
+	-1,
+	'Notify_Performance',
+	'',
+	3,
 	'../../../../../ProjMonitoring/models/ProjMonitoring/PM_Interfaces/Program_Management/Program_Management.xtuml');
 INSERT INTO C_I_PROXY
 	VALUES ("2fb1cfbf-5a98-466f-9dc8-5c99b1f86c67",

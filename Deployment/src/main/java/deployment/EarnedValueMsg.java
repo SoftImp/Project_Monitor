@@ -22,12 +22,16 @@ public class EarnedValueMsg extends AbstractMsg {
 	}
 
 	public EarnedValueMsg(int repId, double bac, double ev, double pv, double ac) {
+		setEarnedValue(repId, bac, ev, pv, ac);
+	}
+
+	public void setEarnedValue(int repId, double bac, double ev, double pv, double ac) {
 		this.repId = repId;
 		this.bac = bac;
 		this.ev = ev;
 		this.pv = pv;
 		this.ac = ac;
-	}
+	} 
 
 	public void setRepId(int repId) {
 		this.repId = repId;
