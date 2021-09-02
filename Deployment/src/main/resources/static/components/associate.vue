@@ -67,6 +67,9 @@
           <template #cell(description)="data">
             <span class="textlines" v-b-popover.hover.top.html="'<pre>' + data.value + '</pre>'" title="Description">{{ data.value}}</span>
           </template>
+          <template #cell(priority)="data">
+            <b-badge pill class="fullwidth" :variant="priority_variant[priorities.indexOf(data.value)]"><strong>{{data.value}}</strong></b-badge>
+          </template>
         </b-table>
       </div>
     </b-modal> 

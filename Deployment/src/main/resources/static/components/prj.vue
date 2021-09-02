@@ -54,7 +54,7 @@
         <template #cell(strategicGoal)="data">
           <!--<h5><b-badge variant="info">{{data.value}}</b-badge></h5>-->
           <template v-if="data.value != ''">
-            <h5><b-badge class="fullwidth" variant="info" v-b-popover.hover.html="getBadgeList(data.value)" title="Associated Strategic Goal">
+            <h5><b-badge class="fullwidth" role="button" variant="info" @click="showAssoc(data.value, 'sg')" v-b-popover.hover.html="getBadgeList(data.value)" title="Associated Strategic Goal">
               {{data.value}}</b-badge></h5>
           </template>
         </template>
@@ -62,7 +62,7 @@
         <template #cell(portfolio)="data">
           <!--<h5><b-badge variant="info">{{data.value}}</b-badge></h5>-->
           <template v-if="data.value != ''">
-            <h5><b-badge class="fullwidth" variant="info" v-b-popover.hover.html="getBadgeList(data.value)" title="Associated Portfolio">
+            <h5><b-badge class="fullwidth" role="button" variant="info" @click="showAssoc(data.value, 'pf')" v-b-popover.hover.html="getBadgeList(data.value)" title="Associated Portfolio">
               {{data.value}}</b-badge></h5>
           </template>
         </template>
@@ -70,7 +70,7 @@
         <template #cell(program)="data">
           <!--<h5><b-badge variant="info">{{data.value}}</b-badge></h5>-->
           <template v-if="data.value != ''">
-            <h5><b-badge class="fullwidth" variant="info" v-b-popover.hover.html="getBadgeList(data.value)" title="Associated Program">
+            <h5><b-badge class="fullwidth" role="button" variant="info" @click="showAssoc(data.value, 'prg')" v-b-popover.hover.html="getBadgeList(data.value)" title="Associated Program">
               {{data.value}}</b-badge></h5>
           </template>
         </template>
@@ -82,12 +82,16 @@
     <b-modal size="lg" :id="updateModal.idEvData" :title="updateModal.title" @hidden="handleEvDataHidden" ok-only>
       <prjevd :prj="updateModal.item" ref="modalevdata" @ok="onSubmitted"></prjevd>
     </b-modal>
+    <b-modal size="lg" :id="assoc_info.id"  :title="assoc_info.title" ok-only>
+      <detailassoc :assoc="assoc_info"></detailassoc>
+    </b-modal>
   </div>
 </template>
 
 <script>
   var formgroupprj = httpVueLoader('components/formgroupprj.vue');
   var prjevd = httpVueLoader('components/prjevd.vue');
+  var detailassoc = httpVueLoader('components/detailassoc.vue');
 
   module.exports = {
     data: function () {
@@ -108,7 +112,13 @@
           title: '',
           item: '',
           orgItem: ''
-        }
+        },
+        assoc_info: {
+          title: 'Associated',
+          id: 'modal-detailassoc',
+          type: '',
+          selected: [],
+        },
       }
     },
     created() {
@@ -118,7 +128,7 @@
     },
     methods: {
       async fetchData() {
-        const response = await fetch('./getprj');
+        const response = await fetch('./getallprj');
         if (response.ok) {
           const json = await response.json();
           this.items = json.data;
@@ -139,6 +149,12 @@
         this.updateModal.item = JSON.parse(JSON.stringify(item)); // make a copy, assigning will be a reference
         this.$root.$emit('bv::show::modal', this.updateModal.idEvData, button);
       },
+      showAssoc(selected, type) {
+        this.assoc_info.type = type;
+        this.assoc_info.selected = selected;
+
+        this.$root.$emit('bv::show::modal', this.assoc_info.id);
+      },
       handleOk(bvModalEvt) {
         this.$refs.modalupdateprj.handleOk(bvModalEvt, this.updateModal.id);     
       },
@@ -155,7 +171,8 @@
     },
     components: {
       'formgroupprj': formgroupprj,
-      'prjevd': prjevd
+      'prjevd': prjevd,
+      'detailassoc': detailassoc
     }
   };
 </script>

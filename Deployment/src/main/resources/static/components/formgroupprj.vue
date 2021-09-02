@@ -42,7 +42,7 @@
           createid: '',
           title: 'Associate Strategic Goal',
           label: 'Strategic Goal:',
-          url: './getsg',
+          url: './getallsg',
           mode: 'single',
           selected: [],
           fields: [
@@ -57,7 +57,7 @@
           createid: '',
           title: 'Associate Program',
           label: 'Program:',
-          url: './getprg',
+          url: './getallprg',
           mode: 'single',
           selected: [],
           fields: [

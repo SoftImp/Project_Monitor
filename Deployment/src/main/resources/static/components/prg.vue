@@ -33,8 +33,11 @@
 
       <b-table bordered hover :items="items" :fields="fields" :filter="filter" head-variant="light">
         <template #cell(actions)="row">
-          <b-button size="sm" @click="update(row.item, row.index, $event.target)" class="mr-1">
+          <b-button size="sm" @click="update(row.item, row.index, $event.target)" class="mr-1 mb-1" v-b-tooltip.hover :title="getUpdateTitle(row.item)">
             Update
+          </b-button>
+          <b-button size="sm" @click="summaryReport(row.item, row.index, $event.target)" class="mb-1" v-b-tooltip.hover title="Summary Report">
+            <b-icon icon="journal-bookmark"></b-icon>
           </b-button>
         </template>
         <template #thead-top="data">
@@ -49,24 +52,22 @@
         </template>
         <!-- Popover for Strategic Goal -->
         <template #cell(strategicGoal)="data">
-          <!--<h5><b-badge variant="info">{{data.value}}</b-badge></h5>-->
           <template v-if="data.value != ''">
-            <h5><b-badge class="fullwidth" variant="info" v-b-popover.hover.html="getBadgeList(data.value)" title="Associated Strategic Goal">
+            <h5><b-badge class="fullwidth" role="button" variant="info" @click="showAssoc(data.value, 'sg')" v-b-popover.hover.html="getBadgeList(data.value)" title="Associated Strategic Goal">
               {{data.value}}</b-badge></h5>
           </template>
         </template>
         <!-- Popover for portfolio -->
         <template #cell(portfolio)="data">
-          <!--<h5><b-badge variant="info">{{data.value}}</b-badge></h5>-->
           <template v-if="data.value != ''">
-            <h5><b-badge class="fullwidth" variant="info" v-b-popover.hover.html="getBadgeList(data.value)" title="Associated Portfolio">
+            <h5><b-badge class="fullwidth" role="button" variant="info" @click="showAssoc(data.value, 'pf')" v-b-popover.hover.html="getBadgeList(data.value)" title="Associated Portfolio">
               {{data.value}}</b-badge></h5>
           </template>
         </template>
         <!-- Popover for projects -->
         <template #cell(projects)="data">
           <template  v-if="data.value.length > 0">
-            <h5><b-badge class="fullwidth" variant="info" v-b-popover.hover.html="getBadgeList(data.value)" title="Associated Projects">
+            <h5><b-badge class="fullwidth" role="button" variant="info" @click="showAssoc(data.value, 'prj')" v-b-popover.hover.html="getBadgeList(data.value)" title="Associated Projects">
               <b-badge class="floatright" variant="light">{{data.value.length}}</b-badge>{{data.value[0]}}</b-badge></h5>
           </template>
         </template>
@@ -76,11 +77,15 @@
     <b-modal size="lg" :id="updateModal.id" :title="updateModal.title" @ok="handleOk">
       <formgroupprg :prg="updateModal.item" ref="modalupdateprg" mode="update" @ok="onSubmitted"></formgroupprg>
     </b-modal>
+    <b-modal size="lg" :id="assoc_info.id"  :title="assoc_info.title" ok-only>
+      <detailassoc :assoc="assoc_info"></detailassoc>
+    </b-modal>
   </div>
 </template>
 
 <script>
   var formgroupprg = httpVueLoader('components/formgroupprg.vue');
+  var detailassoc = httpVueLoader('components/detailassoc.vue');
 
   module.exports = {
     data: function () {
@@ -101,7 +106,13 @@
           title: '',
           item: '',
           orgItem: ''
-        }
+        },
+        assoc_info: {
+          title: 'Associated',
+          id: 'modal-detailassoc',
+          type: '',
+          selected: [],
+        },
       }
     },
     created() {
@@ -111,17 +122,28 @@
     },
     methods: {
       async fetchData() {
-        const response = await fetch('./getprg');
+        const response = await fetch('./getallprg');
         if (response.ok) {
           const json = await response.json();
           this.items = json.data;
         }
+      },
+      getUpdateTitle(item) {
+        return 'Update ' + item.name;
       },
       update(item, index, button) {
         this.updateModal.orgItem = item;
         this.updateModal.title = 'Update Program: ' + item.name;
         this.updateModal.item = JSON.parse(JSON.stringify(item)); // make a copy, assigning will be a reference
         this.$root.$emit('bv::show::modal', this.updateModal.id, button);
+      },
+      summaryReport(item, index, button) {
+      },
+      showAssoc(selected, type) {
+        this.assoc_info.type = type;
+        this.assoc_info.selected = selected;
+
+        this.$root.$emit('bv::show::modal', this.assoc_info.id);
       },
       onSubmitted(prgname) {
         // TODO - should only updated the changed program
@@ -134,7 +156,8 @@
       }
     },
     components: {
-      'formgroupprg': formgroupprg
+      'formgroupprg': formgroupprg,
+      'detailassoc': detailassoc
     }
   };
 </script>

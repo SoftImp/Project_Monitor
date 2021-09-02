@@ -18,6 +18,8 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.TreeMap;
 import java.util.List;
+import java.util.Arrays;
+import java.util.ArrayList;
 
 import javax.lang.model.util.ElementScanner6;
 
@@ -31,11 +33,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 //import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import com.google.gson.Gson;
 
 @RestController
 public class Portfolio_ManagementController {
 	private static Portfolio_ManagementController singleton;
-	private WaitForMsg waitPortfolios = new WaitForMsg();
+	private ArrayList<WaitForSingleMsg> waitForSingle = new ArrayList<WaitForSingleMsg>();
 
 	public Portfolio_ManagementController() {
 		singleton = this;
@@ -48,8 +51,7 @@ public class Portfolio_ManagementController {
 	@PostMapping("/addpf")
 	public ResponseEntity addpf(@RequestBody PortfolioMsg msg) {
 		try {
-			TableData<PortfolioMsg> td = getpf();
-			if (td.findById(msg.getName()) != null) {
+			if (getpf(msg.getName()) != null) {
 				System.out.printf("addpf() goalId: %s already exists\n", msg.getName());
 				return new ResponseEntity(HttpStatus.NOT_ACCEPTABLE);
 			}
@@ -73,7 +75,6 @@ public class Portfolio_ManagementController {
 			for (String project : msg.getProjects()) 
 				Portfolio_Management.Singleton().PFMan().add_Component(msg.getName(), project, Component_Type.PROJECT);*/
 
-			waitPortfolios.clear();
 			return new ResponseEntity(HttpStatus.OK);
 		} catch (Exception e) {
 			System.out.printf("Exception, %s, in addpf()\n", e);
@@ -86,8 +87,7 @@ public class Portfolio_ManagementController {
 	public ResponseEntity updatepf(@RequestBody PortfolioMsg msg, @RequestParam(value="action", required=true) String action) {
 		try {
 			//System.out.printf("updatepf() action: %s, name: %s, desc: %s, manager: %s\n", action, msg.getName(), msg.getDescription(), msg.getManager());
-			TableData<PortfolioMsg> td = getpf();
-			PortfolioMsg oldPf = td.findById(msg.getName()); 
+			PortfolioMsg oldPf = getpf(msg.getName()); 
 			if (oldPf == null)
 				throw new Exception("updatepf() - Portfolio not found: " + msg.getName());
 
@@ -163,7 +163,6 @@ public class Portfolio_ManagementController {
 					throw new Exception("updatepf() - unknown action: " + action);
 			}
 			
-			waitPortfolios.clear();
 			return new ResponseEntity(HttpStatus.OK);
 		}
 		catch (Exception e) {
@@ -180,7 +179,7 @@ public class Portfolio_ManagementController {
 			Portfolio_Management.Singleton().PFMan().add_Portfolio("Portfolio3", "Portfolio2", "Manager3");
 			Portfolio_Management.Singleton().PFMan().add_Portfolio("Portfolio4", "Portfolio4", "Manager3");
 			Portfolio_Management.Singleton().PFMan().add_Portfolio("Portfolio5", "Portfolio5", "Manager3");
-			waitPortfolios.clear();
+
 			return new ResponseEntity(HttpStatus.OK);
 		} catch (Exception e) {
 			System.out.printf("Exception, %s, in initpf()\n", e);
@@ -188,18 +187,19 @@ public class Portfolio_ManagementController {
 		}
 	}
 
-	@GetMapping("/getpf")
-	public TableData getpf() {
+	@GetMapping("/getallpf")
+	public TableData getallpf() {
 		try {
+			WaitForSingleMsg waitForMsg = new WaitForSingleMsg("", 0);
+			waitForSingle.add(waitForMsg);
+
 			TableData<PortfolioMsg> td = new TableData();
 
-			if (!waitPortfolios.hasMsg()) {
-				Portfolio_Management.Singleton().PFMan().get_Portfolios("");
-				waitPortfolios.synchroniseAndWait();
-			}
+			Portfolio_Management.Singleton().PFMan().get_Portfolios("");
+			waitForMsg.synchroniseAndWait();
 
-			td.setData(waitPortfolios.getMsg(), PortfolioMsg[].class);
-			waitPortfolios.clear(); // TMP - clear messages
+			td.setData(waitForMsg.getMsg(), PortfolioMsg[].class);
+			waitForSingle.remove(waitForMsg);
 			return td;
 		} catch (Exception e) {
 			System.out.printf("Exception, %s, in getpf()\n", e);
@@ -207,7 +207,39 @@ public class Portfolio_ManagementController {
 		}
 	}
 
+	@GetMapping("/getpf")
+	public PortfolioMsg getpf(@RequestParam(value="name", required=true) String name) {
+		try {
+			WaitForSingleMsg waitForMsg = new WaitForSingleMsg(name, 0);
+			waitForSingle.add(waitForMsg);
+
+
+			Portfolio_Management.Singleton().PFMan().get_Portfolios(name);
+			waitForMsg.synchroniseAndWait();
+
+			List<PortfolioMsg> prg = Arrays.asList(new Gson().fromJson(waitForMsg.getMsg(), PortfolioMsg[].class));
+			waitForSingle.remove(waitForMsg);
+			if (prg.size() > 0)
+				return prg.get(0);
+
+			return null;
+		} catch (Exception e) {
+			System.out.printf("Exception, %s, in getpf()\n", e);
+			return null;
+		}
+	}
+
 	public void on_Portfolios(final String p_Portfolios, final String p_PF_Name) {
-		waitPortfolios.onNotify(p_Portfolios);
+		boolean found = false;
+		for (WaitForSingleMsg waitFor : waitForSingle) {
+			if (waitFor.isWaitfor(p_PF_Name, 0)) {
+				waitFor.onNotify(p_Portfolios);
+				found = true;
+				break;
+			}
+		}
+
+		if (!found)
+			System.out.printf("on_Portfolios() - unable to find sg: %s\n", p_PF_Name);
 	}
 }

@@ -80,7 +80,7 @@
           createid: '',
           title: 'Associate Strategic Goal',
           label: 'Strategic Goal:',
-          url: './getsg',
+          url: './getallsg',
           mode: 'single',
           selected: [],
           fields: [
@@ -95,7 +95,7 @@
           createid: 'modal-createprg',
           title: 'Associate Programs',
           label: 'Programs:',
-          url: './getprg',
+          url: './getallprg',
           mode: 'multi',
           selected: [],
           fields: [
@@ -110,7 +110,7 @@
           createid: 'modal-createprj',
           title: 'Associate Projects',
           label: 'Projects:',
-          url: './getprj',
+          url: './getallprj',
           mode: 'multi',
           selected: [],
           fields: [

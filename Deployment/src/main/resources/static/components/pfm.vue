@@ -52,7 +52,7 @@
           </b-tr>
         </template>
         <template #row-details="row">
-          <detailpf :pf="row.item"></detailpf>   
+          <detailpf :pf="row.item" @update="update"></detailpf>   
         </template>
         <!-- Popover for description -->
         <template #cell(description)="data">
@@ -60,23 +60,22 @@
         </template>
         <!-- Popover for Strategic Goal -->
         <template #cell(strategicGoal)="data">
-          <!--<h5><b-badge variant="info">{{data.value}}</b-badge></h5>-->
           <template v-if="data.value != ''">
-            <h5><b-badge class="fullwidth" variant="info" v-b-popover.hover.html="getBadgeList(data.value)" title="Associated Strategic Goal">
+            <h5><b-badge class="fullwidth" role="button" variant="info" @click="showAssoc(data.value, 'sg')" v-b-popover.hover.html="getBadgeList(data.value)" title="Associated Strategic Goal">
               {{data.value}}</b-badge></h5>
             </template>
         </template>
         <!-- Popover for programs -->
         <template #cell(programs)="data">
           <template  v-if="data.value.length > 0">
-            <h5><b-badge class="fullwidth" variant="info" v-b-popover.hover.html="getBadgeList(data.value)" title="Associated Programs">
+            <h5><b-badge class="fullwidth" role="button" variant="info" @click="showAssoc(data.value, 'prg')" v-b-popover.hover.html="getBadgeList(data.value)" title="Associated Programs">
               <b-badge class="floatright" variant="light">{{data.value.length}}</b-badge>{{data.value[0]}}</b-badge></h5>
           </template>
         </template>
         <!-- Popover for projects -->
         <template #cell(projects)="data">
           <template  v-if="data.value.length > 0">
-            <h5><b-badge class="fullwidth" variant="info" v-b-popover.hover.html="getBadgeList(data.value)" title="Associated Projects">
+            <h5><b-badge class="fullwidth" role="button" variant="info" @click="showAssoc(data.value, 'prj')" v-b-popover.hover.html="getBadgeList(data.value)" title="Associated Projects">
               <b-badge class="floatright" variant="light">{{data.value.length}}</b-badge>{{data.value[0]}}</b-badge></h5>
           </template>
         </template>
@@ -114,12 +113,16 @@
         </template>
       </template>
     </b-modal>
+    <b-modal size="lg" :id="assoc_info.id"  :title="assoc_info.title" ok-only>
+      <detailassoc :assoc="assoc_info"></detailassoc>
+    </b-modal>
   </div>
 </template>
 
 <script>
   var formgrouppf = httpVueLoader('components/formgrouppf.vue');
   var detailpf = httpVueLoader('components/detailpf.vue');
+  var detailassoc = httpVueLoader('components/detailassoc.vue');
 
   module.exports = {
     data: function () {
@@ -142,7 +145,13 @@
         { key: 'programs', sortable: true },
         { key: 'projects', sortable: true },
         { key: 'actions', label: 'Status', tdClass: 'text-left' }
-        ]
+        ],
+        assoc_info: {
+          title: 'Associated',
+          id: 'modal-detailassoc',
+          type: '',
+          selected: [],
+        },
       }
     },
     created() {
@@ -152,7 +161,7 @@
     },
     methods: {
       async fetchData() {
-        const response = await fetch('./getpf');
+        const response = await fetch('./getallpf');
         if (response.ok) {
           const json = await response.json();
           this.items = json.data;
@@ -177,6 +186,12 @@
 
         this.updateModal.mode = pf_state[item.currentState];
         this.$root.$emit('bv::show::modal', this.updateModal.id, button);
+      },
+      showAssoc(selected, type) {
+        this.assoc_info.type = type;
+        this.assoc_info.selected = selected;
+
+        this.$root.$emit('bv::show::modal', this.assoc_info.id);
       },     
       handleOk(bvModalEvt) {
         this.$refs.modalupdatepf.handleOk(bvModalEvt, this.updateModal.id, 'save');
@@ -210,7 +225,8 @@
     },
     components: {
       'formgrouppf': formgrouppf,
-      'detailpf': detailpf
+      'detailpf': detailpf,
+      'detailassoc': detailassoc
     }
   };
 </script>

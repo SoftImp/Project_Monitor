@@ -12,9 +12,12 @@ import io.ciera.runtime.summit.exceptions.EmptyInstanceException;
 import io.ciera.runtime.summit.exceptions.XtumlException;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 import java.util.TreeMap;
+import java.util.Arrays;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,11 +26,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import com.google.gson.Gson;
 
 @RestController
 public class Organisational_ManagementController {
 	private static Organisational_ManagementController singleton;
-	private WaitForMsg waitStrategicGoals = new WaitForMsg();
+	private ArrayList<WaitForSingleMsg> waitForSingle = new ArrayList<WaitForSingleMsg>();
 
 	public Organisational_ManagementController() {
 		singleton = this;
@@ -40,8 +44,7 @@ public class Organisational_ManagementController {
 	@PostMapping("/addsg")
 	public ResponseEntity addsg(@RequestBody StrategicGoalMsg sg) {
 		try {
-			TableData<StrategicGoalMsg> td = getsg();
-			if (td.findById(sg.getName()) != null)
+			if (getsg(sg.getName()) != null)
 				throw new Exception("addsg() - Strategic Goal already exists: " + sg.getName());
 
 			//System.out.printf("addsg() goalId: %s, desc: %s, priority: %s\n", sg.getName(), sg.getDescription(), sg.getPriority());
@@ -50,7 +53,6 @@ public class Organisational_ManagementController {
 
 			Organisational_Management.Singleton().OrgMan().add_Strategic_Goal(sg.getName(), sg.getDescription(),
 					level);
-			waitStrategicGoals.clear();
 			return new ResponseEntity(HttpStatus.OK);
 		} catch (Exception e) {
 			System.out.printf("Exception, %s, in addsg()\n", e);
@@ -63,8 +65,7 @@ public class Organisational_ManagementController {
 		try {
 			//System.out.printf("updatesg() goalId: %s, desc: %s, priority: %s\n", sg.getName(), sg.getDescription(), sg.getPriority());
 
-			TableData<StrategicGoalMsg> td = getsg();
-			StrategicGoalMsg oldSG = td.findById(sg.getName()); 
+			StrategicGoalMsg oldSG = getsg(sg.getName()); 
 			if (oldSG == null)
 				throw new Exception("updatesg() - Strategic Goal not found: " + sg.getName());
 
@@ -76,7 +77,6 @@ public class Organisational_ManagementController {
 				Organisational_Management.Singleton().OrgMan().update_Priority(sg.getName(), level);
 			}
 
-			waitStrategicGoals.clear();
 			return new ResponseEntity(HttpStatus.OK);
 		} catch (Exception e) {
 			System.out.printf("Exception, %s, in updatesg()\n", e);
@@ -92,7 +92,6 @@ public class Organisational_ManagementController {
 			Organisational_Management.Singleton().OrgMan().add_Strategic_Goal("Goal3", "Goal3", Priority_Level.LOW);
 			Organisational_Management.Singleton().OrgMan().add_Strategic_Goal("Goal4", "Goal4", Priority_Level.MEDIUM);
 			Organisational_Management.Singleton().OrgMan().add_Strategic_Goal("Goal5", "Goal5", Priority_Level.MEDIUM);
-			waitStrategicGoals.clear();
 			return new ResponseEntity(HttpStatus.OK);
 		} catch (Exception e) {
 			System.out.printf("Exception, %s, in init()\n", e);
@@ -100,26 +99,60 @@ public class Organisational_ManagementController {
 		}
 	}
 
-	@GetMapping("/getsg")
-	public TableData getsg() {
+	@GetMapping("/getallsg")
+	public TableData getallsg() {
 		try {
 			TableData<StrategicGoalMsg> td = new TableData();
 
-			if (!waitStrategicGoals.hasMsg()) {
-				Organisational_Management.Singleton().OrgMan().get_Strategic_Goals("");
-				waitStrategicGoals.synchroniseAndWait();
-			}
+			WaitForSingleMsg waitForMsg = new WaitForSingleMsg("", 0);
+			waitForSingle.add(waitForMsg);
 
-			td.setData(waitStrategicGoals.getMsg(), StrategicGoalMsg[].class);
-			waitStrategicGoals.clear(); // TMP - clear messages
+			Organisational_Management.Singleton().OrgMan().get_Strategic_Goals("");
+			waitForMsg.synchroniseAndWait();
+
+			td.setData(waitForMsg.getMsg(), StrategicGoalMsg[].class);
+
+			waitForSingle.remove(waitForMsg);
 			return td;
 		} catch (Exception e) {
-			System.out.printf("Exception, %s, in getsg()\n", e);
+			System.out.printf("Exception, %s, in getallsg()\n", e);
 			return new TableData();
 		}
 	}
 
+	@GetMapping("/getsg")
+	public StrategicGoalMsg getsg(@RequestParam(value="name", required=true) String name) {
+		try {
+			WaitForSingleMsg waitForMsg = new WaitForSingleMsg(name, 0);
+			waitForSingle.add(waitForMsg);
+
+			Organisational_Management.Singleton().OrgMan().get_Strategic_Goals(name);
+			waitForMsg.synchroniseAndWait();
+
+			List<StrategicGoalMsg> sg = Arrays.asList(new Gson().fromJson(waitForMsg.getMsg(), StrategicGoalMsg[].class));
+			waitForSingle.remove(waitForMsg);
+
+			if (sg.size() > 0)
+				return sg.get(0);
+
+			return null;
+		} catch (Exception e) {
+			System.out.printf("Exception, %s, in getsg()\n", e);
+			return null;
+		}
+	}
+
 	public void onStrategicGoals(final String p_Strategic_Goals,  final String p_SG_Name) {
-		waitStrategicGoals.onNotify(p_Strategic_Goals);
+		boolean found = false;
+		for (WaitForSingleMsg waitFor : waitForSingle) {
+			if (waitFor.isWaitfor(p_SG_Name, 0)) {
+				waitFor.onNotify(p_Strategic_Goals);
+				found = true;
+				break;
+			}
+		}
+
+		if (!found)
+			System.out.printf("onStrategicGoals() - unable to find sg: %s\n", p_SG_Name);
 	}
 }

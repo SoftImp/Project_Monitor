@@ -16,6 +16,7 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.TreeMap;
 import java.util.List;
+import java.util.Arrays;
 import java.util.ArrayList;
 
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,8 +31,7 @@ import com.google.gson.Gson;
 @RestController
 public class Project_ManagementController {
 	private static Project_ManagementController singleton;
-	private WaitForMsg waitProjects = new WaitForMsg();
-	ArrayList<WaitForSingleMsg> waitForSingle = new ArrayList<WaitForSingleMsg>();
+	private ArrayList<WaitForSingleMsg> waitForSingle = new ArrayList<WaitForSingleMsg>();
 
 	public Project_ManagementController() {
 		singleton = this;
@@ -44,8 +44,7 @@ public class Project_ManagementController {
 	@PostMapping("/addprj")
 	public ResponseEntity addprj(@RequestBody ProjectMsg msg) {
 		try {
-			TableData<ProjectMsg> td = getprj();
-			if (td.findById(msg.getName()) != null) {
+			if (getprj(msg.getName()) != null) {
 				System.out.printf("addprj() goalId: %s already exists\n", msg.getName());
 				return new ResponseEntity(HttpStatus.NOT_ACCEPTABLE);
 			}
@@ -60,7 +59,6 @@ public class Project_ManagementController {
 			if (!msg.getProgram().isEmpty())
 				Project_Management.Singleton().PrjMan().add_To_Program(msg.getName(), msg.getProgram());	
 
-			waitProjects.clear();
 			return new ResponseEntity(HttpStatus.OK);
 		} catch (Exception e) {
 			System.out.printf("Exception, %s, in addprj()\n", e);
@@ -74,8 +72,7 @@ public class Project_ManagementController {
 			//System.out.printf("updateprj() name: %s, desc: %s, goal: %s, program: %s\n", 
 			//	msg.getName(), msg.getDescription(), msg.getStrategicGoal(), msg.getProgram());
 
-			TableData<ProjectMsg> td = getprj();
-			ProjectMsg oldPrj = td.findById(msg.getName()); 
+			ProjectMsg oldPrj =  getprj(msg.getName());
 			if (oldPrj == null)
 				throw new Exception("updateprj() - Project not found: " + msg.getName());
 			
@@ -98,7 +95,6 @@ public class Project_ManagementController {
 					Project_Management.Singleton().PrjMan().add_To_Program(msg.getName(), msg.getProgram());
 			}
 
-			waitProjects.clear();
 			return new ResponseEntity(HttpStatus.OK);
 		} catch (Exception e) {
 			System.out.printf("Exception, %s, in updateprj()\n", e);
@@ -126,7 +122,6 @@ public class Project_ManagementController {
 			Project_Management.Singleton().PrjMan().add_Project("Project3", "Project3");
 			Project_Management.Singleton().PrjMan().add_Project("Project4", "Project4");
 			Project_Management.Singleton().PrjMan().add_Project("Project5", "Project5");
-			waitProjects.clear();
 			return new ResponseEntity(HttpStatus.OK);
 		} catch (Exception e) {
 			System.out.printf("Exception, %s, in initprj()\n", e);
@@ -134,24 +129,49 @@ public class Project_ManagementController {
 		}
 	}
 
-	@GetMapping("/getprj")
-	public TableData getprj() {
+	@GetMapping("/getallprj")
+	public TableData getallprj() {
 		try {
 			TableData<ProjectMsg> td = new TableData();
 
-			if (!waitProjects.hasMsg()) {
-				Project_Management.Singleton().PrjMan().get_Projects("");
-				waitProjects.synchroniseAndWait();
-			}
+			WaitForSingleMsg waitForMsg = new WaitForSingleMsg("", 0);
+			waitForSingle.add(waitForMsg);
 
-			td.setData(waitProjects.getMsg(), ProjectMsg[].class);
-			waitProjects.clear(); // TMP - clear messages
+			Project_Management.Singleton().PrjMan().get_Projects("");
+			waitForMsg.synchroniseAndWait();
+
+			td.setData(waitForMsg.getMsg(), ProjectMsg[].class);
+			waitForSingle.remove(waitForMsg);
 			return td;
 		} catch (Exception e) {
-			System.out.printf("Exception, %s, in getprj()\n", e);
+			System.out.printf("Exception, %s, in getallprj()\n", e);
 			return new TableData();
 		}
 	}
+
+	@GetMapping("/getprj")
+	public ProjectMsg getprj(@RequestParam(value="name", required=true) String name) {
+		try {
+
+			WaitForSingleMsg waitForMsg = new WaitForSingleMsg(name, 0);
+			waitForSingle.add(waitForMsg);
+
+			Project_Management.Singleton().PrjMan().get_Projects(name);
+			waitForMsg.synchroniseAndWait();
+	
+			List<ProjectMsg> prj = Arrays.asList(new Gson().fromJson(waitForMsg.getMsg(), ProjectMsg[].class));
+			waitForSingle.remove(waitForMsg);
+
+			if (prj.size() > 0)
+				return prj.get(0);
+
+			return null;
+		} catch (Exception e) {
+			System.out.printf("Exception, %s, in getprj()\n", e);
+			return new ProjectMsg();
+		}
+	}
+
 
 	@GetMapping("/getperfrep")
 	public PerfRepMsg getperfrep(@RequestParam(value="project", required=true) String project, @RequestParam(value="repId", required=true) int repId) {
@@ -175,7 +195,17 @@ public class Project_ManagementController {
 	}
 
 	public void on_Projects(final String p_Projects, final String p_PRJ_Name) {
-		waitProjects.onNotify(p_Projects);
+		boolean found = false;
+		for (WaitForSingleMsg waitFor : waitForSingle) {
+			if (waitFor.isWaitfor(p_PRJ_Name, 0)) {
+				waitFor.onNotify(p_Projects);
+				found = true;
+				break;
+			}
+		}
+
+		if (!found)
+			System.out.printf("on_Projects() - unable to find sg: %s\n", p_PRJ_Name);
 	}
 
 	public void on_Perf_Rep( final String p_PRJ_Name,  final int p_Rep_ID,  final String p_Perf_Rep ) {

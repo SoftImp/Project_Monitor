@@ -33,7 +33,7 @@
 
       <b-table bordered hover :items="items" :fields="fields" :filter="filter" head-variant="light">
         <template #cell(actions)="row">
-          <b-button size="sm" @click="update(row.item, row.index, $event.target)" class="mr-1">
+          <b-button size="sm" @click="update(row.item, row.index, $event.target)" class="mr-1" v-b-tooltip.hover :title="getUpdateTitle(row.item)">
             Update
           </b-button>
         </template>
@@ -54,21 +54,21 @@
         <!-- Popover for portfolios -->
         <template #cell(portfolios)="data">
           <template  v-if="data.value.length > 0">
-            <h5><b-badge class="fullwidth" variant="info" v-b-popover.hover.html="getBadgeList(data.value)" title="Associated Portfolios">
+            <h5><b-badge class="fullwidth" role="button" variant="info" @click="showAssoc(data.value, 'pf')" v-b-popover.hover.html="getBadgeList(data.value)" title="Associated Portfolios">
               <b-badge class="floatright" variant="light">{{data.value.length}}</b-badge>{{data.value[0]}}</b-badge></h5>
           </template>
         </template>
         <!-- Popover for programs -->
         <template #cell(programs)="data">
           <template  v-if="data.value.length > 0">
-            <h5><b-badge class="fullwidth" variant="info" v-b-popover.hover.html="getBadgeList(data.value)" title="Associated Programs">
+            <h5><b-badge class="fullwidth" role="button" variant="info" @click="showAssoc(data.value, 'prg')" v-b-popover.hover.html="getBadgeList(data.value)" title="Associated Programs">
               <b-badge class="floatright" variant="light">{{data.value.length}}</b-badge>{{data.value[0]}}</b-badge></h5>
           </template>
         </template>
         <!-- Popover for projects -->
         <template #cell(projects)="data">
           <template  v-if="data.value.length > 0">
-            <h5><b-badge class="fullwidth" variant="info" v-b-popover.hover.html="getBadgeList(data.value)" title="Associated Projects">
+            <h5><b-badge class="fullwidth" role="button" variant="info" @click="showAssoc(data.value, 'prj')" v-b-popover.hover.html="getBadgeList(data.value)" title="Associated Projects">
               <b-badge class="floatright" variant="light">{{data.value.length}}</b-badge>{{data.value[0]}}</b-badge></h5>
           </template>
         </template>
@@ -78,11 +78,15 @@
     <b-modal size="lg" :id="updateModal.id" :title="updateModal.title" @ok="handleOk">
       <formgroupsg :sg="updateModal.item" ref="modalupdatesg" mode="update" @ok="onSubmitted"></formgroupsg>
     </b-modal>
+    <b-modal size="lg" :id="assoc_info.id"  :title="assoc_info.title" ok-only>
+      <detailassoc :assoc="assoc_info"></detailassoc>
+    </b-modal>
   </div>
 </template>
 
 <script>
   var formgroupsg = httpVueLoader('components/formgroupsg.vue');
+  var detailassoc = httpVueLoader('components/detailassoc.vue');
 
   module.exports = {
     data: function () {
@@ -103,7 +107,13 @@
         { key: 'programs', sortable: true },
         { key: 'projects', sortable: true },
         { key: 'actions', label: 'Actions' }
-        ]
+        ],
+        assoc_info: {
+          title: 'Associated',
+          id: 'modal-detailassoc',
+          type: '',
+          selected: [],
+        },
       }
     },
     created() {
@@ -113,17 +123,26 @@
     },
     methods: {
       async fetchData() {
-        const response = await fetch('./getsg');
+        const response = await fetch('./getallsg');
         if (response.ok) {
           const json = await response.json();
           this.items = json.data;
         }
+      },
+      getUpdateTitle(item) {
+        return 'Update ' + item.name;
       },
       update(item, index, button) {
         this.updateModal.orgItem = item;
         this.updateModal.title = 'Update Strategic Goal: ' + item.name;
         this.updateModal.item = JSON.parse(JSON.stringify(item)); // make a copy, assigning will be a reference
         this.$root.$emit('bv::show::modal', this.updateModal.id, button);
+      },
+      showAssoc(selected, type) {
+        this.assoc_info.type = type;
+        this.assoc_info.selected = selected;
+
+        this.$root.$emit('bv::show::modal', this.assoc_info.id);
       },
       resetModal() {
         this.updateModal.descState = null
@@ -139,7 +158,8 @@
       }
     },
     components: {
-      'formgroupsg': formgroupsg
+      'formgroupsg': formgroupsg,
+      'detailassoc': detailassoc
     }
   };
 </script>
