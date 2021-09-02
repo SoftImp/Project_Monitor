@@ -33,74 +33,85 @@ where (selected.PRG_Name == param.PRG_Name);
 
 if (not empty Program)
 	
-	//Select all the related Projects'' Performance Reports.
+	//Firstly select all the related Projects to the Program.
 	
-	select many Reports related by Program -> PRJ[R5.''may include''] -> PERFREP[R14.''may be recorded in''];
+	select many Projects related by Program -> PRJ[R5.''may include''];
+	
+		//Secondly select all the related Reports to each Project.
+	
+		for each Project in Projects
+			
+			select many Reports related by Project -> PERFREP[R14.''may be recorded in''];
+	
+//	select many Reports related by Program -> PRJ[R5.''may include''] -> PERFREP[R14.''may be recorded in''];
 	// I think this last statement should provide an instance set that only includes existing performance reports.
 	
-	//Identify the last reports for each Project and add them to the Summary Report.
+			//Finally identify the last submitted reports for each Project and add them to the Summary Report.
+			//Note that a Project''s Reports are numbered sequentially from 1 as they are submitted.
 	
- 		last_pref_report = 0;
+ 			last_perf_report = 0;	//Enables the search to start at Report numbered 1. 
 		
-		for each report in Reports
-			while (report.Rep_ID > last_pref_report)
-			last_pref_report = report.Rep_ID;
-			end while;
-			select any report related by Program -> PRJ[R5.''may include''] -> PERFREP[R14.''may be recorded in''] where selected.Rep_ID == last_pref_report;
-			relate Summary_Report to report across R16.''is extracted from'';
-			Summary_Report.PRJ_Name = report.PRJ_Name;
-			Summary_Report.Traffic_Light = report.Traffic_Light;
+			for each Report in Reports
+				while (Report.Rep_ID > last_perf_report)
+				last_pref_report = Report.Rep_ID;
+				end while;
+				select any report related by Project -> PERFREP[R14.''may be recorded in''] where selected.Rep_ID == last_perf_report;
+				relate Summary_Report to Report across R16.''is extracted from'';
+				Summary_Report.PRJ_Name = Report.PRJ_Name;
+				Summary_Report.Traffic_Light = Report.Traffic_Light;
+				Summary_Report.PRG_Name = param.PRG_Name;
+				Summary_Report.Date = TIM::current_date();
+			end for;
 		end for;
-		
-	Summary_Report.PRG_Name = param.PRG_Name;
-	Summary_Report.Date = TIM::current_date();
+	LOG::LogInfo( message: "A new SUMMARY REPORT set has been successfully created." );
 	
-	LOG::LogInfo( message: "A new SUMMARY REPORT has been successfully created." );
-	
-	//List the RED (non-performing) Projects among the Summary Report first.
+	//List the RED (non-performing) Projects among the Summary Report set first.
 	
 	select many Sum_Reps related by Program -> SUMREP[R18.''may be produced for'']; 
 	
-	red_ones = 0;
-	for each Report in Sum_Reps
-		while (Report.Traffic_Light == Status_Colour::RED)
-			send OrgMan::Report(Relevant_Person:"Manager", PRG_Name:param.PRG_Name, PRJ_Name:Report.PRJ_Name, Traffic_Light:Report.Traffic_Light);
-			send PrgMan::Report(Relevant_Person:"Manager", PRG_Name:param.PRG_Name, PRJ_Name:Report.PRJ_Name, Traffic_Light:Report.Traffic_Light);
-		end while;
-		red_ones = red_ones + 1;	
-	end for;
+		red_ones = 0;
+		for each report in Sum_Reps
+			while (report.Traffic_Light == Status_Colour::RED)
+				red_ones = red_ones + 1;	
+			end while;
+		end for;
 	
-	LOG::LogInfo( message: "All ''RED'' Projects have been listed." );
+		//send OrgMan::Report(Relevant_Person:"Manager", PRG_Name:param.PRG_Name, PRJ_Name:report.PRJ_Name, Traffic_Light:report.Traffic_Light);
+		//send PrgMan::Report(Relevant_Person:"Manager", PRG_Name:param.PRG_Name, PRJ_Name:report.PRJ_Name, Traffic_Light:report.Traffic_Light);
+	
+	LOG::LogInfo( message: "All ''RED'' Projects have been totalled." );
 	
 	//List the AMBER (under-performing) Projects second.
 		
-	amber_ones = 0;
-	for each Report in Sum_Reps
-		while (Report.Traffic_Light == Status_Colour::AMBER)
-			send OrgMan::Report(Relevant_Person:"Manager", PRG_Name:param.PRG_Name, PRJ_Name:Report.PRJ_Name, Traffic_Light:Report.Traffic_Light);
-			send PrgMan::Report(Relevant_Person:"Manager", PRG_Name:param.PRG_Name, PRJ_Name:Report.PRJ_Name, Traffic_Light:Report.Traffic_Light);
-		end while;
-		amber_ones = amber_ones + 1;	
-	end for;
+		amber_ones = 0;
+		for each report in Sum_Reps
+			while (report.Traffic_Light == Status_Colour::AMBER)
+				amber_ones = amber_ones + 1;
+			end while;				
+		end for;
+		
+		//send OrgMan::Report(Relevant_Person:"Manager", PRG_Name:param.PRG_Name, PRJ_Name:report.PRJ_Name, Traffic_Light:report.Traffic_Light);
+		//send PrgMan::Report(Relevant_Person:"Manager", PRG_Name:param.PRG_Name, PRJ_Name:report.PRJ_Name, Traffic_Light:report.Traffic_Light);	
 	
-	LOG::LogInfo( message: "All ''AMBER'' Projects have been listed." );
+	LOG::LogInfo( message: "All ''AMBER'' Projects have been totalled." );
 	
 	//List the GREEN (performing) Projects last.
 		
-	green_ones = 0;
-	for each Report in Sum_Reps
-		while (Report.Traffic_Light == Status_Colour::GREEN)
-			send OrgMan::Report(Relevant_Person:"Manager", PRG_Name:param.PRG_Name, PRJ_Name:Report.PRJ_Name, Traffic_Light:Report.Traffic_Light);
-			send PrgMan::Report(Relevant_Person:"Manager", PRG_Name:param.PRG_Name, PRJ_Name:Report.PRJ_Name, Traffic_Light:Report.Traffic_Light);
-		end while;
-		green_ones = green_ones + 1;	
-	end for;
+		green_ones = 0;
+		for each report in Sum_Reps
+			while (report.Traffic_Light == Status_Colour::GREEN)
+				green_ones = green_ones + 1;
+			end while;	
+		end for;
+		
+		//send OrgMan::Report(Relevant_Person:"Manager", PRG_Name:param.PRG_Name, PRJ_Name:report.PRJ_Name, Traffic_Light:report.Traffic_Light);
+		//send PrgMan::Report(Relevant_Person:"Manager", PRG_Name:param.PRG_Name, PRJ_Name:report.PRJ_Name, Traffic_Light:report.Traffic_Light);		
 	
-	LOG::LogInfo( message: "All ''GREEN'' Projects have been listed." );
+	LOG::LogInfo( message: "All ''GREEN'' Projects have been totalled." );
 	
 	//Determine the total number of projects being reported in this summary report.
 		
-	total = red_ones + amber_ones + green_ones;
+		total = red_ones + amber_ones + green_ones;
 	
 	//Provide an indication of degree of (non-)performance of the overal program for which this Summary Report has been prepared.		
 	
@@ -133,16 +144,69 @@ INSERT INTO O_TPARM
 INSERT INTO O_TFR
 	VALUES ("cf160401-1418-4566-b3eb-c46e44ca2289",
 	"e1e375a8-101a-4533-9544-1b3ba91e8e62",
-	'browse_Report',
+	'browse_Performance',
 	'This operation is based on UC18.',
 	"ba5eda7a-def5-0000-0000-000000000000",
-	1,
-	'',
+	0,
+	'//Extract a summary report set to see more detail of projects based on performance rating.
+//Performance rating is determined by Traffic Light Colour (TL_Colour)
+	
+select many Sum_Reps from instances of SUMREP
+ where (selected.PRG_Name == param.PRG_Name and selected.Date == param.Date_Of_Report and selected.Traffic_Light == param.TL_Colour);
+ 
+ 	if (param.TL_Colour == Status_Colour::RED)
+ 		LOG::LogInfo( message: "The following Projects are not performing well." );
+ 		
+ 	elif (param.TL_Colour == Status_Colour::AMBER)
+ 		LOG::LogInfo( message: "The following Projects are under-performing well." );
+ 	
+ 	else
+ 		LOG::LogInfo( message: "The following Projects are performing well." );
+ 	end if;
+	
+	for each report in Sum_Reps		
+			send OrgMan::Report(Relevant_Person:"Manager", PRG_Name:param.PRG_Name, PRJ_Name:report.PRJ_Name, Traffic_Light:report.Traffic_Light);
+			send PrgMan::Report(Relevant_Person:"Manager", PRG_Name:param.PRG_Name, PRJ_Name:report.PRJ_Name, Traffic_Light:report.Traffic_Light);
+	end for;',
 	1,
 	'',
 	"34f4e69c-3e8d-4bc9-831c-18a15ea521fa",
 	0,
 	2);
+INSERT INTO O_TPARM
+	VALUES ("5d8e07f4-4dbc-4d75-b2fb-45dd541ea35f",
+	"cf160401-1418-4566-b3eb-c46e44ca2289",
+	'PRG_Name',
+	"ba5eda7a-def5-0000-0000-000000000004",
+	0,
+	'',
+	"00000000-0000-0000-0000-000000000000",
+	'');
+INSERT INTO O_TPARM
+	VALUES ("6e6a46de-dbb3-4f34-96e6-cffb6ad95034",
+	"cf160401-1418-4566-b3eb-c46e44ca2289",
+	'Date_Of_Report',
+	"ba5eda7a-def5-0000-0000-00000000000e",
+	0,
+	'',
+	"5d8e07f4-4dbc-4d75-b2fb-45dd541ea35f",
+	'');
+INSERT INTO O_TPARM
+	VALUES ("e92b2a12-90dd-491b-85c1-6ad123c833a7",
+	"cf160401-1418-4566-b3eb-c46e44ca2289",
+	'TL_Colour',
+	"9dc71f19-9575-423a-8869-cc0a09aa5f7d",
+	0,
+	'',
+	"6e6a46de-dbb3-4f34-96e6-cffb6ad95034",
+	'');
+INSERT INTO S_DT_PROXY
+	VALUES ("9dc71f19-9575-423a-8869-cc0a09aa5f7d",
+	"00000000-0000-0000-0000-000000000000",
+	'Status_Colour',
+	'',
+	'',
+	'../../../../PM_Types/PM_Types.xtuml');
 INSERT INTO O_NBATTR
 	VALUES ("6dd0554d-00b1-416b-a094-2449217f2305",
 	"e1e375a8-101a-4533-9544-1b3ba91e8e62");
@@ -161,13 +225,6 @@ INSERT INTO O_ATTR
 	"9dc71f19-9575-423a-8869-cc0a09aa5f7d",
 	'',
 	'');
-INSERT INTO S_DT_PROXY
-	VALUES ("9dc71f19-9575-423a-8869-cc0a09aa5f7d",
-	"00000000-0000-0000-0000-000000000000",
-	'Status_Colour',
-	'',
-	'',
-	'../../../../PM_Types/PM_Types.xtuml');
 INSERT INTO O_NBATTR
 	VALUES ("0798fb39-e8ac-450a-95cf-7377d82d55f7",
 	"e1e375a8-101a-4533-9544-1b3ba91e8e62");

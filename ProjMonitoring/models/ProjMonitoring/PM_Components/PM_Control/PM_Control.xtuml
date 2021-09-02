@@ -1957,9 +1957,11 @@ INSERT INTO SPR_PEP
 	"35edcf68-532e-49b2-95f8-dce040a2c330");
 INSERT INTO SPR_PS
 	VALUES ("630bf134-fcce-465f-a528-cf3758c42d14",
-	'browse_Summary_Reports',
+	'browse_Performance',
 	'',
-	'',
+	'//Signal to call the browse_Performance operation for an existing Summary Report set.
+
+SUMREP::browse_Performance( PRG_Name: param.Prog_Name, Date_Of_Report: param.Date, TL_Colour: param.TL_Colour );',
 	1,
 	0,
 	10);
@@ -1967,7 +1969,7 @@ INSERT INTO C_EP_PROXY
 	VALUES ("9188e666-9bd4-4030-b325-89a6723edc88",
 	"2fb1cfbf-5a98-466f-9dc8-5c99b1f86c67",
 	-1,
-	'browse_Summary_Reports',
+	'browse_Performance',
 	'',
 	10,
 	'../../PM_Interfaces/Program_Management/Program_Management.xtuml');
