@@ -218,10 +218,13 @@
 		        <groupId>org.apache.maven.plugins</groupId>
 		        <artifactId>maven-war-plugin</artifactId>
 		        <version>3.3.1</version>
-		        <configuration>
+<!-- 		        <configuration>
 		        	<webappDirectory>/home/jzh/Dev-Tools/apache-tomcat-9.0.50/webapps/pms</webappDirectory>
-		        </configuration>
-		    </plugin>  
+		        </configuration> -->
+		    </plugin>
+		      
     	</plugins>
+    	
+    	<finalName>pms</finalName>
 	</build>
 </project>
