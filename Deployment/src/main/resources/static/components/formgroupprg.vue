@@ -61,7 +61,7 @@
           createid: '',
           title: 'Associate Projects',
           label: 'Projects:',
-          url: './getallprj',
+          url: './getavlprj',
           mode: 'multi',
           selected: [],
           fields: [
@@ -76,6 +76,7 @@
       if (this.mode === 'update') {
         this.assoc_sg.selected.push(this.prg.strategicGoal);
         this.assoc_prj.selected = this.prg.projects;
+        this.assoc_prj.url = './getavlprj?' + new URLSearchParams({ program: this.prg.name });
       }
     },
     methods: { 

@@ -27,6 +27,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import com.google.gson.Gson;
+import org.json.JSONArray;
 
 @RestController
 public class Project_ManagementController {
@@ -148,6 +149,30 @@ public class Project_ManagementController {
 			return new TableData();
 		}
 	}
+	
+	@GetMapping("/getavlprj")
+	public TableData getavlprj(@RequestParam(value="program", required=false) String program) {
+		try {
+			TableData<ProjectMsg> td = new TableData();
+			WaitForSingleMsg waitForMsg = new WaitForSingleMsg("", 0);
+			waitForSingle.add(waitForMsg);
+
+			Project_Management.Singleton().PrjMan().get_Projects("");
+			waitForMsg.synchroniseAndWait();
+	
+			List<ProjectMsg> prj = Arrays.asList(new Gson().fromJson(waitForMsg.getMsg(), ProjectMsg[].class));
+			waitForSingle.remove(waitForMsg);
+
+			ProjectMsg[] avl = prj.stream().filter(p -> p.getProgram().equals("") || p.getProgram().equals(program)).toArray(ProjectMsg[]::new);
+
+			JSONArray jsArray = new JSONArray(avl);
+			td.setData(jsArray.toString(), ProjectMsg[].class);
+			return td;
+		} catch (Exception e) {
+			System.out.printf("Exception, %s, in getavlprj()\n", e);
+			return new TableData();
+		}
+	}
 
 	@GetMapping("/getprj")
 	public ProjectMsg getprj(@RequestParam(value="name", required=true) String name) {
@@ -205,7 +230,7 @@ public class Project_ManagementController {
 		}
 
 		if (!found)
-			System.out.printf("on_Projects() - unable to find sg: %s\n", p_PRJ_Name);
+			System.out.printf("on_Projects() - unable to find prj: %s\n", p_PRJ_Name);
 	}
 
 	public void on_Perf_Rep( final String p_PRJ_Name,  final int p_Rep_ID,  final String p_Perf_Rep ) {
