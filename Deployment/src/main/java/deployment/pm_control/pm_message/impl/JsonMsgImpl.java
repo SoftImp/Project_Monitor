@@ -13,6 +13,8 @@ import deployment.pm_control.pm_control.Project;
 import deployment.pm_control.pm_control.ProjectSet;
 import deployment.pm_control.pm_control.Strategic_Goal;
 import deployment.pm_control.pm_control.Strategic_GoalSet;
+import deployment.pm_control.pm_control.Summary_Report;
+import deployment.pm_control.pm_control.Summary_ReportSet;
 import deployment.pm_control.pm_message.JsonMsg;
 import pm_types.Priority_Level;
 import pm_types.Status_Colour;
@@ -41,6 +43,7 @@ import deployment.PortfolioMsg;
 import deployment.ProgramMsg;
 import deployment.ProjectMsg;
 import deployment.PerfRepMsg;
+import deployment.SummaryRepMsg;
 
 public class JsonMsgImpl extends ModelInstance<JsonMsg,PM_Control> implements JsonMsg {
 
@@ -91,6 +94,32 @@ public class JsonMsgImpl extends ModelInstance<JsonMsg,PM_Control> implements Js
 
         public CLASS( PM_Control context ) {
             super( context );
+        }
+
+        public String get_Summary_Reports( final String p_PRG_Name ) throws XtumlException {
+            ArrayList<SummaryRepMsg> msgArr = new ArrayList<SummaryRepMsg>();
+            Program Program = context().Program_instances().anyWhere(selected -> StringUtil.equality(((Program)selected).getPRG_Name(), p_PRG_Name));
+            if ( !Program.isEmpty() ) {
+                Summary_ReportSet Sum_Reps = Program.R18_may_be_produced_for_Summary_Report();
+                Summary_Report report;
+                for ( Iterator<Summary_Report> _report_iter = Sum_Reps.elements().iterator(); _report_iter.hasNext(); ) {
+                    report = _report_iter.next();
+                    //context().LOG().LogInfo( "report -> prj: " + report.getPRJ_Name() );
+                    long repDate = Long.parseLong(report.getDate().toString());
+                    SummaryRepMsg msg = new SummaryRepMsg(report.getPRG_Name(), report.getPRJ_Name(), repDate);
+                    if (report.getTraffic_Light() != Status_Colour.UNINITIALIZED_ENUM)
+                        msg.setTrafficLight(report.getTraffic_Light().toString());
+
+                    msgArr.add(msg);
+                }
+            }
+            else {
+                context().LOG().LogFailure( "The chosen PROGRAM does not exist.  Please choose a relevant PROGRAM that already exists." );
+            }
+
+            JSONArray jsArray = new JSONArray(msgArr);
+            //context().LOG().LogInfo("Summary_Reports: " + jsArray.toString());
+            return jsArray.toString();
         }
 
         public String get_Perf_Rep( final String p_PRJ_Name,  final int p_Rep_ID ) throws XtumlException {

@@ -1,20 +1,20 @@
 package deployment;
-import java.util.Date;
 
 // Spring requires a POJO class for each message - variables must start with a lower case (camel case convention)
 public class SummaryRepMsg extends AbstractMsg {
     private String program;
     private String project;
     private String trafficLight;
-    private Date date;
+    private long date;
 
     public SummaryRepMsg() {
         program = "";
         project = "";
         trafficLight = "";
+        date = 0;
     }
 
-    public SummaryRepMsg(String program, String project, Date date) {
+    public SummaryRepMsg(String program, String project, long date) {
         this.program = program;
         this.project = project;
         this.date = date;
@@ -45,11 +45,11 @@ public class SummaryRepMsg extends AbstractMsg {
     return trafficLight == null ? "" : trafficLight;
     }
 
-    public void setDate(Date date) {
+    public void setDate(long date) {
         this.date = date;
     }
 
-    public Date getDate() {
+    public long getDate() {
         return date;
     }
 }

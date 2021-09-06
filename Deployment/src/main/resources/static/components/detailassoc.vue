@@ -61,7 +61,7 @@
       }
       else if (this.assoc.type === 'prj') {
         this.url = './getprj?';
-        this.assoc.title = 'Associated Programs';
+        this.assoc.title = 'Associated Projects';
       }
       else if (this.assoc.type === 'prg') {
         this.url = './getprg?';

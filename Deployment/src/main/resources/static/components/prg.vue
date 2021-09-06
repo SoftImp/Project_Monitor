@@ -33,12 +33,15 @@
 
       <b-table bordered hover :items="items" :fields="fields" :filter="filter" head-variant="light">
         <template #cell(actions)="row">
-          <b-button size="sm" @click="update(row.item, row.index, $event.target)" class="mr-1 mb-1" v-b-tooltip.hover :title="getUpdateTitle(row.item)">
+          <!--<b-button size="sm" @click="update(row.item, row.index, $event.target)" class="mr-1 mb-1" v-b-tooltip.hover :title="getUpdateTitle(row.item)">
             Update
           </b-button>
           <b-button size="sm" @click="summaryReport(row.item, row.index, $event.target)" class="mb-1" v-b-tooltip.hover title="Summary Report">
             <b-icon icon="journal-bookmark"></b-icon>
-          </b-button>
+          </b-button>-->
+          <b-dropdown size="sm" split right text="Update" @click="update(row.item, row.index, $event.target)" split-variant="outline-secondary">
+            <b-dropdown-item-button @click="summaryReport(row.item, row.index, $event.target)">Summary Reports</b-dropdown-item-button>
+          </b-dropdown>
         </template>
         <template #thead-top="data">
           <b-tr>
@@ -80,12 +83,16 @@
     <b-modal size="lg" :id="assoc_info.id"  :title="assoc_info.title" ok-only>
       <detailassoc :assoc="assoc_info"></detailassoc>
     </b-modal>
+    <b-modal size="lg" :id="summaryRepModal.id"  :title="summaryRepModal.title" ok-only>
+      <prgsummaryrep :program="summaryRepModal.program"></prgsummaryrep>
+    </b-modal>
   </div>
 </template>
 
 <script>
   var formgroupprg = httpVueLoader('components/formgroupprg.vue');
   var detailassoc = httpVueLoader('components/detailassoc.vue');
+  var prgsummaryrep = httpVueLoader('components/prgsummaryrep.vue');
 
   module.exports = {
     data: function () {
@@ -113,6 +120,11 @@
           type: '',
           selected: [],
         },
+        summaryRepModal: {
+          id: 'summary-rep-modal',
+          title: '',
+          program: ''
+        }
       }
     },
     created() {
@@ -138,6 +150,9 @@
         this.$root.$emit('bv::show::modal', this.updateModal.id, button);
       },
       summaryReport(item, index, button) {
+        this.summaryRepModal.title = 'Summary Reports: ' + item.name;
+        this.summaryRepModal.program = item.name;
+        this.$root.$emit('bv::show::modal', this.summaryRepModal.id, button);
       },
       showAssoc(selected, type) {
         this.assoc_info.type = type;
@@ -157,7 +172,8 @@
     },
     components: {
       'formgroupprg': formgroupprg,
-      'detailassoc': detailassoc
+      'detailassoc': detailassoc,
+      'prgsummaryrep': prgsummaryrep
     }
   };
 </script>

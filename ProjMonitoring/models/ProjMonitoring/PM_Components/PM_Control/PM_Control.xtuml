@@ -2404,6 +2404,48 @@ INSERT INTO C_EP_PROXY
 	'',
 	24,
 	'../../PM_Interfaces/Program_Management/Program_Management.xtuml');
+INSERT INTO SPR_PEP
+	VALUES ("81748396-60db-452c-afe7-fa2a64d6501b",
+	"7050adf7-069a-42fb-b5c5-2a728054fee1",
+	"35edcf68-532e-49b2-95f8-dce040a2c330");
+INSERT INTO SPR_PS
+	VALUES ("81748396-60db-452c-afe7-fa2a64d6501b",
+	'get_Summary_Reports',
+	'',
+	'msg = JsonMsg::get_Summary_Reports( PRG_Name:param.Prog_Name );
+
+send PrgMan::on_Summary_Reports(Prog_Name:param.Prog_Name, Reports:msg);',
+	1,
+	0,
+	25);
+INSERT INTO C_EP_PROXY
+	VALUES ("7050adf7-069a-42fb-b5c5-2a728054fee1",
+	"2fb1cfbf-5a98-466f-9dc8-5c99b1f86c67",
+	-1,
+	'get_Summary_Reports',
+	'',
+	25,
+	'../../PM_Interfaces/Program_Management/Program_Management.xtuml');
+INSERT INTO SPR_PEP
+	VALUES ("652f1249-12d0-4fa0-a88b-0eb1ed2fa979",
+	"5597a78f-7c24-4f3e-b4ec-7881f1d96386",
+	"35edcf68-532e-49b2-95f8-dce040a2c330");
+INSERT INTO SPR_PS
+	VALUES ("652f1249-12d0-4fa0-a88b-0eb1ed2fa979",
+	'on_Summary_Reports',
+	'',
+	'',
+	3,
+	0,
+	26);
+INSERT INTO C_EP_PROXY
+	VALUES ("5597a78f-7c24-4f3e-b4ec-7881f1d96386",
+	"2fb1cfbf-5a98-466f-9dc8-5c99b1f86c67",
+	-1,
+	'on_Summary_Reports',
+	'',
+	26,
+	'../../PM_Interfaces/Program_Management/Program_Management.xtuml');
 INSERT INTO C_I_PROXY
 	VALUES ("2fb1cfbf-5a98-466f-9dc8-5c99b1f86c67",
 	"00000000-0000-0000-0000-000000000000",

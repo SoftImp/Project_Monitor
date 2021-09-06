@@ -131,7 +131,6 @@ public class Program_ManagementController {
 
 			WaitForSingleMsg waitForMsg = new WaitForSingleMsg("", 0);
 			waitForSingle.add(waitForMsg);
-
 	
 			Program_Management.Singleton().PrgMan().get_Programs("");
 			waitForMsg.synchroniseAndWait();
@@ -166,6 +165,40 @@ public class Program_ManagementController {
 		}
 	}
 
+	@GetMapping("/getprgsr")
+	public TableData getprgsr(@RequestParam(value="name", required=true) String name) {
+		try {
+			TableData<SummaryRepMsg> td = new TableData();
+
+			WaitForSingleMsg waitForMsg = new WaitForSingleMsg(name, -1);
+			waitForSingle.add(waitForMsg);
+
+			Program_Management.Singleton().PrgMan().get_Summary_Reports(name);
+			waitForMsg.synchroniseAndWait();
+
+			td.setData(waitForMsg.getMsg(), SummaryRepMsg[].class);
+			waitForSingle.remove(waitForMsg);
+			return td;
+
+		} catch (Exception e) {
+			System.out.printf("Exception, %s, in getprgsr()\n", e);
+			return new TableData();
+		}
+	}
+
+	@PostMapping("/producesr")
+	public ResponseEntity producesr(@RequestParam(value="name", required=true) String name) {
+		try {
+			//System.out.printf("producesr() name: %s\n", name);
+			Program_Management.Singleton().PrgMan().produce_Summary_Report(name);
+
+			return new ResponseEntity(HttpStatus.OK);
+		} catch (Exception e) {
+			System.out.printf("Exception, %s, in producesr()\n", e);
+			return new ResponseEntity(HttpStatus.BAD_REQUEST);
+		}	
+	}
+
 	public void on_Programs(final String p_Programs, final String p_PRG_Name) {
 		boolean found = false;
 		for (WaitForSingleMsg waitFor : waitForSingle) {
@@ -177,6 +210,21 @@ public class Program_ManagementController {
 		}
 
 		if (!found)
-			System.out.printf("on_Programs() - unable to find sg: %s\n", p_PRG_Name);
+			System.out.printf("on_Programs() - unable to find prg: %s\n", p_PRG_Name);
 	}
+
+	public void on_Summary_Reports( final String p_PRG_Name,  final String p_Reports ) {
+
+		boolean found = false;
+		for (WaitForSingleMsg waitFor : waitForSingle) {
+			if (waitFor.isWaitfor(p_PRG_Name, -1)) {
+				waitFor.onNotify(p_Reports);
+				found = true;
+				break;
+			}
+		}
+
+		if (!found)
+			System.out.printf("on_Summary_Reports() - unable to find prg: %s\n", p_PRG_Name);
+    }
 }

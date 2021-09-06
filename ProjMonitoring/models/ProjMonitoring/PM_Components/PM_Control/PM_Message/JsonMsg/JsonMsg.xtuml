@@ -270,6 +270,42 @@ INSERT INTO O_TPARM
 	'',
 	"898aba45-cd98-4ad2-abc7-c2bc2122a9a7",
 	'');
+INSERT INTO O_TFR
+	VALUES ("1863c68d-f9ae-45fa-98f2-8aa4ec247770",
+	"85b0628f-8218-4afe-9117-bf931890238c",
+	'get_Summary_Reports',
+	'',
+	"ba5eda7a-def5-0000-0000-000000000004",
+	0,
+	'select any Program from instances of PRG
+ where (selected.PRG_Name == param.PRG_Name);
+
+if (not empty Program)
+	select many Sum_Reps related by Program -> SUMREP[R18.''may be produced for'']; 
+	
+	for each report in Sum_Reps
+		LOG::LogInfo( message: "report -> prj: " + report.PRJ_Name  );
+	end for;
+
+else
+	LOG::LogFailure( message: "The chosen PROGRAM does not exist.  Please choose a relevant PROGRAM that already exists." );
+end if;
+
+return "";',
+	1,
+	'',
+	"23fe229e-ea01-45f8-bfe7-03a840fd662c",
+	0,
+	6);
+INSERT INTO O_TPARM
+	VALUES ("ce3c43a6-bedd-48b4-9e9b-84e20585b8c3",
+	"1863c68d-f9ae-45fa-98f2-8aa4ec247770",
+	'PRG_Name',
+	"ba5eda7a-def5-0000-0000-000000000004",
+	0,
+	'',
+	"00000000-0000-0000-0000-000000000000",
+	'');
 INSERT INTO O_ID
 	VALUES (0,
 	"85b0628f-8218-4afe-9117-bf931890238c");

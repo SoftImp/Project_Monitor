@@ -24,8 +24,6 @@ INSERT INTO O_TFR
 //   Project as the contents of the Summary Report,
 //4: indicating overall (non-)performance of the Program in Traffic Light value percentages.
 
-create object instance Summary_Report of SUMREP;
-
 select any Program from instances of PRG
 where (selected.PRG_Name == param.PRG_Name);
 
@@ -52,18 +50,27 @@ if (not empty Program)
  			last_perf_report = 0;	//Enables the search to start at Report numbered 1. 
 		
 			for each Report in Reports
-				while (Report.Rep_ID > last_perf_report)
-				last_pref_report = Report.Rep_ID;
-				end while;
-				select any report related by Project -> PERFREP[R14.''may be recorded in''] where selected.Rep_ID == last_perf_report;
-				relate Summary_Report to Report across R16.''is extracted from'';
-				Summary_Report.PRJ_Name = Report.PRJ_Name;
-				Summary_Report.Traffic_Light = Report.Traffic_Light;
-				Summary_Report.PRG_Name = param.PRG_Name;
-				Summary_Report.Date = TIM::current_date();
+				if (Report.Rep_ID > last_perf_report)
+					last_perf_report = Report.Rep_ID;
+				end if;
 			end for;
+					
+			select any Report related by Project -> PERFREP[R14.''may be recorded in''] where selected.Rep_ID == last_perf_report;
+			if (not empty Report)
+				select any Last_Report related by Program -> SUMREP[R18.''may be produced for'']->PERFREP[R16.''is extracted from'']
+			 	 where selected.Rep_ID == last_perf_report and selected.PRJ_Name == Project.PRJ_Name;
+				if (empty Last_Report)
+					create object instance Summary_Report of SUMREP;
+					relate Summary_Report to Report across R16.''is extracted from'';
+					relate Summary_Report to Program across R18.''is produced for'';
+					Summary_Report.PRJ_Name = Report.PRJ_Name;
+					Summary_Report.Traffic_Light = Report.Traffic_Light;
+					Summary_Report.PRG_Name = param.PRG_Name;
+					Summary_Report.Date = TIM::current_date();
+					LOG::LogInfo( message: "A new SUMMARY REPORT set has been successfully created." );
+				end if;
+			end if;
 		end for;
-	LOG::LogInfo( message: "A new SUMMARY REPORT set has been successfully created." );
 	
 	//List the RED (non-performing) Projects among the Summary Report set first.
 	
@@ -71,9 +78,9 @@ if (not empty Program)
 	
 		red_ones = 0;
 		for each report in Sum_Reps
-			while (report.Traffic_Light == Status_Colour::RED)
+			if (report.Traffic_Light == Status_Colour::RED)
 				red_ones = red_ones + 1;	
-			end while;
+			end if;
 		end for;
 	
 		//send OrgMan::Report(Relevant_Person:"Manager", PRG_Name:param.PRG_Name, PRJ_Name:report.PRJ_Name, Traffic_Light:report.Traffic_Light);
@@ -85,9 +92,9 @@ if (not empty Program)
 		
 		amber_ones = 0;
 		for each report in Sum_Reps
-			while (report.Traffic_Light == Status_Colour::AMBER)
+			if (report.Traffic_Light == Status_Colour::AMBER)
 				amber_ones = amber_ones + 1;
-			end while;				
+			end if;				
 		end for;
 		
 		//send OrgMan::Report(Relevant_Person:"Manager", PRG_Name:param.PRG_Name, PRJ_Name:report.PRJ_Name, Traffic_Light:report.Traffic_Light);
@@ -99,9 +106,9 @@ if (not empty Program)
 		
 		green_ones = 0;
 		for each report in Sum_Reps
-			while (report.Traffic_Light == Status_Colour::GREEN)
+			if (report.Traffic_Light == Status_Colour::GREEN)
 				green_ones = green_ones + 1;
-			end while;	
+			end if;	
 		end for;
 		
 		//send OrgMan::Report(Relevant_Person:"Manager", PRG_Name:param.PRG_Name, PRJ_Name:report.PRJ_Name, Traffic_Light:report.Traffic_Light);

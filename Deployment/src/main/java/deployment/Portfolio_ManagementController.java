@@ -240,6 +240,6 @@ public class Portfolio_ManagementController {
 		}
 
 		if (!found)
-			System.out.printf("on_Portfolios() - unable to find sg: %s\n", p_PF_Name);
+			System.out.printf("on_Portfolios() - unable to find pf: %s\n", p_PF_Name);
 	}
 }

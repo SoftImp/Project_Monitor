@@ -33,12 +33,15 @@
 
       <b-table bordered hover :items="items" :fields="fields" :filter="filter" head-variant="light">
         <template #cell(actions)="row">
-          <b-button size="sm" @click="update(row.item, row.index, $event.target)" class="mr-1 mb-1" v-b-tooltip.hover :title="getUpdateTitle(row.item)">
+          <!--<b-button size="sm" @click="update(row.item, row.index, $event.target)" class="mr-1 mb-1" v-b-tooltip.hover :title="getUpdateTitle(row.item)">
             Update
           </b-button>
           <b-button size="sm" @click="updateEvData(row.item, row.index, $event.target)" class="mb-1" v-b-tooltip.hover title="Earned Value Data">
             <b-icon icon="bar-chart-steps"></b-icon>
-          </b-button>
+          </b-button>-->
+          <b-dropdown size="sm" split right text="Update" @click="update(row.item, row.index, $event.target)" split-variant="outline-secondary">
+            <b-dropdown-item-button @click="updateEvData(row.item, row.index, $event.target)">Earned Value Data</b-dropdown-item-button>
+          </b-dropdown>
         </template>
         <template #thead-top="data">
           <b-tr>

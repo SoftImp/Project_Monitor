@@ -43,7 +43,11 @@ public class Program_Management extends Component<Program_Management> {
       	} catch ( Exception e ) {}
     }
 
-
+    public void on_Summary_Reports( final String p_PRG_Name,  final String p_Reports ) throws XtumlException {
+        try {
+            Program_ManagementController.Singleton().on_Summary_Reports( p_PRG_Name,  p_Reports);
+      	} catch ( Exception e ) {}
+    }
 
     // relates and unrelates
 

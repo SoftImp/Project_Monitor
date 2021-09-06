@@ -3,6 +3,7 @@
     <b-table
       :items="prj.earnedValues"
       :fields="fields"
+      sticky-header="true"
       responsive="sm"
       bordered
       hover
