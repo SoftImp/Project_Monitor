@@ -41,13 +41,10 @@ if (not empty Program)
 			
 			select many Reports related by Project -> PERFREP[R14.''may be recorded in''];
 	
-//	select many Reports related by Program -> PRJ[R5.''may include''] -> PERFREP[R14.''may be recorded in''];
-	// I think this last statement should provide an instance set that only includes existing performance reports.
-	
 			//Finally identify the last submitted reports for each Project and add them to the Summary Report.
 			//Note that a Project''s Reports are numbered sequentially from 1 as they are submitted.
 	
- 			last_perf_report = 0;	//Enables the search to start at Report numbered 1. 
+ 			last_perf_report = 0;	//Enables the search to start at Performance Report numbered 1. 
 		
 			for each Report in Reports
 				if (Report.Rep_ID > last_perf_report)

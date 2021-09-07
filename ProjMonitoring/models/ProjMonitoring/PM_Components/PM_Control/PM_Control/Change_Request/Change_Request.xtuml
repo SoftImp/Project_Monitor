@@ -6,11 +6,9 @@ INSERT INTO O_OBJ
 	11,
 	'PRCR',
 	'A CHANGE REQUEST can be submitted at any time during the running of a PROGRAM.
-As to whether the CHANGE REQUEST is acted on is left to the PROGRAM manager who
-is otherwise notified. 
+As to whether the CHANGE REQUEST is acted on is left to the PROGRAM manager who is otherwise notified. 
 
-An assumption being made for the MVP is that a CHANGE REQUEST (if not ignored) will 
-lead to one or more REQUIREMENTS to be added and implemented for the overall PROGRAM.
+An assumption being made for the MVP is that a CHANGE REQUEST (if not ignored) will lead to one or more REQUIREMENTS to be added and implemented for the overall PROGRAM.
 
 This class is based on UC05.',
 	"00000000-0000-0000-0000-000000000000");
