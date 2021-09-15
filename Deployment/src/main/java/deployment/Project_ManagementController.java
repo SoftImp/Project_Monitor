@@ -153,16 +153,8 @@ public class Project_ManagementController {
 	@GetMapping("/getavlprj")
 	public TableData getavlprj(@RequestParam(value="program", required=false) String program) {
 		try {
-			TableData<ProjectMsg> td = new TableData();
-			WaitForSingleMsg waitForMsg = new WaitForSingleMsg("", 0);
-			waitForSingle.add(waitForMsg);
-
-			Project_Management.Singleton().PrjMan().get_Projects("");
-			waitForMsg.synchroniseAndWait();
-	
-			List<ProjectMsg> prj = Arrays.asList(new Gson().fromJson(waitForMsg.getMsg(), ProjectMsg[].class));
-			waitForSingle.remove(waitForMsg);
-
+			TableData<ProjectMsg> td = getallprj();
+			List<ProjectMsg> prj = td.getData();
 			ProjectMsg[] avl = prj.stream().filter(p -> p.getProgram().equals("") || p.getProgram().equals(program)).toArray(ProjectMsg[]::new);
 
 			JSONArray jsArray = new JSONArray(avl);
