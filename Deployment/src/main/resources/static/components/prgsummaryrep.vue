@@ -38,7 +38,7 @@
       </b-card>
     </div>
     <b-button @click="generate">Generate</b-button>
-    <b-toast id="toast-no-reports" title="Generate Results" toaster="b-toaster-top-center" solid>
+    <b-toast id="toast-no-reports" title="Generate Results" toaster="b-toaster-top-center" solid variant="danger">
       No Performance Reports found, please enter Earned Value Data for the associated Projects.
     </b-toast>
   </div>

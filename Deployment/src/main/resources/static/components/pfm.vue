@@ -94,8 +94,11 @@
           Save
         </b-button>
         <b-button variant="success" v-if="pf_state[updateModal.item.currentState] !== 'Closed'" @click="onComplete">
-          <template v-if="pf_state[updateModal.item.currentState] !== 'Executing'">
-            Complete
+          <template v-if="pf_state[updateModal.item.currentState] === 'Initialise'">
+            Plan
+          </template>
+          <template v-else-if="pf_state[updateModal.item.currentState] === 'Planning'">
+            Execute
           </template>
           <template v-else>
             Close

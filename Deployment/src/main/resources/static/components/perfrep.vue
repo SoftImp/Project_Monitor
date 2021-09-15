@@ -3,53 +3,53 @@
     <b-card-group deck>
       <b-card title="Earned Value Data">
         <b-row>
-          <b-col md="9" class="mb-2">
+          <b-col md="8" class="mb-2">
             <b-card-text>Budget At Completion:</b-card-text>
           </b-col>
-          <b-col md="3">
-            <b-card-text>{{parseFloat(pr.bac).toFixed(2)}}</b-card-text>
+          <b-col md="4">
+            <b-card-text class="float-right">{{parseFloat(pr.bac).toFixed(2)}}</b-card-text>
           </b-col>
         </b-row>
         <b-row>
-          <b-col md="9" class="mb-2">
+          <b-col md="8" class="mb-2">
             <b-card-text>Earned Value:</b-card-text>
           </b-col>
-          <b-col md="3">
-            <b-card-text>{{parseFloat(pr.ev).toFixed(2)}}</b-card-text>
+          <b-col md="4">
+            <b-card-text class="float-right">{{parseFloat(pr.ev).toFixed(2)}}</b-card-text>
           </b-col>
         </b-row>
         <b-row>
-          <b-col md="9" class="mb-2">
+          <b-col md="8" class="mb-2">
             <b-card-text>Planned Value:</b-card-text>
           </b-col>
-          <b-col md="3">
-            <b-card-text>{{parseFloat(pr.pv).toFixed(2)}}</b-card-text>
+          <b-col md="4">
+            <b-card-text class="float-right">{{parseFloat(pr.pv).toFixed(2)}}</b-card-text>
           </b-col>
         </b-row>
         <b-row>
-          <b-col md="9" class="mb-2">
+          <b-col md="8" class="mb-2">
             <b-card-text>Actual Cost:</b-card-text>
           </b-col>
-          <b-col md="3">
-            <b-card-text>{{parseFloat(pr.ac).toFixed(2)}}</b-card-text>
+          <b-col md="4">
+            <b-card-text class="float-right">{{parseFloat(pr.ac).toFixed(2)}}</b-card-text>
           </b-col>
         </b-row>
       </b-card>
       <b-card title="Earned Value Variances">
         <b-row>
-          <b-col md="9" class="mb-2">
+          <b-col md="8" class="mb-2">
             <b-card-text>Cost Variance:</b-card-text>
           </b-col>
-          <b-col md="3">
-            <b-card-text>{{parseFloat(pr.cv).toFixed(2)}}</b-card-text>
+          <b-col md="4">
+            <b-card-text class="float-right">{{parseFloat(pr.cv).toFixed(2)}}</b-card-text>
           </b-col>
         </b-row>
         <b-row>
-          <b-col md="9" class="mb-2">
+          <b-col md="8" class="mb-2">
             <b-card-text>Schedule Variance:</b-card-text>
           </b-col>
-          <b-col md="3">
-            <b-card-text>{{parseFloat(pr.sv).toFixed(2)}}</b-card-text>
+          <b-col md="4">
+            <b-card-text class="float-right">{{parseFloat(pr.sv).toFixed(2)}}</b-card-text>
           </b-col>
         </b-row>
       </b-card>  
@@ -61,7 +61,7 @@
             <b-card-text>Cost Performance Index:</b-card-text>
           </b-col>
           <b-col md="3">
-            <b-card-text>{{parseFloat(pr.cpi).toFixed(2)}}</b-card-text>
+            <b-card-text class="float-right">{{parseFloat(pr.cpi).toFixed(2)}}</b-card-text>
           </b-col>
         </b-row>
         <b-row>
@@ -69,7 +69,7 @@
             <b-card-text>Schedule Performance Index:</b-card-text>
           </b-col>
           <b-col md="3">
-            <b-card-text>{{parseFloat(pr.spi).toFixed(2)}}</b-card-text>
+            <b-card-text class="float-right">{{parseFloat(pr.spi).toFixed(2)}}</b-card-text>
           </b-col>
         </b-row>
         <b-row>
@@ -78,33 +78,33 @@
           </b-col>
           <b-col md="3">
             <!--<b-card-text>{{pr.trafficLight}}</b-card-text>-->
-            <b-button class="circle" :variant="status_variant[status_colour.indexOf(pr.trafficLight)]"></b-button>
+            <b-button class="circle float-right" :variant="status_variant[status_colour.indexOf(pr.trafficLight)]"></b-button>
           </b-col>
         </b-row>
       </b-card>  
       <b-card title="Completion Estimates">
         <b-row>
-          <b-col md="9" class="mb-2">
+          <b-col md="8" class="mb-2">
             <b-card-text>Estimate At Completion:</b-card-text>
           </b-col>
-          <b-col md="3">
-            <b-card-text>{{parseFloat(pr.eac).toFixed(2)}}</b-card-text>
+          <b-col md="4">
+            <b-card-text class="float-right">{{parseFloat(pr.eac).toFixed(2)}}</b-card-text>
           </b-col>
         </b-row>
         <b-row>
-          <b-col md="9" class="mb-2">
+          <b-col md="8" class="mb-2">
             <b-card-text>Variance At Completion:</b-card-text>
           </b-col>
-          <b-col md="3">
-            <b-card-text>{{parseFloat(pr.vac).toFixed(2)}}</b-card-text>
+          <b-col md="4">
+            <b-card-text class="float-right">{{parseFloat(pr.vac).toFixed(2)}}</b-card-text>
           </b-col>
         </b-row>
         <b-row>
-          <b-col md="9" class="mb-2">
+          <b-col md="8" class="mb-2">
             <b-card-text>Estimate To Complete:</b-card-text>
           </b-col>
-          <b-col md="3">
-            <b-card-text>{{parseFloat(pr.etc).toFixed(2)}}</b-card-text>
+          <b-col md="4">
+            <b-card-text class="float-right">{{parseFloat(pr.etc).toFixed(2)}}</b-card-text>
           </b-col>
         </b-row>
       </b-card>

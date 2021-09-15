@@ -8,13 +8,27 @@
 		  <b-form-input id="input-2" ref="ev" v-model.trim="ev.ev" :state="state.ev" type="number" step="any" min="0" required></b-form-input>
     </b-form-group>     
 	
-	  <b-form-group label="Planned Value:" label-for="input-3" :state="state.pv">
+	  <b-form-group label="Planned Value:" label-for="input-3" invalid-feedback="Planned Value is required" :state="state.pv">
       <b-form-input id="input-3" ref="pv" v-model.trim="ev.pv" :state="state.pv" type="number" step="any" min="0" required></b-form-input>
     </b-form-group>
 
-    <b-form-group label="Actual Cost:" label-for="input-4" :state="state.ac">
+    <b-form-group label="Actual Cost:" label-for="input-4" invalid-feedback="Actual Cost is required" :state="state.ac">
       <b-form-input id="input-4" ref="ac" v-model.trim="ev.ac" :state="state.ac" type="number" step="any" min="0" required></b-form-input>
     </b-form-group>
+
+    <b-toast id="toast-confirm" title="Confirmation" toaster="b-toaster-top-center" solid no-auto-hide variant="danger">
+      <template #default>
+        <div>
+          <p>Please select OK to confirm that the data values entered are correct and to save the values to the system.</p>
+          <p>Please select Cancel to continue editing.</p>
+          <p><b>Please note that once saved, these values cannot be changed.</b></p>
+          <footer class="modal-footer pb-0 pr-0">
+            <b-button @click="$bvToast.hide('toast-confirm')">Cancel</b-button>
+            <b-button variant="primary" @click="handleConfirm('toast-confirm')">OK</b-button>
+          </footer>
+        </div>
+      </template>
+    </b-toast>
   </div>
 </template>
 
@@ -34,7 +48,8 @@
             ev: null,
 			      pv: null,
             ac: null,
-        }
+        },
+        modalId: null
       }
     },
     methods: { 
@@ -51,18 +66,23 @@
 
         return true;
       },
+      handleConfirm(toastId) {
+        this.$bvToast.hide(toastId);
+        this.handleSubmit(this.modalId);
+      },
       handleOk(bvModalEvt, modalId) {
         // Prevent modal from closing
         if (bvModalEvt)
           bvModalEvt.preventDefault();
-        // Trigger submit handler
-        this.handleSubmit(modalId);
-      },
-      async handleSubmit(modalId) {
+
         if (!this.checkFormValidity()) {
           return;
         }
 
+        this.modalId = modalId;
+        this.$bvToast.show('toast-confirm');
+      },
+      async handleSubmit(modalId) {
         let url = './addevdata?project=' + this.project;
 
         const response = await fetch(url, {
